@@ -6,7 +6,7 @@
     <div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
         <div class="panel">
           <div class="panel-header text-center">
-            <figure class="avatar avatar-lg"><img src="../img/avatar-2.png" alt="Avatar"></figure>
+            <figure class="avatar avatar-lg bg-gray"><img src="{{ asset('custom/avatar.png') }}" alt="Avatar"></figure>
             <div class="panel-title h5 mt-10">Bruce Banner</div>
             <div class="panel-subtitle">THE HULK</div>
           </div>
