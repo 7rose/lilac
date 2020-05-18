@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use function EasyWeChat\Kernel\Support\str_random;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('auth.check');
+    $b = str_random(32);
+    echo $b;
+    // return view('auth.check');
     // $r = App\User::find(1)->children;
     // print_r($r);
     // foreach ($r as $key => $value) {
@@ -26,6 +30,8 @@ Route::get('/test', function () {
     // }
     // echo $r;
 });
+
+Route::any('/wechat', 'WeChatController@serve');
 
 Route::get('/sms', 'AuthController@sms');
 Route::post('/code', 'AuthController@code')->middleware('throttle:100,2');
