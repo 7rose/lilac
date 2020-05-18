@@ -15,9 +15,17 @@ use function EasyWeChat\Kernel\Support\str_random;
 |
 */
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+Route::any('/wechat', 'WeChatController@serve');
+
+Route::get('/sms', 'AuthController@sms');
+Route::post('/code', 'AuthController@code')->middleware('throttle:100,2');
+
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::get('/test', function () {
     $b = str_random(32);
@@ -30,8 +38,3 @@ Route::get('/test', function () {
     // }
     // echo $r;
 });
-
-Route::any('/wechat', 'WeChatController@serve');
-
-Route::get('/sms', 'AuthController@sms');
-Route::post('/code', 'AuthController@code')->middleware('throttle:100,2');
