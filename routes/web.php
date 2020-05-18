@@ -40,7 +40,7 @@ Route::group(['middleware' => ['wechat.oauth:snsapi_userinfo']], function () {
 Route::get('/test', function () {
     // $b = str_random(32);
     // echo $b;
-    echo "fuck you";
+    echo "fucking";
     // return view('auth.check');
     // $r = App\User::find(1)->children;
     // print_r($r);
