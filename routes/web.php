@@ -17,7 +17,7 @@ use function EasyWeChat\Kernel\Support\str_random;
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::any('/wechat', 'WeChatController@serve');
+Route::any('/wechat', 'WechatController@serve');
 
 Route::get('/sms', 'AuthController@sms');
 Route::post('/code', 'AuthController@code')->middleware('throttle:100,2');
