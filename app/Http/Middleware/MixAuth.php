@@ -16,7 +16,7 @@ class MixAuth
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()) return $next($request);
+        // if(Auth::check()) return $next($request);
 
         $app = app('wechat.official_account');
         // $oauth = $app->oauth->scopes(['snsapi_userinfo']);
@@ -26,7 +26,7 @@ class MixAuth
         // $user = $app->oauth->user();
         $response = $app->oauth->scopes(['snsapi_userinfo']);
 
-        print_r($response);
+        print_r($response->user());
 
 
         // return app(\Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class)->handle($request, function ($request) use ($next) {
