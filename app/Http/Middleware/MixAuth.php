@@ -20,7 +20,8 @@ class MixAuth
 
         $user = session('wechat.oauth_user.default');
 
-        print_r($user);
+        // print_r($user);
+        echo $user->getId();
 
         // $app = app('wechat.official_account');
         // // $app['request'] = $request;
