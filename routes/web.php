@@ -38,10 +38,19 @@ Route::group(['middleware' => ['mix']], function () {
 
 
 
-Route::get('/test', function () {
+Route::get('/apps', function () {
+    $app = app('wechat.official_account');
+        // $oauth = $app->oauth->scopes(['snsapi_userinfo']);
+
+        // 获取 OAuth 授权结果用户信息
+        // $user = $oauth->user();
+        $user = $app->oauth->user();
+
+        print_r($user);
+
     // $b = str_random(32);
     // echo $b;
-    echo "fucking";
+    // echo "fucking";
     // return view('auth.check');
     // $r = App\User::find(1)->children;
     // print_r($r);
