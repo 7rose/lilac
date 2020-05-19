@@ -19,10 +19,11 @@ class MixAuth
         if(Auth::check()) return $next($request);
 
 
-        app(\Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class);
+        app(\Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class)->handle($request, function ($request) use ($next) {
+            $wechat_user = session('wechat.oauth_user.default');
+            print_r($wechat_user);
+        });
 
-        $wechat_user = session('wechat.oauth_user.default');
-        print_r($wechat_user);
 
     }
 }
