@@ -18,13 +18,13 @@ class MixAuth
     {
         // if(Auth::check()) return $next($request);
 
+        $app['request'] = $request;
         $app = app('wechat.official_account');
         // $oauth = $app->oauth->scopes(['snsapi_userinfo']);
 
         // 获取 OAuth 授权结果用户信息
         // $user = $oauth->user();
         // $user = $app->oauth->user();
-        $app['request'] = $request;
         $response = $app->oauth->scopes(['snsapi_userinfo']);
 
         print_r($response->user());
