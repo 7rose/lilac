@@ -17,12 +17,12 @@ class MixAuth
     public function handle($request, Closure $next)
     {
         // if(Auth::check()) return $next($request);
-        return $next($request);
 
-        // $user = session('wechat.oauth_user.default');
+        $user = session('wechat.oauth_user.default');
 
-        // print_r($user);
+        print_r($user);
         // echo $user->id;
+        return $next($request);
 
 
         // $app = app('wechat.official_account');
