@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
-    Route::get('/me', 'UserController@me');
+    // Route::get('/me', 'UserController@me');
 });
 
 Route::group(['middleware' => ['mix']], function () {
