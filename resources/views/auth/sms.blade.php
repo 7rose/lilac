@@ -8,13 +8,10 @@
         <div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
             <div class="panel">
                 <div class="panel-header">
-
+                    <p><i class="fa fa-key" aria-hidden="true"></i> 身份验证</p>
                 </div>
-                <div class="panel-nav">
-                <!-- navigation components: tabs, breadcrumbs or pagination -->
-            </div>
             <div class="panel-body">
-                <p class="text-gray"></p>
+
                 <!-- contents -->
                 <form method="POST" action="/code">
                     @csrf
