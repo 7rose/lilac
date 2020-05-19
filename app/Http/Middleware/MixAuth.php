@@ -20,7 +20,7 @@ class MixAuth
 
         $app = app('wechat.official_account');
         $app['request'] = $request;
-        $oauth = $app->oauth->scopes(['snsapi_userinfo']);
+        $oauth = $app->oauth;
 
         // 获取 OAuth 授权结果用户信息
         $user = $oauth->user();
