@@ -24,8 +24,7 @@ class MixAuth
         // 获取 OAuth 授权结果用户信息
         // $user = $oauth->user();
         // $user = $app->oauth->user();
-        $response = $app->oauth->scopes(['snsapi_userinfo'])
-                          ->redirect($request->fullUrl());
+        $response = $app->oauth->scopes(['snsapi_userinfo']);
 
         print_r($response);
 
