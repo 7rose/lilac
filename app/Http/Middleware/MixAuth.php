@@ -23,9 +23,11 @@ class MixAuth
 
         // 获取 OAuth 授权结果用户信息
         // $user = $oauth->user();
-        $user = $app->oauth->user();
+        // $user = $app->oauth->user();
+        $response = $app->oauth->scopes(['snsapi_userinfo'])
+                          ->redirect($request->fullUrl());
 
-        print_r($user);
+        print_r($response);
 
 
         // return app(\Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class)->handle($request, function ($request) use ($next) {
