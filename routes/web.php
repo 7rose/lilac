@@ -28,9 +28,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+//     Route::get('/me', 'UserController@me');
+// });
+
+Route::group(['middleware' => ['mix']], function () {
     Route::get('/me', 'UserController@me');
 });
+
+
 
 Route::get('/test', function () {
     // $b = str_random(32);

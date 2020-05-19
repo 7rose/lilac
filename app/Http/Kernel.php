@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
 
         // wechat
         'wechat.oauth' => \Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class,
+        'mix' => \App\Http\Middleware\MixAuth::class,
     ];
 }
