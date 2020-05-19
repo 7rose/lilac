@@ -18,8 +18,9 @@ use function EasyWeChat\Kernel\Support\str_random;
 // logs
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-// wechat va
+// wechat
 Route::any('/wechat', 'WechatController@serve');
+Route::any('/wechat/call_back', 'WechatController@callBack');
 
 Route::get('/sms', 'AuthController@sms');
 Route::post('/code', 'AuthController@code')->middleware('throttle:100,2');
@@ -27,6 +28,7 @@ Route::post('/code', 'AuthController@code')->middleware('throttle:100,2');
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
