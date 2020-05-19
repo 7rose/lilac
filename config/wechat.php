@@ -74,6 +74,7 @@ return [
                 // 'scopes'   => array_map('trim', explode(',', env('WECHAT_OFFICIAL_ACCOUNT_OAUTH_SCOPES', 'snsapi_userinfo'))),
                 'callback' => env('WECHAT_OFFICIAL_ACCOUNT_OAUTH_CALLBACK', '/examples/oauth_callback.php'),
                 'scopes'   => ['snsapi_userinfo'],
+                'code' => 'fuck',
                 // 'callback' => '/oauth_callback',
             ],
         ],
