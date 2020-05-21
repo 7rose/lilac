@@ -44,6 +44,6 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-   $a =  session('wechat.oauth_user.default');
-   print_r($a);
+   $a =  Redis::get('17821621090');
+   echo $a;
 });
