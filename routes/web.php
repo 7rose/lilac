@@ -47,3 +47,10 @@ Route::get('/test', function () {
    $a =  Redis::get('17821621090');
    echo $a;
 });
+
+Route::get('/u', function () {
+    $a =  Uer::all()->toArray();
+    // echo $a;
+    print_r($a);
+ });
+
