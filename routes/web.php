@@ -53,5 +53,6 @@ Route::get('/u', function () {
     $a =  User::all()->toArray();
     // echo $a;
     print_r($a);
+
  });
 
