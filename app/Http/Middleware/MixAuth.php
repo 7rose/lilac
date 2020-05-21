@@ -23,7 +23,7 @@ class MixAuth
         // $app['request'] = $request;
         $wechat_user = session('wechat.oauth_user.default');
 
-        // print_r($wechat_user);
+        print_r($wechat_user);
         $user = User::where('ids->wechat->id', $wechat_user->id)->first();
 
         if($user) {

@@ -32,7 +32,7 @@ Route::get('/', function () {
 });
 
 // wechat user
-// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     // auth users
     Route::get('/expos', 'UserController@index');
@@ -40,7 +40,7 @@ Route::get('/', function () {
         Route::get('/me', 'UserController@me');
     });
 
-// });
+});
 
 Route::get('/test', function () {
     //
