@@ -29,7 +29,7 @@
             <div class="dropdown dropdown-right">
                 <a class="dropdown-toggle" tabindex="0">
                     <div class="chip">
-                        <img src="{{ asset(show(Auth::user()->ids, 'wechat.headimgurl', 'custom/avatar.png')) }}"  class="avatar avatar-sm">
+                        <img src="{{ asset(show(Auth::user()->ids, 'wechat.avatar', 'custom/avatar.png')) }}"  class="avatar avatar-sm">
                         Goldern
                     </div>
                 </a>
