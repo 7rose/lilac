@@ -29,7 +29,7 @@
             <div class="dropdown dropdown-right">
                 <a class="dropdown-toggle" tabindex="0">
                     <div class="chip">
-                        <img src="{{ asset('custom/avatar.png') }}"  class="avatar avatar-sm bg-gray">
+                    <div class="bg-gray"><img src="{{ asset('custom/avatar.png') }}"  class="avatar avatar-sm"></div>
                         Goldern
                     </div>
                 </a>
