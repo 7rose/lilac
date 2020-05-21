@@ -31,7 +31,6 @@
                     <div class="chip">
                         <img src="{{ asset('custom/avatar.png') }}"  class="avatar avatar-sm">
                         Yan Zhu
-                        <a href="#" class="btn btn-clear" role="button"></a>
                     </div>
                 </a>
                 <ul class="menu text-left">
