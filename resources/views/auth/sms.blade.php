@@ -15,12 +15,13 @@
                 <!-- contents -->
                 <form method="POST" action="/code">
                     <input class="form-input mt-2 mobile" id="mobile" name="mobile" type="number" placeholder="请输入手机号" autofocus>
-                    <p id="info" class="form-input-hint"></p>
+                    <p id="info" name="mobile" class="form-input-hint"></p>
                     <p>
                         <div class="form-group">
                             <label class="form-checkbox">
-                                <input id="agree" type="checkbox" checked onchange="javascript:terms()">
+                                <input id="terms" type="checkbox" checked onchange="javascript:terms()">
                                 <i class="form-icon"></i> 阅读并同意 <a href="#">《用户协议》</a>
+                                <p id="info" name="terms" class="form-input-hint"></p>
                             </label>
                         </div>
                     </p>
@@ -45,7 +46,7 @@
           <form>
             <div class="form-group">
               <input id="code" class="form-input mobile text-success" id="input-example-7" type="text" placeholder="验证码">
-              <p id="code_info" class="form-input-hint"></p>
+              <p id="code_info" name="code" class="form-input-hint"></p>
             </div>
           </form>
         </div>
@@ -57,13 +58,13 @@
   </div>
 
 <script>
-    var rate, success_timer, error_timer;
+    var rate, counter, error_info;
 
     var path = window.location.pathname;
     // Agree items
     function terms()
     {
-        var agree = $("#agree").is(':checked');
+        var agree = $("#terms").is(':checked');
         if(!agree) {
             $("#next").attr('disabled',true);
         }else{
@@ -78,8 +79,8 @@
         var mobile = $("#mobile").val();
 
         if(!(/^\d{6}$/.test(code))){
-            $("#code_info").html("验证码必需是6位数字");
-            $("#code_info").addClass('text-error');
+            $("#code_info").html("验证码是6位数字");
+            // $("#code_info").addClass('text-error');
             return false;
         }
 
@@ -93,17 +94,22 @@
             datatype: "json",
             beforeSend:function(){
                 $("#code_info").html("");
-                $("#check_code").attr('disabled', true);
-                $("#check_code").addClass('loading');
+                // $("#check_code").attr('disabled', true);
+                // $("#check_code").addClass('loading');
             },
             success:function(data, statusTest, xhr){
+                var msg = jQuery.parseJSON(data);
+
+                if(msg.hasOwnProperty('errors')) {
+                    $.each(msg.errors, function(key, value) {
+                        $('p[name ="'+key+'"]').html(value);
+                    });
+                    return false;
+                }
                 window.location.replace(path);
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                $("#code_info").html("系统限制：请稍后重试");
-                $("#code_info").addClass('text-error');
-                $("#check_code").attr('disabled', false);
-                $("#check_code").removeClass('loading');
+                error(jqXHR, textStatus, errorThrown);
             }
         });
     }
@@ -112,10 +118,10 @@
     function getcode()
     {
         var mobile = $("#mobile").val();
+        var terms = $("#terms").val();
 
         if(!(/^1[3456789]\d{9}$/.test(mobile))){
-            $("#info").html("错误的手机号!");
-            $("#info").addClass('text-error');
+            $("#info").html("手机号不正确");
             return false;
         }
 
@@ -123,41 +129,70 @@
             type:"POST",
             url:"/code",
             data:{
-                mobile: mobile
+                mobile: mobile,
+                terms: terms
             },
             datatype: "json",
             beforeSend:function(){
                 $("#mobile").attr('disabled', true);
-                $("#agree").attr('disabled', true);
+                $("#terms").attr('disabled', true);
                 $("#next").attr('disabled', true);
                 $("#next").addClass('loading');
             },
             success:function(data, statusTest, xhr){
-                console.log(data);
                 var d = $.parseJSON(data);
                 rate = d.rate;
-                success_timer = setInterval(numtimer, 1000);
+                error_info = '验证码发送成功, <a href="#md">现在验证</a>';
+                counter = setInterval(counter_timer, 1000);
                 setTimeout(show,2800);
-                // $("#code").focus();
-            },
-            complete: function(XMLHttpRequest, textStatus){
-                //
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                var headers = toJson(jqXHR.getAllResponseHeaders());
-                console.log(headers["x-ratelimit-reset"]);
-                // console.log(Date.now());
-                if(headers.hasOwnProperty('x-ratelimit-reset')) {
-                    var now = parseInt(Date.now()/1000);
-                    rate = headers["x-ratelimit-reset"] - now;
-                    error_timer = setInterval(numtimer2, 1000);
-                }else{
-                    reset_form();
-                    $("#info").html("连接没有响应");
-                }
-
+                error(jqXHR, textStatus, errorThrown);
+                reset_form();
             }
         });
+    }
+
+    // error handler
+    function error(jqXHR, textStatus, errorThrown)
+    {
+        var headers = toJson(jqXHR.getAllResponseHeaders());
+
+        if(headers.hasOwnProperty('x-ratelimit-reset')) {
+            var now = parseInt(Date.now()/1000);
+            rate = headers["x-ratelimit-reset"] - now;
+            error_info = "收到验证码约需2分钟, 请勿频繁获取";
+            counter = setInterval(counter_timer, 1000);
+        }else{
+            var msg = jQuery.parseJSON(jqXHR.responseText);
+
+            console.log(msg);
+
+            if(msg.hasOwnProperty('errors')) {
+                $.each(msg.errors, function(key, value) {
+                    $('p[name ="'+key+'"]').html(value);
+                });
+            }else{
+                $("#info").html("无法获取服务");
+            }
+            // reset_form();
+        }
+    }
+
+    function counter_timer()
+    {
+        rate --;
+
+        // $("#info").addClass('text-error');
+        $("#info").html(error_info);
+
+        $("#next").html(rate + " 秒后可重新获取");
+        $("#next").removeClass('loading');
+
+        if(rate <= 0) {
+            reset_all();
+            clearInterval(counter);
+        }
     }
 
     // show modal
@@ -169,49 +204,20 @@
     // rest form
     function reset_form()
     {
-        $("#info").html("");
+        // $("#info").html("");
         $("#code").html("");
         $("#next").html("获取验证码");
 
         $("#mobile").prop('disabled', false);
-        $("#agree").prop('disabled', false);
+        $("#terms").prop('disabled', false);
         $("#next").prop('disabled', false);
         $("#next").removeClass('loading');
     }
 
-    function numtimer2()
+    function reset_all()
     {
-        rate --;
-        // console.log(rate);
-
-        $("#info").addClass('text-error');
-        $("#info").html("距您收到验证码约需要2分钟，请勿频繁获取");
-
-        $("#next").html(rate + " 秒后可重新获取");
-        $("#next").removeClass('loading');
-
-        if(rate <= 0) {
-            reset_form();
-            clearInterval(error_timer);
-        }
-    }
-
-    function numtimer()
-    {
-        rate --;
-        // console.log(rate);
-
-        $("#info").removeClass('text-error');
-        $("#info").addClass('text-success');
-        $("#info").html("验证码已发送，5分钟内有效");
-
-        $("#next").html(rate + " 秒后可重新获取");
-        $("#next").removeClass('loading');
-
-        if(rate <= 0) {
-            reset_form();
-            clearInterval(success_timer);
-        }
+        $("#info").html("");
+        reset_form();
     }
 
     // trans headers to JSON

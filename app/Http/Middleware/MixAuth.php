@@ -23,15 +23,15 @@ class MixAuth
         // $app['request'] = $request;
         $wechat_user = session('wechat.oauth_user.default');
 
-        print_r($wechat_user);
-        $user = User::where('ids->wechat->id', $wechat_user->id)->first();
+        // print_r($wechat_user);
+        // $user = User::where('ids->wechat->id', $wechat_user->id)->first();
 
-        if($user) {
-            Auth::login($user);
-            return $next($request);
-        }else{
+        // if($user) {
+        //     Auth::login($user);
+        //     return $next($request);
+        // }else{
             return redirect('/sms');
-        }
+        // }
 
     }
 }
