@@ -27,10 +27,10 @@
             <a href="#" class="btn btn-link hide-xs text-dark">配置</a>
             @auth
             <div class="dropdown dropdown-right">
-                <a class="dropdown-toggle" tabindex="0">
+                <a class="dropdown-toggle text-dark" tabindex="0">
                     <div class="chip">
                         <img src="{{ asset(show(Auth::user()->ids, 'wechat.avatar', 'custom/avatar.png')) }}"  class="avatar avatar-sm">
-                        Goldern
+                        {{ show(Auth::user()->info, 'nick', show(Auth::user()->ids, 'nickname', ' ')) }}
                     </div>
                 </a>
                 <ul class="menu text-left">
