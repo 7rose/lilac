@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Rules\Mobile;
+use Illuminate\Support\Arr;
 use App\Jobs\SendSmsCodeJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -63,20 +64,19 @@ class AuthController extends Controller
 
         if(Redis::get($mobile)!= $request->code) return json_encode(['errors' =>['code' => '验证码错误']]);
 
+        $updates = ['ids->mobile->active' => now()];
+        if(Session::has('wechat.oauth_user.default')) Arr::add($updates, 'ids->wechat', session('wechat.oauth_user.default')->toArray());
+
         $user = User::updateOrCreate(
             ['ids->mobile->number' => $mobile],
-            [
-                'ids->mobile->active' => now(),
-                'ids->wechat->id' => Session::has('wechat.oauth_user.default') ? session('wechat.oauth_user.default')->id : null,
-                'ids->wechat->info' => Session::has('wechat.oauth_user.default') ? session('wechat.oauth_user.default')->toArray() : null,
-            ],
+            $updates,
         );
+
+        if(Redis::exists($mobile)) Redis::del($mobile);
 
         Auth::login($user);
 
-        $json = json_encode(['success' => 'ok']);
-
-        return $json;
+        return json_encode(['success' => 'ok']);
     }
 
 }

@@ -25,7 +25,17 @@
         <section class="navbar-section">
             <a href="/test" class="btn btn-link hide-xs text-dark">应用中心</a>
             <a href="#" class="btn btn-link hide-xs text-dark">配置</a>
+            @auth
+            <div class="dropdown dropdown-right"><a class="btn btn-primary dropdown-toggle" tabindex="0">dropdown button <i class="icon icon-caret"></i></a>
+                <ul class="menu text-left">
+                  <li class="menu-item"><a href="#dropdowns">Slack</a></li>
+                  <li class="menu-item"><a href="#dropdowns">Hipchat</a></li>
+                  <li class="menu-item"><a href="#dropdowns">Skype</a></li>
+                </ul>
+              </div>
+            @else
             <a href="/sms" class="btn btn-link text-dark"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+            @endauth
         </section>
     </header>
 
