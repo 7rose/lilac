@@ -29,6 +29,7 @@ Route::any('/wechat/call_back', 'WechatController@callBack');
 Route::get('/sms', 'AuthController@sms');
 Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');
 Route::post('/check', 'AuthController@check')->middleware('throttle:5,5');
+Route::get('/logout', 'AuthController@logout');
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,7 +55,7 @@ Route::get('/expos', function () {
    $a = json_decode(Auth::user()->ids);
    print_r($a);
 
-//    echo $a->wechat->headimgurl;
+    //echo $a->wechat->headimgurl;
     // $a =  User::all()->toArray();
     // // echo $a;
     // print_r($a);

@@ -40,7 +40,7 @@
                 <ul class="menu text-left">
                   <li class="menu-item"><a href="#">Slack</a></li>
                   <li class="menu-item"><a href="#">Hipchat</a></li>
-                  <li class="menu-item"><a href="#">Skype</a></li>
+                  <li class="menu-item"><a href="/logout"><i class="fa fa-power-off" aria-hidden="true"></i> 安全退出</a></li>
                 </ul>
             </div>
             @else

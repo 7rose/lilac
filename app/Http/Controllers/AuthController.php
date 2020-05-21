@@ -15,6 +15,18 @@ use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     /**
+     * 退出登录并删除
+     *
+     */
+    public function logout()
+    {
+        if(Auth::check()) {
+            Auth::user()->update(['ids->wechat' => null]);
+            Auth::logout();
+        }
+    }
+
+    /**
      * 表单: 手机号
      *
      */
