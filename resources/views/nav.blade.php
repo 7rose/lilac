@@ -28,17 +28,17 @@
             @auth
             <div class="dropdown dropdown-right">
                 <a class="dropdown-toggle" tabindex="0">
-                    <div class="chip">
-                        <figure class="bg-gray"><img src="{{ asset('custom/avatar.png') }}"  class="avatar avatar-sm"></figure>
+                    <div class="chip bg-gray">
+                        <img src="{{ asset('custom/avatar.png') }}"  class="avatar avatar-sm">
                         Goldern
                     </div>
                 </a>
                 <ul class="menu text-left">
-                  <li class="menu-item"><a href="#dropdowns">Slack</a></li>
-                  <li class="menu-item"><a href="#dropdowns">Hipchat</a></li>
-                  <li class="menu-item"><a href="#dropdowns">Skype</a></li>
+                  <li class="menu-item"><a href="#">Slack</a></li>
+                  <li class="menu-item"><a href="#">Hipchat</a></li>
+                  <li class="menu-item"><a href="#">Skype</a></li>
                 </ul>
-              </div>
+            </div>
             @else
             <a href="/sms" class="btn btn-link text-dark"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
             @endauth
