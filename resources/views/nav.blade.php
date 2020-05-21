@@ -29,7 +29,11 @@
             <div class="dropdown dropdown-right">
                 <a class="dropdown-toggle" tabindex="0">
                     <div class="chip bg-gray">
+                        @isset(Auth::user()->ids->wechat->avatar)
+                        <img src="{{ asset(Auth::user()->ids->wechat->avatar) }}"  class="avatar avatar-sm">
+                        @else
                         <img src="{{ asset('custom/avatar.png') }}"  class="avatar avatar-sm">
+                        @endisset
                         Goldern
                     </div>
                 </a>
