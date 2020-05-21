@@ -51,7 +51,7 @@ Route::get('/test', function () {
 });
 
 Route::get('/u', function () {
-   $a = json_decode(Auth::user())->ids->wechat->headimgurl;
+   $a = json_decode(Auth::user()->ids)->wechat->headimgurl;
    echo $a;
     // $a =  User::all()->toArray();
     // // echo $a;
