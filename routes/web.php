@@ -51,7 +51,7 @@ Route::get('/test', function () {
    echo $a;
 });
 
-Route::get('/t', function () {
+Route::get('/expos', function () {
 //    $a = json_decode(Auth::user()->ids);
 //    print_r($a);
 $a = User::find(4);
