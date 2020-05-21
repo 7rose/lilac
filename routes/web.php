@@ -26,8 +26,8 @@ Route::any('/wechat/call_back', 'WechatController@callBack');
 
 // sms
 Route::get('/sms', 'AuthController@sms');
-Route::post('/code', 'AuthController@code')->middleware('throttle:10,1');
-Route::post('/check', 'AuthController@check')->middleware('throttle:50,5');
+Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');
+Route::post('/check', 'AuthController@check')->middleware('throttle:5,5');
 
 Route::get('/', function () {
     return view('welcome');
