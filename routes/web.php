@@ -51,9 +51,12 @@ Route::get('/test', function () {
    echo $a;
 });
 
-Route::get('/expos', function () {
-   $a = json_decode(Auth::user()->ids);
-   print_r($a);
+Route::get('/t', function () {
+//    $a = json_decode(Auth::user()->ids);
+//    print_r($a);
+$a = User::find(4);
+$b = json_decode($a->ids);
+echo($b->wechat->id);
 
     // echo $a->wechat->headimgurl;
     // $a =  User::all()->toArray();
