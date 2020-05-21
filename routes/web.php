@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Redis;
+use App\User;
 
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use function EasyWeChat\Kernel\Support\str_random;
 
@@ -49,7 +50,7 @@ Route::get('/test', function () {
 });
 
 Route::get('/u', function () {
-    $a =  Uer::all()->toArray();
+    $a =  User::all()->toArray();
     // echo $a;
     print_r($a);
  });
