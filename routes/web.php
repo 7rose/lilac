@@ -2,6 +2,7 @@
 
 use App\User;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use function EasyWeChat\Kernel\Support\str_random;
@@ -50,9 +51,11 @@ Route::get('/test', function () {
 });
 
 Route::get('/u', function () {
-    $a =  User::all()->toArray();
-    // echo $a;
-    print_r($a);
+   $a = json_decode(Auth::user())->ids->wechat->headimgurl;
+   echo $a;
+    // $a =  User::all()->toArray();
+    // // echo $a;
+    // print_r($a);
 
  });
 
