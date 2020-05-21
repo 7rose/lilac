@@ -24,21 +24,23 @@ Route::any('/wechat/call_back', 'WechatController@callBack');
 
 // sms
 Route::get('/sms', 'AuthController@sms');
-Route::post('/code', 'AuthController@code')->middleware('throttle:100,2');
+Route::post('/code', 'AuthController@code')->middleware('throttle:1,1');
+Route::post('/check', 'AuthController@check')->middleware('throttle:5,5');
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 // wechat user
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
-    Route::get('/me', 'UserController@me');
+// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     // auth users
+    Route::get('/expos', 'UserController@index');
     Route::group(['middleware' => ['mix']], function () {
-        Route::get('/expos', 'UserController@index');
+        Route::get('/me', 'UserController@me');
     });
-});
+
+// });
 
 Route::get('/test', function () {
     //

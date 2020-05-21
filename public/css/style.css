@@ -1,3 +1,10 @@
 .nav-pad {
     padding-top: 4em;
 }
+.mobile {
+    font-size: 1.5em;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    text-align: center;
+}
