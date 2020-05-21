@@ -26,7 +26,7 @@
             <a href="/test" class="btn btn-link hide-xs text-dark">应用中心</a>
             <a href="#" class="btn btn-link hide-xs text-dark">配置</a>
             @auth
-            <div class="dropdown dropdown-right"><a class="btn btn-primary dropdown-toggle" tabindex="0"> <figure class="avatar avatar-sm bg-gray"><img src="{{ asset('custom/avatar.png') }}" alt="Avatar"></figure></a>
+            <div class="dropdown dropdown-right"><a class="dropdown-toggle" tabindex="0"> <figure class="avatar avatar-sm bg-gray"><img src="{{ asset('custom/avatar.png') }}" alt="Avatar"></figure></a>
                 <ul class="menu text-left">
                   <li class="menu-item"><a href="#dropdowns">Slack</a></li>
                   <li class="menu-item"><a href="#dropdowns">Hipchat</a></li>
