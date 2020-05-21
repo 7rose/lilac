@@ -2,6 +2,7 @@
 
 use App\User;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
@@ -47,16 +48,19 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-   $a =  Redis::get('17821621090');
-   echo $a;
+    $a = User::find(4)->ids;
+
+    print_r(show($a, 'wechat.id'));
 });
 
 Route::get('/expos', function () {
 //    $a = json_decode(Auth::user()->ids);
 //    print_r($a);
 $a = User::find(4);
-$b = json_decode($a->ids);
-echo($b->wechat->id);
+
+
+// $b = json_decode($a->ids);
+// echo($b->wechat->id);
 
     // echo $a->wechat->headimgurl;
     // $a =  User::all()->toArray();
