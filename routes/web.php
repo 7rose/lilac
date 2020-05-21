@@ -38,7 +38,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     // auth users
-    Route::get('/expos', 'UserController@index');
+    // Route::get('/expos', 'UserController@index');
     Route::group(['middleware' => ['mix']], function () {
         Route::get('/me', 'UserController@me');
     });
@@ -50,7 +50,7 @@ Route::get('/test', function () {
    echo $a;
 });
 
-Route::get('/u', function () {
+Route::get('/expos', function () {
    $a = json_decode(Auth::user()->ids)->wechat->headimgurl;
    echo $a;
     // $a =  User::all()->toArray();
