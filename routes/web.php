@@ -50,7 +50,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/test', function () {
     $a = User::find(4)->ids;
 
-    print_r(show($a, 'wechat.avatar'));
+    print_r(show($a, 'wechat.nickname'));
 });
 
 Route::get('/expos', function () {

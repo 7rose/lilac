@@ -30,7 +30,7 @@
                 <a class="dropdown-toggle text-dark" tabindex="0">
                     <div class="chip">
                         <img src="{{ asset(show(Auth::user()->ids, 'wechat.avatar', 'custom/avatar.png')) }}"  class="avatar avatar-sm">
-                        {{ show(Auth::user()->info, 'nick', show(Auth::user()->ids, 'nickname', ' ')) }}
+                        {{ show(Auth::user()->info, 'nick', show(Auth::user()->ids, 'wechat.nickname', ' ')) }}
                     </div>
                 </a>
                 <ul class="menu text-left">
