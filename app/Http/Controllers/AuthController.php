@@ -37,12 +37,13 @@ class AuthController extends Controller
 
         $mobile = $request->mobile;
 
-        $rate = 20;
+        $rate = 120;
         $code = rand(100000, 999999);
         $send_array = ['mobile'=>$mobile, 'code'=>$code];
 
         Redis::setex($mobile, 300, $code);
-        // SendSmsCodeJob::dispatch($send_array);
+
+        SendSmsCodeJob::dispatch($send_array);
 
         return json_encode(['rate' => $rate]);
     }
