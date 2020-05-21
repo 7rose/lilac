@@ -29,8 +29,8 @@
             <div class="dropdown dropdown-right">
                 <a class="dropdown-toggle" tabindex="0">
                     <div class="chip">
-                        <img src="{{ asset('custom/avatar.png') }}"  class="avatar avatar-sm">
-                        Yan Zhu
+                        <img src="{{ asset('custom/avatar.png') }}"  class="avatar avatar-sm bg-gray">
+                        Goldern
                     </div>
                 </a>
                 <ul class="menu text-left">
