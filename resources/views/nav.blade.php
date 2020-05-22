@@ -17,13 +17,13 @@
     <header class="navbar navi container bg-gray">
         <section class="navbar-section">
             <a href="/"><img src="{{ asset('custom/logo.svg') }}"  class="logo hide-xs" /></a>
-            <a href="/test" class="btn btn-link show-xs text-dark"><i class="fa fa-th" aria-hidden="true"></i></a>
+            <a href="/apps" class="btn btn-link show-xs text-dark"><i class="fa fa-th" aria-hidden="true"></i></a>
         </section>
         <section class="navbar-center">
             <a href="/"><img src="{{ asset('custom/logo.svg') }}" class="logo show-xs p-centered" /></a>
         </section>
         <section class="navbar-section">
-            <a href="/test" class="btn btn-link hide-xs text-dark">应用中心</a>
+            <a href="/apps" class="btn btn-link hide-xs text-dark">应用中心</a>
             <a href="#" class="btn btn-link hide-xs text-dark">配置</a>
             @auth
             <div class="dropdown dropdown-right">
@@ -34,8 +34,8 @@
                     </div>
                 </a>
                 <ul class="menu text-left">
-                  <li class="menu-item"><a href="#">Slack</a></li>
-                  <li class="menu-item"><a href="#">Hipchat</a></li>
+                  <li class="menu-item"><a href="/expos"> <i class="fa fa-magic" aria-hidden="true"></i> 展会</a></li>
+                  <li class="menu-item"><a href="/me"><i class="fa fa-user-circle-o" aria-hidden="true"></i> 我</a></li>
                   <li class="menu-item"><a href="/logout"><i class="fa fa-power-off" aria-hidden="true"></i> 安全退出</a></li>
                 </ul>
             </div>
