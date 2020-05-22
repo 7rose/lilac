@@ -34,8 +34,17 @@
                     </div>
                 </a>
                 <ul class="menu text-left">
+                    <li class="menu-item">
+                    <a href="/me"><i class="fa fa-user-circle-o" aria-hidden="true"></i> 我</a>
+                        <div class="menu-badge">
+                            <label class="form-checkbox">
+                                <input type="checkbox">
+                                <i class="form-icon"></i> 公开
+                            </label>
+                        </div>
+                    </li>
                   <li class="menu-item"><a href="/expos"> <i class="fa fa-magic" aria-hidden="true"></i> 展会</a></li>
-                  <li class="menu-item"><a href="/me"><i class="fa fa-user-circle-o" aria-hidden="true"></i> 我</a></li>
+                  <li class="divider"></li>
                   <li class="menu-item"><a href="/logout"><i class="fa fa-power-off" aria-hidden="true"></i> 安全退出</a></li>
                 </ul>
             </div>
