@@ -30,12 +30,12 @@
                 <a class="dropdown-toggle text-dark" tabindex="0">
                     <div class="chip">
                         <img src="{{ asset(show(Auth::user()->ids, 'wechat.avatar', 'custom/avatar.png')) }}"  class="avatar avatar-sm">
-                        {{ show(Auth::user()->info, 'nick', show(Auth::user()->ids, 'wechat.nickname', ' ')) }}
+                        {{ show(Auth::user()->info, 'nick', show(Auth::user()->ids, 'wechat.nickname', ' *** ')) }}
                     </div>
                 </a>
                 <ul class="menu text-left">
                     <li class="menu-item">
-                    <a href="/me"><i class="fa fa-user-circle-o" aria-hidden="true"></i> 我的资料</a>
+                    <a href="/me">我的资料</a>
                         <div class="menu-badge">
                             <label class="form-checkbox">
                                 <input type="checkbox">
@@ -43,7 +43,7 @@
                             </label>
                         </div>
                     </li>
-                  <li class="menu-item"><a href="/expos"> <i class="fa fa-magic" aria-hidden="true"></i> 展会和票务</a></li>
+                  <li class="menu-item"><a href="/expos">展会和票务</a></li>
                   <li class="divider"></li>
                   <li class="menu-item"><a href="/logout"><i class="fa fa-power-off" aria-hidden="true"></i> 安全退出</a></li>
                 </ul>
