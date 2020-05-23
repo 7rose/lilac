@@ -2,7 +2,7 @@
 
 @section('main')
 <div class="nav-pad"></div>
-<div class="column col-6 col-xs-12">
+<div class="column col-6 col-xs-12 p-centered">
     <div class="panel">
       <div class="panel-header">
           <div class="panel-title">
@@ -26,7 +26,8 @@
                     <figure class="avatar avatar-sm" data-initial="{{ Str::substr(show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))), 0,1) }}">
                     @endif
 
-                    </figure>{{ show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))) }}
+                    </figure>
+                    {{ show($user->info, 'public') ? show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '*'))) :  show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))) }}
                 </div>
                 </a>
                 @if ($user->locked)
@@ -46,8 +47,8 @@
                         @endif
                     @endforeach
                 </span>
-                </div>
                 @endif
+            </div>
             </div>
         @endforeach
       </div>

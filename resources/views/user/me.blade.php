@@ -1,9 +1,22 @@
 @extends('../nav')
 
 @section('main')
+
 <div class="nav-pad"></div>
 <div class="container">
     <div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/apps" class="btn btn-link show-xs text-dark"><i class="fa fa-th" aria-hidden="true"></i></a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="/users">用户</a>
+            </li>
+            <li class="breadcrumb-item">
+                {{ show($user->info, 'public') ? show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '*'))) :  show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))) }}
+            </li>
+        </ul>
+
         <div class="panel">
             <div class="panel-header text-center">
             @if (show($user->ids, 'wechat.avatar'))
@@ -11,7 +24,7 @@
             @else
             <figure class="avatar avatar-lg" data-initial="{{ Str::substr(show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))), 0,1) }}"></figure>
             @endif
-          <div class="panel-title h5 mt-10">{{ show(Auth::user()->info, 'nick', show(Auth::user()->info, 'name', show(Auth::user()->ids, 'wechat.nickname', '*'))) }}</div>
+          <div class="panel-title h5 mt-10">{{ show($user->info, 'public') ? show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '*'))) :  show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))) }}</div>
           <div class="panel-subtitle">{{  show($user->info, 'public') ? show($user->ids, 'mobile.number','') : ''}}</div>
           </div>
           <nav class="panel-nav">

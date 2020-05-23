@@ -35,7 +35,7 @@
                         <figure class="avatar avatar-sm" data-initial="{{ Str::substr(show(Auth::user()->info, 'nick', show(Auth::user()->info, 'name', show(Auth::user()->ids, 'wechat.nickname', '*'))), 0,1) }}"></figure>
                         @endif
 
-                        {{ show(Auth::user()->info, 'nick', show(Auth::user()->info, 'name', show(Auth::user()->ids, 'wechat.nickname', '*'))) }}
+                        {{ show(Auth::user()->info, 'public') ? show(Auth::user()->info, 'name', show(Auth::user()->info, 'nick', show(Auth::user()->ids, 'wechat.nickname', '*'))) :  show(Auth::user()->info, 'nick', show(Auth::user()->info, 'name', show(Auth::user()->ids, 'wechat.nickname', '*'))) }}
                     </div>
                 </a>
                 <ul class="menu text-left">
