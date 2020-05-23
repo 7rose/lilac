@@ -29,16 +29,21 @@
             <div class="dropdown dropdown-right">
                 <a class="dropdown-toggle text-dark" tabindex="0">
                     <div class="chip">
-                        <img src="{{ asset(show(Auth::user()->ids, 'wechat.avatar', 'custom/avatar.png')) }}"  class="avatar avatar-sm">
-                        {{ show(Auth::user()->info, 'nick', show(Auth::user()->ids, 'wechat.nickname', ' *** ')) }}
+                        @if (show(Auth::user()->ids, 'wechat.avatar'))
+                        <figure class="avatar avatar-sm bg-gray"><img src="{{ asset(show(Auth::user()->ids, 'wechat.avatar', 'custom/avatar.png')) }}"  alt="Avatar"></figure>
+                        @else
+                        <figure class="avatar avatar-sm" data-initial="{{ Str::substr(show(Auth::user()->info, 'nick', show(Auth::user()->info, 'name', show(Auth::user()->ids, 'wechat.nickname', '*'))), 0,1) }}"></figure>
+                        @endif
+
+                        {{ show(Auth::user()->info, 'nick', show(Auth::user()->info, 'name', show(Auth::user()->ids, 'wechat.nickname', '*'))) }}
                     </div>
                 </a>
                 <ul class="menu text-left">
                     <li class="menu-item">
-                    <a href="/me">我的资料</a>
+                    <a href="/me">我</a>
                         <div class="menu-badge">
-                            <label class="form-checkbox">
-                                <input type="checkbox">
+                            <label class="form-switch">
+                                <input id="pub" name="pub" type="checkbox" {{ show(Auth::user()->info, 'public') ? "checked" : '' }} onclick="javascript:pub()">
                                 <i class="form-icon"></i> 公开
                             </label>
                         </div>
@@ -71,5 +76,32 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    var path = window.location.pathname;
+
+    function pub()
+    {
+        var checked = $("#pub").is(':checked');
+
+        $.ajax({
+            type:"POST",
+            url:"/pub",
+            data:{
+                pub: checked
+            },
+            datatype: "json",
+            beforeSend:function(){
+                // console.log(data);
+            },
+            success:function(data, statusTest, xhr){
+                // var d = $.parseJSON(data);
+                // console.log(d.checked);
+                window.location.replace(path);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // error(jqXHR, textStatus, errorThrown);
+            }
+        });
+    }
 </script>
 </html>

@@ -144,7 +144,7 @@
                 rate = d.rate;
                 error_info = '验证码发送成功, <a href="#md">现在验证</a>';
                 counter = setInterval(counter_timer, 1000);
-                setTimeout(show,2800);
+                setTimeout(show,1800);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 error(jqXHR, textStatus, errorThrown);

@@ -13,49 +13,73 @@ class OrgSeeder extends Seeder
     public function run()
     {
         Org::create([
-            'parent_id' => 0,
-            'info' => '{
-                "name":"Lilac"
-            }',
+            'key' => 'root',
+            'info' => '{"name":"root"}',
             'show' => false,
-        ]);
 
-        Org::create([
-            'parent_id' => 1,
-            'info' => '{
-                "name":"牧云",
-                "full_name":"上海牧云玩具设计有限公司",
-                "email":"hi@mooibay.com",
-                "beian":"沪ICP备20011997号-1",
-                "config": {
-                    "seed": true
-                }
-            }',
-        ]);
+            'children' => [
+                [
+                    'key' => 'main',
+                    'info' => '{"name":"牧云", "full_name":"上海牧云玩具设计有限公司", "email":"hi@mooibay.com"}',
 
-        Org::create([
-            'parent_id' => 2,
-            'info' => '{
-                "name":"合作方",
-                "full_name":"合作方",
-                "config": {
-                    "show_org_info": false,
-                    "see_in_staff": false
-                }
-            }',
-        ]);
+                    'children' => [
+                        [
+                            'key' => 'staff',
+                            'info' => '{"name":"mooibay.com"}',
 
-        Org::create([
-            'parent_id' => 2,
-            'info' => '{
-                "name":"未分组",
-                "full_name":"未分组的用户",
-                "config": {
-                    "show_org_info": false,
-                    "see_in_staff": false
-                }
-            }',
-        ]);
+                            'children' => [
+                                [
+                                    'key' => 'ceo',
+                                    'info' => '{"name":"总经理"}',
 
+                                    'children' => [
+                                        [
+                                            'key' => 'technology',
+                                            'info' => '{"name":"技术部"}',
+                                        ],
+
+                                        [
+                                            'key' => 'operation',
+                                            'info' => '{"name":"运营部"}',
+                                        ],
+
+                                        [
+                                            'key' => 'market',
+                                            'info' => '{"name":"市场部"}',
+                                        ],
+
+                                        [
+                                            'key' => 'finance',
+                                            'info' => '{"name":"财务部"}',
+                                        ],
+
+                                    ],
+                                ],
+
+                                [
+                                    'key' => 'board',
+                                    'info' => '{"name":"董事会"}',
+                                ],
+                            ],
+                        ],
+
+                        [
+                            'key' => 'supplier',
+                            'info' => '{"name":"供应商"}',
+                        ],
+
+                        [
+                            'key' => 'customer',
+                            'info' => '{"name":"客户"}',
+                        ],
+
+                        [
+                            'key' => 'partner',
+                            'info' => '{"name":"合作伙伴"}',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
     }
 }

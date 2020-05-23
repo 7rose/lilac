@@ -42,30 +42,26 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     // auth users
     // Route::get('/expos', 'UserController@index');
     Route::group(['middleware' => ['mix']], function () {
+        Route::get('/users', 'UserController@index');
+        Route::get('/user/{id}', 'UserController@show');
         Route::get('/me', 'UserController@me');
+        Route::post('/pub', 'SettingController@pub');
     });
 
 });
 
 Route::get('/test', function () {
-    $a = User::find(4)->ids;
-
-    print_r(show($a, 'wechat.nickname'));
-});
-
-Route::get('/expos', function () {
-//    $a = json_decode(Auth::user()->ids);
-//    print_r($a);
-$a = User::find(4);
-
-
-// $b = json_decode($a->ids);
-// echo($b->wechat->id);
-
-    // echo $a->wechat->headimgurl;
-    // $a =  User::all()->toArray();
-    // // echo $a;
+    $a = Auth::login(User::find(5));
+    // $a = User::find(5)->roles()->pluck('key');
     // print_r($a);
+    // print_r(Arr::flatten($a));
+    // print_r($a->key);
+    // foreach($a as $item)
+    // {
+    //     echo $item->key;
+    // }
+    // $a = User::find(4)->ids;
 
- });
+    // print_r(show($a, 'wechat.nickname'));
+});
 

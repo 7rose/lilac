@@ -13,68 +13,98 @@ class RoleSeeder extends Seeder
     public function run()
     {
         Role::create([
-            'parent_id' => 0,
-            'key' => 'sys',
-            'info' => '{"name":"系统"}',
-            'show' => false,
-        ]);
-
-        Role::create([
-            'parent_id' => 1,
             'key' => 'root',
-            'info' => '{"name":"高级管理"}',
+            'info' => '{"name":"root"}',
+            'show' => false,
+
+            'children' => [
+                [
+                    'key' => 'admin',
+                    'info' => '{"name":"管理者"}',
+
+                    'children' => [
+                        [
+                            'key' => 'chairman',
+                            'info' => '{"name":"董事长"}',
+
+                            'children' => [
+                                [
+                                    'key' => 'director',
+                                    'info' => '{"name":"董事"}',
+                                ]
+                            ],
+                        ],
+
+                        [
+                            'key' => 'assistant',
+                            'info' => '{"name":"管理员"}',
+
+                            'children' => [
+                                [
+                                    'key' => 'ceo',
+                                    'info' => '{"name":"CEO", "full_name":"总经理"}',
+
+                                    'children' => [
+                                        [
+                                            'key' => 'coo',
+                                            'info' => '{"name":"COO", "full_name":"运营总监"}',
+
+                                            'children' => [
+                                                [
+                                                    'key' => 'expo_mananer',
+                                                    'info' => '{"name":"展务经理"}',
+
+                                                    'children' => [
+                                                        [
+                                                            'key' => 'ticket_director',
+                                                            'info' => '{"name":"票务主管"}',
+
+                                                            'children' => [
+                                                                [
+                                                                    'key' => 'ticket_clerk',
+                                                                    'info' => '{"name":"票务专员"}',
+                                                                ],
+                                                            ],
+                                                        ],
+                                                    ],
+                                                ],
+
+                                                [
+                                                    'key' => 'online_mananer',
+                                                    'info' => '{"name":"运营经理"}',
+                                                ],
+
+                                                [
+                                                    'key' => 'legal_mananer',
+                                                    'info' => '{"name":"法务经理"}',
+                                                ],
+
+                                            ],
+                                        ],
+
+                                        [
+                                            'key' => 'cmo',
+                                            'info' => '{"name":"CMO", "full_name":"市场总监"}',
+                                        ],
+
+                                        [
+                                            'key' => 'cfo',
+                                            'info' => '{"name":"CFO", "full_name":"财务总监"}',
+                                        ],
+
+                                        [
+                                            'key' => 'cto',
+                                            'info' => '{"name":"CTO", "full_name":"技术总监"}',
+                                        ],
+
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
-        Role::create([
-            'parent_id' => 2,
-            'key' => 'admin',
-            'info' => '{"name":"管理"}',
-        ]);
-
-        Role::create([
-            'parent_id' => 3,
-            'key' => 'ceo',
-            'info' => '{"name":"CEO"}',
-        ]);
-        # 4
-
-        Role::create([
-            'parent_id' => 4,
-            'key' => 'coo',
-            'info' => '{"name":"COO"}',
-        ]);
-
-        Role::create([
-            'parent_id' => 5,
-            'key' => 'checker',
-            'info' => '{"name":"票务"}',
-        ]);
-        # 6
-
-        Role::create([
-            'parent_id' => 4,
-            'key' => 'cfo',
-            'info' => '{"name":"CFO"}',
-        ]);
-
-        Role::create([
-            'parent_id' => 7,
-            'key' => 'finance',
-            'info' => '{"name":"财务"}',
-        ]);
-        # 8
-
-        Role::create([
-            'parent_id' => 2,
-            'key' => 'partner',
-            'info' => '{"name":"股东"}',
-        ]);
-        # 9
-
-        Role::create([
-            'parent_id' => 4,
-            'key' => 'cto',
-            'info' => '{"name":"CTO"}',
-        ]);
     }
 }

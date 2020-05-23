@@ -2,29 +2,31 @@
 
 namespace App;
 
+use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
     use \Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
+    use NodeTrait;
 
-    /**
-     * Parent
-     *
-     */
-    public function parent()
-    {
-        return $this->belongsTo('App\Role', 'parent_id');
-    }
+    // /**
+    //  * Parent
+    //  *
+    //  */
+    // public function parent()
+    // {
+    //     return $this->belongsTo('App\Role', 'parent_id');
+    // }
 
-    /**
-     * Children
-     *
-     */
-    public function children()
-    {
-        return $this->hasMany('App\Role', 'parent_id');
-    }
+    // /**
+    //  * Children
+    //  *
+    //  */
+    // public function children()
+    // {
+    //     return $this->hasMany('App\Role', 'parent_id');
+    // }
 
     /**
      * Role users

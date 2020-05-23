@@ -2,24 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    /**
+     * 用户列表
+     *
+     */
     public function index(Request $request)
     {
-        return "many many";
+        $users = User::all();
+        return view('user.index', compact('users'));
     }
 
-
     /**
-     * Information of Auth user
+     * 登录用户
      *
      */
     public function me()
     {
-        // $user = session('wechat.oauth_user.default'); // 拿到授权用户资料
-        return view('user.me');
+        $user = Auth::user();
+        return view('user.me', compact('user'));
+    }
+
+    /**
+     * 用户
+     *
+     */
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('user.me', compact('user'));
     }
 
 

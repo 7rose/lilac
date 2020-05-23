@@ -2,11 +2,13 @@
 
 namespace App;
 
+use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Org extends Model
 {
     use \Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
+    use NodeTrait;
 
     /**
      * Free to fill
@@ -15,23 +17,23 @@ class Org extends Model
      */
     protected $guarded = [];
 
-    /**
-     * Parent
-     *
-     */
-    public function parent()
-    {
-        return $this->belongsTo('App\Org', 'parent_id');
-    }
+    // /**
+    //  * Parent
+    //  *
+    //  */
+    // public function parent()
+    // {
+    //     return $this->belongsTo('App\Org', 'parent_id');
+    // }
 
-    /**
-     * Children
-     *
-     */
-    public function children()
-    {
-        return $this->hasMany('App\Org', 'parent_id');
-    }
+    // /**
+    //  * Children
+    //  *
+    //  */
+    // public function children()
+    // {
+    //     return $this->hasMany('App\Org', 'parent_id');
+    // }
 
     /**
      * Orgs of a user [json relations]

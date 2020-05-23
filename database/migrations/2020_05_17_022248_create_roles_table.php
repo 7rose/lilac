@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Kalnoy\Nestedset\NestedSet;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateRolesTable extends Migration
 {
@@ -15,12 +16,12 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('parent_id');
-            $table->jsonb('info');
             $table->string('key');
+            $table->jsonb('info');
             $table->boolean('show')->default(true);
             $table->boolean('active')->default(true);
             $table->timestamps();
+            NestedSet::columns($table);
         });
     }
 
