@@ -32,7 +32,8 @@ class WechatController extends Controller
     public function ad()
     {
         $app = app('wechat.official_account');
-        $url = $app->qrcode->temporary('ad_'.Auth::id(), 3000)->url();
+        $reasult = $app->qrcode->temporary('ad_'.Auth::id(), 3000);
+        $url = $reasult['url'];
 
         return view('ad',compact('url'));
     }
