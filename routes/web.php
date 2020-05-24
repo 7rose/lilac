@@ -37,13 +37,14 @@ Route::get('/', function () {
 });
 
 // wechat user
-// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     Route::get('/apps', function () {
         return view('apps');
     });
 
 
+    Route::get('/expos', 'ExpoController@index');
     // auth users
     // Route::get('/expos', 'UserController@index');
     Route::group(['middleware' => ['mix']], function () {
@@ -54,7 +55,7 @@ Route::get('/', function () {
         Route::post('/pub', 'SettingController@pub');
     });
 
-// });
+});
 
 Route::get('/test', function () {
     abort('403');
