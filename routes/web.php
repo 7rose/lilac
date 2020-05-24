@@ -37,7 +37,7 @@ Route::get('/', function () {
 });
 
 // wechat user
-// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     Route::get('/apps', function () {
         return view('apps');
@@ -51,7 +51,7 @@ Route::get('/', function () {
         Route::post('/pub', 'SettingController@pub');
     });
 
-// });
+});
 
 Route::get('/test', function () {
     $a = Auth::login(User::find(5));
