@@ -15,7 +15,7 @@ class Mobile implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match("/^1[345678]\d{9}$/", $value);
+        return preg_match("/^1[3456789]\d{9}$/", $value);
     }
 
     /**
