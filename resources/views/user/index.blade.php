@@ -8,7 +8,7 @@
           <div class="panel-title">
             <span>牧云</span>
             <div class="input-group col-xs-7 float-right">
-                <input class="form-input input-sm" type="text" placeholder="关键词"">
+                <input class="form-input input-sm" type="text" id="key_word" placeholder="关键词" required>
                 <button class="btn btn-primary input-group-btn btn-sm"><i class="fa fa-search" aria-hidden="true"></i></button>
             </div>
         </div>
