@@ -30,7 +30,7 @@
                 <figure class="avatar avatar-lg bg-gray">
                     <img src="{{ asset('images/users.svg') }}" alt="...">
                 </figure>
-                <p>用户</p>
+                <p>员工</p>
                 </a>
             </div>
             <div class="column col-xs-4 text-center mt-2">
