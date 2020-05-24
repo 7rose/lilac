@@ -43,21 +43,6 @@ class UserController extends Controller
         REV:'.now().'
         END:VCARD';
 
-        // if(count($user->roles)) {
-        //     $vcard .= 'TITLE:';
-        //     foreach ($user->roles as $role) {
-        //         if($role->show) $vcard .= utf8_encode(show($role->info, 'name', show($role->info, 'full_name', '')));
-        //     }
-        // }
-
-        // TITLE:Shrimp Man
-        // EMAIL:forrestgump@example.com
-        // TEL:'.show($user->ids, 'mobile.number', '').'
-        // REV:20080424T195243Z
-        // x-qq:21588891
-        // END:VCARD';
-        // $vcard .= 'END:VCARD';
-
         return view('user.user', compact('user','vcard'));
     }
 
@@ -70,6 +55,5 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('user.user', compact('user'));
     }
-
 
 }

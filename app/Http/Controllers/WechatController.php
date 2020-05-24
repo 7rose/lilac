@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class WechatController extends Controller
 {
@@ -25,5 +26,14 @@ class WechatController extends Controller
     public function callBack()
     {
         //
+    }
+
+
+    public function ad()
+    {
+        $app = app('wechat.official_account');
+        $url = $app->qrcode->temporary('ad_'.Auth::id(), 3000)->url();
+
+        return view('ad',compact('url'));
     }
 }

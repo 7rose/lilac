@@ -50,6 +50,8 @@
                     </li>
                   <li class="menu-item"><a href="/expos">展会和票务</a></li>
                   <li class="divider"></li>
+                  <li class="menu-item"><a href="/ad">我的推荐码</a></li>
+                  <li class="divider"></li>
                   <li class="menu-item"><a href="/logout"><i class="fa fa-power-off" aria-hidden="true"></i> 安全退出</a></li>
                 </ul>
             </div>

@@ -42,9 +42,12 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     Route::get('/apps', function () {
         return view('apps');
     });
+
+
     // auth users
     // Route::get('/expos', 'UserController@index');
     Route::group(['middleware' => ['mix']], function () {
+        Route::get('/ad', 'WechatController@ad');
         Route::get('/users', 'UserController@index');
         Route::get('/user/{id}', 'UserController@show');
         Route::get('/me', 'UserController@me');
