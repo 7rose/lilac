@@ -37,8 +37,11 @@ Route::get('/', function () {
 });
 
 // wechat user
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
+    Route::get('/apps', function () {
+        return view('apps');
+    });
     // auth users
     // Route::get('/expos', 'UserController@index');
     Route::group(['middleware' => ['mix']], function () {
@@ -48,7 +51,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::post('/pub', 'SettingController@pub');
     });
 
-});
+// });
 
 Route::get('/test', function () {
     $a = Auth::login(User::find(5));
