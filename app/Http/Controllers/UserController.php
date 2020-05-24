@@ -25,7 +25,40 @@ class UserController extends Controller
     public function me()
     {
         $user = Auth::user();
-        return view('user.me', compact('user'));
+
+        $position = '';
+        if(count($user->roles)) {
+            foreach ($user->roles as $role) {
+                if($role->show) $position .= utf8_encode(show($role->info, 'name', show($role->info, 'full_name', ''))).' ';
+            }
+        }
+
+        $vcard = 'BEGIN:VCARD
+        VERSION:4.0
+        N:'.utf8_encode(show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '')))).'
+        ORG:'.utf8_encode('海上牧云').'
+        TITLE:'.$position.'
+        EMAIL:'.show($user->ids, 'email.addr', 'hi@mooibay.com').'
+        TEL:'.show($user->ids, 'mobile.number', '').'
+        REV:'.now().'
+        END:VCARD';
+
+        // if(count($user->roles)) {
+        //     $vcard .= 'TITLE:';
+        //     foreach ($user->roles as $role) {
+        //         if($role->show) $vcard .= utf8_encode(show($role->info, 'name', show($role->info, 'full_name', '')));
+        //     }
+        // }
+
+        // TITLE:Shrimp Man
+        // EMAIL:forrestgump@example.com
+        // TEL:'.show($user->ids, 'mobile.number', '').'
+        // REV:20080424T195243Z
+        // x-qq:21588891
+        // END:VCARD';
+        // $vcard .= 'END:VCARD';
+
+        return view('user.user', compact('user','vcard'));
     }
 
     /**
@@ -35,7 +68,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('user.me', compact('user'));
+        return view('user.user', compact('user'));
     }
 
 

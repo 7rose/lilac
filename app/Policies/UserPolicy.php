@@ -27,5 +27,13 @@ class UserPolicy
         //
     }
 
+    /**
+     * 锁止
+     *
+     */
+    public function lock(User $user) {
+        $user->orgs();
+    }
+
 
 }

@@ -36,29 +36,15 @@
             </ul>
           </nav>
           <div class="panel-body">
-
-            <div class="tile tile-centered">
-              <div class="tile-content">
-                <div class="tile-title text-bold">手机</div>
-                <div class="tile-subtitle">{{ show($user->ids, 'mobile.number','-') }}</div>
-              </div>
-              <div class="tile-action">
-                <button class="btn btn-link btn-action btn-lg tooltip tooltip-left" data-tooltip="Edit E-mail"><i class="icon icon-edit"></i></button>
-              </div>
-            </div>
+                @isset($vcard)
+                <div class="visible-print text-center p-centered">
+                    {!! QrCode::size(260)->color(60,68,82)->generate($vcard); !!}
+                </div>
+                @endisset
             <div class="tile tile-centered">
               <div class="tile-content">
                 <div class="tile-title text-bold">邮件</div>
-                <div class="tile-subtitle">{{ show($user->ids, 'mobile.email','-') }}</div>
-              </div>
-              <div class="tile-action">
-                <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
-              </div>
-            </div>
-            <div class="tile tile-centered">
-              <div class="tile-content">
-                <div class="tile-title text-bold">姓名</div>
-                <div class="tile-subtitle">{{ show($user->info, 'nick','') }} {{ show($user->info, 'name',' ') }}</div>
+                <div class="tile-subtitle">{{ show($user->ids, 'email.addr', 'hi@mooibay.com') }}</div>
               </div>
               <div class="tile-action">
                 <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
@@ -67,7 +53,17 @@
             <div class="tile tile-centered">
                 <div class="tile-content">
                   <div class="tile-title text-bold">职务</div>
-                  <div class="tile-subtitle">bruce.banner@hulk.com</div>
+                    <div class="tile-subtitle">
+                        @if (isset($user->roles) && count($user->roles))
+                        @foreach ($user->roles as $role)
+                        @if($role->show)
+                            <span class="chip">
+                                {{ show($role->info, 'name', show($role->info, 'full_name', '')) }}
+                            </span>
+                                @endif
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
                 <div class="tile-action">
                   <button class="btn btn-link btn-action btn-lg tooltip tooltip-left" data-tooltip="Edit E-mail"><i class="icon icon-edit"></i></button>

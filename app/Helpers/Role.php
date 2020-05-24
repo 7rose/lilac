@@ -1,15 +1,17 @@
 <?php
 
 use App\Role;
+use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 
-function need($key)
+function self(User $user)
 {
-    $role_keys = Auth::user()->roles()->plunk('key');
+    return Auth::user()->id == $user->id;
+}
 
-    $keys = Arr::flatten($role_keys);
-    $all_roles = Role::all();
-
+function myId($id)
+{
+    return Auth::user()->id == $id;
 }

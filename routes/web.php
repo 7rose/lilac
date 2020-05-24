@@ -54,7 +54,8 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-    $a = Auth::login(User::find(5));
+    abort('403');
+    // $a = Auth::login(User::find(5));
     // $a = User::find(5)->roles()->pluck('key');
     // print_r($a);
     // print_r(Arr::flatten($a));

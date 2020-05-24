@@ -6,14 +6,14 @@
 	.st0{fill:#EDBEC4;}
 	.st1{fill:#7E7F7F;}
 </style>
-<path class="st0" d="M101.45,80.01c0,1.03-0.84,1.88-1.88,1.88H23.24c-1.03,0-1.88-0.85-1.88-1.88V37.47c0-1.03,0.85-1.88,1.88-1.88
-	l76.33,0c1.03,0,1.88,0.85,1.88,1.88V80.01z"/>
-<rect x="21.37" y="43.04" class="st1" width="80.09" height="7.42"/>
-<rect x="85.77" y="55.8" class="st1" width="12.35" height="15.12"/>
+<path class="st0" d="M103.4,86c0,1-0.8,1.9-1.9,1.9H25.2c-1,0-1.9-0.8-1.9-1.9V43.5c0-1,0.9-1.9,1.9-1.9h76.3c1,0,1.9,0.8,1.9,1.9
+	V86z"/>
+<rect x="23.4" y="49" class="st1" width="80.1" height="7.4"/>
+<rect x="87.8" y="61.8" class="st1" width="12.3" height="15.1"/>
 <g>
-	<rect x="25.81" y="56.74" class="st1" width="51.33" height="0.44"/>
-	<rect x="25.81" y="62.07" class="st1" width="51.33" height="0.44"/>
-	<rect x="25.81" y="67.39" class="st1" width="51.33" height="0.44"/>
+	<rect x="27.8" y="62.7" class="st1" width="51.3" height="0.4"/>
+	<rect x="27.8" y="68.1" class="st1" width="51.3" height="0.4"/>
+	<rect x="27.8" y="73.4" class="st1" width="51.3" height="0.4"/>
 </g>
-<rect x="25.81" y="72.83" class="st1" width="31.05" height="2.61"/>
+<rect x="27.8" y="78.8" class="st1" width="31.1" height="2.6"/>
 </svg>
