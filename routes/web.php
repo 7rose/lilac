@@ -37,7 +37,7 @@ Route::get('/', function () {
 });
 
 // wechat user
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     // Route::get('/apps', function () {
     //     return view('apps');
@@ -58,10 +58,16 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::post('/pub', 'SettingController@pub');
     });
 
-});
+// });
 
 Route::get('/test', function () {
-    abort('403');
+    $user = App\User::find(5);
+    $target = App\User::find(1);
+
+    $test = new App\Helpers\Role;
+
+    $test->higher($user, $target);
+    // abort('403');
     // $a = Auth::login(User::find(5));
     // $a = User::find(5)->roles()->pluck('key');
     // print_r($a);
