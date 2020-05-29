@@ -24,9 +24,9 @@ class UserController extends Controller
      * 登录用户
      *
      */
-    public function me()
+    public function me(User $user)
     {
-        return $this->show(0);
+        return $this->show(0, $user);
     }
 
     /**
