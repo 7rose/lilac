@@ -46,10 +46,12 @@
                 <p>财务</p>
             </div>
             <div class="column col-xs-4 text-center mt-2">
+                <a href="/tree" class="text-dark">
                 <figure class="avatar avatar-lg bg-gray">
                     <img src="{{ asset('images/config.svg') }}" alt="...">
                 </figure>
                 <p>系统设置</p>
+                </a>
             </div>
             <div class="column col-xs-4 text-center mt-2">
                 <figure class="avatar avatar-lg bg-gray">

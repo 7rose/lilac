@@ -52,8 +52,11 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/ad', 'WechatController@ad');
         Route::get('/users', 'UserController@index');
         Route::get('/user/{id}', 'UserController@show');
+        Route::get('/lock/{id}', 'UserController@lock');
+        Route::get('/unlock/{id}', 'UserController@unlock');
         Route::get('/me', 'UserController@me');
         Route::post('/pub', 'SettingController@pub');
+        Route::get('/tree', 'SettingController@tree');
     });
 
 });
@@ -61,41 +64,27 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/test', function () {
 
     // $ar = [1,2,3];
+    $nodes = App\Org::get()->toTree();
 
-    // var_dump(in_array(4,$ar));
+    $traverse = function ($categories, $prefix = '') use (&$traverse) {
+        foreach ($categories as $category) {
+            echo PHP_EOL.$prefix.' '.$category->key.'<br>';
 
-    $u = App\User::find(8);
+            $traverse($category->children, $prefix.'|__');
+        }
+    };
 
-    $a = new App\Helpers\Authorize;
+    $traverse($nodes);
 
-    // $b = $a->need($u, 'operation', 'online_manager');
-    $b = $a->need($u,'staff');
-    // $b = $a->freeman($u);
-    // $b= $a->fit($u,'operation','online_manager');
-    // $b= $a->fit($u,'sys','admin');
-
-    var_dump($b);
-
-    // print_r($a->lowIds($r));
-
-    // return is_string([0]) ? "good" : "fuck";
-
-    // $user = App\User::find(5);
-    // // Auth::login($user);
-    // $r = new App\Helpers\Role;
-
-    // if($r->admin($user)) {
-    //     return 'yes';
-    // }else{
-    //     return 'fuck';
-    // }
+    // print_r($a);
 
 });
 
 Route::get('/in', function () {
     // $user = App\User::find(5);
+    $user = App\User::find(1);
     // $user = App\User::find(1);
-    $user = App\User::find(8);
+    // $user = App\User::find(8);
     Auth::login($user);
     print_r($user->info);
 });

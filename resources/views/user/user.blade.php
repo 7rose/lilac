@@ -24,7 +24,13 @@
             @else
             <figure class="avatar avatar-lg" data-initial="{{ Str::substr(show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))), 0,1) }}"></figure>
             @endif
-          <div class="panel-title h5 mt-10">{{ show($user->info, 'public') ? show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '*'))) :  show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))) }}</div>
+
+          <div class="panel-title h5 mt-10">
+              {{ show($user->info, 'public') ? show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '*'))) :  show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))) }}
+            @if($user->locked)
+                <h2 class="text-warning"><i class="fa fa-lock" aria-hidden="true"></i></h2>
+            @endif
+            </div>
           <div class="panel-subtitle">{{  show($user->info, 'public') ? show($user->ids, 'mobile.number','') : ''}}</div>
           </div>
           <nav class="panel-nav">
@@ -69,12 +75,22 @@
                     </div>
                 </div>
                 <div class="tile-action">
-                  <button class="btn btn-link btn-action btn-lg tooltip tooltip-left" data-tooltip="Edit E-mail"><i class="icon icon-edit"></i></button>
+
                 </div>
             </div>
           </div>
           <div class="panel-footer">
-            <button class="btn btn-primary btn-block">更新</button>
+        @can('update', $user, $user)
+            <a class="btn btn-primary btn-block" href="/update/{{ $user->id }}"> 更新</a>
+        @endcan
+
+        @can('lock-user',$user)
+            @if($user->locked)
+                <a class="btn btn btn-success btn-block mt-2" href="/unlock/{{ $user->id }}"> 解锁</a>
+            @else
+                <a class="btn btn-secondary btn-block mt-2" href="/lock/{{ $user->id }}"> 锁定</a>
+            @endif
+        @endcan
           </div>
         </div>
     </div>

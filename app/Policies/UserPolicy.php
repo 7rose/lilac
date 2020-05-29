@@ -23,7 +23,7 @@ class UserPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewUsers(User $user)
+    public function viewAll(User $user)
     {
         return $this->auth->need($user, 'staff');
     }
@@ -34,9 +34,9 @@ class UserPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function lockUsers(User $user, $id)
+    public function lockUser(User $user, User $target)
     {
-        return $this->auth->fit($user, 'operation', 'ad_manager');
+        return $this->auth->win($user, $target) || $user->id == $target->id;
     }
 
     /**
@@ -54,22 +54,22 @@ class UserPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\User  $target
      * @return mixed
      */
-    public function update(User $user, User $model)
+    public function update(User $user, User $target)
     {
-        //
+        return $this->auth->me($user, $target) || $this->auth->fit($user, 'sys', 'admin');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\User  $target
      * @return mixed
      */
-    public function delete(User $user, User $model)
+    public function delete(User $user, User $target)
     {
         //
     }
@@ -78,10 +78,10 @@ class UserPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\User  $target
      * @return mixed
      */
-    public function restore(User $user, User $model)
+    public function restore(User $user, User $target)
     {
         //
     }
@@ -90,10 +90,10 @@ class UserPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\User  $target
      * @return mixed
      */
-    public function forceDelete(User $user, User $model)
+    public function forceDelete(User $user, User $target)
     {
         //
     }

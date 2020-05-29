@@ -9,14 +9,42 @@ use Exception;
 class Authorize
 {
     /**
-     * 获取id数组: 上级
+     * 角色1 > 角色2
      *
      * @param $model kalnoy/nestedset
      * @param $with 是否包含自身
      *
      * @return $array
      */
-    public function fit($user, $org_key, $role_key, $acceopt_admin=true)
+    public function win($user, $target_user)
+    {
+        $pair = $this->check($user);
+        $pair_tagrget = $this->check($target_user);
+
+        if(!$pair) return false;
+        if($pair && !$pair_tagrget) return true;
+
+        if($this->fit($user, 'sys', 'admin') && !$this->fit($target_user, 'sys', 'admin')) return true;
+
+        foreach ($pair_tagrget as $t) {
+            if(isset($t['role']) || !is_null($t['role'])){
+                if(!$this->fit($user, $t['org']->key, $t['role']->key, false)) return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    /**
+     * 组织:角色
+     *
+     * @param $model kalnoy/nestedset
+     * @param $with 是否包含自身
+     *
+     * @return $array
+     */
+    public function fit($user, $org_key, $role_key, $with=true)
     {
         $org = Org::where('key', $org_key)->firstOrFail();
         $role = Role::where('key', $role_key)->withDepth()->firstOrFail();
@@ -27,10 +55,10 @@ class Authorize
         foreach ($pair as $p) {
             if(isset($p['role']) || !is_null($p['role'])){
                 if($p['org']->id == $org->id) {
-                    $role_arr = $this->upIds($role);
+                    $role_arr = $this->upIds($role,$with);
                     if(in_array($p['role']->id, $role_arr)) return true;
                 }else{
-                    $org_arr = $this->upIds($org);
+                    $org_arr = $this->upIds($org,$with);
                     if(in_array($p['org']->id, $org_arr) && $p['role']->depth <= $role->depth) return true;
                 }
             }
@@ -132,7 +160,7 @@ class Authorize
      */
     public function me($user, $target_user)
     {
-        return $user->id == $target_user->id;
+        return $user->id === $target_user->id;
     }
 
     /**
@@ -145,6 +173,6 @@ class Authorize
      */
     public function my($user, $id)
     {
-        return $user->id == $id;
+        return $user->id === $id;
     }
 }

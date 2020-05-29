@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
     /**
      * 用户列表
      *
      */
-    public function index(User $user)
+    public function index()
     {
-        $this->authorize('viewUsers', $user);
+        $this->authorize('viewAll', User::class);
 
         $users = User::all();
         return view('user.index', compact('users'));
@@ -24,20 +25,38 @@ class UserController extends Controller
      * 登录用户
      *
      */
-    public function me(User $user)
+    public function me()
     {
-        return $this->show(0, $user);
+        $this->authorize('viewAll', User::class);
+
+        return $this->show(0);
+    }
+
+    /**
+     * 登录用户
+     *
+     */
+    public function update($id)
+    {
+        $target = User::findOrFail($id);
+
+        $this->authorize('update', $target);
+
+        return redirect()->back();
     }
 
     /**
      * 锁定
      *
      */
-    public function lock($id, User $user)
+    public function lock($id)
     {
-        $this->authorize('lockUsers', $user);
+        $target = User::findOrFail($id);
 
-        $target = User::findOrFail($id)->update(['locked' => true]);
+        $this->authorize('lockUser', $target);
+
+
+        $target->update(['locked' => true]);
         return redirect()->back();
     }
 
@@ -45,11 +64,13 @@ class UserController extends Controller
      * 解锁
      *
      */
-    public function unlock($id, User $user)
+    public function unlock($id)
     {
-        $this->authorize('lockUsers', $user);
+        $target = User::findOrFail($id);
 
-        $target = User::findOrFail($id)->update(['locked' => false]);
+        $this->authorize('lockUser', $target);
+
+        $target->update(['locked' => false]);
         return redirect()->back();
     }
 
@@ -57,9 +78,9 @@ class UserController extends Controller
      * 用户
      *
      */
-    public function show($id=0, User $user)
+    public function show($id=0)
     {
-        $this->authorize('viewUsers', $user);
+        $this->authorize('viewAll', User::class);
 
         if($id == 0) {
             $user = Auth::user();
