@@ -1,3 +1,16 @@
+<?php
+
+    function role_list($user)
+    {
+        $out = [];
+        if (isset($user->conf['roles']) && count($user->conf['roles'])) {
+            foreach ($user->conf['roles'] as $r) {
+                $out[] = $r['org']->info['name'].'-'.Arr::get($r['role']->info, 'name');
+            }
+        }
+        return $out;
+    }
+?>
 @extends('../nav')
 
 @section('main')
@@ -38,17 +51,21 @@
                 <li class="divider">
             </div>
             <div class="divider-vert"></div>
-            <div class="column">
-                @if (isset($user->roles) && count($user->roles))
-                <span class="chip">
-                    @foreach ($user->roles as $role)
-                        @if($role->show)
-                        {{ show($role->info, 'name', show($role->info, 'full_name', '')) }}
+                <div class="column">
+
+                    @if (isset($user->conf['roles']) && count($user->conf['roles']))
+                        @foreach ($user->conf['roles'] as $r)
+                        @if(isset($r['org']) && $r['org']->show)
+                        @if(isset($r['role']) && $r['role']->show)
+                                <span class="chip">
+                                {{ $r['role']->info['name'] }}
+                            </span>
                         @endif
-                    @endforeach
-                </span>
-                @endif
-            </div>
+                        @endif
+                        @endforeach
+                    @endif
+
+                </div>
             </div>
         @endforeach
       </div>

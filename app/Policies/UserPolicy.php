@@ -3,45 +3,40 @@
 namespace App\Policies;
 
 use App\User;
+use App\Helpers\Authorize;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
+    protected $auth;
+
+    function __construct()
     {
-        //
+        $this->auth = new Authorize;
     }
 
     /**
-     * Determine whether the user can view the model.
+     * 查看所有用户
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
      * @return mixed
      */
-    public function view(User $user, User $model)
+    public function viewUsers(User $user)
     {
-        //
+        return $this->auth->need($user, 'staff');
     }
 
     /**
-     * Determine whether the user can view the model.
+     * 查看所有用户
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
      * @return mixed
      */
-    public function lock(User $user, User $model)
+    public function lockUsers(User $user, $id)
     {
-        //
+        return $this->auth->fit($user, 'operation', 'ad_manager');
     }
 
     /**

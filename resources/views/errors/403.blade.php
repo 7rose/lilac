@@ -4,11 +4,10 @@
 <div class="nav-pad"></div>
 <div class="column col-12">
     <div class="empty">
-      <div class="empty-icon"><i class="icon icon-3x icon-mail"></i></div>
-      <p class="empty-title h5">You have no new messages</p>
-      <p class="empty-subtitle">Click the button to start a conversation</p>
+      <div class="empty-icon"><h1><i class="fa fa-ban" aria-hidden="true"></i></h1></div>
+      <p class="empty-subtitle">需要授权, 若需继续请联系管理员</p>
       <div class="empty-action">
-        <button class="btn btn-primary">Send a message</button>
+        <a href="/apps" class="btn btn-primary">&nbsp;&nbsp;应用中心&nbsp;&nbsp;</a>
       </div>
     </div>
 </div>

@@ -2,8 +2,14 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Org;
+use App\Role;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
+use function GuzzleHttp\json_decode;
+
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -54,11 +60,13 @@ class User extends Authenticatable
     }
 
     /**
-     * For JOSN relations
+     * 定义josn列
      *
      */
     protected $casts = [
-        'auth' => 'json',
+        'ids' => 'json',
+        'info' => 'json',
+        'conf' => 'json',
     ];
 
     /**
@@ -67,7 +75,7 @@ class User extends Authenticatable
      */
     public function orgs()
     {
-        return $this->belongsToJson('App\Org', 'auth->org_ids');
+        return $this->belongsToJson('App\Org', 'conf->roles[]->org');
     }
 
     /**
@@ -76,6 +84,34 @@ class User extends Authenticatable
      */
     public function roles()
     {
-        return $this->belongsToJson('App\Role', 'auth->role_ids');
+        return $this->belongsToJson('App\Role', 'conf->roles[]->role');
     }
+
+    /**
+     *  查询修改器
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getConfAttribute($value)
+    {
+        if(is_string($value)) {
+            $value = json_decode($value, true);
+        }elseif(is_array($value)) {
+            // $array = $json;
+        }else{
+            return $value;
+        };
+
+        if(!Arr::has($value, 'roles') || !is_array($value['roles']) || !count($value['roles'])) return $value;
+
+        for ($i=0; $i < count($value['roles']); $i++) {
+            $value['roles'][$i]['org'] = Org::find( $value['roles'][$i]['org']);
+            $value['roles'][$i]['role'] = Role::withDepth()->find( $value['roles'][$i]['role']);
+        }
+
+        return $value;
+    }
+
+
 }

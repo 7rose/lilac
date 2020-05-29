@@ -7,7 +7,7 @@
     <div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
         <ul class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="/apps" class="btn btn-link show-xs text-dark"><i class="fa fa-th" aria-hidden="true"></i></a>
+                <a href="/apps" class="btn btn-link text-dark"><i class="fa fa-th" aria-hidden="true"></i></a>
             </li>
             <li class="breadcrumb-item">
               <a href="/users">用户</a>
@@ -36,11 +36,11 @@
             </ul>
           </nav>
           <div class="panel-body">
-                @isset($vcard)
+                @if(isset($vcard) && $vcard !='')
                 <div class="visible-print text-center p-centered">
                     {!! QrCode::size(260)->color(60,68,82)->generate($vcard); !!}
                 </div>
-                @endisset
+                @endif
             <div class="tile tile-centered">
               <div class="tile-content">
                 <div class="tile-title text-bold">邮件</div>
@@ -54,13 +54,16 @@
                 <div class="tile-content">
                   <div class="tile-title text-bold">职务</div>
                     <div class="tile-subtitle">
-                        @if (isset($user->roles) && count($user->roles))
-                        @foreach ($user->roles as $role)
-                        @if($role->show)
-                            <span class="chip">
-                                {{ show($role->info, 'name', show($role->info, 'full_name', '')) }}
-                            </span>
-                                @endif
+                        @if (isset($user->conf['roles']) && count($user->conf['roles']))
+                            @foreach ($user->conf['roles'] as $r)
+                            @if(isset($r['org']) && $r['org']->show)
+                                <span class="chip">
+                                    {{ $r['org']->info['name'] }}
+                                    @if(isset($r['role']) && $r['role']->show)
+                                    : {{ $r['role']->info['name'] }}
+                                    @endif
+                                </span>
+                            @endif
                             @endforeach
                         @endif
                     </div>

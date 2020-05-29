@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use function EasyWeChat\Kernel\Support\str_random;
+use function GuzzleHttp\json_decode;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,20 +38,17 @@ Route::get('/', function () {
 });
 
 // wechat user
-// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
-    // Route::get('/apps', function () {
-    //     return view('apps');
-    // });
+    Route::get('/apps', function () {
+        return view('apps');
+    });
 
 
     Route::get('/expos', 'ExpoController@index');
     // auth users
-    // Route::get('/expos', 'UserController@index');
     Route::group(['middleware' => ['mix']], function () {
-        Route::get('/apps', function () {
-            return view('apps');
-        });
+
         Route::get('/ad', 'WechatController@ad');
         Route::get('/users', 'UserController@index');
         Route::get('/user/{id}', 'UserController@show');
@@ -58,27 +56,47 @@ Route::get('/', function () {
         Route::post('/pub', 'SettingController@pub');
     });
 
-// });
+});
 
 Route::get('/test', function () {
-    $user = App\User::find(5);
-    $target = App\User::find(1);
 
-    $test = new App\Helpers\Role;
+    // $ar = [1,2,3];
 
-    $test->higher($user, $target);
-    // abort('403');
-    // $a = Auth::login(User::find(5));
-    // $a = User::find(5)->roles()->pluck('key');
-    // print_r($a);
-    // print_r(Arr::flatten($a));
-    // print_r($a->key);
-    // foreach($a as $item)
-    // {
-    //     echo $item->key;
+    // var_dump(in_array(4,$ar));
+
+    $u = App\User::find(8);
+
+    $a = new App\Helpers\Authorize;
+
+    // $b = $a->need($u, 'operation', 'online_manager');
+    $b = $a->need($u,'staff');
+    // $b = $a->freeman($u);
+    // $b= $a->fit($u,'operation','online_manager');
+    // $b= $a->fit($u,'sys','admin');
+
+    var_dump($b);
+
+    // print_r($a->lowIds($r));
+
+    // return is_string([0]) ? "good" : "fuck";
+
+    // $user = App\User::find(5);
+    // // Auth::login($user);
+    // $r = new App\Helpers\Role;
+
+    // if($r->admin($user)) {
+    //     return 'yes';
+    // }else{
+    //     return 'fuck';
     // }
-    // $a = User::find(4)->ids;
 
-    // print_r(show($a, 'wechat.nickname'));
+});
+
+Route::get('/in', function () {
+    // $user = App\User::find(5);
+    // $user = App\User::find(1);
+    $user = App\User::find(8);
+    Auth::login($user);
+    print_r($user->info);
 });
 

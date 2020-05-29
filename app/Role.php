@@ -10,23 +10,13 @@ class Role extends Model
     use \Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
     use NodeTrait;
 
-    // /**
-    //  * Parent
-    //  *
-    //  */
-    // public function parent()
-    // {
-    //     return $this->belongsTo('App\Role', 'parent_id');
-    // }
-
-    // /**
-    //  * Children
-    //  *
-    //  */
-    // public function children()
-    // {
-    //     return $this->hasMany('App\Role', 'parent_id');
-    // }
+    /**
+     * 定义josn列
+     *
+     */
+    protected $casts = [
+        'info' => 'json',
+    ];
 
     /**
      * Role users
@@ -34,6 +24,6 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->hasManyJson('App\User', 'auth->role_ids');
+        return $this->hasManyJson('App\User', 'conf->roles[]->role');
     }
 }

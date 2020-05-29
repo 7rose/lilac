@@ -16,9 +16,10 @@ class CreateOrgsTable extends Migration
     {
         Schema::create('orgs', function (Blueprint $table) {
             $table->id();
-            $table->string('key');
+            $table->string('key')->unique();
+            $table->string('type');
             $table->jsonb('info');
-            $table->jsonb('auth')->nullable();
+            $table->jsonb('conf')->nullable();
             $table->boolean('show')->default(true);
             $table->boolean('locked')->default(false);
             $table->timestamps();

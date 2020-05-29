@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->jsonb('ids');
             $table->jsonb('info')->nullable();
+            $table->jsonb('conf')->nullable();
             $table->string('password')->nullable();
-            $table->jsonb('auth')->nullable();
             $table->boolean('locked')->default(false);
             $table->boolean('show')->default(true);
             $table->bigInteger('created_by')->nullable();

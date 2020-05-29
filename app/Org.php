@@ -17,23 +17,14 @@ class Org extends Model
      */
     protected $guarded = [];
 
-    // /**
-    //  * Parent
-    //  *
-    //  */
-    // public function parent()
-    // {
-    //     return $this->belongsTo('App\Org', 'parent_id');
-    // }
-
-    // /**
-    //  * Children
-    //  *
-    //  */
-    // public function children()
-    // {
-    //     return $this->hasMany('App\Org', 'parent_id');
-    // }
+    /**
+     * 定义josn列
+     *
+     */
+    protected $casts = [
+        'info' => 'json',
+        'conf' => 'json',
+    ];
 
     /**
      * Orgs of a user [json relations]
@@ -41,6 +32,6 @@ class Org extends Model
      */
     public function users()
     {
-        return $this->hasManyJson('App\User', 'auth->org_ids');
+        return $this->hasManyJson('App\User', 'conf->roles[]->org');
     }
 }
