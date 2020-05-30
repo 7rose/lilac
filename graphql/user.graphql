@@ -9,4 +9,5 @@ type User {
     created_by: ID
     created_at: DateTime!
     updated_at: DateTime!
+    orgs: [Org!]!
 }

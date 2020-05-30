@@ -20,6 +20,7 @@ class CreateRolesTable extends Migration
             $table->jsonb('info');
             $table->boolean('show')->default(true);
             $table->boolean('active')->default(true);
+            $table->bigInteger('created_by')->nullable();
             $table->timestamps();
             NestedSet::columns($table);
         });

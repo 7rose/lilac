@@ -1,0 +1,13 @@
+type Org {
+    id: ID!
+    key: Json!
+    type: String!
+    info: Json!
+    show: Boolean!
+    locked: Boolean!
+    created_by: ID
+    created_at: DateTime!
+    updated_at: DateTime!
+    users:[User!]!
+}
+

@@ -10,3 +10,4 @@ type Query {
 }
 
 #import user.graphql
+#import org.graphql

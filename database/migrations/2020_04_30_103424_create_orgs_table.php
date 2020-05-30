@@ -22,6 +22,7 @@ class CreateOrgsTable extends Migration
             $table->jsonb('conf')->nullable();
             $table->boolean('show')->default(true);
             $table->boolean('locked')->default(false);
+            $table->bigInteger('created_by')->nullable();
             $table->timestamps();
             NestedSet::columns($table);
         });
