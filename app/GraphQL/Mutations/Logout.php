@@ -19,9 +19,7 @@ class Logout
      */
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        if(Auth::check()) {
-            Auth::user()->tokens()->delete();
-        }
+        if(Auth::guard('sanctum')->check()) Auth::guard('sanctum')->user()->tokens()->delete();
 
         return ['success'=>true];
     }
