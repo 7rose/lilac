@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Org;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,16 @@ class UserController extends Controller
     {
         $this->authorize('viewAll', User::class);
 
-        $users = User::all();
+        $staff = Org::where('key','staff')->firstOrFail();
+
+        $all= collect();
+
+        foreach ($staff->descendants as $key) {
+            $all = $all->merge($key->users);
+        }
+
+        $users = $all->unique('id');
+
         return view('user.index', compact('users'));
     }
 

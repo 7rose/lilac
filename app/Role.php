@@ -24,6 +24,6 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->hasManyJson('App\User', 'conf->roles[]->role');
+        return $this->hasManyJson('App\User', 'conf->roles[]->role_id');
     }
 }

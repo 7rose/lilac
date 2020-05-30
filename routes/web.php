@@ -41,7 +41,7 @@ Route::get('/', function () {
 Route::get('/expos/now', 'ExpoController@index');
 
 // wechat user
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     Route::get('/apps', function () {
         return view('apps');
@@ -64,11 +64,14 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/expos', 'ExpoController@index');
     });
 
-});
+// });
 
 Route::get('/test', function () {
 
-
+    $a = App\User::find(1);
+    print_r($a->conf['roles']);
+    // $b = show($a->conf);
+    // print_r($b);
 
 });
 

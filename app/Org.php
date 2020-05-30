@@ -32,6 +32,6 @@ class Org extends Model
      */
     public function users()
     {
-        return $this->hasManyJson('App\User', 'conf->roles[]->org');
+        return $this->hasManyJson('App\User', 'conf->roles[]->org_id');
     }
 }

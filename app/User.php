@@ -75,7 +75,7 @@ class User extends Authenticatable
      */
     public function orgs()
     {
-        return $this->belongsToJson('App\Org', 'conf->roles[]->org');
+        return $this->belongsToJson('App\Org', 'conf->roles[]->org_id');
     }
 
     /**
@@ -84,7 +84,7 @@ class User extends Authenticatable
      */
     public function roles()
     {
-        return $this->belongsToJson('App\Role', 'conf->roles[]->role');
+        return $this->belongsToJson('App\Role', 'conf->roles[]->role_id');
     }
 
     /**
@@ -106,8 +106,8 @@ class User extends Authenticatable
         if(!Arr::has($value, 'roles') || !is_array($value['roles']) || !count($value['roles'])) return $value;
 
         for ($i=0; $i < count($value['roles']); $i++) {
-            $value['roles'][$i]['org'] = Org::find( $value['roles'][$i]['org']);
-            $value['roles'][$i]['role'] = Role::withDepth()->find( $value['roles'][$i]['role']);
+            $value['roles'][$i]['org'] = Org::find( $value['roles'][$i]['org_id']);
+            $value['roles'][$i]['role'] = Role::withDepth()->find( $value['roles'][$i]['role_id']);
         }
 
         return $value;
