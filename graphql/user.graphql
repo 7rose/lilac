@@ -3,8 +3,8 @@ type User {
     ids: Json!
     info: Json
     conf: Json
-    locked: Boolean
-    show: Boolean
+    locked: Boolean!
+    show: Boolean!
     created_by: ID
     created_at: DateTime!
     updated_at: DateTime!

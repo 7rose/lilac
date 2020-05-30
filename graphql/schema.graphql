@@ -11,7 +11,7 @@ type Query {
 }
 
 extend type Query @guard(with: ["sanctum"]) {
-  me: User @auth
+    me: User @auth
 }
 
 
