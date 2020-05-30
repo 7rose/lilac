@@ -36,7 +36,8 @@
                         <label class="form-label" for="input-example-1">开始时间</label>
                         </div>
                         <div class="col-9 col-sm-12">
-                        <input class="form-input"type="date" name="begin" placeholder="开始时间" required>
+                        <input class="form-input"type="date" name="begin" placeholder="开始日期" required>
+                        <input class="form-input"type="time" name="begin" placeholder="时间" required>
                         </div>
                     </div>
 
@@ -45,7 +46,8 @@
                         <label class="form-label" for="input-example-1">结束时间</label>
                         </div>
                         <div class="col-9 col-sm-12">
-                        <input class="form-input" type="date" name="end" placeholder="结束时间" required>
+                        <input class="form-input" type="date" name="end" placeholder="结束日期" required>
+                        <input class="form-input"type="time" name="begin" placeholder="时间" required>
                         </div>
                     </div>
 
