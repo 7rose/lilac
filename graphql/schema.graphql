@@ -1,17 +1,23 @@
-scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
-scalar DateTimeTz @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTimeTz")
 scalar Json
+scalar ChineseMobile
 
 type Query {
     users: [User!]! @all
     user(id: ID @eq): User @find
     orgs: [Org!]! @all
     org(id: ID @eq): Org @find
+    me: User @auth @middleware(checks: ["auth:sanctum"])
 }
 
-
+type Mutation {
+    # trustMoblie(input: trustMoblieInput! @spread) : TokenPayload!
+    sendSmsCode(input: SendSmsCodeInput! @spread) : SendSmsResault!
+    getToken(input: GetTokenInput! @spread) : TokenPayload!
+    logout: LogoutPayload!
+}
 
 #import user.graphql
 #import org.graphql
 #import role.graphql
+#import auth.graphql

@@ -1,0 +1,28 @@
+# input trustMoblieInput {
+#     device_id: String!
+#     mobile: ChineseMobile!
+# }
+
+input SendSmsCodeInput {
+    device_id: String!
+    mobile: ChineseMobile!
+}
+
+input GetTokenInput {
+    device_id: String!
+    mobile: ChineseMobile!
+    code: SmsCode!
+}
+
+type SendSmsResault {
+    registered: Boolean!
+    success: Boolean!
+}
+
+type TokenPayload {
+    access_token: String!
+}
+
+type LogoutResault {
+    success: Boolean!
+}
