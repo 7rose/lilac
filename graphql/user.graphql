@@ -10,4 +10,5 @@ type User {
     created_at: DateTime!
     updated_at: DateTime!
     orgs: [Org!]!
+    roles: [Role!]!
 }

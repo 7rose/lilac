@@ -7,7 +7,12 @@ scalar Json @scalar(class: "MLL\\GraphQLScalars\\Json")
 type Query {
     users: [User!]! @all
     user(id: ID @eq): User @find
+    orgs: [Org!]! @all
+    org(id: ID @eq): Org @find
 }
+
+
 
 #import user.graphql
 #import org.graphql
+#import role.graphql

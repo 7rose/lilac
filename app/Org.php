@@ -27,11 +27,20 @@ class Org extends Model
     ];
 
     /**
-     * Orgs of a user [json relations]
+     * 机构用户
      *
      */
     public function users()
     {
         return $this->hasManyJson('App\User', 'conf->roles[]->org_id');
     }
+
+    // /**
+    //  * 机构的角色根节点
+    //  *
+    //  */
+    // public function role()
+    // {
+    //     return $this->belongsTo('App\Role', 'conf->roles_id');
+    // }
 }

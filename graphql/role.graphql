@@ -1,13 +1,13 @@
-type Org {
+type Role {
     id: ID!
-    key: Json!
-    type: String!
+    key: String!
     info: Json!
     show: Boolean!
-    locked: Boolean!
+    active: Boolean!
     created_by: ID
     created_at: DateTime!
     updated_at: DateTime!
-    users: [User!]!
+    users:[User!]!
+    org: [Org]
 }
 
