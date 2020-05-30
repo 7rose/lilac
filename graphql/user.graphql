@@ -1,0 +1,12 @@
+type User {
+    id: ID!
+    ids: Json!
+    info: Json
+    conf: Json
+    password: String
+    locked: Boolean
+    show: Boolean
+    created_by: ID
+    created_at: DateTime!
+    updated_at: DateTime!
+}

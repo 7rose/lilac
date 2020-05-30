@@ -5,15 +5,16 @@ namespace App;
 use App\Org;
 use App\Role;
 use Illuminate\Support\Arr;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\App;
-use function GuzzleHttp\json_decode;
 
+use function GuzzleHttp\json_decode;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
     use \Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
 
     /**

@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "kalnoy/nestedset": "^5.0",
         "laravel/framework": "^7.0",
+        "laravel/sanctum": "^2.3",
         "laravel/tinker": "^2.0",
         "mll-lab/graphql-php-scalars": "^3.0",
         "mll-lab/laravel-graphql-playground": "^2.1",
