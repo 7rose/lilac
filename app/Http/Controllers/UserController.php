@@ -75,6 +75,34 @@ class UserController extends Controller
     }
 
     /**
+     * set personal profiles public
+     *
+     */
+    public function pub(Request $request)
+    {
+        Auth::user()->update(['info->public' => $request->pub == 'true' ? true : false]);
+        return json_encode(['checked' => $request->pub]);
+    }
+
+    /**
+     * 授权
+     *
+     */
+    public function add($id)
+    {
+        //
+    }
+
+    /**
+     * 取消授权
+     *
+     */
+    public function remove($id)
+    {
+        //
+    }
+
+    /**
      * 用户
      *
      */

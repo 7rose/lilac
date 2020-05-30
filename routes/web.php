@@ -56,9 +56,9 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/lock/{id}', 'UserController@lock');
         Route::get('/unlock/{id}', 'UserController@unlock');
         Route::get('/me', 'UserController@me');
+        Route::post('/pub', 'UserController@pub');
 
-        Route::post('/pub', 'SettingController@pub');
-        Route::get('/tree', 'SettingController@tree');
+        Route::get('/tree', 'OrgController@index');
 
         Route::get('/expos/create', 'ExpoController@create');
         Route::get('/expos', 'ExpoController@index');
@@ -74,7 +74,7 @@ Route::get('/test', function () {
 
 Route::get('/in', function () {
     // $user = App\User::find(5);
-    $user = App\User::find(1);
+    $user = App\User::find(6);
     // $user = App\User::find(1);
     // $user = App\User::find(8);
     Auth::login($user);
