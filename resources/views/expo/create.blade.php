@@ -18,7 +18,7 @@
                         <label class="form-label" for="input-example-1">标题</label>
                         </div>
                         <div class="col-9 col-sm-12">
-                        <input class="form-input" type="text" name="title" minlength="4" maxlength="12" placeholder="标题" required>
+                        <input class="form-input" type="text" name="title" minlength="4" maxlength="12" placeholder="标题" required autofocus>
                         </div>
                     </div>
 
