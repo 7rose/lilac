@@ -5,7 +5,7 @@
 
 <div class="container">
     <p></p>
-    <a href="/expos/create" class="btn btn-secondary btn-block btn-sm"><i class="fa fa-magic" aria-hidden="true"></i> 发布</a>
+    <a href="/expos/create" class="btn btn-secondary btn-block"><i class="fa fa-magic" aria-hidden="true"></i> 发布</a>
     <p></p>
     <div class="tile tile-centered">
         <div class="tile-content">
