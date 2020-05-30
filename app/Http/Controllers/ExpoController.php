@@ -31,6 +31,11 @@ class ExpoController extends Controller
      */
     public function store(Request $request)
     {
-        // return view('expo.create');
+        $request->validate([
+            'title' => ['required', 'min:4', 'max:16'],
+            'addr' => ['required', 'min:6', 'max:100'],
+            'title' => ['required', 'min:4', 'max:16'],
+            'addr' => ['accepted'],
+        ]);
     }
 }
