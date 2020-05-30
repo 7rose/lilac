@@ -37,6 +37,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 展会预告
+Route::get('/expos/now', 'ExpoController@index');
+
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
@@ -44,8 +47,6 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         return view('apps');
     });
 
-
-    Route::get('/expos', 'ExpoController@index');
     // auth users
     Route::group(['middleware' => ['mix']], function () {
 
@@ -55,28 +56,19 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/lock/{id}', 'UserController@lock');
         Route::get('/unlock/{id}', 'UserController@unlock');
         Route::get('/me', 'UserController@me');
+
         Route::post('/pub', 'SettingController@pub');
         Route::get('/tree', 'SettingController@tree');
+
+        Route::get('/expos/create', 'ExpoController@create');
+        Route::get('/expos', 'ExpoController@index');
     });
 
 });
 
 Route::get('/test', function () {
 
-    // $ar = [1,2,3];
-    $nodes = App\Org::get()->toTree();
 
-    $traverse = function ($categories, $prefix = '') use (&$traverse) {
-        foreach ($categories as $category) {
-            echo PHP_EOL.$prefix.' '.$category->key.'<br>';
-
-            $traverse($category->children, $prefix.'|__');
-        }
-    };
-
-    $traverse($nodes);
-
-    // print_r($a);
 
 });
 

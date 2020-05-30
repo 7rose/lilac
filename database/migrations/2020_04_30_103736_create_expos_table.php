@@ -16,9 +16,11 @@ class CreateExposTable extends Migration
         Schema::create('expos', function (Blueprint $table) {
             $table->id();
             $table->jsonb('info');
+            $table->jsob('config');
             $table->timestamp('begin');
             $table->timestamp('end');
-            $table->integer('limit');
+            $table->boolean('show')->default(true);
+            $table->bigInteger('created_by');
             $table->timestamps();
         });
     }
