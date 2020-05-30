@@ -1,6 +1,7 @@
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 scalar Json
 scalar ChineseMobile
+scalar SmsCode
 
 type Query {
     users: [User!]! @all
@@ -14,7 +15,7 @@ type Mutation {
     # trustMoblie(input: trustMoblieInput! @spread) : TokenPayload!
     sendSmsCode(input: SendSmsCodeInput! @spread) : SendSmsResault!
     getToken(input: GetTokenInput! @spread) : TokenPayload!
-    logout: LogoutPayload!
+    # logout: LogoutPayload!
 }
 
 #import user.graphql

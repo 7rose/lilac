@@ -68,10 +68,12 @@ Route::get('/expos/now', 'ExpoController@index');
 
 Route::get('/test', function () {
 
-    $a = App\User::find(1);
-    print_r($a->conf['roles']);
+    // $a = App\User::find(1);
+    // print_r($a->conf['roles']);
     // $b = show($a->conf);
     // print_r($b);
+
+    echo(Redis::get('goodluck4'));
 
 });
 

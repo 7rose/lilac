@@ -20,7 +20,7 @@ type SendSmsResault {
 }
 
 type TokenPayload {
-    access_token: String!
+    token: String!
 }
 
 type LogoutResault {
