@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             'ids' => ['mobile' => ['number' => '17601501535', 'active' => true]],
             'info' => ['name' => '钱程', 'nick' => 'Kotoba'],
             'locked' => true,
-            // 'conf' => ['roles' => [['org_id' => 6, 'role_id'=>null]]],
+            'conf' => ['roles' => [['org_id' => 6, 'role_id'=>null]]],
         ]);
 
     }
