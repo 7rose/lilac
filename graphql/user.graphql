@@ -3,7 +3,6 @@ type User {
     ids: Json!
     info: Json
     conf: Json
-    password: String
     locked: Boolean
     show: Boolean
     created_by: ID

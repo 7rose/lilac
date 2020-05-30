@@ -8,8 +8,12 @@ type Query {
     user(id: ID @eq): User @find
     orgs: [Org!]! @all
     org(id: ID @eq): Org @find
-    me: User @auth @middleware(checks: ["auth:sanctum"])
 }
+
+extend type Query @guard(with: ["sanctum"]) {
+  me: User @auth
+}
+
 
 type Mutation {
     # trustMoblie(input: trustMoblieInput! @spread) : TokenPayload!
