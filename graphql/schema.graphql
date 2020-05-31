@@ -10,10 +10,9 @@ type Query {
     org(id: ID @eq): Org @find
 }
 
-extend type Query @guard(with: ["sanctum"]) {
+extend type Query @guard(with:["sanctum"]) {
     me: User @auth
 }
-
 
 type Mutation {
     # trustMoblie(input: trustMoblieInput! @spread) : TokenPayload!

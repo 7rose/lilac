@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Traits\RoleTrait;
 
 class ExpoController extends Controller
 {
@@ -34,10 +33,11 @@ class ExpoController extends Controller
         $request->validate([
             'title' => ['required', 'min:4', 'max:16'],
             'addr' => ['required', 'min:6', 'max:100'],
-            'begin' => ['required', 'datetime'],
-            'end' => ['required', 'datetime'],
-            'price' => ['required', 'datetime'],
-            'addr' => ['accepted'],
+            'begin' => ['required', 'date'],
+            'end' => ['required', 'date'],
+            'price' => ['required', 'numeric', 'min:0', 'max:1000'],
+            'manager' => ['required', 'min:11', 'max:110'],
+            'checker' => ['required', 'min:11', 'max:110'],
         ]);
     }
 }

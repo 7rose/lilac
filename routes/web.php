@@ -41,14 +41,14 @@ Route::get('/', function () {
 Route::get('/expos/now', 'ExpoController@index');
 
 // wechat user
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     Route::get('/apps', function () {
         return view('apps');
     });
 
     // auth users
-    Route::group(['middleware' => ['mix']], function () {
+    Route::group(['middleware' => ['mix', 'state']], function () {
 
         Route::get('/ad', 'WechatController@ad');
         Route::get('/users', 'UserController@index');
@@ -64,7 +64,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/expos', 'ExpoController@index');
     });
 
-});
+// });
 
 Route::get('/test', function () {
 
@@ -73,13 +73,13 @@ Route::get('/test', function () {
     // $b = show($a->conf);
     // print_r($b);
 
-    echo(Redis::get('goodluck4'));
+    // echo(Redis::get('goodluck4'));
 
 });
 
 Route::get('/in', function () {
     // $user = App\User::find(5);
-    $user = App\User::find(6);
+    $user = App\User::find(2);
     // $user = App\User::find(1);
     // $user = App\User::find(8);
     Auth::login($user);
