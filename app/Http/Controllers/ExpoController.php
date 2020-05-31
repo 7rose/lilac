@@ -31,13 +31,20 @@ class ExpoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required', 'min:4', 'max:16'],
+            'title' => ['required','string', 'min:4', 'max:16'],
             'addr' => ['required', 'min:6', 'max:100'],
-            'begin' => ['required', 'date'],
-            'end' => ['required', 'date'],
+            'begin' => ['required', 'after:'.today()],
+            'end' => ['required', 'after:'.today()],
             'price' => ['required', 'numeric', 'min:0', 'max:1000'],
-            'manager' => ['required', 'min:11', 'max:110'],
-            'checker' => ['required', 'min:11', 'max:110'],
+            'manager' => ['max:110'],
+            'checker' => ['max:110'],
         ]);
+
+
+
+        print_r($request->all());
+
+
     }
+
 }
