@@ -20,7 +20,7 @@
                         <label class="form-label" for="input-example-1">标题</label>
                         </div>
                         <div class="col-9 col-sm-12">
-                        <input class="form-input" type="text" name="title" minlength="4" maxlength="16" placeholder="标题" value="{{ old('title') }}" required autofocus>
+                        <input class="form-input" type="text" name="title" minlength="4" maxlength="16" placeholder="标题" value="{{ old('title') }}" required>
                         @error('title')
                             <p class="form-input-hint">{{ $message }}</p>
                         @enderror
@@ -32,7 +32,7 @@
                         <label class="form-label" for="input-example-1">地址</label>
                         </div>
                         <div class="col-9 col-sm-12">
-                        <input class="form-input" type="text" name="addr" minlength="6" maxlength="100" placeholder="地址" value="{{ old('addr') }}" required autofocus>
+                        <input class="form-input" type="text" name="addr" minlength="6" maxlength="100" placeholder="地址" value="{{ old('addr') }}" required>
                         @error('addr')
                             <p class="form-input-hint">{{ $message }}</p>
                         @enderror

@@ -16,7 +16,7 @@ class CreateExposTable extends Migration
         Schema::create('expos', function (Blueprint $table) {
             $table->id();
             $table->jsonb('info');
-            $table->jsonb('config');
+            $table->jsonb('conf')->nullable();
             $table->timestamp('begin');
             $table->timestamp('end');
             $table->boolean('show')->default(true);

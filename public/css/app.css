@@ -1066,10 +1066,6 @@ legend {
   border-color: #f44336;
 }
 
-.form-input::-webkit-input-placeholder {
-  color: #bcc3ce;
-}
-
 .form-input::-moz-placeholder {
   color: #bcc3ce;
 }
@@ -1516,13 +1512,39 @@ textarea.form-input.input-sm {
   border-color: #e85600;
 }
 
+.form-input:not(:-moz-placeholder-shown):invalid {
+  border-color: #e85600;
+}
+
+.form-input:not(:-ms-input-placeholder):invalid {
+  border-color: #e85600;
+}
+
 .form-input:not(:placeholder-shown):invalid {
   border-color: #e85600;
+}
+
+.form-input:not(:-moz-placeholder-shown):invalid:focus {
+  box-shadow: 0 0 0 0.1rem rgba(232, 86, 0, 0.2);
+  background: #fffaf7;
+}
+
+.form-input:not(:-ms-input-placeholder):invalid:focus {
+  box-shadow: 0 0 0 0.1rem rgba(232, 86, 0, 0.2);
+  background: #fffaf7;
 }
 
 .form-input:not(:placeholder-shown):invalid:focus {
   box-shadow: 0 0 0 0.1rem rgba(232, 86, 0, 0.2);
   background: #fffaf7;
+}
+
+.form-input:not(:-moz-placeholder-shown):invalid + .form-input-hint {
+  color: #e85600;
+}
+
+.form-input:not(:-ms-input-placeholder):invalid + .form-input-hint {
+  color: #e85600;
 }
 
 .form-input:not(:placeholder-shown):invalid + .form-input-hint {

@@ -22,6 +22,7 @@
     "dependencies": {
         "fontawesome": "4.7",
         "jquery": "^3.5.1",
+        "jquery.countdown": "^1.2.8",
         "spectre.css": "^0.5.8"
     }
 }

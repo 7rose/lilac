@@ -1,7 +1,7 @@
 @extends('../nav')
 
 @section('main')
-<div class="nav-pad"></div>
+<p></p>
 <div class="column col-12">
     <div class="empty">
       <div class="empty-icon"><h1><i class="fa fa-lock" aria-hidden="true"></i></h1></div>

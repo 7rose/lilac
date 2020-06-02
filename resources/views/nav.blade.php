@@ -29,13 +29,13 @@
             <div class="dropdown dropdown-right">
                 <a class="dropdown-toggle text-dark" tabindex="0">
                     <div class="chip">
-                        @if (show(Auth::user()->ids, 'wechat.avatar'))
-                        <figure class="avatar avatar-sm bg-gray"><img src="{{ asset(show(Auth::user()->ids, 'wechat.avatar', 'custom/avatar.png')) }}"  alt="Avatar"></figure>
+                        @if (face(Auth::user())->avatar)
+                        <figure class="avatar avatar-sm bg-gray"><img src="{{ asset(face(Auth::user())->avatar) }}"  alt="Avatar"></figure>
                         @else
-                        <figure class="avatar avatar-sm" data-initial="{{ Str::substr(show(Auth::user()->info, 'nick', show(Auth::user()->info, 'name', show(Auth::user()->ids, 'wechat.nickname', '*'))), 0,1) }}"></figure>
+                        <figure class="avatar avatar-sm" data-initial="{{ face(Auth::user())->avatar_text }}"></figure>
                         @endif
 
-                        {{ show(Auth::user()->info, 'public') ? show(Auth::user()->info, 'name', show(Auth::user()->info, 'nick', show(Auth::user()->ids, 'wechat.nickname', '*'))) :  show(Auth::user()->info, 'nick', show(Auth::user()->info, 'name', show(Auth::user()->ids, 'wechat.nickname', '*'))) }}
+                        {{ face(Auth::user())->name }}
                     </div>
                 </a>
                 <ul class="menu text-left">
