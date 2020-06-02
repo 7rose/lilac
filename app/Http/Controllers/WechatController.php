@@ -99,7 +99,7 @@ class WechatController extends Controller
             $app = app('wechat.official_account');
             $reasult = $app->qrcode->temporary('ad_'.$type.'_'.Auth::id(), 60*60*24*7); # 1周
             $reasult = Arr::add($reasult, 'expire', ($reasult['expire_seconds'] + time() - 60));
-            $save = Auth::user()->update(['info->wechat->qrcode'.$type, $reasult]);
+            $save = Auth::user()->update(['info->wechat->qrcode->'.$type, $reasult]);
 
             return $reasult['url'];
         }
