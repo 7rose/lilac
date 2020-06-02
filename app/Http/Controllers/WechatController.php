@@ -93,13 +93,13 @@ class WechatController extends Controller
      */
     private function get($type)
     {
-        if(show(Auth::user()->info, 'wechat.qrcode.'.$type) && show(Auth::user()->info, 'wechat.qrcode.'.$type.'expire') && show(Auth::user()->info, 'wechat.qrcode.'.$type.'expire') > time()) {
-            return show(Auth::user()->info, 'wechat.qrcode'.$type.'url');
+        if(show(Auth::user()->ids, 'wechat.qrcode.'.$type) && show(Auth::user()->ids, 'wechat.qrcode.'.$type.'expire') && show(Auth::user()->ids, 'wechat.qrcode.'.$type.'expire') > time()) {
+            return show(Auth::user()->ids, 'wechat.qrcode'.$type.'url');
         }else{
             $app = app('wechat.official_account');
             $reasult = $app->qrcode->temporary('ad_'.$type.'_'.Auth::id(), 60*60*24*7); # 1周
             $reasult = Arr::add($reasult, 'expire', ($reasult['expire_seconds'] + time() - 60));
-            $save = Auth::user()->update(['info->wechat->qrcode->'.$type, $reasult]);
+            $save = Auth::user()->update(['ids->wechat->qrcode->'.$type, $reasult]);
 
             return $reasult['url'];
         }
