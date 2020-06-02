@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -56,13 +57,53 @@ class WechatController extends Controller
         //
     }
 
-
-    public function ad()
+    /**
+     * 推荐客户
+     *
+     */
+    public function customer()
     {
-        $app = app('wechat.official_account');
-        $reasult = $app->qrcode->temporary('ad_'.Auth::id(), 300);
-        $url = $reasult['url'];
+        $url = $this->get('customer');
 
         return view('ad',compact('url'));
     }
+
+    /**
+     * 发展供应商
+     *
+     */
+    public function supplier()
+    {
+        //
+    }
+
+    /**
+     * 推荐合作方
+     *
+     */
+    public function partner()
+    {
+        //
+    }
+
+
+    /**
+     * 保存链接
+     *
+     */
+    private function get($type)
+    {
+        if(show(Auth::user()->info, 'wechat.qrcode.'.$type) && show(Auth::user()->info, 'wechat.qrcode.'.$type.'expire') && show(Auth::user()->info, 'wechat.qrcode.'.$type.'expire') > time()) {
+            return show(Auth::user()->info, 'wechat.qrcode'.$type.'url');
+        }else{
+            $app = app('wechat.official_account');
+            $reasult = $app->qrcode->temporary('ad_'.$type.'_'.Auth::id(), 60*60*24*7); # 1周
+            $reasult = Arr::add($reasult, 'expire', ($reasult['expire_seconds'] + time() - 60));
+            $save = Auth::user()->update(['info->wechat->qrcode'.$type, $reasult]);
+
+            return $reasult['url'];
+        }
+    }
+
+
 }

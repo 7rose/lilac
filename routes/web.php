@@ -1,14 +1,7 @@
 <?php
 
-use App\User;
-
-use Carbon\Carbon;
-use Illuminate\Support\Arr;
-use function GuzzleHttp\json_decode;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
-use function EasyWeChat\Kernel\Support\str_random;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +44,8 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     // auth users
     Route::group(['middleware' => ['mix', 'state']], function () {
 
-        Route::get('/ad', 'WechatController@ad');
+        Route::get('/ad', 'WechatController@customer');
+
         Route::get('/users', 'UserController@index');
         Route::get('/user/{id}', 'UserController@show');
         Route::get('/lock/{id}', 'UserController@lock');
@@ -63,6 +57,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
         Route::get('/expos', 'ExpoController@index');
         Route::get('/expo/{id}', 'ExpoController@show');
+        Route::post('/expo/allow/{id}', 'ExpoController@allow'); # 开关售票
         Route::get('/expos/create', 'ExpoController@create');
         Route::post('/expos/store', 'ExpoController@store');
     });
@@ -70,32 +65,14 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
+    // echo time();
+    // $expo = App\Expo::findOrFail(6);
+    // $expo->update(['conf->open' => true]);
 
-    $a = '17821621090,Kris,long';
 
-    $b = pick($a);
+    // $a = App\Expo::find(1);
 
-    var_dump(count($b->error));
-
-    // $u = App\User::find(1);
-
-    // // var_dump(face($u)->has('avatar'));
-
-    // echo face($u)->name;
-
-    // var_dump($u->avatar);
-
-    // $collection = (object) collect(['name' => 'john', 'age' => '20'])->all();
-
-    // echo $collection->name;
-    // echo $b->n;
-
-    // echo $b['n'];
-    // var_dump($b);
-    // $a = Arr::add($a, 'b', 2);
-
-    // print_r($a);
-
+    // $b = show($a->conf, 'manager');
 });
 
 Route::get('/in', function () {

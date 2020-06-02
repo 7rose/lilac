@@ -152,7 +152,7 @@ class UserController extends Controller
         }
 
 
-        return view('user.user', compact('user', 'vcard'));
+        return view('user.show', compact('user', 'vcard'));
     }
 
 }

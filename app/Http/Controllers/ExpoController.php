@@ -77,6 +77,7 @@ class ExpoController extends Controller
             'conf' => [
                 'manager' => $request->manager,
                 'checker' => $request->checker,
+                'open' => $request->has('open'),
             ],
             'begin' => $request->begin,
             'end' => $request->end,
@@ -88,7 +89,7 @@ class ExpoController extends Controller
         $msg = '操作已成功！<br>';
         if(count($mc->may)) $msg .= implode(', ', $mc->may);
         if(count($cc->may)) $msg .= ', '.implode(', ', $cc->may);
-        if((count($cc->may)) || (count($mc->may))) $msg .= ' 还不是注册用户，但当其完成注册后会自动获取相应的权限。';
+        if(count($cc->may) || count($mc->may)) $msg .= ' 还不是注册用户，但当其完成注册后会自动获取相应的权限。';
 
         $conf = [
             'msg' => $msg,
@@ -99,6 +100,14 @@ class ExpoController extends Controller
         ];
 
         return view('note', compact('conf'));
+    }
+
+
+    public function allow(Request $request, $id)
+    {
+        $expo = Expo::findOrFail($id);
+        $expo->update(['conf->open' => $request->open == 'true' ? true : false]);
+        return json_encode(['checked' => $request->open]);
     }
 
 }

@@ -13,25 +13,25 @@
               <a href="/users">用户</a>
             </li>
             <li class="breadcrumb-item">
-                {{ show($user->info, 'public') ? show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '*'))) :  show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))) }}
+                {{ face($user)->name }}
             </li>
         </ul>
 
         <div class="panel">
             <div class="panel-header text-center">
-            @if (show($user->ids, 'wechat.avatar'))
-            <figure class="avatar avatar-lg bg-gray"><img src="{{ asset(show($user->ids, 'wechat.avatar', 'custom/avatar.png')) }}"  alt="Avatar"></figure>
+            @if (face($user)->avatar)
+            <figure class="avatar avatar-lg bg-gray"><img src="{{ face($user)->avatar }}"  alt="Avatar"></figure>
             @else
-            <figure class="avatar avatar-lg" data-initial="{{ Str::substr(show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))), 0,1) }}"></figure>
+            <figure class="avatar avatar-lg" data-initial="{{ face($user)->avatar_text }}"></figure>
             @endif
 
           <div class="panel-title h5 mt-10">
-              {{ show($user->info, 'public') ? show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '*'))) :  show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))) }}
+              {{ face($user)->name }}
             @if($user->locked)
                 <h2 class="text-warning"><i class="fa fa-lock" aria-hidden="true"></i></h2>
             @endif
             </div>
-          <div class="panel-subtitle">{{  show($user->info, 'public') ? show($user->ids, 'mobile.number','') : ''}}</div>
+          <div class="panel-subtitle">{{ face($user)->mobile }}</div>
           </div>
           <nav class="panel-nav">
             <ul class="tab tab-block">

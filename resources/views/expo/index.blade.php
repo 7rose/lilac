@@ -28,6 +28,9 @@
     @endif
 
 
+    <div class="p-centered">{{ $expos->links() }} </div>
+    </div>
+    <div>
     </div>
 </div>
 

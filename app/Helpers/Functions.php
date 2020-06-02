@@ -35,7 +35,7 @@ function show($json, $key_chain, $bakcup=false)
  */
 function pick($string)
 {
-    if(is_null($string)) return [];
+    if(empty($string)) return (object) collect(['ok' => [], 'may' => [], 'error' => []])->all();
 
     $array = explode(',', $string);
 

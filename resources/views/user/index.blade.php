@@ -33,14 +33,14 @@
             <div class="column">
                 <a href="/user/{{ $user->id }}" class="text-dark">
                 <div class="chip">
-                    @if (show($user->ids, 'wechat.avatar'))
-                    <figure class="avatar avatar-sm"> <img src="{{ asset(show($user->ids, 'wechat.avatar')) }}"  alt="Avatar">
+                    @if (face($user)->avatar)
+                    <figure class="avatar avatar-sm"> <img src="{{ asset(face($user)->avatar) }}"  alt="Avatar">
                     @else
-                    <figure class="avatar avatar-sm" data-initial="{{ Str::substr(show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))), 0,1) }}">
+                    <figure class="avatar avatar-sm" data-initial="{{ face($user)->avatar_text }}">
                     @endif
 
                     </figure>
-                    {{ show($user->info, 'public') ? show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '*'))) :  show($user->info, 'nick', show($user->info, 'name', show($user->ids, 'wechat.nickname', '*'))) }}
+                    {{ face($user)->name }}
                 </div>
                 </a>
                 @if ($user->locked)
