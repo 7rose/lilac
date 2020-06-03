@@ -62,7 +62,7 @@ class WechatController extends Controller
      * 推荐客户
      *
      */
-    public function ad(User $user)
+    public function ad()
     {
         $urls = [];
         if(Auth::user()->can('customerQrcode', User::class)) $urls = Arr::add($urls, 'customer', $this->get('customer'));
