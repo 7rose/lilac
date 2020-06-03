@@ -14,18 +14,29 @@
         </div>
         <nav class="panel-nav">
             <ul class="tab tab-block" data-tabs="main_tab">
+                @can('customer-qrcode', User::class)
                 <li class="tab-item active"><a href="#">客户</a></li>
+                @endcan
+                @can('supplier-qrcode', User::class)
                 <li class="tab-item"><a href="#">商户</a></li>
+                @endcan
+                @can('partner-qrcode', User::class)
                 <li class="tab-item"><a href="#">合作</a></li>
+                @endcan
             </ul>
         </nav>
         <div class="panel-body">
             <ul data-tabs-content="main_tab">
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, sapiente.
-                </li>
+
+                @can('customer-qrcode', User::class)
                 <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipisicing.</li>
+                @endcan
+                @can('supplier-qrcode', User::class)
+                <li>Lorem ipsum dolor 2</li>
+                @endcan
+                @can('partner-qrcode', User::class)
+                <li>Lorem ipsum 3</li>
+                @endcan
             </ul>
         </div>
         <div class="panel-footer">

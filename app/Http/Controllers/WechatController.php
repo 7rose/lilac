@@ -73,36 +73,6 @@ class WechatController extends Controller
     }
 
     /**
-     * 推荐客户
-     *
-     */
-    public function customer()
-    {
-        $url = $this->get('customer');
-    }
-
-    /**
-     * 发展供应商
-     *
-     */
-    public function supplier()
-    {
-        $this->authorize('supplierQrcode', User::class);
-        return $this->get('supplier');
-    }
-
-    /**
-     * 推荐合作方
-     *
-     */
-    public function partner()
-    {
-        $this->authorize('partnerQrcode', User::class);
-        return $this->get('partner');
-    }
-
-
-    /**
      * 保存链接
      *
      */
