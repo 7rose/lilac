@@ -32,7 +32,6 @@
                 <li>
                     <div class="text-center">
                     {!! QrCode::size(250)->color(60,68,82)->generate($urls['customer']); !!}
-                    请扫码关注
                     </div>
                 </li>
                 @endcan
