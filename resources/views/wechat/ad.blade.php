@@ -37,12 +37,16 @@
                 @endcan
                 @can('supplier-qrcode', Auth::user())
                 <li>
+                    <div class="text-center">
                     {!! QrCode::size(260)->color(239,83,80)->generate($urls['supplier']); !!}
+                    </div>
                 </li>
                 @endcan
                 @can('partner-qrcode', Auth::user())
                 <li>
+                    <div class="text-center">
                     {!! QrCode::size(260)->color(49,154,201)->generate($urls['partner']); !!}
+                    </div>
                 </li>
                 @endcan
             </ul>
