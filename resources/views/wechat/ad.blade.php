@@ -44,5 +44,4 @@
         </div>
     </div>
 </div>
-{{ print_r($urls) }}
 @endsection

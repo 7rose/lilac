@@ -125,6 +125,7 @@ class UserPolicy
      */
     public function partnerQrcode(User $user)
     {
-        return $this->auth->fit($user, 'operation', 'coo');
+        // return $this->auth->fit($user, 'operation', 'coo');
+        return false;
     }
 }
