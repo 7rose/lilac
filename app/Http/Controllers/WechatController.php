@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Helpers\EventHandler;
+use App\Helpers\MessageHandler;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use EasyWeChat\Kernel\Messages\Message;
@@ -20,7 +21,22 @@ class WechatController extends Controller
     public function serve()
     {
         $app = app('wechat.official_account');
-        $app->server->push(EventHandler::class, Message::EVENT);
+        // $app->server->push(EventHandler::class, Message::EVENT);
+
+
+        $app->server->setMessageHandler(function ($message){
+            $handler = new MessageHandler($message);
+            switch($message->MsgType){
+                case "event":
+                    return $handler->eventHandler();
+                    break;
+                case 'text':
+                    return $handler->textHandler();
+                    break;
+                default:
+                    break;
+            }
+        });
 
         // $app->server->push(function ($message) {
         //     switch ($message['MsgType']) {
