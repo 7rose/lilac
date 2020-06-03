@@ -51,8 +51,14 @@
             </ul>
         </div>
         <div class="panel-footer">
-        <button class="btn btn-primary btn-block">刷新</button>
+        <button class="btn btn-primary btn-block" onclick="javascript:re()">刷新</button>
         </div>
     </div>
 </div>
+<script>
+    function re()
+    {
+        window.location.replace(path);
+    }
+</script>
 @endsection
