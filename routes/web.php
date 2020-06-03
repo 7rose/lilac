@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -65,7 +66,8 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-    return view('wechat.ad');
+    Log::info('hello');
+    // return view('wechat.ad');
     // echo 1591745833 - time();
     // $expo = App\Expo::findOrFail(6);
     // $expo->update(['conf->open' => true]);
