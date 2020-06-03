@@ -35,7 +35,7 @@ Route::get('/', function () {
 Route::get('/expos/now', 'ExpoController@index');
 
 // wechat user
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     Route::get('/apps', function () {
         return view('apps');
@@ -62,7 +62,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::post('/expos/store', 'ExpoController@store');
     });
 
-});
+// });
 
 Route::get('/test', function () {
     return view('wechat.ad');
