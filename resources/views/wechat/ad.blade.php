@@ -1,3 +1,6 @@
+<?php
+$user = Auth::user();
+?>
 @extends('../nav')
 
 @section('main')
@@ -14,13 +17,13 @@
         </div>
         <nav class="panel-nav">
             <ul class="tab tab-block" data-tabs="main_tab">
-                @can('customer-qrcode',$user, User::class)
+                @can('customer-qrcode', $user)
                 <li class="tab-item active"><a href="#">客户</a></li>
                 @endcan
-                @can('supplier-qrcode', $user, User::class)
+                @can('supplier-qrcode', $user)
                 <li class="tab-item"><a href="#">商户</a></li>
                 @endcan
-                @can('partner-qrcode', vUser::class)
+                @can('partner-qrcode', $user)
                 <li class="tab-item"><a href="#">合作</a></li>
                 @endcan
             </ul>
@@ -28,13 +31,13 @@
         <div class="panel-body">
             <ul data-tabs-content="main_tab">
 
-                @can('customer-qrcode', $user, User::class)
+                @can('customer-qrcode', $user)
                 <li>Lorem ipsum dolor sit amet.</li>
                 @endcan
-                @can('supplier-qrcode', $user, User::class)
+                @can('supplier-qrcode', $user)
                 <li>Lorem ipsum dolor 2</li>
                 @endcan
-                @can('partner-qrcode',$user,  User::class)
+                @can('partner-qrcode', $user)
                 <li>Lorem ipsum 3</li>
                 @endcan
             </ul>
