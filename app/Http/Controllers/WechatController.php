@@ -21,54 +21,10 @@ class WechatController extends Controller
     public function serve()
     {
         $app = app('wechat.official_account');
-        // $app->server->push(EventHandler::class, Message::EVENT);
 
-
-        $app->server->setMessageHandler(function ($message){
-            $handler = new MessageHandler($message);
-            switch($message->MsgType){
-                case "event":
-                    return $handler->eventHandler();
-                    break;
-                case 'text':
-                    return $handler->textHandler();
-                    break;
-                default:
-                    break;
-            }
-        });
-
-        // $app->server->push(function ($message) {
-        //     switch ($message['MsgType']) {
-        //         case 'event':
-        //             return '收到事件消息';
-        //             break;
-        //         case 'text':
-        //             return '收到文字消息';
-        //             break;
-        //         case 'image':
-        //             return '收到图片消息';
-        //             break;
-        //         case 'voice':
-        //             return '收到语音消息';
-        //             break;
-        //         case 'video':
-        //             return '收到视频消息';
-        //             break;
-        //         case 'location':
-        //             return '收到坐标消息';
-        //             break;
-        //         case 'link':
-        //             return '收到链接消息';
-        //             break;
-        //         case 'file':
-        //             return '收到文件消息';
-        //         // ... 其它消息
-        //         default:
-        //             return '海上牧云欢迎您!';
-        //             break;
-        //     }
-        // });
+        Log::info('now');
+        $app->server->push(EventHandler::class, Message::EVENT);
+        Log::info('ok');
 
         return $app->server->serve();
     }
