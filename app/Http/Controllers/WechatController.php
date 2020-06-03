@@ -26,7 +26,7 @@ class WechatController extends Controller
         $app->server->push(EventHandler::class, Message::EVENT);
         Log::info('ok');
 
-        // return $app->server->serve();
+        return $app->server->serve();
     }
 
     /**
