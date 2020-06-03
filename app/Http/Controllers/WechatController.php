@@ -65,9 +65,9 @@ class WechatController extends Controller
     public function ad(User $user)
     {
         $urls = [];
-        if($user->can('customerQrcode', User::class)) $urls = Arr::add($urls, 'customer', $this->get('customer'));
-        if($user->can('supplierQrcode', User::class)) $urls = Arr::add($urls, 'supplier', $this->get('supplier'));
-        if($user->can('partnerQrcode', User::class)) $urls = Arr::add($urls, 'partner', $this->get('partner'));
+        if($this->can('customerQrcode', User::class)) $urls = Arr::add($urls, 'customer', $this->get('customer'));
+        if($this->can('supplierQrcode', User::class)) $urls = Arr::add($urls, 'supplier', $this->get('supplier'));
+        if($this->can('partnerQrcode', User::class)) $urls = Arr::add($urls, 'partner', $this->get('partner'));
 
         return view('wechat.ad', compact('urls'));
     }
