@@ -29,13 +29,22 @@
             <ul data-tabs-content="main_tab">
 
                 @can('customer-qrcode', Auth::user())
-                <li>Lorem ipsum dolor sit amet.</li>
+                <li>
+                    <div class="text-center">
+                    {!! QrCode::size(260)->color(60,68,82)->generate($urls['customer']); !!}
+                    请扫码关注
+                    </div>
+                </li>
                 @endcan
                 @can('supplier-qrcode', Auth::user())
-                <li>Lorem ipsum dolor 2</li>
+                <li>
+                    {!! QrCode::size(260)->color(60,68,82)->generate($urls['supplier']); !!}
+                </li>
                 @endcan
                 @can('partner-qrcode', Auth::user())
-                <li>Lorem ipsum 3</li>
+                <li>
+                    {!! QrCode::size(260)->color(60,68,82)->generate($urls['partner']); !!}
+                </li>
                 @endcan
             </ul>
         </div>
