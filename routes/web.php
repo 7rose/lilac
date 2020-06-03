@@ -44,7 +44,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     // auth users
     Route::group(['middleware' => ['mix', 'state']], function () {
 
-        Route::get('/ad', 'WechatController@customer');
+        Route::get('/ad', 'WechatController@ad');
 
         Route::get('/users', 'UserController@index');
         Route::get('/user/{id}', 'UserController@show');
@@ -65,7 +65,8 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-    echo 1591745833 - time();
+    return view('wechat.ad');
+    // echo 1591745833 - time();
     // $expo = App\Expo::findOrFail(6);
     // $expo->update(['conf->open' => true]);
 

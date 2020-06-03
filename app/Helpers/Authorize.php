@@ -46,6 +46,8 @@ class Authorize
      */
     public function fit($user, $org_key, $role_key, $with=true)
     {
+        if($this->admin($user)) return true;
+
         $org = Org::where('key', $org_key)->firstOrFail();
         $role = Role::where('key', $role_key)->withDepth()->firstOrFail();
 
@@ -65,6 +67,20 @@ class Authorize
         }
 
         return false;
+    }
+
+    /**
+     * 指定人
+     *
+     * @param $mobile
+     *
+     * @return boolean
+     */
+    public function fix($user, $mobile)
+    {
+        if($this->admin($user)) return true;
+
+        return show($user->info, 'mobile.number') == $mobile;
     }
 
     /**
@@ -122,6 +138,8 @@ class Authorize
      */
     public function need($user, $key)
     {
+        if($this->admin($user)) return true;
+
         $pair = $this->check($user);
         if(!$pair) return false;
 
@@ -174,5 +192,27 @@ class Authorize
     public function my($user, $id)
     {
         return $user->id === $id;
+    }
+
+    /**
+     * 管理员!!
+     *
+     * @param $user
+     * @param $id
+     *
+     * @return boolean
+     */
+    function admin($user)
+    {
+        $pair = $this->check($user);
+        if(!$pair) return false;
+
+        $admin_org = Org::where('key', 'sys')->first();
+        if(!$admin_org) return false;
+
+        foreach($pair as $p) {
+            if($p['org_id'] == $admin_org->id) return true;
+        }
+        return false;
     }
 }

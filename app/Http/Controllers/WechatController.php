@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -61,11 +62,23 @@ class WechatController extends Controller
      * 推荐客户
      *
      */
+    public function ad()
+    {
+        $urls = [];
+        if(Auth::user()->can('customerQrcode')) Arr::add($urls, 'customer', $this->get('customer'));
+        if(Auth::user()->can('supplierQrcode')) Arr::add($urls, 'supplier', $this->get('supplier'));
+        if(Auth::user()->can('partnerQrcode')) Arr::add($urls, 'partner', $this->get('partner'));
+
+        return view('wechat.ad', compact('urls'));
+    }
+
+    /**
+     * 推荐客户
+     *
+     */
     public function customer()
     {
         $url = $this->get('customer');
-
-        return view('ad',compact('url'));
     }
 
     /**
@@ -74,7 +87,8 @@ class WechatController extends Controller
      */
     public function supplier()
     {
-        //
+        $this->authorize('supplierQrcode', User::class);
+        return $this->get('supplier');
     }
 
     /**
@@ -83,7 +97,8 @@ class WechatController extends Controller
      */
     public function partner()
     {
-        //
+        $this->authorize('partnerQrcode', User::class);
+        return $this->get('partner');
     }
 
 

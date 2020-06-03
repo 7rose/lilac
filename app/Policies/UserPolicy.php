@@ -97,4 +97,34 @@ class UserPolicy
     {
         //
     }
+
+    /**
+     * 二维码: 展商
+     *
+     * @return void
+     */
+    public function customerQrcode(User $user)
+    {
+        return true;
+    }
+
+    /**
+     * 二维码: 展商
+     *
+     * @return void
+     */
+    public function supplierQrcode(User $user)
+    {
+        return $this->auth->fit($user, 'market', 'cmo');
+    }
+
+    /**
+     * 二维码: 展商
+     *
+     * @return void
+     */
+    public function partnerQrcode(User $user)
+    {
+        return $this->auth->fit($user, 'operation', 'coo');
+    }
 }
