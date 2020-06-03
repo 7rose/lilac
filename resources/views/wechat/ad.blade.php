@@ -9,8 +9,7 @@
 
     <div class="panel">
         <div class="panel-header text-center">
-        <div class="panel-title h5 mt-10">Bruce Banner</div>
-        <div class="panel-subtitle">THE HULK</div>
+        <div class="panel-title h5 mt-10">{{ face(Auth::user())->name }}</div>
         </div>
         <nav class="panel-nav">
             <ul class="tab tab-block" data-tabs="main_tab">
