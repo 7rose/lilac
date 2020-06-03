@@ -14,13 +14,13 @@
         </div>
         <nav class="panel-nav">
             <ul class="tab tab-block" data-tabs="main_tab">
-                @can('customer-qrcode',$user)
+                @can('customer-qrcode', User::class)
                 <li class="tab-item active"><a href="#">客户</a></li>
                 @endcan
-                @can('supplier-qrcode',$user)
+                @can('supplier-qrcode', User::class)
                 <li class="tab-item"><a href="#">商户</a></li>
                 @endcan
-                @can('partner-qrcode',$user)
+                @can('partner-qrcode', User::class)
                 <li class="tab-item"><a href="#">合作</a></li>
                 @endcan
             </ul>
@@ -28,13 +28,13 @@
         <div class="panel-body">
             <ul data-tabs-content="main_tab">
 
-                @can('customer-qrcode',$user)
+                @can('customer-qrcode', User::class)
                 <li>Lorem ipsum dolor sit amet.</li>
                 @endcan
-                @can('supplier-qrcode',$user)
+                @can('supplier-qrcode', User::class)
                 <li>Lorem ipsum dolor 2</li>
                 @endcan
-                @can('partner-qrcode',$user)
+                @can('partner-qrcode', User::class)
                 <li>Lorem ipsum 3</li>
                 @endcan
             </ul>
