@@ -31,19 +31,19 @@
                 @can('customer-qrcode', Auth::user())
                 <li>
                     <div class="text-center">
-                    {!! QrCode::size(260)->color(60,68,82)->generate($urls['customer']); !!}
+                    {!! QrCode::size(250)->color(60,68,82)->generate($urls['customer']); !!}
                     请扫码关注
                     </div>
                 </li>
                 @endcan
                 @can('supplier-qrcode', Auth::user())
                 <li>
-                    {!! QrCode::size(260)->color(239,83,80)->generate($urls['supplier']); !!}
+                    {!! QrCode::size(250)->color(239,83,80)->generate($urls['supplier']); !!}
                 </li>
                 @endcan
                 @can('partner-qrcode', Auth::user())
                 <li>
-                    {!! QrCode::size(260)->color(49,154,201)->generate($urls['partner']); !!}
+                    {!! QrCode::size(250)->color(49,154,201)->generate($urls['partner']); !!}
                 </li>
                 @endcan
             </ul>
