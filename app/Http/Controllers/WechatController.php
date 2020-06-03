@@ -18,6 +18,20 @@ class WechatController extends Controller
     public function serve()
     {
         $app = app('wechat.official_account');
+
+        $msg =  $app->server->getMessage();
+        Log::info($msg);
+
+        switch ($$ms['MsgType']) {
+            case 'event':
+                $this->eventHandler($msg);
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
         $app->server->push(function ($message) {
             switch ($message['MsgType']) {
                 case 'event':
@@ -53,6 +67,19 @@ class WechatController extends Controller
         return $app->server->serve();
     }
 
+    /**
+     * 事件处理器
+     *
+     */
+    public function eventHandler($message)
+    {
+        Log::danger($message);
+    }
+
+    /**
+     * 回调
+     *
+     */
     public function callBack()
     {
         //
