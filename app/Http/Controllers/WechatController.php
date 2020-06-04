@@ -30,16 +30,16 @@ class WechatController extends Controller
                    switch ($message->Event) {
                      case 'subscribe':
                      // code...
-                       Log::info($message);
+                       return Log::info($message);
                      break;
                    default:
-                   Log::info('event other');
+                   return Log::info('event other');
                    break;
                     }
                    break;
 
              default:
-             Log::info('other');
+            return  Log::info('other');
                  break;
          }
      });
