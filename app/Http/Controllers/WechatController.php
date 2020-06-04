@@ -21,40 +21,12 @@ class WechatController extends Controller
     public function serve()
     {
         $app = app('wechat.official_account');
+        $response = $app->server->serve();
 
-        // $app->server->push(EventHandler::class, Message::EVENT);
-        // $wechat = app('wechat');
-        $app->server->setMessageHandler(function ($message) {
-            switch ($message->MsgType) {
-             case 'event':
-                   switch ($message->Event) {
-                     case 'subscribe':
-                     // code...
-                       return Log::info($message);
-                     break;
-                   default:
-                   return Log::info('event other');
-                   break;
-                    }
-                   break;
+        $app->server->push(EventHandler::class, Message::EVENT);
 
-             default:
-            return  Log::info('other');
-                 break;
-         }
-     });
-        return $app->server->serve();
+        return $response;
 
-        // return $app->server->serve();
-    }
-
-    /**
-     * 事件处理器
-     *
-     */
-    public function eventHandler($message)
-    {
-        Log::danger($message);
     }
 
     /**
