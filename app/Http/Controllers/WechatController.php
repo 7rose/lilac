@@ -22,9 +22,28 @@ class WechatController extends Controller
     {
         $app = app('wechat.official_account');
 
-        Log::info('now');
-        $app->server->push(EventHandler::class, Message::EVENT);
-        Log::info('ok');
+        // $app->server->push(EventHandler::class, Message::EVENT);
+        // $wechat = app('wechat');
+        $app->server->setMessageHandler(function ($message) {
+            switch ($message->MsgType) {
+             case 'event':
+                   switch ($message->Event) {
+                     case 'subscribe':
+                     // code...
+                       Log::info($message);
+                     break;
+                   default:
+                   Log::info('event other');
+                   break;
+                    }
+                   break;
+
+             default:
+             Log::info('other');
+                 break;
+         }
+     });
+        return $app->server->serve();
 
         // return $app->server->serve();
     }
