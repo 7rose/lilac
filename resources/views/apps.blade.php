@@ -56,7 +56,7 @@
                 <p>财务</p>
             </div>
             <div class="column col-xs-4 text-center mt-2">
-                <a href="/tree" class="text-dark">
+                <a href="/orgs" class="text-dark">
                 <figure class="avatar avatar-lg bg-gray">
                     <img src="{{ asset('images/config.svg') }}" alt="...">
                 </figure>

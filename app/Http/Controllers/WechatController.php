@@ -22,6 +22,7 @@ class WechatController extends Controller
     {
         $app = app('wechat.official_account');
 
+
         $app->server->push(EventHandler::class, Message::EVENT);
 
         $response = $app->server->serve();

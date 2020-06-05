@@ -46,7 +46,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     Route::group(['middleware' => ['mix', 'state']], function () {
 
         Route::get('/ad', 'WechatController@ad');
-
+        // 用户
         Route::get('/users', 'UserController@index');
         Route::get('/user/{id}', 'UserController@show');
         Route::get('/lock/{id}', 'UserController@lock');
@@ -54,8 +54,12 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/me', 'UserController@me');
         Route::post('/pub', 'UserController@pub');
 
-        Route::get('/tree', 'OrgController@index');
+        // 机构
+        Route::get('/orgs', 'OrgController@index');
+        Route::get('/org/create/{id}', 'OrgController@create');
+        Route::post('/org/store', 'OrgController@store');
 
+        // 会展
         Route::get('/expos', 'ExpoController@index');
         Route::get('/expo/{id}', 'ExpoController@show');
         Route::post('/expo/allow/{id}', 'ExpoController@allow'); # 开关售票
