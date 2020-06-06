@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 
+use function Safe\json_decode;
+
 class AuthController extends Controller
 {
     /**
@@ -84,8 +86,10 @@ class AuthController extends Controller
 
 
         if(Redis::exists($wechat_info['id'])) {
-            $updates = Arr::add($updates, 'conf', Redis::get($wechat_info['id'])['conf']);
-            $updates = Arr::add($updates, 'created_by', Redis::get($wechat_info['id'])['created_by']);
+            $t = json_decode(Redis::get($wechat_info['id']), true);
+
+            $updates = Arr::add($updates, 'conf', $t['conf']);
+            $updates = Arr::add($updates, 'created_by', $t['created_by']);
         }
 
         $updates = Arr::add($updates, 'ids->wechat', $wechat_info);

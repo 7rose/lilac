@@ -88,7 +88,8 @@ class EventHandler implements EventHandlerInterface
 
         if($org && $user) {
             $save = ['created_by' => $this->ad_array['created_by'], 'conf' => [['org_id' => $org->id]]];
-            Redis::setex($this->msg['FromUserName'], 600, $save);
+
+            Redis::setex($this->msg['FromUserName'], 600, json_encode($save));
             return true;
         }
 

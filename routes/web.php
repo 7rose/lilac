@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
+use function Safe\json_encode;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,27 +80,13 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-    $a = "c";
-    $b = intval($a);
-    // $b = is_integer($a);
-    // $a = 'ad_sdfsdf_1';
-    // $p = '/^ad_/';
-    // // $p = '/^ad_+([a~z])+(_)+([1~9])$/';
+    $a = ['a'=>100, 'b'=>[['ok' => 'ok']]];
 
-    // $b = preg_match($p, $a);
+    $b = json_encode($a);
 
-    var_dump($b);
+    // Redis::setex()
 
-    // Log::info('hello');
-    // return view('wechat.ad');
-    // echo 1591745833 - time();
-    // $expo = App\Expo::findOrFail(6);
-    // $expo->update(['conf->open' => true]);
-
-
-    // $a = App\Expo::find(1);
-
-    // $b = show($a->conf, 'manager');
+    // var_dump($b);
 });
 
 Route::get('/in', function () {
