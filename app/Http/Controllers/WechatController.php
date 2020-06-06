@@ -24,7 +24,8 @@ class WechatController extends Controller
     public function serve()
     {
 
-        $this->app->server->push(EventHandler::class, Message::EVENT);
+        // $this->app->server->push(EventHandler::class, Message::EVENT);
+        $this->app->server->push(EventHandler::class);
 
         $response = $this->app->server->serve();
         return $response;

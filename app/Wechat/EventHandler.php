@@ -42,6 +42,8 @@ class EventHandler implements EventHandlerInterface
     public function handle($payload = NULL)
     {
         // if($this->msg['Event'] == 'SCAN') {
+            Log::info($this->msg);
+
             if(Str::startsWith($this->msg['EventKey'], 'ad_')) return $this->ad();
         // }
 
