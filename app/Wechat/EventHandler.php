@@ -14,7 +14,7 @@ use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 
 class EventHandler implements EventHandlerInterface
 {
-    protected $msg;
+    protected $msg, $ad_array;
 
     protected $limit = ['staff', 'customer', 'supplier', 'partner'];
 
@@ -41,11 +41,31 @@ class EventHandler implements EventHandlerInterface
      */
     public function handle($payload = NULL)
     {
-        // if($this->msg['Event'] == 'SCAN') {
-            Log::info($this->msg);
+        if($this->msg['Event'] == 'SCAN') {
 
-            if(Str::startsWith($this->msg['EventKey'], 'ad_')) return $this->ad();
-        // }
+            // 关注后扫荐码
+            if(Str::startsWith($this->msg['EventKey'], 'ad_')){
+                $a = explode('_', $this->msg['EventKey']);
+                if(count($a) == 3) {
+                    $this->ad_array = ['created_by' => intval($a[2]), 'key' => $a[1]];
+
+                    return $this->ad();
+                }
+
+            }
+        }elseif($this->msg['Event'] == 'subscribe'){
+            // 扫推荐码关注
+            if(Str::startsWith($this->msg['EventKey'], 'qrscene_ad_')){
+                $a = explode('_', $this->msg['EventKey']);
+                if(count($a) == 4) {
+                    $this->ad_array = ['created_by' => intval($a[3]), 'key' => $a[2]];
+
+                    return $this->ad();
+                }
+            }
+
+            // 关注后推送
+        }
 
     }
 
@@ -61,25 +81,17 @@ class EventHandler implements EventHandlerInterface
 
     private function check()
     {
-        $p = explode('_', $this->msg['EventKey']);
-        Log::info($p);
+        if($this->ad_array['created_by'] < 1) return false;
 
-        if(count($p) != 3 || intval($p[2]) < 1) return false;
-        Log::info('1');
+        $org  = Org::where('key', $this->ad_array['key'])->first();
+        $user = User::find($this->ad_array['created_by']);
 
-        $org  = Org::where('key', $p[1])->first();
-        $user = User::find($p[2]);
-
-        if(Arr::has($this->limit, $p[1]) && $org && $user) {
-            Log::info('2');
-
-            // if($user->can($p[1], User::class)) {
-                Log::info('3');
-                $save = ['created_by' => $p[2], ['conf' => [['org_id' => $org->id]]]];
-                Redis::setex($this->msg['FromUserName'], 600, $save);
-            // }
+        if($org && $user) {
+            $save = ['created_by' => $this->ad_array['created_by'], 'conf' => [['org_id' => $org->id]]];
+            Redis::setex($this->msg['FromUserName'], 600, $save);
+            return true;
         }
-        Log::info('4');
+
         return false;
     }
 
