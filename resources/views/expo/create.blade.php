@@ -80,7 +80,7 @@
                         <label class="form-label" for="input-example-1">负责人</label>
                         </div>
                         <div class="col-9 col-sm-12">
-                        <input class="form-input" type="text" name="manager" minlength="3" maxlength="110" value="{{ old('manager') }}" placeholder="用户名/手机号,多人以逗号隔开">
+                        <input class="form-input" type="text" name="manager" minlength="2" maxlength="110" value="{{ old('manager') }}" placeholder="用户名/手机号,多人以逗号隔开">
                         @error('manager')
                             <p class="form-input-hint">{{ $message }}</p>
                         @enderror
@@ -92,7 +92,7 @@
                         <label class="form-label" for="input-example-1">检票员</label>
                         </div>
                         <div class="col-9 col-sm-12">
-                        <input class="form-input" type="text" name="checker" minlength="3" maxlength="110" value="{{ old('checker') }}"  placeholder="用户名/手机号,多人以逗号隔开">
+                        <input class="form-input" type="text" name="checker" minlength="2" maxlength="110" value="{{ old('checker') }}"  placeholder="用户名/手机号,多人以逗号隔开">
                         @error('checker')
                             <p class="form-input-hint">{{ $message }}</p>
                         @enderror
