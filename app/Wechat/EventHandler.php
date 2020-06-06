@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 use EasyWeChat\Kernel\Messages\Message;
 use Illuminate\Support\Facades\Session;
 use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
@@ -52,7 +53,7 @@ class EventHandler implements EventHandlerInterface
      */
     private function ad()
     {
-        return $this->check() ? "请及时完成手机认证,否则授权可能会过期" : "无效操作";
+        return $this->check() ? "请于10分钟内完成手机认证,否则授权可能会过期" : "无效操作";
 
     }
 
@@ -68,7 +69,7 @@ class EventHandler implements EventHandlerInterface
         if(Arr::has($this->limit, $p[1]) && $org && $user) {
             if($user->can($p[1], User::class)) {
                 $save = ['created_by' => $p[2], ['conf' => [['org_id' => $org->id]]]];
-                Session::put($this->msg['FromUserName'], $save);
+                Redis::setex($this->msg['FromUserName'], 600, $save);
             }
         }
 
