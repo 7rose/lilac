@@ -55,7 +55,7 @@ class AuthController extends Controller
 
         Redis::setex($mobile, 300, $code);
 
-        // SendSmsCodeJob::dispatch($send_array);
+        SendSmsCodeJob::dispatch($send_array);
 
         return json_encode(['rate' => $rate]);
     }
