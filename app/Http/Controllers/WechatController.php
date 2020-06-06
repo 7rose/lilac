@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Support\Arr;
 use App\Wechat\EventHandler;
 use Illuminate\Support\Facades\Auth;
-use EasyWeChat\Kernel\Messages\Message;
+use Overtrue\Socialite\User as SocialiteUser;
 
 class WechatController extends Controller
 {
@@ -65,7 +65,7 @@ class WechatController extends Controller
             return show(Auth::user()->ids, 'wechat.qrcode.'.$type.'.url');
         }else{
             // $app = app('wechat.official_account');
-            $reasult = $this->app->qrcode->temporary('ad_'.$type.'_'.Auth::id(), 60*60*24*7); # 1周
+            $reasult = $this->app->qrcode->temporary('ad_'.$type.'_'.Auth::id(), 60*5); # 5分钟
             $reasult = Arr::add($reasult, 'expire', ($reasult['expire_seconds'] + time() - 60));
             $save = Auth::user()->update(['ids->wechat->qrcode->'.$type => $reasult]);
 
@@ -101,6 +101,26 @@ class WechatController extends Controller
         $this->app->menu->create($buttons);
 
         return view('note');
+    }
+
+    public function fake()
+    {
+        $user = new SocialiteUser([
+            'id' => 'oNqBdwa4OHMo2sflHVJl0Rt-RlgE',
+            'name' => 'Frola',
+            'nickname' => 'Frola',
+            'avatar' => 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKUrE7kkfygfM9tQ4QJufceCR8srSTgjibjCOazlkx0ruLVrsGy77lZI2JEmRXmGmC5TNARoM0pSgQ/132',
+            'email' => null,
+            'original' => [],
+            'provider' => 'WeChat',
+        ]);
+
+        session(['wechat.oauth_user.default' => $user]);
+
+        return "已设置微信模拟环境";
+
+        // $user = User::find(6);
+
     }
 
 

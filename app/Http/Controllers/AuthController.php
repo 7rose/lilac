@@ -25,6 +25,8 @@ class AuthController extends Controller
         if(Auth::check()) {
             Auth::user()->update(['ids->wechat' => null]);
             Auth::logout();
+
+            return view('note');
         }
     }
 

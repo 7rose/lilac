@@ -79,6 +79,8 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
 });
 
+Route::get('/fake', 'WechatController@fake');
+
 Route::get('/test', function () {
     $a = ['a'=>100, 'b'=>[['ok' => 'ok']]];
 
