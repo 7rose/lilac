@@ -8,16 +8,16 @@ use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 
 class EventHandler implements EventHandlerInterface
 {
-    protected $message;
+    protected $app;
 
-    function __construct(Message $message)
+    function __construct()
     {
-        $this->message = $message;
+        $this->app = app('wechat.official_account');
     }
 
     public function handle($payload = NULL)
     {
-        Log::info($this->message);
+        Log::info($this->app->server->getMessage());
         return "seccess";
     }
 
