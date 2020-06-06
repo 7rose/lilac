@@ -84,7 +84,7 @@ class AuthController extends Controller
 
 
         if(Redis::exists($wechat_info['id'])) {
-            $updates = Arr::add($updates, 'conf', Redis::get($wechat_info['id'])['info']);
+            $updates = Arr::add($updates, 'conf', Redis::get($wechat_info['id'])['conf']);
             $updates = Arr::add($updates, 'created_by', Redis::get($wechat_info['id'])['created_by']);
         }
 
