@@ -60,6 +60,7 @@ class EventHandler implements EventHandlerInterface
     private function check()
     {
         $p = explode('_', $this->msg['EventKey']);
+        Log::info($p);
 
         if(count($p) != 3 || intval($p[2]) < 1) return false;
         Log::info('1');
