@@ -79,7 +79,7 @@ class AuthController extends Controller
 
         $updates = ['ids->mobile->active' => now()];
 
-        $wechat_info = session('wechat.oauth_user.default')->toArray();
+        $wechat_info = session('wechat.oauth_user.default');
 
 
         if(Redis::exists($wechat_info['id'])) {
