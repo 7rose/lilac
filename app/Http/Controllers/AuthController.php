@@ -83,8 +83,8 @@ class AuthController extends Controller
 
 
         if(Redis::exists($wechat_info['id'])) {
-            $updates = Arr::add($updates, 'conf', session($wechat_info['id'])['info']);
-            $updates = Arr::add($updates, 'created_by', session($wechat_info['id'])['created_by']);
+            $updates = Arr::add($updates, 'conf', Redis::get($wechat_info['id'])['info']);
+            $updates = Arr::add($updates, 'created_by', Redis::get($wechat_info['id'])['created_by']);
         }
 
         $updates = Arr::add($updates, 'ids->wechat', $wechat_info);
@@ -95,7 +95,7 @@ class AuthController extends Controller
         );
 
         if(Redis::exists($mobile)) Redis::del($mobile);
-        // if(Redis::exists($wechat_info['id'])) Redis::del($wechat_info['id']);
+        if(Redis::exists($wechat_info['id'])) Redis::del($wechat_info['id']);
 
         Auth::login($user);
 
