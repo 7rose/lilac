@@ -39,6 +39,11 @@
                         </div>
                     </div>
 
+                    <div class="input-group">
+                        <input class="form-input" type="date" placeholder="date">
+                        <input class="form-input" type="time" placeholder="time">
+                    </div>
+
 
                     <div class="form-group @error('begin') has-error @enderror">
                         <div class="col-3 col-sm-12">
