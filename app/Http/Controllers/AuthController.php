@@ -95,7 +95,7 @@ class AuthController extends Controller
         );
 
         if(Redis::exists($mobile)) Redis::del($mobile);
-        if(Redis::exists($wechat_info['id'])) Redis::del($wechat_info['id']);
+        // if(Redis::exists($wechat_info['id'])) Redis::del($wechat_info['id']);
 
         Auth::login($user);
 

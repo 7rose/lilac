@@ -106,5 +106,8 @@ Route::get('/in', function () {
     // print_r($user->info);
 
     echo '<br>'.Redis::get('17821621090');
+    echo '<br>';
+    $b = Redis::get('oNqBdwRZTz-3T09LrmLGRyQYMsBo');
+    print_r($b);
 });
 
