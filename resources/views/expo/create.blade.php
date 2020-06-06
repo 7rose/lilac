@@ -38,10 +38,12 @@
                         @enderror
                         </div>
                     </div>
-
-                    <div class="input-group">
-                        <input class="form-input" type="date" placeholder="date">
-                        <input class="form-input" type="time" placeholder="time">
+                    <div class="col-3 col-sm-12">
+                        <label class="form-label" for="input-example-1">开始时间</label>
+                        <div class="input-group">
+                            <input class="form-input" type="date" placeholder="date" name="begin_date"  required>
+                            <input class="form-input" type="time" placeholder="time" name="begin_time"  required>
+                        </div>
                     </div>
 
 
