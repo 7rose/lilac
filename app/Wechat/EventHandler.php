@@ -1,18 +1,24 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Wechat;
 
 use Illuminate\Support\Facades\Log;
+use EasyWeChat\Work\GroupRobot\Messages\Message;
 use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 
 class EventHandler implements EventHandlerInterface
 {
+    protected $message;
+
+    function __construct(Message $message)
+    {
+        $this->message = $message;
+    }
 
     public function handle($payload = NULL)
     {
-        // return new Text(['content' => "指令已收到！"]);
+        Log::info($this->message);
         return "seccess";
-        Log::info('fnk');
     }
 
 }

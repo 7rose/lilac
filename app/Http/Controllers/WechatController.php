@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
-use App\Helpers\EventHandler;
-use App\Helpers\MessageHandler;
-use Illuminate\Support\Facades\Log;
+use App\Wechat\EventHandler;
 use Illuminate\Support\Facades\Auth;
 use EasyWeChat\Kernel\Messages\Message;
 
