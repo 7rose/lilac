@@ -73,7 +73,18 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-    Log::info('hello');
+    $a = "c";
+    $b = intval($a);
+    // $b = is_integer($a);
+    // $a = 'ad_sdfsdf_1';
+    // $p = '/^ad_/';
+    // // $p = '/^ad_+([a~z])+(_)+([1~9])$/';
+
+    // $b = preg_match($p, $a);
+
+    var_dump($b);
+
+    // Log::info('hello');
     // return view('wechat.ad');
     // echo 1591745833 - time();
     // $expo = App\Expo::findOrFail(6);

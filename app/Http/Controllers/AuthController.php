@@ -78,7 +78,16 @@ class AuthController extends Controller
         if(Redis::get($mobile)!= $request->code) return json_encode(['errors' =>['code' => '验证码错误']]);
 
         $updates = ['ids->mobile->active' => now()];
-        if(Session::has('wechat.oauth_user.default')) $updates = Arr::add($updates, 'ids->wechat', session('wechat.oauth_user.default')->toArray());
+
+        $wechat_info = session('wechat.oauth_user.default')->toArray();
+
+
+        if(Session::has($wechat_info['id'])) {
+            $updates = Arr::add($updates, 'conf', session($wechat_info['id'])['info']);
+            $updates = Arr::add($updates, 'created_by', session($wechat_info['id'])['created_by']);
+        }
+
+        $updates = Arr::add($updates, 'ids->wechat', $wechat_info);
 
         $user = User::updateOrCreate(
             ['ids->mobile->number' => $mobile],
@@ -86,6 +95,7 @@ class AuthController extends Controller
         );
 
         if(Redis::exists($mobile)) Redis::del($mobile);
+        if(Session::has($wechat_info['id'])) Session::forget($wechat_info['id']);
 
         Auth::login($user);
 
