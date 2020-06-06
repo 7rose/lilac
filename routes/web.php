@@ -21,6 +21,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 // wechat
 Route::any('/wechat', 'WechatController@serve');
 Route::any('/wechat/call_back', 'WechatController@callBack');
+Route::get('/wechat/init', 'WechatController@init');
 
 // sms
 Route::get('/sms', 'AuthController@sms');
@@ -47,7 +48,6 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
         // 微信
         Route::get('/ad', 'WechatController@ad');
-        Route::get('/wechat/init', 'WechatController@init');
 
         // 用户
         Route::get('/users', 'UserController@index');
