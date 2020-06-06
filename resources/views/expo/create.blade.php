@@ -38,21 +38,13 @@
                         @enderror
                         </div>
                     </div>
-                    <div class="col-3 col-sm-12">
-                        <label class="form-label" for="input-example-1">开始时间</label>
-                        <div class="input-group">
-                            <input class="form-input" type="date" placeholder="date" name="begin_date"  required>
-                            <input class="form-input" type="time" placeholder="time" name="begin_time"  required>
-                        </div>
-                    </div>
-
 
                     <div class="form-group @error('begin') has-error @enderror">
                         <div class="col-3 col-sm-12">
                         <label class="form-label" for="input-example-1">开始时间</label>
                         </div>
                         <div class="col-9 col-sm-12">
-                        <input class="form-input"type="datetime-local" name="begin" value="{{ old('begin') }}" placeholder="开始日期" required>
+                        <input class="form-input"type="datetime-local" name="begin" value="{{ old('begin') ? old('begin') : "2000-07-01T12:00" }}" placeholder="开始日期" required>
                         @error('begin')
                             <p class="form-input-hint">{{ $message }}</p>
                         @enderror
@@ -64,7 +56,7 @@
                         <label class="form-label" for="input-example-1">结束时间</label>
                         </div>
                         <div class="col-9 col-sm-12">
-                        <input class="form-input" type="datetime-local" name="end" value="{{ old('end') }}"  placeholder="结束日期" required>
+                        <input class="form-input" type="datetime-local" name="end" value="{{ old('end') ? old('end') : "2000-07-01T12:00" }}"  placeholder="结束日期" required>
                         @error('end')
                             <p class="form-input-hint">{{ $message }}</p>
                         @enderror
