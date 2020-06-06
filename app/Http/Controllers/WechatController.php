@@ -101,6 +101,8 @@ class WechatController extends Controller
         ];
 
         $this->app->menu->create($buttons);
+
+        return view('note');
     }
 
 
