@@ -13,6 +13,12 @@ use EasyWeChat\Kernel\Messages\Message;
 
 class WechatController extends Controller
 {
+    protected $app;
+
+    function __construct()
+    {
+        $this->app = app('wechat.official_account');
+    }
     /**
      * 处理微信的请求消息
      *
@@ -20,13 +26,10 @@ class WechatController extends Controller
      */
     public function serve()
     {
-        $app = app('wechat.official_account');
 
-        Log::info('wechat begin');
+        $this->app->server->push(EventHandler::class, Message::EVENT);
 
-        $app->server->push(EventHandler::class, Message::EVENT);
-
-        $response = $app->server->serve();
+        $response = $this->app->server->serve();
         return $response;
 
     }
@@ -63,13 +66,41 @@ class WechatController extends Controller
         if(show(Auth::user()->ids, 'wechat.qrcode.'.$type) && show(Auth::user()->ids, 'wechat.qrcode.'.$type.'.expire') && show(Auth::user()->ids, 'wechat.qrcode.'.$type.'.expire') > time()) {
             return show(Auth::user()->ids, 'wechat.qrcode.'.$type.'.url');
         }else{
-            $app = app('wechat.official_account');
-            $reasult = $app->qrcode->temporary('ad_'.$type.'_'.Auth::id(), 60*60*24*7); # 1周
+            // $app = app('wechat.official_account');
+            $reasult = $this->app->qrcode->temporary('ad_'.$type.'_'.Auth::id(), 60*60*24*7); # 1周
             $reasult = Arr::add($reasult, 'expire', ($reasult['expire_seconds'] + time() - 60));
             $save = Auth::user()->update(['ids->wechat->qrcode->'.$type => $reasult]);
 
             return $reasult['url'];
         }
+    }
+
+    /**
+     * 初始化菜单
+     *
+     */
+    public function init()
+    {
+        $buttons = [
+
+            [
+                "type" => "scancode_push",
+                "name" => "扫一扫",
+                "key"  => "wechat_menu"
+            ],
+            [
+                "type" => "view",
+                "name" => "应用",
+                "url"  => "https://wechat.mooibay.com/apps"
+            ],
+            [
+                "type" => "view",
+                "name" => "我",
+                "url"  => "https://wechat.mooibay.com/me"
+            ],
+        ];
+
+        $this->app->menu->create($buttons);
     }
 
 

@@ -45,7 +45,10 @@ Route::get('/expos/now', 'ExpoController@index');
     // auth users
     Route::group(['middleware' => ['mix', 'state']], function () {
 
+        // 微信
         Route::get('/ad', 'WechatController@ad');
+        Route::get('/wechat/init', 'WechatController@init');
+
         // 用户
         Route::get('/users', 'UserController@index');
         Route::get('/user/{id}', 'UserController@show');
