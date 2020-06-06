@@ -25,9 +25,9 @@ Route::any('/wechat/call_back', 'WechatController@callBack');
 Route::get('/wechat/init', 'WechatController@init');
 
 // sms
-Route::get('/sms', 'AuthController@sms');
-Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');
-Route::post('/check', 'AuthController@check')->middleware('throttle:5,5');
+// Route::get('/sms', 'AuthController@sms');
+// Route::post('/code', 'AuthController@code')->middleware('throttle:10,2');
+// Route::post('/check', 'AuthController@check')->middleware('throttle:50,5');
 Route::get('/logout', 'AuthController@logout');
 
 Route::get('/', function () {
@@ -39,6 +39,10 @@ Route::get('/expos/now', 'ExpoController@index');
 
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+
+    Route::get('/sms', 'AuthController@sms');
+    Route::post('/code', 'AuthController@code')->middleware('throttle:10,2');
+    Route::post('/check', 'AuthController@check')->middleware('throttle:50,5');
 
     Route::get('/apps', function () {
         return view('apps');
