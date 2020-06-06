@@ -3,7 +3,7 @@
 namespace App\Wechat;
 
 use Illuminate\Support\Facades\Log;
-use EasyWeChat\Work\GroupRobot\Messages\Message;
+use EasyWeChat\Kernel\Messages\Message;
 use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 
 class EventHandler implements EventHandlerInterface
