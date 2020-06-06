@@ -62,17 +62,21 @@ class EventHandler implements EventHandlerInterface
         $p = explode('_', $this->msg['EventKey']);
 
         if(count($p) != 3 || intval($p[2]) < 1) return false;
+        Log::info('1');
 
         $org  = Org::where('key', $p[1])->first();
         $user = User::find($p[2]);
 
         if(Arr::has($this->limit, $p[1]) && $org && $user) {
+            Log::info('2');
+
             if($user->can($p[1], User::class)) {
+                Log::info('3');
                 $save = ['created_by' => $p[2], ['conf' => [['org_id' => $org->id]]]];
                 Redis::setex($this->msg['FromUserName'], 600, $save);
             }
         }
-
+        Log::info('4');
         return false;
     }
 
