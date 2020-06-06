@@ -41,9 +41,9 @@ class EventHandler implements EventHandlerInterface
      */
     public function handle($payload = NULL)
     {
-        if($this->msg['Event'] == 'SCAN') {
+        // if($this->msg['Event'] == 'SCAN') {
             if(Str::startsWith($this->msg['EventKey'], 'ad_')) return $this->ad();
-        }
+        // }
 
     }
 
@@ -70,11 +70,11 @@ class EventHandler implements EventHandlerInterface
         if(Arr::has($this->limit, $p[1]) && $org && $user) {
             Log::info('2');
 
-            if($user->can($p[1], User::class)) {
+            // if($user->can($p[1], User::class)) {
                 Log::info('3');
                 $save = ['created_by' => $p[2], ['conf' => [['org_id' => $org->id]]]];
                 Redis::setex($this->msg['FromUserName'], 600, $save);
-            }
+            // }
         }
         Log::info('4');
         return false;
