@@ -4,12 +4,8 @@ namespace App\Wechat;
 
 use App\Org;
 use App\User;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
-use EasyWeChat\Kernel\Messages\Message;
-use Illuminate\Support\Facades\Session;
 use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 
 class EventHandler implements EventHandlerInterface
@@ -86,7 +82,7 @@ class EventHandler implements EventHandlerInterface
         $org  = Org::where('key', $this->ad_array['key'])->first();
         $user = User::find($this->ad_array['created_by']);
 
-        if($org && $user) {
+        if($org && $user && $user->can($this->ad_array['key'].'Qrcode', User::class)) {
             $save = ['created_by' => $this->ad_array['created_by'], 'conf' => [['org_id' => $org->id]]];
 
             Redis::setex($this->msg['FromUserName'], 600, json_encode($save));

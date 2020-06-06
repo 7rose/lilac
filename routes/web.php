@@ -43,8 +43,8 @@ Route::get('/expos/now', 'ExpoController@index');
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     Route::get('/sms', 'AuthController@sms');
-    Route::post('/code', 'AuthController@code')->middleware('throttle:10,2');
-    Route::post('/check', 'AuthController@check')->middleware('throttle:50,5');
+    Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');
+    Route::post('/check', 'AuthController@check')->middleware('throttle:5,5');
 
     Route::get('/apps', function () {
         return view('apps');
