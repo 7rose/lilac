@@ -1,16 +1,4 @@
-<?php
 
-    function role_list($user)
-    {
-        $out = [];
-        if (isset($user->conf['roles']) && count($user->conf['roles'])) {
-            foreach ($user->conf['roles'] as $r) {
-                $out[] = $r['org']->info['name'].'-'.Arr::get($r['role']->info, 'name');
-            }
-        }
-        return $out;
-    }
-?>
 @extends('../nav')
 
 @section('main')
@@ -19,13 +7,12 @@
     <div class="panel">
       <div class="panel-header">
           <div class="panel-title">
-            <span>牧云</span>
+
             <div class="input-group col-xs-7 float-right">
                 <input class="form-input input-sm" type="text" id="key_word" placeholder="关键词" required>
                 <button class="btn btn-primary input-group-btn btn-sm"><i class="fa fa-search" aria-hidden="true"></i></button>
             </div>
         </div>
-        <li class="divider" data-content="mooibay.com">
       </div>
       <div class="panel-body">
     @if(isset($users) && count($users))
@@ -53,18 +40,6 @@
             </div>
             <div class="divider-vert"></div>
                 <div class="column">
-
-                    @if (isset($user->conf['roles']) && count($user->conf['roles']))
-                        @foreach ($user->conf['roles'] as $r)
-                        @if(isset($r['org']) && $r['org']->show)
-                        @if(isset($r['role']) && $r['role']->show)
-                                <span class="chip">
-                                {{ $r['role']->info['name'] }}
-                            </span>
-                        @endif
-                        @endif
-                        @endforeach
-                    @endif
 
                 </div>
             </div>

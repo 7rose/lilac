@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Authorize;
 use App\Org;
 use App\User;
 use Illuminate\Http\Request;
@@ -9,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
     /**
      * 用户列表
      *
@@ -18,17 +18,67 @@ class UserController extends Controller
     {
         $this->authorize('viewAll', User::class);
 
-        $staff = Org::where('key','staff')->firstOrFail();
+        $users = $this->choose('staff');
+
+        return view('user.index', compact('users'));
+    }
+
+    /**
+     * 客户
+     *
+     */
+    public function customers()
+    {
+        // $this->authorize('viewAll', User::class);
+
+        $users = $this->choose('customer');
+
+        return view('user.others', compact('users'));
+    }
+
+    /**
+     * 展商
+     *
+     */
+    public function suppliers()
+    {
+        // $this->authorize('viewAll', User::class);
+
+        $users = $this->choose('supplier');
+
+        return view('user.others', compact('users'));
+    }
+
+    /**
+     * 合作
+     *
+     */
+    public function partners()
+    {
+        // $this->authorize('viewAll', User::class);
+
+        $users = $this->choose('partner');
+
+        return view('user.others', compact('users'));
+    }
+
+    /**
+     * 分类
+     *
+     */
+    private function choose($key)
+    {
+        $parts = Org::where('key',$key)->firstOrFail();
 
         $all= collect();
 
-        foreach ($staff->descendants as $key) {
+        foreach ($parts->descendants as $key) {
             $all = $all->merge($key->users);
         }
 
         $users = $all->unique('id');
 
-        return view('user.index', compact('users'));
+        return $users;
     }
 
     /**
@@ -37,7 +87,7 @@ class UserController extends Controller
      */
     public function me()
     {
-        $this->authorize('viewAll', User::class);
+        // $this->authorize('viewAll', User::class);
 
         return $this->show(0);
     }

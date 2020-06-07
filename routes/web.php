@@ -62,7 +62,9 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/lock/{id}', 'UserController@lock');
         Route::get('/unlock/{id}', 'UserController@unlock');
         Route::get('/me', 'UserController@me');
-        Route::post('/pub', 'UserController@pub');
+        Route::get('/customers', 'UserController@customers'); # 客户
+        Route::get('/suppliers', 'UserController@suppliers'); # 供应商
+        Route::get('/partners', 'UserController@partners'); # 合作伙伴
 
         // 机构
         Route::get('/orgs', 'OrgController@index');
@@ -92,16 +94,16 @@ Route::get('/test', function () {
 });
 
 Route::get('/in', function () {
-    // $user = App\User::find(5);
+    $user = App\User::find(5);
     // $user = App\User::find(6);
     // // $user = App\User::find(1);
     // // $user = App\User::find(8);
-    // Auth::login($user);
-    // print_r($user->info);
+    Auth::login($user);
+    print_r($user->info);
 
-    echo '<br>'.Redis::get('17821621090');
-    echo '<br>';
-    $b = Redis::get('oNqBdwRZTz-3T09LrmLGRyQYMsBo');
-    print_r($b);
+    // echo '<br>'.Redis::get('17821621090');
+    // echo '<br>';
+    // $b = Redis::get('oNqBdwRZTz-3T09LrmLGRyQYMsBo');
+    // print_r($b);
 });
 

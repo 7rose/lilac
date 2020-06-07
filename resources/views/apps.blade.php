@@ -30,10 +30,28 @@
                 </a>
             </div>
             <div class="column col-xs-4 text-center mt-2">
+                <a href="/customers" class="text-dark">
                 <figure class="avatar avatar-lg bg-gray">
                     <img src="{{ asset('images/customer.svg') }}" alt="...">
                 </figure>
                 <p>客户</p>
+                </a>
+            </div>
+            <div class="column col-xs-4 text-center mt-2">
+                <a href="/suppliers" class="text-dark">
+                <figure class="avatar avatar-lg bg-gray">
+                    <img src="{{ asset('images/supplier.svg') }}" alt="...">
+                </figure>
+                <p>供应商</p>
+                </a>
+            </div>
+            <div class="column col-xs-4 text-center mt-2">
+                <a href="/partners" class="text-dark">
+                <figure class="avatar avatar-lg bg-gray">
+                    <img src="{{ asset('images/partner.svg') }}" alt="...">
+                </figure>
+                <p>合作方</p>
+                </a>
             </div>
             <div class="column col-xs-4 text-center mt-2">
                 <a href="/users" class="text-dark">

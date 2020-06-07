@@ -34,6 +34,17 @@ class UserPolicy
      * @param  \App\User  $user
      * @return mixed
      */
+    public function view(User $user)
+    {
+        return $this->auth->need($user, 'staff');
+    }
+
+    /**
+     * 管理用户
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
     public function lockUser(User $user, User $target)
     {
         return $this->auth->win($user, $target) || $user->id == $target->id;
@@ -45,9 +56,9 @@ class UserPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function viewSelf(User $user, User $target)
     {
-        //
+        return $user->id == $target->id;
     }
 
     /**
