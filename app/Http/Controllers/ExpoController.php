@@ -84,6 +84,8 @@ class ExpoController extends Controller
             'created_by' => Auth::id(),
         ];
 
+        if($request->has('on')) Expo::where('end', '>', now())->update(['on' => false]);
+
         $in = Expo::create($new);
 
         $msg = '操作已成功！<br>';
