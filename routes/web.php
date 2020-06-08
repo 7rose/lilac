@@ -1,13 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
-use PhpParser\Node\Expr\Print_;
 
-use function EasyWeChat\Kernel\Support\str_random;
-use function Safe\json_encode;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,15 +20,15 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 // wechat
 Route::any('/wechat', 'WechatController@serve');
 Route::any('/wechat/call_back', 'WechatController@callBack');
-Route::any('/pay_callback', 'WechatController@payCallback');
 Route::get('/wechat/init', 'WechatController@init');
 
-// sms
-// Route::get('/sms', 'AuthController@sms');
-// Route::post('/code', 'AuthController@code')->middleware('throttle:10,2');
-// Route::post('/check', 'AuthController@check')->middleware('throttle:50,5');
+// 微信支付回调
+Route::any('/pay_callback', 'TicketController@payCallback');
+
+// 退出登录
 Route::get('/logout', 'AuthController@logout');
 
+// 默认页
 Route::get('/', function () {
     return redirect('/trailer');
 });
@@ -87,33 +81,12 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
 });
 
+// ------------ dev -------------
+
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-
-    // $a = App\Expo::where('on', true)->first();
-    // $a = App\Expo::where('end', '>', now())->get()->toArray();
-
-    // print_r($a);
-    // echo time();
-    // print_r(config('wechat.payment'));
-    // abort('510');
-
-    $a = 4000;
-
-    $b= number_format($a, 2);
-
-    return $b;
-
-    // $a = str_random(32);
-    // echo $a;
-    // $a = ['a'=>100, 'b'=>[['ok' => 'ok']]];
-
-    // $b = json_encode($a);
-
-    // Redis::setex()
-
-    // var_dump($b);
+    //
 });
 
 Route::get('/in', function () {

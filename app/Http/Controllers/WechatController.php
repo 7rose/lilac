@@ -122,14 +122,5 @@ class WechatController extends Controller
         return "已设置微信模拟环境";
     }
 
-    /**
-     * 支付回调
-     *
-     */
-    function payCallback(Request $request)
-    {
-        Log::info($request->all());
-    }
-
 
 }
