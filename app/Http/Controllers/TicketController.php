@@ -27,7 +27,7 @@ class TicketController extends Controller
 
         // print_r($info);
 
-        print_r($payment->_config);
+        print_r(config('wechat.payment'));
         // $order = $payment->order->unify($info);
 
         // $result = $payment->prepare($order);
