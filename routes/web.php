@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -91,11 +92,11 @@ Route::get('/test', function () {
 
 Route::get('/in', function () {
     // $user = App\User::find(5);
-    // $user = App\User::find(6);
+    $user = App\User::find(6);
     // // $user = App\User::find(1);
     // // $user = App\User::find(8);
-    // Auth::login($user);
-    // print_r($user->info);
+    Auth::login($user);
+    print_r($user->info);
 
     // echo '<br>'.Redis::get('17821621090');
     // echo '<br>';
