@@ -1,15 +1,33 @@
 @extends('nav')
 
 @section('main')
-<div class="column col-12">
-    <div class="empty">
-        <div class="nav-pad"></div>
-      <div class="empty-icon"><h1><i class="fa fa-jpy" aria-hidden="true"></i></h1></div>
-    <p class="empty-subtitle">您正在购买{{ print_r($json) }}</p>
-      <div class="empty-action">
-        <a href="/apps" class="btn btn-primary">&nbsp;&nbsp;应用中心&nbsp;&nbsp;</a>
-      </div>
-      <div class="nav-pad"></div>
+<p></p>
+<div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
+    <div class="hero bg-gray">
+        <div class="hero-body text-center">
+        <h1>¥{{ $info['total_fee'] }}</h1>
+        <p>您正在购买 {{ $info['body'] }}, 请于5分钟内支付</p>
+            <p>
+                <a href="javascript:pay()" class="btn btn-success">确认支付</a>
+            </p>
+        </div>
     </div>
 </div>
+
+<script>
+    function pay()
+    {
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest', <?= $json ?>,
+            function(res){
+                if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                        // 使用以上方式判断前端返回,微信团队郑重提示：
+                        // res.err_msg将在用户支付成功后返回
+                        // ok，但并不保证它绝对可靠。
+                        alert('支付成功');
+                }
+            }
+        );
+    }
+</script>
 @endsection
