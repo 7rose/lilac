@@ -101,8 +101,8 @@
 
                     <div class="form-group @error('open') has-error @enderror">
                         <label class="form-switch">
-                        <input type="checkbox" name="open" value="{{ old('open') }}" >
-                        <i class="form-icon"></i> 发后开放售票
+                        <input type="checkbox" name="on" value="{{ old('on') }}" >
+                        <i class="form-icon"></i> 上线并开放购票
                         </label>
                     </div>
                     <p></p>
