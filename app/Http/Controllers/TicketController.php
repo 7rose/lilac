@@ -30,13 +30,13 @@ class TicketController extends Controller
         // print_r(config('wechat.payment'));
         $order = $payment->order->unify($info);
 
-        $result = $payment->prepare($order);
-        if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
-            $prepayId = $result->prepay_id;
-        }
+        // $result = $payment->prepare($order);
+        // if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+        //     $prepayId = $result->prepay_id;
+        // }
 
         $jssdk = $payment->jssdk;
-        $json = $jssdk->bridgeConfig($prepayId);
+        $json = $jssdk->bridgeConfig($order);
 
         return view('check', compact('json','info'));
     }
