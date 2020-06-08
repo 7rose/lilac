@@ -148,7 +148,7 @@
             type:"POST",
             url: url,
             data:{
-                open: checked
+                on: checked
             },
             datatype: "json",
             beforeSend:function(){

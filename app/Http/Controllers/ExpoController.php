@@ -127,7 +127,7 @@ class ExpoController extends Controller
 
         $on = false;
 
-        if($request->open == 'true' || $request->open == true) {
+        if($request->on == 'true' || $request->on == true) {
             $on = true;
             Expo::where('end', '>', now())->update(['on' => false]);
         }
