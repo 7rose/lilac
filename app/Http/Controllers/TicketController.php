@@ -11,7 +11,7 @@ class TicketController extends Controller
 {
     public function order($id)
     {
-    //    $expo =  Expo::findOrFail($id);
+       $expo =  Expo::findOrFail($id);
 
         $payment = app('wechat.payment');
 
