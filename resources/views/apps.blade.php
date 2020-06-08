@@ -14,7 +14,7 @@
                 <p>抽奖</p>
             </div>
             <div class="column col-xs-4 text-center mt-2">
-                <a href="/expos" class="text-dark">
+                <a href="/tickets" class="text-dark">
                 <figure class="avatar avatar-lg bg-gray">
                     <img src="{{ asset('images/ticket.svg') }}" alt="...">
                 </figure>

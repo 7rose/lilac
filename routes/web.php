@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
+use function EasyWeChat\Kernel\Support\str_random;
 use function Safe\json_encode;
 
 /*
@@ -84,9 +85,12 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    $a = ['a'=>100, 'b'=>[['ok' => 'ok']]];
 
-    $b = json_encode($a);
+    $a = str_random(32);
+    echo $a;
+    // $a = ['a'=>100, 'b'=>[['ok' => 'ok']]];
+
+    // $b = json_encode($a);
 
     // Redis::setex()
 
