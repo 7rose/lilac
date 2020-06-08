@@ -25,7 +25,9 @@ class TicketController extends Controller
             'openid' =>  show(Auth::user()->ids, 'wechat.id'),
             ];
 
-        print_r($info);
+        // print_r($info);
+
+        print_r($payment->_config);
         // $order = $payment->order->unify($info);
 
         // $result = $payment->prepare($order);
