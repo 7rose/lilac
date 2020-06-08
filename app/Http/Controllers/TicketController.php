@@ -37,7 +37,7 @@ class TicketController extends Controller
         $jssdk = $payment->jssdk;
         $json = $jssdk->bridgeConfig($prepayId);
 
-        return view('check', compact('json','info'));
+        return view('pay', compact('json','info'));
     }
 
 
