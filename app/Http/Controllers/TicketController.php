@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expo;
+use App\Order;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -10,6 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
+    protected $payment;
+
+    function __construct()
+    {
+        $this->payment =  app('wechat.payment');
+    }
     /**
      * 微信支付购票
      *
@@ -18,8 +25,6 @@ class TicketController extends Controller
     public function order($id)
     {
        $expo =  Expo::findOrFail($id);
-
-        $payment = app('wechat.payment');
 
         $info = [
             'body' => show($expo->info, 'title', '').'电子门票',
@@ -31,15 +36,18 @@ class TicketController extends Controller
             'openid' =>  show(Auth::user()->ids, 'wechat.id'),
             ];
 
-        $order = $payment->order->unify($info);
+        $order = $this->payment->order->unify($info);
 
         if(Arr::has($order, 'return_code') && Arr::get($order, 'return_code') == 'SUCCESS' && Arr::has($order, 'result_code') && Arr::get($order, 'result_code') == 'SUCCESS' && Arr::has($order, 'prepay_id')){
             $prepayId = Arr::get($order, 'prepay_id');
+
+            // 写入
+            Order::create($info);
         }else{
             abort('510');
         }
 
-        $jssdk = $payment->jssdk;
+        $jssdk = $this->payment->jssdk;
         $json = $jssdk->bridgeConfig($prepayId);
 
         return view('pay', compact('json','info'));
@@ -49,9 +57,45 @@ class TicketController extends Controller
      * 支付结果回调
      *
      */
-    function payCallback(Request $request)
+    function payCallback()
     {
-        Log::info($request->all());
+        $response = $this->payment->handleNotify(function($notify, $successful){
+            // 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
+            $order = Order::where('out_trade_no', $notify->out_trade_no)->first();
+
+            if (!$order) { // 如果订单不存在
+                return 'Order not exist.'; // 告诉微信，我已经处理完了，订单没找到，别再通知我了
+            }
+
+            // 如果订单存在
+            // 检查订单是否已经更新过支付状态
+            if ($order->paid_at) {
+                return true;
+            }
+
+            // 用户是否支付成功
+            if ($successful) {
+                $order->paid_at = now(); // 更新支付时间为当前时间
+                $order->status = '支付成功';
+            } else { // 用户支付失败
+                $order->status = '支付失败';
+            }
+
+            $order->save();
+
+            return true;
+        });
+
+        return $response;
+    }
+
+    /**
+     * 支付结果回调
+     *
+     */
+    private function sendTicket()
+    {
+        //
     }
 
 
