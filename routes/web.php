@@ -95,7 +95,8 @@ Route::get('/test', function () {
     // $a = App\Expo::where('end', '>', now())->get()->toArray();
 
     // print_r($a);
-    echo time();
+    // echo time();
+    print_r(config('wechat.payment'));
 
     // $a = str_random(32);
     // echo $a;
