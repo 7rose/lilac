@@ -5,7 +5,7 @@
 <div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
     <div class="hero bg-gray">
         <div class="hero-body text-center">
-        <h1>¥{{ $info['total_fee'] }}</h1>
+        <h1>¥{{ $info['total_fee']/100 }}</h1>
         <p>您正在购买 {{ $info['body'] }}, 请于5分钟内支付</p>
             <p>
                 <a href="javascript:pay()" class="btn btn-success">确认支付</a>
