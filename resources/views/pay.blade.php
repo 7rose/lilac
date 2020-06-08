@@ -8,7 +8,7 @@
         <h1>¥ {{ number_format($info['total_fee']/100, 2) }}</h1>
         <p>您正在购买 {{ $info['body'] }}, 请于5分钟内支付</p>
             <p>
-                <a href="javascript:pay()" class="btn btn-success">确认支付</a>
+                <a href="javascript:pay()" class="btn btn-success btn-block">确认支付</a>
             </p>
         </div>
     </div>
