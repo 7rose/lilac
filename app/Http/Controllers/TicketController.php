@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expo;
 use EasyWeChat\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,8 +28,8 @@ class TicketController extends Controller
 
         $order = $payment->order->unify($info);
 
-        if ($order->return_code == 'SUCCESS' && $order->result_code == 'SUCCESS'){
-            $prepayId = $order->prepay_id;
+        if(Arr::has($order, 'return_code') && Arr::get($order, 'return_code') == 'SUCCESS' && Arr::has($order, 'result_code') && Arr::get($order, 'result_code') == 'SUCCESS' && Arr::has($order, 'prepay_id')){
+            $prepayId = Arr::get($order, 'prepay_id');
         }else{
             abort('510');
         }
