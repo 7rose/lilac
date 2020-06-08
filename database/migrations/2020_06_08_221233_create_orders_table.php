@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('body');
             $table->string('out_trade_no');
             $table->integer('total_fee');
-            $table->ip('spbill_create_ip')->nullable();
+            $table->ipAddress('spbill_create_ip')->nullable();
             $table->string('notify_url')->nullable();
             $table->string('trade_type');
             $table->string('openid');
