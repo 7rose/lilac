@@ -80,7 +80,9 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::post('/expo/allow/{id}', 'ExpoController@allow'); # 开关售票
         Route::get('/expos/create', 'ExpoController@create');
         Route::post('/expos/store', 'ExpoController@store');
-        Route::post('/expo/order/{id}', 'ExpoController@order');
+
+        // 票
+        Route::get('/expo/order/{id}', 'TicketController@order');
     });
 
 });
