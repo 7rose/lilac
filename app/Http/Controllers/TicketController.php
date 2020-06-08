@@ -75,6 +75,10 @@ class TicketController extends Controller
 
             // 用户是否支付成功
             if ($successful) {
+
+                // 生成电子票
+                $this->getTicket($notify);
+
                 $order->paid_at = now(); // 更新支付时间为当前时间
                 $order->status = '支付成功';
             } else { // 用户支付失败
@@ -90,10 +94,10 @@ class TicketController extends Controller
     }
 
     /**
-     * 支付结果回调
+     * 电子票
      *
      */
-    private function sendTicket()
+    private function getTicket($notify)
     {
         //
     }

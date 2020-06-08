@@ -15,8 +15,8 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->bigInteger('expo_id');
+            $table->foreignId('user_id');
+            $table->foreignId('expo_id');
             $table->jsonb('logs')->nullable();
             $table->boolean('used')->default(false);
             $table->boolean('afk')->default(false);
