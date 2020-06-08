@@ -11,7 +11,7 @@
         @foreach ($expos as $e)
         <div class="tile tile-centered">
             <div class="tile-content">
-            <div class="tile-title">{{ show($e->info, 'title', '') }}</div>
+            <div class="tile-title">{{ show($e->info, 'title', '') }}{!!$e->on ? ' <span class="text-success">[上线购票中!]</span>' : '' !!}</div>
             <small class="tile-subtitle text-gray">{{ $e->begin }} - {{ $e->end }}</small>
             <small class="tile-subtitle"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ show($e->info, 'addr', '') }}</small>
             </div>

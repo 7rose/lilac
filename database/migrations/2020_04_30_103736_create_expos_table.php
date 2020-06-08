@@ -19,6 +19,7 @@ class CreateExposTable extends Migration
             $table->jsonb('conf')->nullable();
             $table->timestamp('begin');
             $table->timestamp('end');
+            $table->boolean('on')->default(false);
             $table->boolean('show')->default(true);
             $table->bigInteger('created_by');
             $table->timestamps();

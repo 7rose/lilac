@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\Print_;
 
 use function EasyWeChat\Kernel\Support\str_random;
 use function Safe\json_encode;
@@ -25,6 +26,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 // wechat
 Route::any('/wechat', 'WechatController@serve');
 Route::any('/wechat/call_back', 'WechatController@callBack');
+Route::any('/pay_callback', 'WechatController@payCallback');
 Route::get('/wechat/init', 'WechatController@init');
 
 // sms
@@ -34,11 +36,11 @@ Route::get('/wechat/init', 'WechatController@init');
 Route::get('/logout', 'AuthController@logout');
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/trailer');
 });
 
 // 展会预告
-Route::get('/expos/now', 'ExpoController@index');
+Route::get('/trailer', 'ExpoController@trailer');
 
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
@@ -78,6 +80,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::post('/expo/allow/{id}', 'ExpoController@allow'); # 开关售票
         Route::get('/expos/create', 'ExpoController@create');
         Route::post('/expos/store', 'ExpoController@store');
+        Route::post('/expo/order/{id}', 'ExpoController@order');
     });
 
 });
@@ -86,8 +89,14 @@ Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
 
-    $a = str_random(32);
-    echo $a;
+    // $a = App\Expo::where('on', true)->first();
+    // $a = App\Expo::where('end', '>', now())->get()->toArray();
+
+    // print_r($a);
+    echo time();
+
+    // $a = str_random(32);
+    // echo $a;
     // $a = ['a'=>100, 'b'=>[['ok' => 'ok']]];
 
     // $b = json_encode($a);
@@ -98,12 +107,12 @@ Route::get('/test', function () {
 });
 
 Route::get('/in', function () {
-    $user = App\User::find(5);
+    // $user = App\User::find(5);
     // $user = App\User::find(6);
     // // $user = App\User::find(1);
     // // $user = App\User::find(8);
-    Auth::login($user);
-    print_r($user->info);
+    // Auth::login($user);
+    // print_r($user->info);
 
     // echo '<br>'.Redis::get('17821621090');
     // echo '<br>';

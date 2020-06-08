@@ -103,11 +103,57 @@ class ExpoController extends Controller
     }
 
 
+    /**
+     * 预告片
+     *
+     *
+     */
+    public function trailer()
+    {
+        $expo = Expo::where('on', true)->first();
+
+        return view('trailer', compact('expo'));
+
+    }
+
+
+    /**
+     * 上下线
+     *
+     */
     public function allow(Request $request, $id)
     {
-        $expo = Expo::findOrFail($id);
-        $expo->update(['conf->open' => $request->open == 'true' ? true : false]);
-        return json_encode(['checked' => $request->open]);
+        $on_line = Expo::findOrFail($id);
+
+        $on = false;
+
+        if($request->open == 'true' || $request->open == true) {
+            $on = true;
+            Expo::where('end', '>', now())->update(['on' => false]);
+        }
+
+        $on_line->update(['on' => $on]);
+
+        return json_encode(['checked' => $on]);
+    }
+
+
+    /**
+     * 下单
+     *
+     */
+    public function order($id)
+    {
+        //
+        // $result = $app->order->unify([
+        //     'body' => '腾讯充值中心-QQ会员充值',
+        //     'out_trade_no' => '20150806125346',
+        //     'total_fee' => 88,
+        //     'spbill_create_ip' => '123.12.12.123', // 可选，如不传该参数，SDK 将会自动获取相应 IP 地址
+        //     'notify_url' => 'https://pay.weixin.qq.com/wxpay/pay.action', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
+        //     'trade_type' => 'JSAPI', // 请对应换成你的支付方式对应的值类型
+        //     'openid' => 'oUpF8uMuAJO_M2pxb1Q9zNjWeS6o',
+        // ]);
     }
 
 }

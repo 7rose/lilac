@@ -5,8 +5,8 @@
 <div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
     <div class="panel">
       <div class="panel-header text-center">
-        <div class="panel-title h5 mt-10">{{ show($expo->info, 'title', '') }}</div>
-      <div class="panel-subtitle">票价: ¥{{ show($expo->info, 'price', '') }}</div>
+      <div class="panel-title h5 mt-10">{{ show($expo->info, 'title', '') }}  </div>
+      <div class="panel-subtitle">票价: ¥{{ show($expo->info, 'price', '') }}{!!$expo->on ? ' <span class="text-success">[上线购票中!]</span>' : '' !!}</div>
       </div>
       <nav class="panel-nav">
         <ul class="tab tab-block">
@@ -113,13 +113,18 @@
         <div class="tile tile-centered mt-2">
             <div class="tile-content">
                 <div class="tile-title text-bold">可以购票</div>
+                @if ($expo->end > now())
                 <div class="form-group">
                     <label class="form-switch">
                     <input id="expo_id" type="hidden" value="{{ $expo->id }}" />
-                    <input type="checkbox" name="allow" id="allow" onclick="javascript:allow()" {{ $expo->conf['open'] ? "checked" : '' }}>
-                    <i class="form-icon"></i> 开放售票
+                    <input type="checkbox" name="allow" id="allow" onclick="javascript:allow()" {{ $expo->on? "checked" : '' }}>
+                    <i class="form-icon"></i> 上线并开放购票
                     </label>
                 </div>
+                @else
+                会展已结束
+                @endif
+
             </div>
         </div>
 

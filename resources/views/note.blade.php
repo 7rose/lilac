@@ -1,4 +1,4 @@
-@extends('../nav')
+@extends('nav')
 
 @section('main')
 <div class="column col-12">

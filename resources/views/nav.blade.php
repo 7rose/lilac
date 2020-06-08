@@ -24,7 +24,6 @@
         </section>
         <section class="navbar-section">
             <a href="/apps" class="btn btn-link hide-xs text-dark">应用中心</a>
-            <a href="#" class="btn btn-link hide-xs text-dark">配置</a>
             @auth
             <div class="dropdown dropdown-right">
                 <a class="dropdown-toggle text-dark" tabindex="0">

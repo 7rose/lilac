@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Support\Arr;
 use App\Wechat\EventHandler;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Overtrue\Socialite\User as SocialiteUser;
 
@@ -118,9 +120,15 @@ class WechatController extends Controller
         session(['wechat.oauth_user.default' => $user]);
 
         return "已设置微信模拟环境";
+    }
 
-        // $user = User::find(6);
-
+    /**
+     * 支付回调
+     *
+     */
+    function payCallback(Request $request)
+    {
+        Log::info($request->all());
     }
 
 
