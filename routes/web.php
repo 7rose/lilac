@@ -82,7 +82,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::post('/expos/store', 'ExpoController@store');
 
         // 票
-        Route::get('/pay/expo/{id}', 'TicketController@order');
+        Route::get('/pay/{id}', 'TicketController@order');
     });
 
 });
