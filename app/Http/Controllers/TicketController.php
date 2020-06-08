@@ -25,22 +25,18 @@ class TicketController extends Controller
             'openid' =>  show(Auth::user()->ids, 'wechat.id'),
             ];
 
-        // print_r($info);
-
-        // print_r(config('wechat.payment'));
         $order = $payment->order->unify($info);
 
-        print_r($order);
+        if ($order->return_code == 'SUCCESS' && $order->result_code == 'SUCCESS'){
+            $prepayId = $order->prepay_id;
+        }else{
+            abort('510');
+        }
 
-        // $result = $payment->prepare($order);
-        // if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
-        //     $prepayId = $result->prepay_id;
-        // }
+        $jssdk = $payment->jssdk;
+        $json = $jssdk->bridgeConfig($prepayId);
 
-        // $jssdk = $payment->jssdk;
-        // $json = $jssdk->bridgeConfig($order);
-
-        // return view('check', compact('json','info'));
+        return view('check', compact('json','info'));
     }
 
 

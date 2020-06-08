@@ -96,7 +96,8 @@ Route::get('/test', function () {
 
     // print_r($a);
     // echo time();
-    print_r(config('wechat.payment'));
+    // print_r(config('wechat.payment'));
+    abort('510');
 
     // $a = str_random(32);
     // echo $a;
