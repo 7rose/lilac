@@ -60,37 +60,38 @@ class TicketController extends Controller
      */
     function payCallback()
     {
-        // $app = app('wechat.payment');
-
-        $response = $this->payment->handleNotify(function($notify, $successful){
+        $response = $this->payment->handlePaidNotify(function($message, $fail){
             // 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
-            $order = Order::where('out_trade_no', $notify->out_trade_no)->first();
+            $order = Order::where('out_trade_no', $message['out_trade_no'])->first();
 
-            if (!$order) { // 如果订单不存在
-                return 'Order not exist.'; // 告诉微信，我已经处理完了，订单没找到，别再通知我了
+            if (!$order || $order->paid_at) { // 如果订单不存在 或者 订单已经支付过了
+                return true; // 告诉微信，我已经处理完了，订单没找到，别再通知我了
             }
 
-            // 如果订单存在
-            // 检查订单是否已经更新过支付状态
-            if ($order->paid_at) {
-                return true;
+            ///////////// <- 建议在这里调用微信的【订单查询】接口查一下该笔订单的情况，确认是已经支付 /////////////
+            $real_resault = $this->payment->order->queryByOutTradeNumber("商户系统内部的订单号（".$message['out_trade_no']."）");
+
+            Log::info($real_resault);
+
+            if ($message['return_code'] === 'SUCCESS') { // return_code 表示通信状态，不代表支付状态
+                // 用户是否支付成功
+                if (Arr::get($message, 'result_code') === 'SUCCESS') {
+                    $this->getTicket($message);
+
+                    $order->paid_at = now(); // 更新支付时间为当前时间
+                    $order->status = 'paid';
+
+                // 用户支付失败
+                } elseif (Arr::get($message, 'result_code') === 'FAIL') {
+                    $order->status = 'paid_fail';
+                }
+            } else {
+                return $fail('通信失败，请稍后再通知我');
             }
 
-            // 用户是否支付成功
-            if ($successful) {
+            $order->save(); // 保存订单
 
-                // 生成电子票
-                $this->getTicket($notify);
-
-                $order->paid_at = now(); // 更新支付时间为当前时间
-                $order->status = '支付成功';
-            } else { // 用户支付失败
-                $order->status = '支付失败';
-            }
-
-            $order->save();
-
-            return true;
+            return true; // 返回处理完成
         });
 
         return $response;
@@ -100,11 +101,11 @@ class TicketController extends Controller
      * 电子票
      *
      */
-    private function getTicket($notify)
+    private function getTicket($message)
     {
-        $p = explode(',', $notify->out_trade_no);
+        $p = explode(',', $message['out_trade_no']);
 
-        $order = Order::where('out_trade_no', $notify->out_trade_no)->firstOrFail();
+        $order = Order::where('out_trade_no', $message['out_trade_no'])->firstOrFail();
 
         $new = [
             'user_id' => $p[0],
