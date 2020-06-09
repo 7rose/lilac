@@ -141,7 +141,7 @@ class EventHandler implements EventHandlerInterface
             return "成功: 临时离场客户进场!";
         }
 
-        return "失败: 票已失效!"
+        return "失败: 票已失效!";
     }
 
 }
