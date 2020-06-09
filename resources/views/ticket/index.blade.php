@@ -10,7 +10,7 @@
         @foreach ($tickets as $t)
         <div class="tile tile-centered">
             <div class="tile-content">
-            <div class="tile-title">{{ show($t->expo->info, 'title') }}</div>
+            <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
             <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }}</small><br>
             <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} - {{ $t->expo->end }}</small>
             </div>
