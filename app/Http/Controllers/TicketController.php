@@ -103,11 +103,11 @@ class TicketController extends Controller
      */
     private function getTicket($message)
     {
-        $p = explode(',', $message['out_trade_no']);
+        $p = explode('-', $message['out_trade_no']);
 
         $order = Order::where('out_trade_no', $message['out_trade_no'])->firstOrFail();
 
-        Log::info($p);
+        // Log::info($p);
 
         $new = [
             'user_id' => $p[0],
