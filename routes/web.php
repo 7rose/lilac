@@ -79,7 +79,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         // 票
         Route::get('/pay/{id}', 'TicketController@order');
         Route::get('/tickets', 'TicketController@index');
-        Route::get('/ticket/show/{$id}', 'TicketController@show');
+        Route::get('/ticket/{$id}', 'TicketController@show');
     });
 
 });
