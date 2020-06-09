@@ -61,21 +61,21 @@ class TicketController extends Controller
     function payCallback()
     {
         $response = $this->payment->handlePaidNotify(function($message, $fail){
-            // 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
+
             $order = Order::where('out_trade_no', $message['out_trade_no'])->first();
 
             if (!$order || $order->paid_at) { // 如果订单不存在 或者 订单已经支付过了
-                return true; // 告诉微信，我已经处理完了，订单没找到，别再通知我了
+                return true;
             }
 
-            ///////////// <- 建议在这里调用微信的【订单查询】接口查一下该笔订单的情况，确认是已经支付 /////////////
+            // 查询
             $real_resault = $this->payment->order->queryByOutTradeNumber($message['out_trade_no']);
 
-            Log::info($real_resault);
+            // Log::info($real_resault);
 
-            if ($message['return_code'] === 'SUCCESS') { // return_code 表示通信状态，不代表支付状态
+            if ($message['return_code'] === 'SUCCESS') {
                 // 用户是否支付成功
-                if (Arr::get($message, 'result_code') === 'SUCCESS') {
+                if (Arr::get($message, 'result_code') === 'SUCCESS' && Arr::get($real_resault, 'trade_state') === 'SUCCESS') {
                     $this->getTicket($message);
 
                     $order->paid_at = now(); // 更新支付时间为当前时间
