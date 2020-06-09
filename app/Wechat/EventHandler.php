@@ -116,7 +116,7 @@ class EventHandler implements EventHandlerInterface
         $ticket = Ticket::find($this->t_array['ticket_id']);
         $operator = User::where('ids->wehcat->id', $this->msg['FromUserName'])->first();
 
-        if(!$ticket || !$operator ||$ticket->user->id != $this->t_array['user_id']) return "失败: 无效操作";
+        if(!$ticket || !$operator || $ticket->user->id != $this->t_array['user_id']) return "失败: 无效操作";
 
         // 有权限
         // 新票
