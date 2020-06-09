@@ -150,16 +150,16 @@
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.320",
+            "version": "1.8.321",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "0c9ded890fa30117c192924ac69279c1cc56793f"
+                "reference": "156cce3bbc5b23f32fb45f043362200ce97f0413"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/0c9ded890fa30117c192924ac69279c1cc56793f",
-                "reference": "0c9ded890fa30117c192924ac69279c1cc56793f",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/156cce3bbc5b23f32fb45f043362200ce97f0413",
+                "reference": "156cce3bbc5b23f32fb45f043362200ce97f0413",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,7 +386,7 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-06-04T11:05:14+00:00"
+            "time": "2020-06-08T04:57:57+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -2714,16 +2714,16 @@
         },
         {
             "name": "overtrue/wechat",
-            "version": "4.2.21",
+            "version": "4.2.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/wechat.git",
-                "reference": "660b64f6e47089f91794f3a953baa3c8806215d4"
+                "reference": "cd74b6c0c13e34d12cc1236f87e4abb4f66469d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/wechat/zipball/660b64f6e47089f91794f3a953baa3c8806215d4",
-                "reference": "660b64f6e47089f91794f3a953baa3c8806215d4",
+                "url": "https://api.github.com/repos/overtrue/wechat/zipball/cd74b6c0c13e34d12cc1236f87e4abb4f66469d8",
+                "reference": "cd74b6c0c13e34d12cc1236f87e4abb4f66469d8",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2797,7 +2797,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-06-02T14:26:58+00:00"
+            "time": "2020-06-08T11:28:08+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -6880,16 +6880,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "2.0.6",
+            "version": "2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "5261c488a1e8a7c3ebdf6a4037c34f5ddeb33922"
+                "reference": "e6bedc1e74507d584fbcb041ebe0f7f215109cf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/5261c488a1e8a7c3ebdf6a4037c34f5ddeb33922",
-                "reference": "5261c488a1e8a7c3ebdf6a4037c34f5ddeb33922",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/e6bedc1e74507d584fbcb041ebe0f7f215109cf2",
+                "reference": "e6bedc1e74507d584fbcb041ebe0f7f215109cf2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6953,7 +6953,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2020-06-01T09:04:48+00:00"
+            "time": "2020-06-08T09:14:08+00:00"
         },
         {
             "name": "facade/ignition-contracts",
