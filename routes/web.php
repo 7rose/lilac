@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use PhpParser\Node\Expr\Print_;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,7 +89,10 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    return view('welcome');
+    $arr = [[1,2]];
+    array_push($arr, [3,4]);
+    print_r($arr);
+    // return view('welcome');
     // $a = array (0 => '5-2-1591668609',);
 
     // $b = explode('-', $a);

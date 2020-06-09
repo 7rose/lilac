@@ -138,7 +138,7 @@ class TicketController extends Controller
     {
         $ticket = Ticket::findOrFail($id);
 
-        $qrcode = $this->app->qrcode->temporary('t_'.$id.'_'.Auth::id(), 60); # 1分钟
+        $qrcode = $this->app->qrcode->temporary('t_'.Auth::id().'_'.$id, 60); # 1分钟
         $url = $qrcode['url'];
 
         return view('ticket.show', compact('ticket', 'url'));

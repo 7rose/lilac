@@ -14,6 +14,14 @@ class Ticket extends Model
     protected $guarded = [];
 
     /**
+     * 定义josn列
+     *
+     */
+    protected $casts = [
+        'logs' => 'json',
+    ];
+
+    /**
      * user of a ticket
      *
      */

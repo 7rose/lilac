@@ -122,5 +122,4 @@ class WechatController extends Controller
         return "已设置微信模拟环境";
     }
 
-
 }

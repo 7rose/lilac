@@ -3,6 +3,7 @@
 namespace App\Wechat;
 
 use App\Org;
+use App\Ticket;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redis;
@@ -11,6 +12,7 @@ use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 class EventHandler implements EventHandlerInterface
 {
     protected $msg, $ad_array;
+    protected $t_array;
 
     protected $limit = ['staff', 'customer', 'supplier', 'partner'];
 
@@ -45,9 +47,13 @@ class EventHandler implements EventHandlerInterface
                 if(count($a) == 3) {
                     $this->ad_array = ['created_by' => intval($a[2]), 'key' => $a[1]];
 
-                    return $this->ad();
+                    return $this->ad(); # 推荐
                 }
 
+            }elseif(Str::startsWith($this->msg['EventKey'], 't_')){
+                $a = explode('_', $this->msg['EventKey']);
+                $this->t_array = ['user_id' => intval($a[1]), 'ticket_id' => intval($a[2])];
+                return $this->checkTicket(); # 检票
             }
         }elseif($this->msg['Event'] == 'subscribe'){
             // 扫推荐码关注
@@ -58,6 +64,11 @@ class EventHandler implements EventHandlerInterface
 
                     return $this->ad();
                 }
+
+            }elseif(Str::startsWith($this->msg['EventKey'], 'qrscene_t_')){
+                $a = explode('_', $this->msg['EventKey']);
+                $this->t_array = ['user_id' => intval($a[2]), 'ticket_id' => intval($a[3])];
+                return $this->checkTicket(); # 检票
             }
 
             // 关注后推送
@@ -71,11 +82,15 @@ class EventHandler implements EventHandlerInterface
      */
     private function ad()
     {
-        return $this->check() ? "请于10分钟内完成手机认证,否则授权可能会过期" : "无效操作";
+        return $this->adCheck() ? "请于10分钟内完成手机认证,否则授权可能会过期" : "无效操作";
 
     }
 
-    private function check()
+    /**
+     * 推荐检查
+     *
+     */
+    private function adCheck()
     {
         if($this->ad_array['created_by'] < 1) return false;
 
@@ -90,6 +105,43 @@ class EventHandler implements EventHandlerInterface
         }
 
         return false;
+    }
+
+    /**
+     * 检票
+     *
+     */
+    private function checkTicket()
+    {
+        $ticket = Ticket::find($this->t_array['ticket_id']);
+        $operator = User::where('ids->wehcat->id', $this->msg['FromUserName'])->first();
+
+        if(!$ticket || !$operator ||$ticket->user->id != $this->t_array['user_id']) return "失败: 无效操作";
+
+        // 有权限
+        // 新票
+        if(!$ticket->used) {
+            $ticket->update([
+                'checked_by' => $operator->id,
+                'used' => true,
+                'logs' => [
+                    ['time' => now(), 'do' => '检票'],
+                ],
+            ]);
+
+            return "检票成功!";
+
+        // 临时离场
+        }elseif($ticket->used && $ticket->afk) {
+            $ticket->update([
+                'afk' => true,
+                'logs' => array_push($ticket->logs, ['time' => now(), 'do' => '临时离场']),
+            ]);
+
+            return "成功: 临时离场客户进场!";
+        }
+
+        return "失败: 票已失效!"
     }
 
 }
