@@ -12,11 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
-    protected $payment;
+    protected $app, $payment;
 
     function __construct()
     {
+        $this->app = app('wechat.official_account');
         $this->payment =  app('wechat.payment');
+
     }
     /**
      * 微信支付购票
@@ -79,11 +81,11 @@ class TicketController extends Controller
                     $this->getTicket($message);
 
                     $order->paid_at = now(); // 更新支付时间为当前时间
-                    $order->status = 'paid';
+                    $order->status = '支付成功';
 
                 // 用户支付失败
                 } elseif (Arr::get($message, 'result_code') === 'FAIL') {
-                    $order->status = 'paid_fail';
+                    $order->status = '支付失败';
                 }
             } else {
                 return $fail('通信失败，请稍后再通知我');
@@ -120,21 +122,26 @@ class TicketController extends Controller
      * 票
      *
      */
-    public function tickets()
+    public function index()
     {
         $tickets = Ticket::paginate(20);
+
+        return view('ticket.index', compact('tickets'));
 
     }
 
     /**
-     * 订单
+     * 票
      *
      */
-    public function orders()
+    public function show($id)
     {
-        $orders = Order::paginate(20);
+        $ticket = Ticket::findOrFail($id);
 
-        return view('ticket.orders', compact('orders'));
+        $qrcode = $this->app->qrcode->temporary('t_'.$id.'_'.Auth::id(), 60); # 1分钟
+
+        return view('ticket.show', compact('ticket', 'qrcode'));
+
     }
 
 

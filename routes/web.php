@@ -78,6 +78,8 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
         // 票
         Route::get('/pay/{id}', 'TicketController@order');
+        Route::get('/tickets', 'TicketController@index');
+        Route::get('/ticket/show/{$id}', 'TicketController@show');
     });
 
 });
@@ -87,9 +89,10 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    $a = array (0 => '5-2-1591668609',);
+    return view('welcome');
+    // $a = array (0 => '5-2-1591668609',);
 
-    $b = explode('-', $a);
+    // $b = explode('-', $a);
 });
 
 Route::get('/in', function () {

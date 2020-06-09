@@ -15,3 +15,11 @@
  :focus,input::-moz-focus-inner, button::-moz-focus-inner{
      outline: 0;
  }
+
+ .qrcode {
+    width: auto;
+    background: rgba(255, 255, 255, 0.5);
+    margin-top: -9em;
+    height: 9em;
+    padding-top: 0.5em;
+ }
