@@ -15,7 +15,7 @@
       </div>
       <div class="card-header">
         <button class="btn btn-primary float-right"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-        <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}</div>
+        <div class="card-title h5">ok</div>
         <div class="card-subtitle text-gray">Software and hardware</div>
       </div>
       <div class="card-body">An immersive, three-day experience focused on exploring the next generation of technology, mobile and beyond.</div>
