@@ -69,7 +69,7 @@ class TicketController extends Controller
             }
 
             ///////////// <- 建议在这里调用微信的【订单查询】接口查一下该笔订单的情况，确认是已经支付 /////////////
-            $real_resault = $this->payment->order->queryByOutTradeNumber("商户系统内部的订单号（".$message['out_trade_no']."）");
+            $real_resault = $this->payment->order->queryByOutTradeNumber("商户系统内部的订单号（out_trade_no）");
 
             Log::info($real_resault);
 
@@ -107,13 +107,15 @@ class TicketController extends Controller
 
         $order = Order::where('out_trade_no', $message['out_trade_no'])->firstOrFail();
 
-        $new = [
-            'user_id' => $p[0],
-            'expo_id' => $p[1],
-            'order_id' => $order->id,
-        ];
+        Log::info($p);
 
-        Ticket::create($new);
+        // $new = [
+        //     'user_id' => $p[0],
+        //     'expo_id' => $p[1],
+        //     'order_id' => $order->id,
+        // ];
+
+        // Ticket::create($new);
     }
 
     /**
