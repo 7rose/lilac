@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expo;
 use App\Order;
+use App\Ticket;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -99,7 +100,33 @@ class TicketController extends Controller
      */
     private function getTicket($notify)
     {
-        //
+        $p = explode(',', $notify->out_trade_no);
+
+        $new = [
+            'user_id' => $p[0],
+            'expo_id' => $p[1],
+        ];
+
+        Ticket::create($new);
+    }
+
+    /**
+     * 票
+     *
+     */
+    public function tickets()
+    {
+        $teckets = Ticket::all()->paginate(5);
+
+    }
+
+    /**
+     * 订单
+     *
+     */
+    public function orders()
+    {
+
     }
 
 

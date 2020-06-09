@@ -20,6 +20,8 @@ class UserController extends Controller
 
         $users = $this->choose('staff');
 
+        // return new UserCollection(User::paginate());
+
         return view('user.index', compact('users'));
     }
 
