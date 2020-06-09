@@ -9,7 +9,7 @@
       <div class="qrcode">
         <div class="visible-print text-center p-centered">
             @isset($url)
-            {!! QrCode::size(120)->color(60,68,82)->margin(1.5)->generate($url) !!}
+            {!! QrCode::size(120)->color(60,68,82)->margin(0.5)->generate($url) !!}
             @endisset
         </div>
       </div>
