@@ -11,7 +11,7 @@
         <div class="tile tile-centered">
             <div class="tile-content">
             <div class="tile-title">{{ show($t->expo->info, 'title') }}</div>
-            <small class="tile-subtitle text-gray">{{ face($t->user->name) }}{{ show($t->user->info, 'mobile.number') }}</small>
+            <small class="tile-subtitle text-gray">{{ show($t->user->ids, 'mobile.number') }}</small>
             <small class="tile-subtitle"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
             </div>
             <div class="tile-action">
