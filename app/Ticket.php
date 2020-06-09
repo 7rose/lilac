@@ -19,6 +19,26 @@ class Ticket extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\User', 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
+
+    /**
+     * user of a ticket
+     *
+     */
+    public function expo()
+    {
+        return $this->belongsTo('App\Expo', 'expo_id');
+    }
+
+    /**
+     * user of a ticket
+     *
+     */
+    public function order()
+    {
+        return $this->belongsTo('App\Order', 'order_id');
+    }
+
+
 }

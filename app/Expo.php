@@ -21,4 +21,13 @@ class Expo extends Model
         'info' => 'json',
         'conf' => 'json',
     ];
+
+    /**
+     * 票
+     *
+     */
+    public function tickets()
+    {
+        return $this->hasMany('App\Ticket', 'expo_id');
+    }
 }

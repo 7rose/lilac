@@ -58,7 +58,7 @@ class User extends Authenticatable
      */
     public function tickets()
     {
-        return $this->belongsTo('App\Ticket', 'user_id');
+        return $this->hasMany('App\Ticket', 'user_id');
     }
 
     /**
@@ -137,6 +137,5 @@ class User extends Authenticatable
 
         return $value;
     }
-
 
 }

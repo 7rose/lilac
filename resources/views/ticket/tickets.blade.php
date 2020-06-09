@@ -7,8 +7,8 @@
     <div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
     <a href="/expos/create" class="btn btn-secondary btn-block"><i class="fa fa-magic" aria-hidden="true"></i> 发布</a>
     <p></p>
-    @if (isset($expos) && count($expos))
-        @foreach ($expos as $e)
+    @if (isset($tickets) && count($tickets))
+        @foreach ($tickets as $e)
         <div class="tile tile-centered">
             <div class="tile-content">
             <div class="tile-title">{{ show($e->info, 'title', '') }}{!!$e->on ? ' <span class="text-success">[上线购票中!]</span>' : '' !!}</div>
@@ -31,7 +31,7 @@
     @endif
 
 
-    <div class="p-centered">{{ $expos->links() }} </div>
+    <div class="p-centered">{{ $tickets->links() }} </div>
     </div>
     <div>
     </div>

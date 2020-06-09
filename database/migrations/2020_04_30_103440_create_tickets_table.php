@@ -17,6 +17,7 @@ class CreateTicketsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('expo_id');
+            $table->foreignId('order_id');
             $table->jsonb('logs')->nullable();
             $table->boolean('used')->default(false);
             $table->boolean('afk')->default(false);

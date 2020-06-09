@@ -102,9 +102,12 @@ class TicketController extends Controller
     {
         $p = explode(',', $notify->out_trade_no);
 
+        $order = Order::where('out_trade_no', $notify->out_trade_no)->firstOrFail();
+
         $new = [
             'user_id' => $p[0],
             'expo_id' => $p[1],
+            'order_id' => $order->id,
         ];
 
         Ticket::create($new);
@@ -116,7 +119,7 @@ class TicketController extends Controller
      */
     public function tickets()
     {
-        $teckets = Ticket::all()->paginate(5);
+        $tickets = Ticket::paginate(20);
 
     }
 
@@ -126,7 +129,9 @@ class TicketController extends Controller
      */
     public function orders()
     {
+        $orders = Order::paginate(20);
 
+        return view('ticket.orders', compact('orders'));
     }
 
 

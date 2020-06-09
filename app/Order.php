@@ -12,5 +12,14 @@ class Order extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Tickets
+     *
+     */
+    public function ticket()
+    {
+        return $this->hasOne('App\Ticket', 'order_id');
+    }
 }
 
