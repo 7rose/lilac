@@ -9,7 +9,7 @@
                 <h1>{{ show($expo->info, 'title', '') }}</h1>
                 <p>{{ $expo->begin }} - {{ $expo->end }} </p>
                 <p>{{ show($expo->info, 'addr', '') }}</p>
-                <a href="/pay/{{$expo->id}}" class="btn"><i class="fa fa-magic" aria-hidden="true"></i> 立即抢票</a>
+                <a href="/pay/{{$expo->id}}" class="btn">¥ {{ show($expo->info, 'price', '') }} 惊喜抢票</a>
             </div>
         </div>
         @else
