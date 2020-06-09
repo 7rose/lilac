@@ -16,3 +16,11 @@
 
  :active{outline:none;}
  :-moz-focus-inner{outline:none;}
+
+ .qrcode {
+    width: auto;
+    background: rgba(255, 255, 255, 0.5);
+    margin-top: -9em;
+    height: 9em;
+    padding-top: 0.5em;
+ }
