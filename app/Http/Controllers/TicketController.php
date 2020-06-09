@@ -60,7 +60,9 @@ class TicketController extends Controller
      */
     function payCallback()
     {
-        $response = $this->payment->handleNotify(function($notify, $successful){
+        $app = app('wechat.official_account');
+
+        $response = $app->payment->handleNotify(function($notify, $successful){
             // 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
             $order = Order::where('out_trade_no', $notify->out_trade_no)->first();
 
