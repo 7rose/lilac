@@ -11,8 +11,8 @@
         <div class="tile tile-centered">
             <div class="tile-content">
             <div class="tile-title">{{ show($t->expo->info, 'title') }}</div>
-            <small class="tile-subtitle text-gray">{{ show($t->user->ids, 'mobile.number') }}</small>
-            <small class="tile-subtitle"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
+            <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }}</small><br>
+            <small class="tile-subtitle"><i class="fa fa-clock" aria-hidden="true"></i> {{ $t->expo->begin }} - {{ $t->expo->end }}</small>
             </div>
             <div class="tile-action">
             <a class="btn btn-link" href="/ticket/{{ $t->id }}">
