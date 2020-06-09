@@ -19,8 +19,8 @@
         <div class="card-subtitle text-gray">{{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }}后开展</div>
       </div>
       <div class="card-body">
-          <i class="fa fa-map-pin" aria-hidden="true"></i> {{ show($ticket->expo->info, 'addr') }}<br>
-          <i class="fa fa-clock-o" aria-hidden="true"></i> {{ $ticket->expo->begin }} 至 {{ $ticket->expo->end }}
+          <span class="text-success"><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{ show($ticket->expo->info, 'addr') }}<br>
+          <span class="text-success"><i class="fa fa-clock-o" aria-hidden="true"></i></span> {{ $ticket->expo->begin }} 至 {{ $ticket->expo->end }}
     </div>
     </div>
     @else
