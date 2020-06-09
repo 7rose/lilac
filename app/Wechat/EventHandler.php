@@ -122,7 +122,7 @@ class EventHandler implements EventHandlerInterface
         // 新票
         if(!$ticket->used) {
             $ticket->update([
-                'checked_by' => $operator->id,
+                // 'checked_by' => $operator->id,
                 'used' => true,
                 'logs' => [
                     ['time' => now(), 'do' => '检票'],
