@@ -15,10 +15,13 @@
       </div>
       <div class="card-header">
         <button class="btn btn-primary float-right"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-      <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}</div>
-        <div class="card-subtitle text-gray">Software and hardware</div>
+      <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($ticket->expo->info, 'price') }}</div>
+        <div class="card-subtitle text-gray">{{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }}后开展</div>
       </div>
-      <div class="card-body">An immersive, three-day experience focused on exploring the next generation of technology, mobile and beyond.</div>
+      <div class="card-body">
+          <i class="fa fa-map-pin" aria-hidden="true"></i> {{ show($ticket->expo->info, 'addr') }}<br>
+          {{ $ticket->expo->begin }} 至 {{ $ticket->expo->end }}
+    </div>
     </div>
     @else
 
