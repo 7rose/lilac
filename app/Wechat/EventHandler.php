@@ -125,7 +125,7 @@ class EventHandler implements EventHandlerInterface
                 // 'checked_by' => $operator->id,
                 'used' => true,
                 'logs' => [
-                    ['time' => now(), 'do' => '检票'],
+                    ['time' => now(), 'do' => '检票', 'by' => $operator->id,],
                 ],
             ]);
 
@@ -135,7 +135,7 @@ class EventHandler implements EventHandlerInterface
         }elseif($ticket->used && $ticket->afk) {
             $ticket->update([
                 'afk' => true,
-                'logs' => array_push($ticket->logs, ['time' => now(), 'do' => '临时离场']),
+                'logs' => array_push($ticket->logs, ['time' => now(), 'do' => '临时离场', 'by' =>$operator->id,]),
             ]);
 
             return "成功: 临时离场客户进场!";
