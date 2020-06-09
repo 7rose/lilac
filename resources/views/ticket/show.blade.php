@@ -20,7 +20,7 @@
       </div>
       <div class="card-body">
           <i class="fa fa-map-pin" aria-hidden="true"></i> {{ show($ticket->expo->info, 'addr') }}<br>
-          {{ $ticket->expo->begin }} 至 {{ $ticket->expo->end }}
+          <i class="fa fa-clock-o" aria-hidden="true"></i> {{ $ticket->expo->begin }} 至 {{ $ticket->expo->end }}
     </div>
     </div>
     @else
