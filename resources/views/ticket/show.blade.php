@@ -5,7 +5,7 @@
 <div class="column col-6 col-xs-12">
     @if (isset($ticket))
     <div class="card">
-      <div class="card-image"><img class="img-responsive" src="{{ asset('images/expo.jpg') }}" alt="macOS Sierra"></div>
+      <div class="card-image"><img class="img-responsive" src="{{ asset('images/expo-s.jpg') }}" alt="macOS Sierra"></div>
       <div class="qrcode">
         <div class="visible-print text-center p-centered">
             @isset($url)
