@@ -87,7 +87,9 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    //
+    $a= "商户系统内部的订单号（$b）";
+    $b = "fuck";
+    echo $a;
 });
 
 Route::get('/in', function () {
