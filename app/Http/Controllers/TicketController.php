@@ -107,8 +107,6 @@ class TicketController extends Controller
 
         $order = Order::where('out_trade_no', $message['out_trade_no'])->firstOrFail();
 
-        // Log::info($p);
-
         $new = [
             'user_id' => $p[0],
             'expo_id' => $p[1],
