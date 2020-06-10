@@ -18,7 +18,7 @@
       <div class="card-header">
         <button class="btn btn-success float-right"><i class="fa fa-refresh" aria-hidden="true"></i></button>
       <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($ticket->expo->info, 'price') }}</div>
-        <div class="card-subtitle text-gray">{{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }}后开展</div>
+        <div class="card-subtitle text-gray">No. {{ $ticket->id }} &nbsp;&nbsp;  {{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }}后开展</div>
       </div>
       <div class="card-body">
           <span class="text-success"><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{ show($ticket->expo->info, 'addr') }}<br>
