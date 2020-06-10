@@ -141,9 +141,7 @@ class TicketController extends Controller
     {
         $ticket = Ticket::findOrFail($id);
 
-        $this->authorize('view',Auth::user(),$ticket);
-
-
+        // $this->authorize('view',Auth::user(),$ticket);
 
         $url = false;
 
