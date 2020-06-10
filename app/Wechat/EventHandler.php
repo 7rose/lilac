@@ -50,7 +50,8 @@ class EventHandler implements EventHandlerInterface
                 if(count($a) == 3) {
                     $this->ad_array = ['created_by' => intval($a[2]), 'key' => $a[1]];
 
-                    return $this->ad(); # 推荐
+                    // return $this->ad(); # 推荐
+                    $this->ad();
                 }
 
             }elseif(Str::startsWith($this->msg['EventKey'], 't_')){
@@ -66,7 +67,8 @@ class EventHandler implements EventHandlerInterface
                 if(count($a) == 4) {
                     $this->ad_array = ['created_by' => intval($a[3]), 'key' => $a[2]];
 
-                    return $this->ad();
+                    // return $this->ad();
+                    $this->ad();
                 }
 
             }elseif(Str::startsWith($this->msg['EventKey'], 'qrscene_t_')){
