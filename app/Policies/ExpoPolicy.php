@@ -63,11 +63,8 @@ class ExpoPolicy
         }
 
         if(show($user->info, 'nick')) {
-            $nick = show($user->info, 'nick');
+            $nick = strtolower(show($user->info, 'nick'));
             $all_low = array_map('strtolower', $all);
-            Log::info($nick);
-            Log::info($all_low);
-
 
             if(in_array($nick, $all_low)) return true;
         }
