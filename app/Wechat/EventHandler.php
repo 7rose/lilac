@@ -152,7 +152,7 @@ class EventHandler implements EventHandlerInterface
         // 临时离场
         }elseif($ticket->used && $ticket->afk) {
             $ticket->update([
-                'afk' => true,
+                'afk' => false,
                 'logs' => array_push($ticket->logs, ['time' => now(), 'do' => '临时离场后进场', 'by' =>$operator->id,]),
             ]);
 
