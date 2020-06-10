@@ -32,7 +32,7 @@
 
 <script>
     window.onload = function(){
-        　counter = setInterval(refresh, 50000); // 50秒
+        // 　counter = setInterval(refresh, 50000); // 50秒
     }
 
     function refresh()

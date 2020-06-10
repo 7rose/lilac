@@ -142,18 +142,23 @@ class EventHandler implements EventHandlerInterface
         // 有权限
         // 新票
         if(!$ticket->used) {
+
+            $add = array_push($ticket->logs, ['time' => now(), 'do' => '检票', 'by' =>$operator->id]);
+
             $ticket->update([
                 'used' => true,
-                'logs' =>  array_push($ticket->logs, ['time' => now(), 'do' => '检票', 'by' =>$operator->id,]),
+                'logs' => $add,
             ]);
 
             return "检票成功!";
 
         // 临时离场
         }elseif($ticket->used && $ticket->afk) {
+            $add = array_push($ticket->logs, ['time' => now(), 'do' => '临时离场后进场', 'by' =>$operator->id]);
+
             $ticket->update([
                 'afk' => false,
-                'logs' => array_push($ticket->logs, ['time' => now(), 'do' => '临时离场后进场', 'by' =>$operator->id,]),
+                'logs' => $add,
             ]);
 
             return "成功: 临时离场客户进场!";
