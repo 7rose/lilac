@@ -7,7 +7,9 @@ use App\User;
 use App\Ticket;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use EasyWeChat\Kernel\Messages\News;
 use Illuminate\Support\Facades\Redis;
+use EasyWeChat\Kernel\Messages\NewsItem;
 use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 
 class EventHandler implements EventHandlerInterface
@@ -57,6 +59,7 @@ class EventHandler implements EventHandlerInterface
                 return $this->checkTicket(); # 检票
             }
         }elseif($this->msg['Event'] == 'subscribe'){
+
             // 扫推荐码关注
             if(Str::startsWith($this->msg['EventKey'], 'qrscene_ad_')){
                 $a = explode('_', $this->msg['EventKey']);
@@ -72,6 +75,18 @@ class EventHandler implements EventHandlerInterface
                 return $this->checkTicket(); # 检票
             }
 
+            $items = [
+                new NewsItem([
+                    'title'       => "MOOIBAY 欢迎您!",
+                    'description' => 'Find Your Dream',
+                    'url'         => 'https://wechat.mooibay.com',
+                    'image'       => asset('images/mooibay.jpg'),
+                    // ...
+                ]),
+            ];
+            $news = new News($items);
+            return $news;
+
             // 关注后推送
         }
 
@@ -83,7 +98,8 @@ class EventHandler implements EventHandlerInterface
      */
     private function ad()
     {
-        return $this->adCheck() ? "请于10分钟内完成手机认证,否则授权可能会过期" : "无效操作";
+        // return $this->adCheck() ? "请于10分钟内完成手机认证,否则授权可能会过期" : "无效操作";
+        return $this->adCheck();
 
     }
 
@@ -116,10 +132,6 @@ class EventHandler implements EventHandlerInterface
     {
         $ticket = Ticket::find($this->t_array['ticket_id']);
         $operator = User::where('ids->wechat->id', $this->msg['FromUserName'])->first();
-
-        Log::info($this->t_array);
-        Log::info($operator->id);
-        Log::info($ticket->id);
 
         if(!$ticket || !$operator || $ticket->user->id != $this->t_array['user_id']) return "失败: 无效操作";
 
