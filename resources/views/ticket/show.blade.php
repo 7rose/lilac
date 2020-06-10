@@ -8,11 +8,11 @@
       <div class="card-image"><img class="img-responsive" src="{{ asset('images/expo-s.jpg') }}" alt="macOS Sierra"></div>
       <div class="qrcode">
         <div class="visible-print text-center p-centered">
-            @isset($url && $url)
+            @if(isset($url) && $url)
             {!! QrCode::size(120)->color(60,68,82)->margin(1)->generate($url) !!}
             @else
             Find Your Dream!
-            @endisset
+            @endif
         </div>
       </div>
       <div class="card-header">
