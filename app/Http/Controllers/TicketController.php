@@ -115,7 +115,11 @@ class TicketController extends Controller
             'order_id' => $order->id,
         ];
 
-        Ticket::create($new);
+        $ticket = Ticket::create($new);
+
+        $ticket->update([
+            ['time' => now(), 'do' => '购票', 'by' => $p[0],],
+        ]);
     }
 
     /**
