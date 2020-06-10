@@ -6,6 +6,7 @@ use App\Expo;
 use App\User;
 use App\Helpers\Authorize;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ExpoPolicy
@@ -63,8 +64,10 @@ class ExpoPolicy
 
         if(show($user->info, 'nick')) {
             $nick = show($user->info, 'nick');
-
             $all_low = array_map('strtolower', $all);
+            Log::info($nick);
+            Log::info($all_low);
+
 
             if(in_array($nick, $all_low)) return true;
         }
