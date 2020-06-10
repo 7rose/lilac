@@ -102,6 +102,7 @@
                 </div>
             </li>
             <li>
+                <div class="panel-body">
                 @if (isset($user->tickets) && count($user->tickets))
                     @foreach ($user->tickets as $t)
                     <div class="tile tile-centered">
@@ -124,6 +125,7 @@
                     <p class="empty-subtitle">还没有记录</p>
                 </div>
                 @endif
+                </div>
             </li>
             <li>Lorem ipsum dolor sit amet, consectetur adipisicing.</li>
         </ul>
