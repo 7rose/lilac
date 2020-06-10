@@ -3,9 +3,10 @@
 namespace App\Wechat;
 
 use App\Org;
-use App\Ticket;
 use App\User;
+use App\Ticket;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 
@@ -114,7 +115,11 @@ class EventHandler implements EventHandlerInterface
     private function checkTicket()
     {
         $ticket = Ticket::find($this->t_array['ticket_id']);
-        $operator = User::where('ids->wehcat->id', $this->msg['FromUserName'])->first();
+        $operator = User::where('ids->wechat->id', $this->msg['FromUserName'])->first();
+
+        Log::info($this->t_array);
+        Log::info($operator->id);
+        Log::info($ticket->id);
 
         if(!$ticket || !$operator || $ticket->user->id != $this->t_array['user_id']) return "失败: 无效操作";
 
