@@ -14,6 +14,8 @@ class ExpoController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAll', Expo::class);
+
         $expos = Expo::latest()->paginate(15);
         return view('expo.index', compact('expos'));
     }
@@ -24,6 +26,8 @@ class ExpoController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('viewAll', Expo::class);
+
         $expo = Expo::findOrFail($id);
         return view('expo.show', compact('expo'));
     }
@@ -36,6 +40,8 @@ class ExpoController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Expo::class);
+
         return view('expo.create');
     }
 
@@ -45,6 +51,8 @@ class ExpoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Expo::class);
+
         $request->validate([
             'title' => ['required','string', 'min:4', 'max:16'],
             'addr' => ['required', 'min:6', 'max:100'],
@@ -125,6 +133,8 @@ class ExpoController extends Controller
      */
     public function allow(Request $request, $id)
     {
+        $this->authorize('create', Expo::class);
+
         $on_line = Expo::findOrFail($id);
 
         $on = false;

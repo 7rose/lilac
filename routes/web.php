@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use PhpParser\Node\Expr\Print_;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,7 +110,8 @@ Route::get('/test', function () {
 
 Route::get('/in', function () {
     // $user = App\User::find(5);
-    $user = App\User::find(6);
+    // $user = App\User::find(1);
+    $user = App\User::find(2);
     // // $user = App\User::find(1);
     // // $user = App\User::find(8);
     Auth::login($user);
