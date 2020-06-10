@@ -34,64 +34,100 @@
           <div class="panel-subtitle">{{ face($user)->mobile }}</div>
           </div>
           <nav class="panel-nav">
-            <ul class="tab tab-block">
-              <li class="tab-item active"><a href="#panels"><i class="fa fa-address-card-o" aria-hidden="true"></i></a></li>
-              <li class="tab-item"><a href="#panels"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-              <li class="tab-item"><a href="#panels"><i class="fa fa-credit-card" aria-hidden="true"></i></a></li>
-              <li class="tab-item"><a href="#panels"><i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
+             <ul class="tab tab-block" data-tabs="tabs1">
+                <li class="tab-item active">
+                    <a href="#">资料</a>
+                </li>
+                <li class="tab-item">
+                    <a href="#">票</a>
+                </li>
+                <li class="tab-item">
+                    <a href="#">订单</a>
+                </li>
             </ul>
           </nav>
-          <div class="panel-body">
-                @if(isset($vcard) && $vcard !='')
-                <div class="visible-print text-center p-centered">
-                    {!! QrCode::size(260)->color(60,68,82)->generate($vcard); !!}
+
+        <ul data-tabs-content="tabs1">
+            <li>
+                <div class="panel-body">
+                    @if(isset($vcard) && $vcard !='')
+                    <div class="visible-print text-center p-centered">
+                        {!! QrCode::size(260)->color(60,68,82)->generate($vcard); !!}
+                    </div>
+                    @endif
+                <div class="tile tile-centered">
+                  <div class="tile-content">
+                    <div class="tile-title text-bold">邮件</div>
+                    <div class="tile-subtitle">{{ show($user->ids, 'email.addr', 'hi@mooibay.com') }}</div>
+                  </div>
+                  <div class="tile-action">
+                    <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
+                  </div>
                 </div>
-                @endif
-            <div class="tile tile-centered">
-              <div class="tile-content">
-                <div class="tile-title text-bold">邮件</div>
-                <div class="tile-subtitle">{{ show($user->ids, 'email.addr', 'hi@mooibay.com') }}</div>
-              </div>
-              <div class="tile-action">
-                <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
-              </div>
-            </div>
-            <div class="tile tile-centered">
-                <div class="tile-content">
-                  <div class="tile-title text-bold">职务</div>
-                    <div class="tile-subtitle">
-                        @if (isset($user->conf['roles']) && count($user->conf['roles']))
-                            @foreach ($user->conf['roles'] as $r)
-                            @if(isset($r['org']) && $r['org']->show)
-                                <span class="chip">
-                                    {{ $r['org']->info['name'] }}
-                                    @if(isset($r['role']) && $r['role']->show)
-                                    : {{ $r['role']->info['name'] }}
-                                    @endif
-                                </span>
+                <div class="tile tile-centered">
+                    <div class="tile-content">
+                      <div class="tile-title text-bold">职务</div>
+                        <div class="tile-subtitle">
+                            @if (isset($user->conf['roles']) && count($user->conf['roles']))
+                                @foreach ($user->conf['roles'] as $r)
+                                @if(isset($r['org']) && $r['org']->show)
+                                    <span class="chip">
+                                        {{ $r['org']->info['name'] }}
+                                        @if(isset($r['role']) && $r['role']->show)
+                                        : {{ $r['role']->info['name'] }}
+                                        @endif
+                                    </span>
+                                @endif
+                                @endforeach
                             @endif
-                            @endforeach
-                        @endif
+                        </div>
+                    </div>
+                    <div class="tile-action">
+
                     </div>
                 </div>
-                <div class="tile-action">
-
                 </div>
-            </div>
-          </div>
-          <div class="panel-footer">
-        @can('update', $user, $user)
-            <a class="btn btn-primary btn-block" href="/update/{{ $user->id }}"> 更新</a>
-        @endcan
+                <div class="panel-footer">
+                @can('update', $user, $user)
+                <a class="btn btn-primary btn-block" href="/update/{{ $user->id }}"> 更新</a>
+                @endcan
 
-        @can('lock-user',$user)
-            @if($user->locked)
-                <a class="btn btn btn-success btn-block mt-2" href="/unlock/{{ $user->id }}"> 解锁</a>
-            @else
-                <a class="btn btn-secondary btn-block mt-2" href="/lock/{{ $user->id }}"> 锁定</a>
-            @endif
-        @endcan
-          </div>
+                @can('lock-user',$user)
+                @if($user->locked)
+                    <a class="btn btn btn-success btn-block mt-2" href="/unlock/{{ $user->id }}"> 解锁</a>
+                @else
+                    <a class="btn btn-secondary btn-block mt-2" href="/lock/{{ $user->id }}"> 锁定</a>
+                @endif
+                @endcan
+                </div>
+            </li>
+            <li>
+                @if (isset($user->tickets) && count($user->tickets))
+                    @foreach ($user->tickets as $t)
+                    <div class="tile tile-centered">
+                        <div class="tile-content">
+                        <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
+                        <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
+                        <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} - {{ $t->expo->end }}</small>
+                        </div>
+                        <div class="tile-action">
+                        <a class="btn btn-link" href="/ticket/{{ $t->id }}">
+                            <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
+                        </a>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    @endforeach
+                @else
+                <div class="empty">
+                    <div class="empty-icon"><h1><i class="fa fa-spinner" aria-hidden="true"></i></h1></div>
+                    <p class="empty-subtitle">还没有记录</p>
+                </div>
+                @endif
+            </li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing.</li>
+        </ul>
+
         </div>
     </div>
 </div>
