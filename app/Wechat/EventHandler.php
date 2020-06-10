@@ -140,7 +140,7 @@ class EventHandler implements EventHandlerInterface
         // 有权限
         // 新票
         if(!$ticket->used) {
-
+            Log::info($ticket->logs);
             $add = $ticket->logs[] = ['time' => time(), 'do' => '检票', 'by' => $operator->id];
 
             $ticket->update([
