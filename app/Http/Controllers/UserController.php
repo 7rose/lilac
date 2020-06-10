@@ -180,28 +180,31 @@ class UserController extends Controller
 
         $vcard = '';
 
-        if(Auth::user()->id == $user->id || show($user->info, 'public')) {
-            $position = [];
-            $roles_array = $user->conf['roles'];
+        if($user->can('viewAll')) {
+             if(Auth::user()->id == $user->id || show($user->info, 'public')) {
+                $position = [];
+                $roles_array = $user->conf['roles'];
 
-            if(is_array($roles_array) && count($roles_array)) {
-                foreach ($roles_array as $role) {
-                    if($role['org']->show) $position[] = utf8_encode($role['role']->info['name']);
+                if(is_array($roles_array) && count($roles_array)) {
+                    foreach ($roles_array as $role) {
+                        if($role['org']->show) $position[] = utf8_encode($role['role']->info['name']);
+                    }
                 }
+
+                $position = count($position) ? implode('.', $position) : '';
+
+                $vcard = 'BEGIN:VCARD
+                VERSION:4.0
+                N:'.utf8_encode(show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '')))).'
+                ORG:'.utf8_encode('海上牧云').'
+                TITLE:'.$position.'
+                EMAIL:'.show($user->ids, 'email.addr', 'hi@mooibay.com').'
+                TEL:'.show($user->ids, 'mobile.number', '').'
+                REV:'.now().'
+                END:VCARD';
             }
-
-            $position = count($position) ? implode('.', $position) : '';
-
-            $vcard = 'BEGIN:VCARD
-            VERSION:4.0
-            N:'.utf8_encode(show($user->info, 'name', show($user->info, 'nick', show($user->ids, 'wechat.nickname', '')))).'
-            ORG:'.utf8_encode('海上牧云').'
-            TITLE:'.$position.'
-            EMAIL:'.show($user->ids, 'email.addr', 'hi@mooibay.com').'
-            TEL:'.show($user->ids, 'mobile.number', '').'
-            REV:'.now().'
-            END:VCARD';
         }
+
 
 
         return view('user.show', compact('user', 'vcard'));
