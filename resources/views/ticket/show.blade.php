@@ -11,7 +11,7 @@
             @if(isset($url) && $url)
             {!! QrCode::size(120)->color(60,68,82)->margin(1)->generate($url) !!}
             @else
-            Find Your Dream!
+            <img src="{{ asset('images/void.svg') }}" alt="void" class="void"/>
             @endif
         </div>
       </div>
