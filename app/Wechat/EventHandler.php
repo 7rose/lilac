@@ -157,7 +157,7 @@ class EventHandler implements EventHandlerInterface
             // $ticket->logs[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
 
             $ticket->afk = false;
-            $ticket->logs = array_push($ticket->logs, ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id]);
+            $ticket->logs = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
             $ticket->save();
             // $ticket->update([
             //     'afk' => false,
