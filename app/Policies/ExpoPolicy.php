@@ -40,6 +40,16 @@ class ExpoPolicy
         return $this->auth->need($user, 'staff');
     }
 
+    // /**
+    //  * Create a new policy instance.
+    //  *
+    //  * @return void
+    //  */
+    // public function view(User $user, Expo $expo)
+    // {
+    //     return $this->auth->fit($user, 'operation', 'expo_manager');
+    // }
+
     /**
      * 检票
      *
