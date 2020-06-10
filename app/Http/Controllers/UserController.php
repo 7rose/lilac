@@ -170,7 +170,7 @@ class UserController extends Controller
      */
     public function show($id=0)
     {
-        $this->authorize('viewAll', User::class);
+        // $this->authorize('viewAll', User::class);
 
         if($id == 0) {
             $user = Auth::user();
