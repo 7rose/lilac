@@ -88,30 +88,11 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
+    $a = ['King', 'gOD'];
 
-    $a = 'b,  c, d';
+    $a = array_map('strtolower', $a);
 
-    $b = explode(',', $a);
-
-    print_r($b);
-
-    // $a = [[1,2]];
-    // $a[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => 1];
-    // print_r($a);
-    // $a = App\Expo::find(1);
-
-    // if($a->end > now()){
-    //     echo 'good';
-    // }else{
-    //     echo 'fuck';
-    // }
-    // $arr = [[1,2]];
-    // array_push($arr, [3,4]);
-    // print_r($arr);
-    // return view('welcome');
-    // $a = array (0 => '5-2-1591668609',);
-
-    // $b = explode('-', $a);
+    print_r($a);
 });
 
 Route::get('/in', function () {
