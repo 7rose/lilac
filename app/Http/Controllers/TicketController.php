@@ -113,13 +113,10 @@ class TicketController extends Controller
             'user_id' => $p[0],
             'expo_id' => $p[1],
             'order_id' => $order->id,
+            'logs' => [['time' => time(), 'do' => '购票', 'by' => $p[0]]],
         ];
 
-        $ticket = Ticket::create($new);
-
-        $ticket->update([
-            ['time' => time(), 'do' => '购票', 'by' => $p[0],],
-        ]);
+        Ticket::create($new);
     }
 
     /**
