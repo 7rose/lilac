@@ -141,9 +141,11 @@ class EventHandler implements EventHandlerInterface
         // 新票
         if(!$ticket->used) {
             // Log::info($ticket->logs);
-            $ticket->used = true;
-            $ticket->logs[] = ['time' => time(), 'do' => '检票', 'by' => $operator->id];
+            $add = $ticket->logs;
+            $add[] = ['time' => time(), 'do' => '检票', 'by' => $operator->id];
 
+            $ticket->used = true;
+            $ticket->logs = $add;
             $ticket->save();
 
             // $ticket->update([
