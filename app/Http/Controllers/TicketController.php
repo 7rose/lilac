@@ -118,7 +118,7 @@ class TicketController extends Controller
         $ticket = Ticket::create($new);
 
         $ticket->update([
-            ['time' => now(), 'do' => '购票', 'by' => $p[0],],
+            ['time' => time(), 'do' => '购票', 'by' => $p[0],],
         ]);
     }
 

@@ -143,7 +143,7 @@ class EventHandler implements EventHandlerInterface
         // 新票
         if(!$ticket->used) {
 
-            $add = json_decode($ticket->logs, true)[] = ['time' => now(), 'do' => '检票', 'by' =>$operator->id];
+            $add = $ticket->logs[] = ['time' => time(), 'do' => '检票', 'by' => $operator->id];
 
             $ticket->update([
                 'used' => true,
@@ -154,7 +154,7 @@ class EventHandler implements EventHandlerInterface
 
         // 临时离场
         }elseif($ticket->used && $ticket->afk) {
-            $add = json_decode($ticket->logs, true)[] = ['time' => now(), 'do' => '临时离场后进场', 'by' =>$operator->id];
+            $add = $ticket->logs[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
 
             $ticket->update([
                 'afk' => false,
