@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="card-header">
-        <button class="btn btn-success float-right"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+        <button onclick="javascript:refresh()" class="btn btn-success float-right"><i class="fa fa-refresh" aria-hidden="true"></i></button>
       <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($ticket->expo->info, 'price') }}</div>
         <div class="card-subtitle text-gray">No. {{ $ticket->id }} &nbsp;&nbsp;  {{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }}后开展</div>
       </div>
@@ -35,6 +35,11 @@
     　　$("#name").click(function(){
     　　　　//adding your code here
     　　});
+    }
+
+    function refresh()
+    {
+        window.location.reload();
     }
 </script>
 
