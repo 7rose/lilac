@@ -140,7 +140,7 @@ class TicketController extends Controller
 
         $url = false;
 
-        if((!$ticket->used || ($ticket->used && $ticket->akf))){
+        if(($ticket->used == false || ($ticket->used == true && $ticket->akf == true)) && $ticket->expo->end > now()){
             $qrcode = $this->app->qrcode->temporary('t_'.Auth::id().'_'.$id, 60); # 1分钟
             $url = $qrcode['url'];
         }
