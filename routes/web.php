@@ -89,9 +89,15 @@ Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
 
-    $a = [[1,2]];
-    $a[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => 1];
-    print_r($a);
+    $a = 'b,  c, d';
+
+    $b = explode(',', $a);
+
+    print_r($b);
+
+    // $a = [[1,2]];
+    // $a[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => 1];
+    // print_r($a);
     // $a = App\Expo::find(1);
 
     // if($a->end > now()){

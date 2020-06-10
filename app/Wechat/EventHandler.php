@@ -10,10 +10,13 @@ use Illuminate\Support\Facades\Log;
 use EasyWeChat\Kernel\Messages\News;
 use Illuminate\Support\Facades\Redis;
 use EasyWeChat\Kernel\Messages\NewsItem;
+use Illuminate\Auth\Access\HandlesAuthorization;
 use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 
 class EventHandler implements EventHandlerInterface
 {
+    use HandlesAuthorization;
+
     protected $msg, $ad_array;
     protected $t_array;
 
@@ -134,6 +137,8 @@ class EventHandler implements EventHandlerInterface
     {
         $ticket = Ticket::find($this->t_array['ticket_id']);
         $operator = User::where('ids->wechat->id', $this->msg['FromUserName'])->first();
+
+        if($operator->cannot('checkTicket', $operator, $ticket->expo)) return "请客户在开展前将票出示给工作人员";
 
         if(!$ticket || !$operator) return "失败: 无效操作";
 
