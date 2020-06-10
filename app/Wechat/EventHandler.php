@@ -154,11 +154,12 @@ class EventHandler implements EventHandlerInterface
 
         // 临时离场
         }elseif($ticket->used && $ticket->afk) {
-            $add = $ticket->logs[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
+            $ticket->logs[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
+
 
             $ticket->update([
                 'afk' => false,
-                'logs' => $add,
+                'logs' => $ticket->logs,
             ]);
 
             return "成功: 临时离场客户进场!";
