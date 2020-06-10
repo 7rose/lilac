@@ -125,6 +125,8 @@ class TicketController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAll', Ticket::class);
+
         $tickets = Ticket::paginate(20);
 
         return view('ticket.index', compact('tickets'));
@@ -137,7 +139,10 @@ class TicketController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', Ticket::class);
+
         $ticket = Ticket::findOrFail($id);
+
 
         $url = false;
 

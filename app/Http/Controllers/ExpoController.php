@@ -32,8 +32,6 @@ class ExpoController extends Controller
         return view('expo.show', compact('expo'));
     }
 
-
-
     /**
      * 发布
      *
