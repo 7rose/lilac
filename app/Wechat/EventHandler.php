@@ -137,8 +137,6 @@ class EventHandler implements EventHandlerInterface
 
         if(!$ticket || !$operator) return "失败: 无效操作";
 
-        Log::info($this->t_array);
-
         // 有权限
         // 新票
         if(!$ticket->used) {
@@ -155,6 +153,7 @@ class EventHandler implements EventHandlerInterface
         // 临时离场
         }elseif($ticket->used && $ticket->afk) {
             // $ticket->logs[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
+            Log::info($ticket->logs);
 
             $ticket->afk = false;
             $ticket->logs = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
