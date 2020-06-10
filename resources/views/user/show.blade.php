@@ -35,10 +35,10 @@
           </div>
           <nav class="panel-nav">
              <ul class="tab tab-block" data-tabs="tabs1">
-                <li class="tab-item active">
+                <li class="tab-item {{ isset($user->tickets) && count($user->tickets) ?  '' : 'active'}}">
                     <a href="#">资料</a>
                 </li>
-                <li class="tab-item">
+            <li class="tab-item {{ isset($user->tickets) && count($user->tickets) ? 'active' : '' }}">
                     <a href="#">票</a>
                 </li>
                 <li class="tab-item">
