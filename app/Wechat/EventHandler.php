@@ -138,7 +138,7 @@ class EventHandler implements EventHandlerInterface
         $ticket = Ticket::find($this->t_array['ticket_id']);
         $operator = User::where('ids->wechat->id', $this->msg['FromUserName'])->first();
 
-        if(!$operator->can('checkTicket', $operator, $ticket->expo)) return "请客户在开展前将票出示给工作人员";
+        if(!$operator->can('checkTicket', $ticket->expo)) return "请客户在开展前将票出示给工作人员";
 
         if(!$ticket || !$operator) return "失败: 无效操作";
 
