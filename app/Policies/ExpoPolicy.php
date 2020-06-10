@@ -48,8 +48,6 @@ class ExpoPolicy
 
         if($this->auth->fit($user, 'operation', 'ticket_leader')) return true;
 
-        $mc = pick($expo->conf->manager);
-
         $manager = show($expo->conf, 'manager');
         $checker = show($expo->conf, 'checker');
 
