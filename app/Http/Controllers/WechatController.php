@@ -8,6 +8,7 @@ use App\Wechat\EventHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use EasyWeChat\Kernel\Messages\Message;
 use Overtrue\Socialite\User as SocialiteUser;
 
 class WechatController extends Controller
@@ -27,7 +28,7 @@ class WechatController extends Controller
     {
 
         // $this->app->server->push(EventHandler::class, Message::EVENT);
-        $this->app->server->push(EventHandler::class);
+        $this->app->server->push(EventHandler::class, Message::EVENT);
 
         $response = $this->app->server->serve();
         return $response;
