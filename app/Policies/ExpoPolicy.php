@@ -54,8 +54,17 @@ class ExpoPolicy
         $m = explode(',', $manager);
         $c = explode(',', $checker);
 
-        if(Arr::has($m, show($user->ids, 'mobile.number')) || Arr::has($m, show($user->info, 'nick'))) return true;
-        if(Arr::has($c, show($user->ids, 'mobile.number')) || Arr::has($c, show($user->info, 'nick'))) return true;
+        $all = array_merge($m, $c);
+
+        if(show($user->ids, 'mobile.number')) {
+            $mobile = show($user->ids, 'mobile.number');
+            if(in_array($mobile, $all)) return true;
+        }
+
+        if(show($user->info, 'nick')) {
+            $nick = strtolower(show($user->info, 'nick'));
+            if(in_array($nick, $all)) return true;
+        }
 
         return false;
     }
