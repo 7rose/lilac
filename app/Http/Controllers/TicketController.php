@@ -139,7 +139,7 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        $this->authorize('view', Ticket::class);
+        $this->authorize('view',Auth::user(),Ticket::class);
 
         $ticket = Ticket::findOrFail($id);
 
