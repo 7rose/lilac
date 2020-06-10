@@ -137,6 +137,8 @@ class EventHandler implements EventHandlerInterface
 
         if(!$ticket || !$operator) return "失败: 无效操作";
 
+        Log::info($this->t_array);
+
         // 有权限
         // 新票
         if(!$ticket->used) {
