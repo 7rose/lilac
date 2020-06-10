@@ -79,10 +79,10 @@ class EventHandler implements EventHandlerInterface
 
             $items = [
                 new NewsItem([
+                    'image'       => asset('images/mooibay.jpg'),
                     'title'       => "MOOIBAY 欢迎您!",
                     'description' => 'Find Your Dream',
                     'url'         => 'https://wechat.mooibay.com',
-                    'image'       => asset('images/mooibay.jpg'),
                     // ...
                 ]),
             ];
