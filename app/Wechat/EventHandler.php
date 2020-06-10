@@ -148,25 +148,17 @@ class EventHandler implements EventHandlerInterface
             $ticket->logs = $add;
             $ticket->save();
 
-            // $ticket->update([
-            //     'used' => true,
-            //     'logs' => $add,
-            // ]);
-
             return "检票成功!";
 
         // 临时离场
         }elseif($ticket->used && $ticket->afk) {
-            // $ticket->logs[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
-            Log::info($ticket->logs);
+
+            $add = $ticket->logs;
+            $add[] = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
 
             $ticket->afk = false;
-            $ticket->logs = ['time' => time(), 'do' => '临时离场后进场', 'by' => $operator->id];
+            $ticket->logs = $add;
             $ticket->save();
-            // $ticket->update([
-            //     'afk' => false,
-            //     'logs' => $ticket->logs,
-            // ]);
 
             return "成功: 临时离场客户进场!";
         }
