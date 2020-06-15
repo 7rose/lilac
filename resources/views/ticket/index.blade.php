@@ -9,7 +9,7 @@
         @foreach ($tickets as $t)
         <p></p>
         <div class="card">
-            <div class="tile tile-centered ticket-content">
+            <div class="tile tile-centered">
                 <div class="tile-content">
                     <div class="tile-title">&nbsp;&nbsp; {{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
                     <small class="tile-subtitle text-gray">&nbsp;&nbsp; <i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
@@ -31,8 +31,6 @@
         <p class="empty-subtitle">还没有记录</p>
     </div>
     @endif
-
-
     <div class="p-centered">{{ $tickets->links() }} </div>
     </div>
     <div>
