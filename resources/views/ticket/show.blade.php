@@ -85,7 +85,14 @@
       <div class="modal-footer">
         <input class="form-input mt-2 mobile" id="mobile" name="mobile" minlength="11" maxlength="11" type="number" placeholder="受赠人手机号.." required>
         <p id="info" name="mobile" class="form-input-hint"></p>
-        <a href="javacript:trans()" class="btn btn-primary">我完全清楚了, 继续</a>
+        <div class="form-group">
+            <label class="form-checkbox">
+                <input id="terms" type="checkbox" checked onchange="javascript:terms()">
+                <i class="form-icon"></i> 阅读并同意 <a href="#">《用户协议》</a>
+                <p id="info" name="terms" class="form-input-hint"></p>
+            </label>
+        </div>
+        <a href="javacript:trans()" id="next" class="btn btn-primary">我完全清楚了, 继续</a>
       </div>
     </div>
   </div>
@@ -100,9 +107,25 @@
         window.location.reload();
     }
 
+    function terms()
+    {
+        var agree = $("#terms").is(':checked');
+        if(!agree) {
+            $("#next").attr('disabled',true);
+        }else{
+            $("#next").attr('disabled',false);
+        }
+    }
+
     function trans()
     {
-        alert('fnk');
+        var mobile = $("#mobile").val();
+        var terms = $("#terms").val();
+
+        if(!(/^1[3456789]\d{9}$/.test(mobile))){
+            $("#info").html("手机号不正确");
+            return false;
+        }
     }
 </script>
 
