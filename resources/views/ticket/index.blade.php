@@ -8,7 +8,7 @@
         @if (isset($tickets) && count($tickets))
         @foreach ($tickets as $t)
         <p></p>
-        <div class="card">
+        <div class="panel">
             <div class="tile tile-centered ticket-content">
                 <div class="tile-content">
                     <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
