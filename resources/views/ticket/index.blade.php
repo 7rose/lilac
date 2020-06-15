@@ -9,7 +9,6 @@
         @foreach ($tickets as $t)
         <p></p>
         <div class="card">
-            <div class="ticket-main">
             <div class="tile tile-centered ticket-content">
                 <div class="tile-content">
                 <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
@@ -24,7 +23,6 @@
                         <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
                     </a>
                 </div>
-            </div>
             </div>
         </div>
         @endforeach
