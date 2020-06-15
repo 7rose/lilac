@@ -85,7 +85,8 @@
         </div>
       </div>
       <div class="modal-footer">
-          <input type="number" class="form-input mobile text-success" maxlength="11" minlength="11" placeholder="受赠人手机号..."/>
+        <input class="form-input mt-2 mobile" id="mobile" name="mobile" type="number" placeholder="受赠人手机号.." autofocus>
+        <p id="info" name="mobile" class="form-input-hint"></p>
         <a href="#" class="btn btn-primary">我完全清楚赠送后果, 开始吧</a>
       </div>
     </div>
