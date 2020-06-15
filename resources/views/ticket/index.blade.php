@@ -8,7 +8,8 @@
         @if (isset($tickets) && count($tickets))
         @foreach ($tickets as $t)
         <p></p>
-        <div class="card ticket-main">
+        <div class="card">
+            <div class="ticket-main">
             <div class="tile tile-centered ticket-content">
                 <div class="tile-content">
                 <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
@@ -16,11 +17,14 @@
                 <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} <br> {{ $t->expo->end }}</small>
             </div>
             <div class="tile-action">
-                    <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
+                    <div>
+                        <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
+                    </div>
                     <a class="btn btn-link" href="/ticket/{{ $t->id }}">
                         <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
                     </a>
                 </div>
+            </div>
             </div>
         </div>
         @endforeach
