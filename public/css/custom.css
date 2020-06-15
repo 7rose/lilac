@@ -33,7 +33,11 @@
   height: 100px;
 }
 
-.main-ticket {
+.ticket-main {
   padding: 0.1em;
+}
+
+ticket-content {
+  margin-left: 0.1em;
 }
 
