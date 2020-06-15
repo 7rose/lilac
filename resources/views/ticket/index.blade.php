@@ -19,7 +19,7 @@
             <div class="tile-action">
 
                     <a class="btn btn-link btn-lg ticket-btn" href="/ticket/{{ $t->id }}">
-                        <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
+                        <h5><i class="fa fa-qrcode" aria-hidden="true"></i> &nbsp;&nbsp; </h5>
                     </a>
                 </div>
             </div>
