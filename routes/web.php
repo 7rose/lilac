@@ -88,7 +88,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    //
+    return view('welcome');
 });
 
 Route::get('/in', function () {

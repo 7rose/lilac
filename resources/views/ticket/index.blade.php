@@ -14,10 +14,11 @@
             <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
             <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} - {{ $t->expo->end }}</small>
             </div>
+        <img src="{{ asset('images/line.svg') }}" alt="">
             <div class="tile-action">
-            <a class="btn btn-link" href="/ticket/{{ $t->id }}">
-                <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
-            </a>
+                <a class="btn btn-link" href="/ticket/{{ $t->id }}">
+                    <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
+                </a>
             </div>
         </div>
         <div class="divider"></div>
