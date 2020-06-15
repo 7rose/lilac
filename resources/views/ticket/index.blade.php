@@ -9,12 +9,12 @@
         @foreach ($tickets as $t)
         <p></p>
         <div class="card">
-            <div class="tile tile-centered ticket-content">
-                <div class="tile-content">
-                <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
-                <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
-                <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} <br> {{ $t->expo->end }}</small>
-            </div>
+            <div class="tile tile-centered">
+                <div class="tile-content  ticket-content">
+                    <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
+                    <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
+                    <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} <br> {{ $t->expo->end }}</small>
+                </div>
             <div class="tile-action">
                     <div>
                         <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
