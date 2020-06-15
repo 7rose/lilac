@@ -15,7 +15,7 @@
                     <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
                     <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} <br> {{ $t->expo->end }}</small>
                 </div>
-                <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
+            <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
             <div class="tile-action">
 
                     <a class="btn btn-link btn-lg" href="/ticket/{{ $t->id }}">
