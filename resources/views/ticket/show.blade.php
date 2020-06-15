@@ -67,18 +67,21 @@
     <div class="modal-container">
       <div class="modal-header">
         <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
-        <div class="modal-title h5">温馨提醒</div>
+        <div class="modal-title h5">温馨提示</div>
       </div>
       <div class="modal-body">
         <div class="content">
             <div class="toast toast-warning">
             <button class="btn btn-clear float-right"></button>
-            您正在赠送此票!
+            您正在赠送此票! 您需要了解并同意以下几点:<br>
+            1. 票赠送成功以后无法撤销!<br>
+            2. 受赠人手机号输入错误的, 票可能无法找回<br>
+            3. 本系统不支持付费转让
             </div>
         </div>
       </div>
       <div class="modal-footer">
-        确定
+        <a href="#" class="btn btn-primary">我完全清楚赠送后果, 开始吧</a>
       </div>
     </div>
   </div>
