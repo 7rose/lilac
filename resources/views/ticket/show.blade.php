@@ -25,6 +25,18 @@
           <span class="text-success"><i class="fa fa-clock-o" aria-hidden="true"></i></span> {{ $ticket->expo->begin }} ({{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }})
     </div>
     </div>
+    <div class="card-footer">
+        <div class="timeline">
+            <div class="timeline-item" id="timeline-example-1">
+              <div class="timeline-left">
+                <a class="timeline-icon" href="#timeline-example-1"></a>
+              </div>
+              <div class="timeline-content">
+                <!-- tiles structure -->
+              </div>
+            </div>
+        </div>
+    </div>
     @else
 
     @endif
