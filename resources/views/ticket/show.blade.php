@@ -62,7 +62,7 @@
     @endif
   </div>
 
-  <div class="modal" id="modal_confirm">
+  <div class="modal modal-lg" id="modal_confirm">
     <a href="#close" class="modal-overlay" aria-label="Close"></a>
     <div class="modal-container">
       <div class="modal-header">
