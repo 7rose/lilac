@@ -85,7 +85,7 @@
       <div class="modal-footer">
         <input class="form-input mt-2 mobile" id="mobile" name="mobile" minlength="11" maxlength="11" type="number" placeholder="受赠人手机号.." required>
         <p id="info" name="mobile" class="form-input-hint"></p>
-        <a href="#" class="btn btn-primary">我完全清楚了, 确定赠送</a>
+        <a href="javacript:trans()" class="btn btn-primary">我完全清楚了, 继续</a>
       </div>
     </div>
   </div>
@@ -98,6 +98,11 @@
     function refresh()
     {
         window.location.reload();
+    }
+
+    function trans()
+    {
+        alert('fnk');
     }
 </script>
 
