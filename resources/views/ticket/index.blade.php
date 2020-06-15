@@ -13,7 +13,7 @@
                 <div class="tile-content">
                     <div class="tile-title">&nbsp;&nbsp; {{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
                     <small class="tile-subtitle text-gray">&nbsp;&nbsp; <i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
-                    <small class="tile-subtitle">&nbsp;&nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }}/small>
+                    <small class="tile-subtitle">&nbsp;&nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
                 </div>
             <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
             <div class="tile-action">
