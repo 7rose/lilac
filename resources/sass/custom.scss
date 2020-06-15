@@ -25,6 +25,10 @@
     padding-top: 0.5em;
  }
 
+ .ticket-b {
+     border: gray;
+ }
+
 
  @mixin leftSawtoothBorder(
   $height, // 优惠券的高度

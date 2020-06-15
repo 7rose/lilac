@@ -29,6 +29,10 @@
   padding-top: 0.5em;
 }
 
+.ticket-b {
+  border: gray;
+}
+
 .main_ticket {
   height: 600px;
   border: 6px solid white;
