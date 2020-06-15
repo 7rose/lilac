@@ -30,8 +30,7 @@
 }
 
 .ticket-line {
-  height: 100px;
-  margin-left: 1em;
+  height: 100%;
 }
 
 .ticket-main {
