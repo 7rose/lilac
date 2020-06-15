@@ -85,6 +85,7 @@
         </div>
       </div>
       <div class="modal-footer">
+          <input type="number" maxlength="11" minlength="11" placeholder="受赠人手机号..."/>
         <a href="#" class="btn btn-primary">我完全清楚赠送后果, 开始吧</a>
       </div>
     </div>
