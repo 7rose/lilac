@@ -9,6 +9,7 @@
         @foreach ($tickets as $t)
         <p></p>
         <div class="card">
+            <div class="ticket-pad"></div>
             <div class="tile tile-centered">
                 <div class="tile-content  ticket-content">
                     <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
