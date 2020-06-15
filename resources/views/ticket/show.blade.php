@@ -2,7 +2,7 @@
 
 @section('main')
 <div class="nav-pad"></div>
-<div class="column col-6 col-xs-12">
+<div class="column col-6 col-xs-12 p-centered">
     @if (isset($ticket))
     <div class="card">
       <div class="card-image"><img class="img-responsive" src="{{ asset('images/ticket-cover.jpg') }}" alt="macOS Sierra"></div>
@@ -16,47 +16,42 @@
         </div>
       </div>
       <div class="card-header">
-        <button onclick="javascript:refresh()" class="btn btn-success float-right"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-      <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($ticket->expo->info, 'price') }}</div>
+      <button onclick="javascript:refresh()" class="btn btn-success float-right {{ $ticket->expo->end < \Carbon\Carbon::now()  ? 'disabled' : '' }}"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+      <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}&nbsp;&nbsp; #</div>
         <div class="card-subtitle text-gray">No.{{ $ticket->id }} | ¥ {{ show($ticket->expo->info, 'price') }}</div>
       </div>
       <div class="card-body">
           <span class="text-success"><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{ show($ticket->expo->info, 'addr') }}<br>
-          <span class="text-success"><i class="fa fa-clock-o" aria-hidden="true"></i></span> {{ $ticket->expo->begin }} ({{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }})
+          <span class="text-{{ $ticket->expo->end < \Carbon\Carbon::now()  ? 'error' : 'success' }}"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+          {{ $ticket->expo->begin }} ({{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }}{{ $ticket->expo->end < \Carbon\Carbon::now()  ? ' ,已过期' : '' }})
     </div>
 
-    <div>
-        <div class="timeline">
-            <div class="timeline-item" id="timeline-example-1">
-              <div class="timeline-left"><a class="timeline-icon tooltip" href="#timeline-example-1" data-tooltip="March 2016"></a></div>
-              <div class="timeline-content">
-                <div class="tile">
-                  <div class="tile-content">
-                    <p class="tile-subtitle">March 2016</p>
-                    <p class="tile-title">Initial commit</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="timeline-item" id="timeline-example-2">
-              <div class="timeline-left"><a class="timeline-icon icon-lg tooltip" href="#timeline-example-2" data-tooltip="February 2017"><i class="icon icon-check"></i></a></div>
-              <div class="timeline-content">
-                <div class="tile">
-                  <div class="tile-content">
-                    <p class="tile-subtitle">February 2017</p>
-                    <p class="tile-title">New Documents experience</p>
-                    <p class="tile-title"><a href="components.html#bars">Bars</a>: represent the progress of a task</p>
-                    <p class="tile-title"><a href="components.html#steps">Steps</a>: progress indicators of a sequence of task steps</p>
-                    <p class="tile-title"><a href="components.html#tiles">Tiles</a>: repeatable or embeddable information blocks</p>
-                  </div>
-                  <div class="tile-action">
-                    <button class="btn">View</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div class="card-footer">
+        <p>
+        <a href="#modal_confirm" class="btn btn-secondary btn-block {{ $ticket->used || $ticket->expo->end < \Carbon\Carbon::now()  ? 'disabled' : '' }}">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 赠送给他人
+        </a>
+        </p>
 
-          </div>
+        <div class="divider"></div>
+        @if (count($ticket->logs))
+        <div class="timeline">
+                @foreach (timeline($ticket->logs) as $log)
+                <div class="timeline-item" id="timeline-example-1">
+                    <div class="timeline-left"><a class="timeline-icon tooltip" href="#timeline-example-1" data-tooltip="{{ \Carbon\Carbon::parse($log['time']) }}"></a></div>
+                    <div class="timeline-content">
+                      <div class="tile">
+                        <div class="tile-content">
+                          <span class="text-gray">{{ \Carbon\Carbon::parse($log['time']) }}</span> &nbsp;&nbsp;
+                            <i class="fa fa-hand-o-right" aria-hidden="true"></i> {{ $log['do'] }}
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endforeach
+            </div>
+        @endif
 
 
     </div>
@@ -65,6 +60,24 @@
     @else
 
     @endif
+  </div>
+
+  <div class="modal" id="modal_confirm">
+    <a href="#close" class="modal-overlay" aria-label="Close"></a>
+    <div class="modal-container">
+      <div class="modal-header">
+        <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
+        <div class="modal-title h5">Modal title</div>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+          iyuj
+        </div>
+      </div>
+      <div class="modal-footer">
+        确定
+      </div>
+    </div>
   </div>
 
 <script>

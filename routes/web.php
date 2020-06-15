@@ -79,6 +79,8 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/pay/{id}', 'TicketController@order');
         Route::get('/tickets', 'TicketController@index');
         Route::get('/ticket/{id}', 'TicketController@show');
+        Route::get('/ticket/trans/{id}', 'TicketController@trans');
+
     });
 
 });
@@ -88,7 +90,11 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    return view('welcome');
+    // return view('welcome');
+    $a = App\Ticket::find(1);
+
+    $b = timeline($a->logs, 'time');
+    print_r($b);
 });
 
 Route::get('/in', function () {

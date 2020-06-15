@@ -82,3 +82,19 @@ function face($user)
     return (object) collect(['avatar' => $avatar, 'avatar_text' => $avatar_text, 'name' => $name, 'mobile' => $mobile, ])->all();
 }
 
+/**
+ * 按时间排序
+ *
+ * @param $user
+ *
+ * @return $array;
+ */
+function timeline($array)
+{
+    $sorted = array_values(Arr::sort($array, function ($value) {
+        return $value['time'];
+    }));
+
+    return $sorted;
+}
+
