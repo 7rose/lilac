@@ -73,12 +73,14 @@
         <div class="content">
             <div class="toast toast-warning">
             <button class="btn btn-clear float-right"></button>
+            <small>
             您正在赠送此票! 您需要了解并同意以下几点:<br>
             1. 票赠送成功以后无法撤销!<br>
             2. 受赠人手机号输入错误的, 票可能无法找回<br>
             3. 本系统不支持付费转让<br>
             4. 每张票最多可以赠送2次,当前剩余2次!<br>
             5. 每位客户同一场展会最多拥有2张票, 您可能需要与受赠方确认,否则可能赠送失败
+            </small>
             </div>
         </div>
       </div>
