@@ -22,7 +22,7 @@
       </div>
       <div class="card-body">
           <span class="text-success"><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{ show($ticket->expo->info, 'addr') }}<br>
-          <span class="text-success"><i class="fa fa-clock-o" aria-hidden="true"></i></span> {{ $ticket->expo->begin }} ({{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }}后开展)
+          <span class="text-success"><i class="fa fa-clock-o" aria-hidden="true"></i></span> {{ $ticket->expo->begin }} ({{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }})
     </div>
     </div>
     @else
