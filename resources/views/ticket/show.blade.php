@@ -67,11 +67,14 @@
     <div class="modal-container">
       <div class="modal-header">
         <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
-        <div class="modal-title h5">Modal title</div>
+        <div class="modal-title h5">温馨提醒</div>
       </div>
       <div class="modal-body">
         <div class="content">
-          iyuj
+            <div class="toast toast-warning">
+            <button class="btn btn-clear float-right"></button>
+            您正在赠送此票!
+            </div>
         </div>
       </div>
       <div class="modal-footer">
