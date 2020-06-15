@@ -9,15 +9,11 @@
         @foreach ($tickets as $t)
         <p></p>
         <div class="card">
-            <div class="card-header">
-                <div class="card-title h5">
-                    {{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}
-                </div>
-                    <div class="card-subtitle text-gray">
-                        <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
-                        <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} <br> {{ $t->expo->end }}</small>
-                    </div>
-
+            <div class="tile tile-centered">
+                <div class="tile-content  ticket-content">
+                    <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
+                    <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
+                    <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} <br> {{ $t->expo->end }}</small>
                 </div>
             <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
             <div class="tile-action">
@@ -26,6 +22,7 @@
                         <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
                     </a>
                 </div>
+            </div>
         </div>
         @endforeach
     @else
