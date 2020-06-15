@@ -8,7 +8,7 @@
     <p></p>
     @if (isset($tickets) && count($tickets))
         @foreach ($tickets as $t)
-        <div class="tile tile-centered ticket-b">
+        <div class="card">
             <div class="tile-content">
             <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
             <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
