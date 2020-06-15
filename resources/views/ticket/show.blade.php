@@ -24,19 +24,44 @@
           <span class="text-success"><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{ show($ticket->expo->info, 'addr') }}<br>
           <span class="text-success"><i class="fa fa-clock-o" aria-hidden="true"></i></span> {{ $ticket->expo->begin }} ({{ \Carbon\Carbon::parse($ticket->expo->begin)->diffForHumans() }})
     </div>
-    </div>
-    <div class="card-footer">
+
+    <div>
         <div class="timeline">
             <div class="timeline-item" id="timeline-example-1">
-              <div class="timeline-left">
-                <a class="timeline-icon" href="#timeline-example-1"></a>
-              </div>
+              <div class="timeline-left"><a class="timeline-icon tooltip" href="#timeline-example-1" data-tooltip="March 2016"></a></div>
               <div class="timeline-content">
-                <!-- tiles structure -->
+                <div class="tile">
+                  <div class="tile-content">
+                    <p class="tile-subtitle">March 2016</p>
+                    <p class="tile-title">Initial commit</p>
+                  </div>
+                </div>
               </div>
             </div>
-        </div>
+            <div class="timeline-item" id="timeline-example-2">
+              <div class="timeline-left"><a class="timeline-icon icon-lg tooltip" href="#timeline-example-2" data-tooltip="February 2017"><i class="icon icon-check"></i></a></div>
+              <div class="timeline-content">
+                <div class="tile">
+                  <div class="tile-content">
+                    <p class="tile-subtitle">February 2017</p>
+                    <p class="tile-title">New Documents experience</p>
+                    <p class="tile-title"><a href="components.html#bars">Bars</a>: represent the progress of a task</p>
+                    <p class="tile-title"><a href="components.html#steps">Steps</a>: progress indicators of a sequence of task steps</p>
+                    <p class="tile-title"><a href="components.html#tiles">Tiles</a>: repeatable or embeddable information blocks</p>
+                  </div>
+                  <div class="tile-action">
+                    <button class="btn">View</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
     </div>
+    </div>
+
     @else
 
     @endif
