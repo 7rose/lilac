@@ -16,9 +16,8 @@
                     <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} <br> {{ $t->expo->end }}</small>
                 </div>
             <div class="tile-action">
-                    <div>
-                        <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
-                    </div>
+
+                    <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
                     <a class="btn btn-link" href="/ticket/{{ $t->id }}">
                         <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
                     </a>
