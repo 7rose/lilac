@@ -120,9 +120,9 @@ class ExpoController extends Controller
      */
     public function trailer()
     {
-        $expo = Expo::where('on', true)->first();
+        $expos = Expo::where('on', true)->get();
 
-        return view('trailer', compact('expo'));
+        return view('trailer', compact('expos'));
 
     }
 
@@ -141,7 +141,7 @@ class ExpoController extends Controller
 
         if($request->on == 'true' || $request->on == true) {
             $on = true;
-            Expo::where('end', '>', now())->update(['on' => false]);
+            // Expo::where('end', '>', now())->update(['on' => false]);
         }
 
         $on_line->update(['on' => $on]);
