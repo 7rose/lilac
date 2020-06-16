@@ -38,7 +38,7 @@ class TicketController extends Controller
 
        if($has_tickets->count() >= 2) {
             $conf = [
-                'msg' => '为保证每位贵宾的体验, 每人每场展会限制购票2张',
+                'msg' => '牧云为保证每位贵宾的体验, 每人每场展会限制购票2张',
                 'icon' => 'shopping-bag',
             ];
 
