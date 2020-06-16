@@ -147,4 +147,15 @@ class ExpoController extends Controller
         return json_encode(['checked' => $on]);
     }
 
+    /**
+     * 登记入场顺序
+     *
+     */
+    public function sort($id)
+    {
+        $expo = Expo::findOrFail($id);
+
+        return view('expo.sort', compact('expo'));
+    }
+
 }

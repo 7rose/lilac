@@ -132,7 +132,7 @@
       <div>
       </div>
       <div class="panel-footer">
-        <button class="btn btn-primary btn-block">更新</button>
+      <a href="/expo/sort/{{ $expo->id }}" class="btn btn-primary btn-block">登记入场次序</a>
       </div>
     </div>
   </div>

@@ -76,6 +76,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/expos', 'ExpoController@index');
         Route::get('/expo/{id}', 'ExpoController@show');
         Route::post('/expo/allow/{id}', 'ExpoController@allow'); # 开关售票
+        Route::post('/expo/sort/{id}', 'ExpoController@sort'); # 开关售票
         Route::get('/expos/create', 'ExpoController@create');
         Route::post('/expos/store', 'ExpoController@store');
 
