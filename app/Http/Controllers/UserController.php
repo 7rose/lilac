@@ -179,6 +179,12 @@ class UserController extends Controller
         if($id == 0) {
             $user = Auth::user();
         }else{
+            // 授权
+            $au = new Authorize;
+            $user = Auth::user();
+
+            if(!$au->need($user, 'staff')) abort('403');
+
             $user = User::findOrFail($id);
         }
 
