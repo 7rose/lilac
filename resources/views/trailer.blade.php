@@ -8,10 +8,7 @@
         <div class="card">
             <div class="card-image"><img class="img-responsive" src="{{ asset('images/cover.jpg') }}" alt=".."></div>
             <div class="card-body">
-                {{ show($expo->info, 'title') }}<br>
-                {{ show($expo->info, 'addr') }}<br>
-                {{ $expo->begin }}<br>
-                {{ $expo->end }}<br>
+                软文300字以上
             </div>
 
             <div class="card-footer">
