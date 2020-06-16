@@ -31,19 +31,19 @@ class TicketController extends Controller
     {
        $expo =  Expo::findOrFail($id);
 
-    //    // 每场展会限制2张
-    //    $has_tickets = Ticket::where('user_id', Auth::id())
-    //    ->where('expo_id', $id)
-    //    ->get();
+       // 每场展会限制2张
+       $has_tickets = Ticket::where('user_id', Auth::id())
+       ->where('expo_id', $id)
+       ->get();
 
-    //    if($has_tickets->count() >= 2) {
-    //         $conf = [
-    //             'msg' => '牧云为保证每位贵宾的体验, 每人每场展会限制购票2张',
-    //             'icon' => 'shopping-bag',
-    //         ];
+       if($has_tickets->count() >= 2) {
+            $conf = [
+                'msg' => '牧云为保证每位贵宾的体验, 每人每场展会限制购票2张',
+                'icon' => 'shopping-bag',
+            ];
 
-    //         return view('note', compact('conf'));
-    //    }
+            return view('note', compact('conf'));
+       }
 
         $info = [
             'body' => show($expo->info, 'title', '').'电子门票',
