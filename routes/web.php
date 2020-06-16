@@ -66,6 +66,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/customers', 'UserController@customers'); # 客户
         Route::get('/suppliers', 'UserController@suppliers'); # 供应商
         Route::get('/partners', 'UserController@partners'); # 合作伙伴
+        Route::post('/pub', 'UserController@pub'); # 合作伙伴
 
         // 机构
         Route::get('/orgs', 'OrgController@index');

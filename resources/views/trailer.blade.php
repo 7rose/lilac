@@ -26,7 +26,7 @@
       <div class="empty-icon"><h1><i class="fa fa-envelope-o" aria-hidden="true"></i></h1></div>
       <p class="empty-subtitle">暂时没有展会发布, 若您需要了解情况或者寻求合作,请联系hi@mooibay.com, 谢谢!</p>
       <div class="empty-action">
-        <a href="/me" class="btn btn-primary">&nbsp;&nbsp;个人中心&nbsp;&nbsp;</a>
+        <a href="/me" class="btn btn-primary">&nbsp;&nbsp; 个人中心 &nbsp;&nbsp;</a>
       </div>
       <div class="nav-pad"></div>
     </div>
