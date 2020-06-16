@@ -45,7 +45,7 @@
         <div class="content">
           <form>
             <div class="form-group">
-              <input id="code" class="form-input mobile text-success" type="number" placeholder="验证码" onchange="javascript:limit()">
+              <input id="code" class="form-input mobile text-success" type="number" placeholder="验证码" onchange="javascript:cut()">
               <p id="code_info" name="code" class="form-input-hint"></p>
             </div>
           </form>
@@ -234,10 +234,10 @@
         return headers;
     }
 
-    function limit()
+    function cut()
     {
         var code = $("#code").val();
-        if(code.length() > 6) {
+        if(code.length > 6) {
             var new_code = code.substring(0,5);
             $("#code").val(new_code);
         }
