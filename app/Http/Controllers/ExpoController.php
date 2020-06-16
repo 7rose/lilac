@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expo;
+use App\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -158,6 +159,57 @@ class ExpoController extends Controller
         $expo = Expo::findOrFail($id);
 
         return view('expo.sort', compact('expo'));
+    }
+
+    /**
+     * 登记入场顺序: 保存
+     *
+     */
+    public function sortStore(Request $request, $id)
+    {
+        // $expo = Expo::findOrFail($id);
+        $add_array = explode(',', $request->mix);
+        $edit_array = explode('=', $request->mix);
+
+        // if(count($add_array) && count($edit_array)) return redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
+        // if(!count($add_array) && !count($edit_array)) return redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
+
+        if(count($add_array) == 2 && count($edit_array) == 0) {
+            // 添加
+            if(intval($add_array[1]) == 0) redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
+
+            $ticket = Ticket::where('id', $add_array[0])->where('expo_id', $id)->first();
+            if(!$ticket) redirect()->back()->withInput()->withErrors(['mix' => ['票号不存在,或者不属于本场展会']]);
+            if(!empty($ticket->sort)) redirect()->back()->withInput()->withErrors(['mix' => ['此票已经成功设置次序, 修改请使用 "="']]);
+
+            $ticket->update([
+                'sort' => intval($add_array[1]),
+            ]);
+
+        }elseif(count($add_array) == 0 && count($edit_array) == 2){
+            // 添加
+            if(intval($edit_array[1]) == 0) redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
+
+            $ticket = Ticket::where('id', $edit_array[0])->where('expo_id', $id)->first();
+            if(!$ticket) redirect()->back()->withInput()->withErrors(['mix' => ['票号不存在,或者不属于本场展会']]);
+            // if(!empty($ticket->sort)) redirect()->back()->withInput()->withErrors(['mix' => ['此票已经成功设置次序, 修改请使用 "="']]);
+
+            $ticket->update([
+                'sort' => intval($edit_array[1]),
+            ]);
+        }else{
+            return redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
+        }
+
+        $conf = [
+            'msg' => '已经成功设置次序!',
+            'icon_color' => 'success',
+            'btn_color' => 'success',
+            'btn_text' => '继续设置',
+            'btn_link' => 'expo/sort/'.$id,
+        ];
+
+        return view('note', compact('conf'));
     }
 
 }
