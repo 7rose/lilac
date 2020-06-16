@@ -20,7 +20,7 @@
     <header class="navbar navi container bg-gray">
         <section class="navbar-section">
             <a href="/"><img src="{{ asset('custom/logo.svg') }}"  class="logo hide-xs" /></a>
-            @if(Auth::check() && $au->need(Auth::user(), 'satff'))
+            @if(Auth::check() && $au->need(Auth::user(), 'staff'))
             <a href="/apps" class="btn btn-link show-xs text-dark"><i class="fa fa-th" aria-hidden="true"></i></a>
             @else
             <a href="/msg" class="btn btn-link show-xs text-dark"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
@@ -30,7 +30,7 @@
             <a href="/"><img src="{{ asset('custom/logo.svg') }}" class="logo show-xs p-centered" /></a>
         </section>
         <section class="navbar-section">
-            @if(Auth::check() && $au->need(Auth::user(), 'satff'))
+            @if(Auth::check() && $au->need(Auth::user(), 'staff'))
             <a href="/apps" class="btn btn-link hide-xs text-dark">应用中心</a>
             @else
             <a href="/msg" class="btn btn-link hide-xs text-dark">通知</a>
