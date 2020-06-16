@@ -29,7 +29,7 @@
     <div class="card-footer">
         <p>
         <a href="#modal_confirm" class="btn btn-secondary btn-block {{ $ticket->used || $ticket->expo->end < \Carbon\Carbon::now()  ? 'disabled' : '' }}">
-            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 赠送给他人
+             赠送给他人
         </a>
         </p>
 
@@ -83,16 +83,17 @@
         </div>
       </div>
       <div class="modal-footer">
+          <input type="hidden" name="ticket_id"/>
         <input class="form-input mt-2 mobile" id="mobile" name="mobile" minlength="11" maxlength="11" type="number" placeholder="受赠人手机号.." required>
         <p id="info" name="mobile" class="form-input-hint"></p>
         <div class="form-group text-left">
             <label class="form-checkbox text-left">
                 <input id="terms" type="checkbox" checked onchange="javascript:terms()">
-                <i class="form-icon"></i> 阅读并同意 <a href="#">《用户协议》</a>
+                <i class="form-icon"></i> 我已阅读并清楚其风险</a>
                 <p id="info" name="terms" class="form-input-hint"></p>
             </label>
         </div>
-        <a href="javacript:trans()" id="next" class="btn btn-primary btn-block">我完全清楚, 继续</a>
+        <a href="javascript:trans()" id="next" class="btn btn-primary btn-block">确定赠送</a>
       </div>
     </div>
   </div>
@@ -119,6 +120,7 @@
 
     function trans()
     {
+        var id = $("#ticket_id").val();
         var mobile = $("#mobile").val();
         var terms = $("#terms").val();
 
@@ -126,6 +128,37 @@
             $("#info").html("手机号不正确");
             return false;
         }
+
+        var url = "ticket/trans/" + id;
+
+        $.ajax({
+            type:"POST",
+            url: url,
+            data:{
+                mobile: mobile,
+                terms: terms
+            },
+            datatype: "json",
+            beforeSend:function(){
+                $("#code_info").html("");
+                // $("#check_code").attr('disabled', true);
+                // $("#check_code").addClass('loading');
+            },
+            success:function(data, statusTest, xhr){
+                var msg = jQuery.parseJSON(data);
+
+                if(msg.hasOwnProperty('errors')) {
+                    $.each(msg.errors, function(key, value) {
+                        $('p[name ="'+key+'"]').html(value);
+                    });
+                    return false;
+                }
+                window.location.replace('me');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                error(jqXHR, textStatus, errorThrown);
+            }
+        });
     }
 </script>
 
