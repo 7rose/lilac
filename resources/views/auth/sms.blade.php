@@ -45,7 +45,7 @@
         <div class="content">
           <form>
             <div class="form-group">
-              <input id="code" class="form-input mobile text-success" type="text" placeholder="验证码" maxlength="6">
+              <input id="code" class="form-input mobile text-success" type="number" placeholder="验证码" onchange="javascript:limit()">
               <p id="code_info" name="code" class="form-input-hint"></p>
             </div>
           </form>
@@ -58,6 +58,7 @@
   </div>
 
 <script>
+
     var rate, counter, error_info;
 
     var path = window.location.pathname;
@@ -231,6 +232,15 @@
                 headers[keyValue[0].trim()] = keyValue[1].trim();
             });
         return headers;
+    }
+
+    function limit()
+    {
+        var code = $("#code").val();
+        if(code.length > 6) {
+            var new_code = code.substring(0,5);
+            $("#code").val(new_code);
+        }
     }
 
 </script>
