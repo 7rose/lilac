@@ -32,10 +32,10 @@
                           已售票: <span class="text-success">{{ $expo->tickets->count() }} / {{ show($expo->info, 'limit', '*') }}</span>
                           </li>
                           <li class="nav-item">
-                          已检票: <span class="text-primary">{{ $expo->tickets->reject(function ($key) { return !$key->used; })->count(); }} </span>
+                          已检票: <span class="text-primary">{{ count($expo->tickets->reject(function ($key) { return !$key->used; })) }} </span>
                           </li>
                           <li class="nav-item">
-                          已登记次序: <span class="text-primary">{{ $expo->tickets->reject(function ($key) { return empty($key->sort); })->count(); }} </span>
+                          已登记次序: <span class="text-primary">{{ count($expo->tickets->reject(function ($key) { return empty($key->sort); })) }} </span>
                           </li>
                         </ul>
                       </li>
