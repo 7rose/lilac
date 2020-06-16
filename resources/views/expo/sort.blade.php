@@ -46,10 +46,10 @@
                 @csrf
                 <div class="form-group @error('mix') has-error @enderror">
                 <input class="form-input" type="text" name="mix" placeholder="票id,顺序号.." required maxlength="16" minlength="3" value="{{ old('mix') }}">
+                <button class="btn btn-primary input-group-btn" type="submit">登记</button>
                 @error('mix')
                 <p class="form-input-hint">{{ $message }}</p>
                 @enderror
-                <button class="btn btn-primary input-group-btn" type="submit">登记</button>
                 </div>
             </form>
             </div>
