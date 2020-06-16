@@ -97,31 +97,16 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    // return view('welcome');
-    // $a = App\Ticket::find(3);
-    $a = App\Expo::find(1);
-    $b = $a->tickets->reject(function ($key) { return $key->used; });
-
-    // $b = timeline($a->logs, 'time');
-    // print_r($b);
-    // $b = $a->tickets->count();
-    // $b = times($a->logs);
-    // echo $b;
-    var_dump($b->count());
+    //
 });
 
 Route::get('/in', function () {
     // $user = App\User::find(5);
-    $user = App\User::find(6);
+    // $user = App\User::find(6);
     // $user = App\User::find(2);
     // $user = App\User::find(1);
     // $user = App\User::find(8);
-    Auth::login($user);
-    print_r($user->info);
-
-    // echo '<br>'.Redis::get('17821621090');
-    // echo '<br>';
-    // $b = Redis::get('oNqBdwRZTz-3T09LrmLGRyQYMsBo');
-    // print_r($b);
+    // Auth::login($user);
+    // print_r($user->info);
 });
 
