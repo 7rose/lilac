@@ -45,7 +45,7 @@
         <div class="content">
           <form>
             <div class="form-group">
-              <input id="code" class="form-input mobile text-success" id="input-example-7" type="text" placeholder="验证码">
+              <input id="code" class="form-input mobile text-success" type="text" placeholder="验证码" maxlength="6">
               <p id="code_info" name="code" class="form-input-hint"></p>
             </div>
           </form>
