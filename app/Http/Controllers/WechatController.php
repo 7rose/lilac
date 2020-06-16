@@ -88,14 +88,24 @@ class WechatController extends Controller
                 "key"  => "wechat_menu"
             ],
             [
-                "type" => "view",
-                "name" => "应用",
-                "url"  => "https://wechat.mooibay.com/apps"
+                "name"       => "会展",
+                "sub_button" => [
+                    [
+                        "type" => "view",
+                        "name" => "购票",
+                        "url"  => "https://wechat.mooibay.com/trailer",
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "联系牧云",
+                        "url"  => "https://wechat.mooibay.com/contact",
+                    ],
+                ],
             ],
             [
                 "type" => "view",
                 "name" => "我",
-                "url"  => "https://wechat.mooibay.com/me"
+                "url"  => "https://wechat.mooibay.com/me",
             ],
         ];
 
