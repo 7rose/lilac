@@ -72,13 +72,12 @@
       <div class="modal-body">
         <div class="content">
             <div class="toast toast-warning">
-            <button class="btn btn-clear float-right"></button>
             您正在赠送此票! <br>您需要了解并同意以下6项:<br>
             1. 票赠送成功以后无法撤销!<br>
             2. 受赠人必须已经关注 MOOI海上牧云。<br>
             3. 受赠人手机号输入错误的，票可能无法找回。<br>
             4. 本系统不支持付费转让。<br>
-            5. 每位客户同一场展会最多拥有2张票, 您可能需要与受赠方确认,否则可能赠送失败。
+            5. 每位客户同一场展会最多拥有2张票, 您可能需要与受赠方确认,否则可能赠送失败。<br>
             6. 每张票最多可以赠送2次,当前剩余2次!<br>
             </div>
         </div>
@@ -93,7 +92,7 @@
                 <p id="info" name="terms" class="form-input-hint"></p>
             </label>
         </div>
-        <a href="javacript:trans()" id="next" class="btn btn-primary">我完全清楚了, 继续</a>
+        <a href="javacript:trans()" id="next" class="btn btn-primary btn-block">我完全清楚, 继续</a>
       </div>
     </div>
   </div>
