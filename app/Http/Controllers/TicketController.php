@@ -55,6 +55,8 @@ class TicketController extends Controller
             'openid' =>  show(Auth::user()->ids, 'wechat.id'),
             ];
 
+        Log::info($info);
+
         $order = $this->payment->order->unify($info);
 
         if(Arr::has($order, 'return_code') && Arr::get($order, 'return_code') == 'SUCCESS' && Arr::has($order, 'result_code') && Arr::get($order, 'result_code') == 'SUCCESS' && Arr::has($order, 'prepay_id')){
