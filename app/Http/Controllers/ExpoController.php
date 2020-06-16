@@ -201,15 +201,15 @@ class ExpoController extends Controller
             return redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
         }
 
-        // $conf = [
-        //     'msg' => '已经成功设置次序!',
-        //     'icon_color' => 'success',
-        //     'btn_color' => 'success',
-        //     'btn_text' => '继续设置',
-        //     'btn_link' => 'expo/sort/'.$id,
-        // ];
+        $conf = [
+            'msg' => '已经成功设置次序!',
+            'icon_color' => 'success',
+            'btn_color' => 'success',
+            'btn_text' => '继续设置',
+            'btn_link' => 'expo/sort/'.$id,
+        ];
 
-        // return view('note', compact('conf'));
+        return view('note', compact('conf'));
     }
 
 }
