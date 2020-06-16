@@ -188,6 +188,16 @@ class ExpoController extends Controller
             $new_logs[] = ['time' => time(), 'do' => '登记入场次序'.$add_array[1], 'by' => Auth::id()];
             $ticket->save();
 
+            $conf = [
+                'msg' => '已经成功设置次序!',
+                'icon_color' => 'success',
+                'btn_color' => 'success',
+                'btn_text' => '继续设置',
+                'btn_link' => 'expo/sort/'.$id,
+            ];
+
+            return view('note', compact('conf'));
+
         }elseif(count($add_array) != 2 && count($edit_array) == 2){
             // 添加
             if(intval($edit_array[1]) == 0) redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
@@ -201,19 +211,26 @@ class ExpoController extends Controller
             $new_logs[] = ['time' => time(), 'do' => '设置入场次序'.$edit_array[1], 'by' => Auth::id()];
 
             $ticket->save();
+
+            $conf = [
+                'msg' => '已经成功设置次序!',
+                'icon_color' => 'success',
+                'btn_color' => 'success',
+                'btn_text' => '继续设置',
+                'btn_link' => 'expo/sort/'.$id,
+            ];
+
+            return view('note', compact('conf'));
+
         }else{
             return redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
         }
 
-        $conf = [
-            'msg' => '已经成功设置次序!',
-            'icon_color' => 'success',
-            'btn_color' => 'success',
-            'btn_text' => '继续设置',
-            'btn_link' => 'expo/sort/'.$id,
-        ];
 
-        return view('note', compact('conf'));
+    }
+
+    private function sortOK(){
+
     }
 
 }
