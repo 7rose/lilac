@@ -168,11 +168,9 @@ class ExpoController extends Controller
     public function sortStore(Request $request, $id)
     {
         // $expo = Expo::findOrFail($id);
+
         $add_array = explode(',', $request->mix);
         $edit_array = explode('=', $request->mix);
-
-        // if(count($add_array) && count($edit_array)) return redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
-        // if(!count($add_array) && !count($edit_array)) return redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
 
         if(count($add_array) == 2 && count($edit_array) == 0) {
             // 添加
