@@ -17,7 +17,7 @@
       </div>
       <div class="card-header">
       <button onclick="javascript:refresh()" class="btn btn-success float-right {{ $ticket->expo->end < \Carbon\Carbon::now()  ? 'disabled' : '' }}"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-      <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}&nbsp;&nbsp; #</div>
+      <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}&nbsp;&nbsp; {{ empty($ticket->sorted) ? '' : '#'.$ticket->sorted }}</div>
         <div class="card-subtitle text-gray">No.{{ $ticket->id }} | ¥ {{ show($ticket->expo->info, 'price') }}</div>
       </div>
       <div class="card-body">
