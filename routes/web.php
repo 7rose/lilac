@@ -33,10 +33,9 @@ Route::get('/', function () {
     return redirect('/trailer');
 });
 
-// 默认页
-Route::get('/note', function () {
-    return view('note');
-});
+// 系统
+Route::get('/note', 'SysController@note');
+Route::get('/msg', 'SysController@msg');
 
 // 展会预告
 Route::get('/trailer', 'ExpoController@trailer');
@@ -48,12 +47,11 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');
     Route::post('/check', 'AuthController@check')->middleware('throttle:5,5');
 
-    Route::get('/apps', function () {
-        return view('apps');
-    });
-
     // auth users
     Route::group(['middleware' => ['mix', 'state']], function () {
+
+        // 应用中心
+        Route::get('/apps', 'SysController@apps');
 
         // 微信
         Route::get('/ad', 'WechatController@ad');

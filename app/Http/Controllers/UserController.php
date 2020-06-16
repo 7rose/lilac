@@ -90,6 +90,10 @@ class UserController extends Controller
     public function me()
     {
         // $this->authorize('viewAll', User::class);
+        $au = new Authorize;
+        $user = Auth::user();
+
+        if(!$au->need($user, 'staff')) return view('user.customer', compact('user'));
 
         return $this->show(0);
     }
