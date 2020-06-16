@@ -1,3 +1,6 @@
+<?php
+    $au = new App\Helpers\Authorize;
+?>
 <!DOCTYPE html>
 <html lang="{{ $app->getLocale() }}">
 <head>
@@ -17,13 +20,22 @@
     <header class="navbar navi container bg-gray">
         <section class="navbar-section">
             <a href="/"><img src="{{ asset('custom/logo.svg') }}"  class="logo hide-xs" /></a>
+            @if(Auth::check() && $au->fit(Auth::user(), 'satff'))
             <a href="/apps" class="btn btn-link show-xs text-dark"><i class="fa fa-th" aria-hidden="true"></i></a>
+            @else
+            <a href="/msg" class="btn btn-link show-xs text-dark"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            @endif
         </section>
         <section class="navbar-center">
             <a href="/"><img src="{{ asset('custom/logo.svg') }}" class="logo show-xs p-centered" /></a>
         </section>
         <section class="navbar-section">
+            @if(Auth::check() && $au->fit(Auth::user(), 'satff'))
             <a href="/apps" class="btn btn-link hide-xs text-dark">应用中心</a>
+            @else
+            <a href="/msg" class="btn btn-link hide-xs text-dark">通知</a>
+            @endif
+
             @auth
             <div class="dropdown dropdown-right">
                 <a class="dropdown-toggle text-dark" tabindex="0">
@@ -47,8 +59,6 @@
                             </label>
                         </div>
                     </li>
-                  <li class="menu-item"><a href="/expos">展会和票务</a></li>
-                  <li class="divider"></li>
                   <li class="menu-item"><a href="/ad"><i class="fa fa-qrcode" aria-hidden="true"></i> 我的推荐码</a></li>
                   <li class="divider"></li>
                   <li class="menu-item"><a href="/logout"><i class="fa fa-power-off" aria-hidden="true"></i> 安全退出</a></li>
