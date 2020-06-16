@@ -173,12 +173,12 @@ class ExpoController extends Controller
 
         if(count($add_array) == 2 && count($edit_array) != 2) {
             // 添加
-            if(intval($add_array[1]) == 0) redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
+            if(intval($add_array[1]) == 0) return redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
 
             $ticket = Ticket::where('id', $add_array[0])->where('expo_id', $id)->first();
 
-            if(!$ticket) redirect()->back()->withInput()->withErrors(['mix' => ['票号不存在,或者不属于本场展会']]);
-            if(!empty($ticket->sorted)) redirect()->back()->withInput()->withErrors(['mix' => ['此票已经成功设置次序, 修改请使用 "="']]);
+            if(!$ticket) return redirect()->back()->withInput()->withErrors(['mix' => ['票号不存在,或者不属于本场展会']]);
+            if(!empty($ticket->sorted)) return redirect()->back()->withInput()->withErrors(['mix' => ['此票已经成功设置次序, 修改请使用 "="']]);
 
             // $ticket->update([
             //     'sort' => intval($add_array[1]),
@@ -200,11 +200,11 @@ class ExpoController extends Controller
 
         }elseif(count($add_array) != 2 && count($edit_array) == 2){
             // 添加
-            if(intval($edit_array[1]) == 0) redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
+            if(intval($edit_array[1]) == 0) return redirect()->back()->withInput()->withErrors(['mix' => ['格式错误']]);
 
             $ticket = Ticket::where('id', $edit_array[0])->where('expo_id', $id)->first();
-            if(!$ticket) redirect()->back()->withInput()->withErrors(['mix' => ['票号不存在,或者不属于本场展会']]);
-            // if(!empty($ticket->sort)) redirect()->back()->withInput()->withErrors(['mix' => ['此票已经成功设置次序, 修改请使用 "="']]);
+            if(!$ticket) return redirect()->back()->withInput()->withErrors(['mix' => ['票号不存在,或者不属于本场展会']]);
+            // if(!empty($ticket->sort)) return redirect()->back()->withInput()->withErrors(['mix' => ['此票已经成功设置次序, 修改请使用 "="']]);
 
             $ticket->sorted = intval($edit_array[1]);
             $new_logs = $ticket->logs;
