@@ -75,6 +75,18 @@
                         </div>
                     </div>
 
+                    <div class="form-group @error('limit') has-error @enderror">
+                        <div class="col-3 col-sm-12">
+                        <label class="form-label" for="input-example-1">会展容量</label>
+                        </div>
+                        <div class="col-9 col-sm-12">
+                        <input class="form-input" name="limit" type="number" min="100" max="100000" value="{{ old('limit') }}" placeholder="会展容量" required>
+                        @error('limit')
+                            <p class="form-input-hint">{{ $message }}</p>
+                        @enderror
+                        </div>
+                    </div>
+
                     <div class="form-group @error('manager') has-error @enderror">
                         <div class="col-3 col-sm-12">
                         <label class="form-label" for="input-example-1">负责人</label>

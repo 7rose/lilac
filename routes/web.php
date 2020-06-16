@@ -96,14 +96,16 @@ Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
     // return view('welcome');
-    $a = App\Ticket::find(3);
+    // $a = App\Ticket::find(3);
+    $a = App\Expo::find(1);
+    $b = $a->tickets->reject(function ($key) { return $key->used; });
 
     // $b = timeline($a->logs, 'time');
     // print_r($b);
     // $b = $a->tickets->count();
-    $b = times($a->logs);
+    // $b = times($a->logs);
     // echo $b;
-    var_dump($b);
+    var_dump($b->count());
 });
 
 Route::get('/in', function () {
