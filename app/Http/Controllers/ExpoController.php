@@ -178,7 +178,7 @@ class ExpoController extends Controller
             $ticket = Ticket::where('id', $add_array[0])->where('expo_id', $id)->first();
 
             if(!$ticket) redirect()->back()->withInput()->withErrors(['mix' => ['票号不存在,或者不属于本场展会']]);
-            if(!empty($ticket->sort)) redirect()->back()->withInput()->withErrors(['mix' => ['此票已经成功设置次序, 修改请使用 "="']]);
+            if(!empty($ticket->sorted)) redirect()->back()->withInput()->withErrors(['mix' => ['此票已经成功设置次序, 修改请使用 "="']]);
 
             // $ticket->update([
             //     'sort' => intval($add_array[1]),
