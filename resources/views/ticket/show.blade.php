@@ -83,7 +83,7 @@
         </div>
       </div>
       <div class="modal-footer">
-          <input type="hidden" name="ticket_id"/>
+      <input type="hidden" id="ticket_id" value="{{ $ticket->id }}"/>
         <input class="form-input mt-2 mobile" id="mobile" name="mobile" minlength="11" maxlength="11" type="number" placeholder="受赠人手机号.." required>
         <p id="info" name="mobile" class="form-input-hint"></p>
         <div class="form-group text-left">
@@ -129,7 +129,7 @@
             return false;
         }
 
-        var url = "ticket/trans/" + id;
+        var url = "/ticket/trans/" + id;
 
         $.ajax({
             type:"POST",
@@ -153,7 +153,7 @@
                     });
                     return false;
                 }
-                window.location.replace('me');
+                window.location.href = "/me";
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 error(jqXHR, textStatus, errorThrown);

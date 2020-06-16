@@ -147,10 +147,10 @@ class TicketController extends Controller
 
         $url = false;
 
-        if((!$ticket->used || ($ticket->used && $ticket->afk)) && $ticket->expo->end > now()){
-            $qrcode = $this->app->qrcode->temporary('t_'.Auth::id().'_'.$id, 60); # 1分钟
-            $url = $qrcode['url'];
-        }
+        // if((!$ticket->used || ($ticket->used && $ticket->afk)) && $ticket->expo->end > now()){
+        //     $qrcode = $this->app->qrcode->temporary('t_'.Auth::id().'_'.$id, 60); # 1分钟
+        //     $url = $qrcode['url'];
+        // }
 
         return view('ticket.show', compact('ticket', 'url'));
 
@@ -171,7 +171,7 @@ class TicketController extends Controller
 
         $target = User::where('ids->mobile->number', $mobile)->first();
 
-        if(!$target) json_encode(['errors' =>['mobile' => '用户不存在或者没有关注公众号']]);
+        if(!$target) return json_encode(['errors' =>['mobile' => '用户不存在或者没有关注公众号']]);
 
         $ticket = Ticket::findOrFail($id);
 
