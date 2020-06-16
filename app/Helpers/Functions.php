@@ -98,3 +98,21 @@ function timeline($array)
     return $sorted;
 }
 
+/**
+ * 次数
+ *
+ * @param $user
+ *
+ * @return $array;
+ */
+function times($logs_array, $key, $all=2)
+{
+    if(count($logs_array)) {
+        foreach ($logs_array as $log) {
+            if(Arr::has($log, $key) && Arr::get($log, $key) == '赠送') $all --;
+        }
+    }
+
+    return $all > 0 ? $all : false;
+}
+

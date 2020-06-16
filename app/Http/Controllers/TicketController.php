@@ -173,6 +173,10 @@ class TicketController extends Controller
 
         if(!$target) return json_encode(['errors' =>['mobile' => '用户不存在或者没有关注公众号']]);
 
+        if($target->used) return json_encode(['errors' =>['mobile' => '此票已失效']]);
+        if($target->expo->end < now()) return json_encode(['errors' =>['mobile' => '此票已过期']]);
+        if($target->tickets->count() >= 2) return json_encode(['errors' =>['mobile' => '受赠人已达持票数量限制']]);
+
         $ticket = Ticket::findOrFail($id);
 
         $logs = $ticket->logs;
