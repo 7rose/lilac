@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Expo;
+use App\User;
 use App\Order;
 use App\Ticket;
+use App\Rules\Mobile;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -152,6 +154,37 @@ class TicketController extends Controller
 
         return view('ticket.show', compact('ticket', 'url'));
 
+    }
+
+    /**
+     * 转让
+     *
+     */
+    public function trans(Request $request, $id)
+    {
+        $request->validate([
+            'mobile' => ['required', new Mobile],
+            'terms' => ['accepted'],
+        ]);
+
+        $mobile = $request->mobile;
+
+        $target = User::where('ids->mobile->number', $mobile)->first();
+
+        if(!$target) json_encode(['errors' =>['mobile' => '用户不存在或者没有关注公众号']]);
+
+        $ticket = Ticket::findOrFail($id);
+
+        $logs = $ticket->logs;
+        $logs[] = ['do' => '赠送', 'time' => time(), 'id' => Auth::id(), 'accept' => $target->id];
+
+        // 更新票面信息
+        $ticket->update([
+            'user_id' => $target->id,
+            'logs' => $logs,
+        ]);
+
+        return json_encode(['success' => 'ok']);
     }
 
 

@@ -141,8 +141,8 @@
             datatype: "json",
             beforeSend:function(){
                 $("#code_info").html("");
-                // $("#check_code").attr('disabled', true);
-                // $("#check_code").addClass('loading');
+                // $("#next").attr('disabled', true);
+                // $("#next").addClass('loading');
             },
             success:function(data, statusTest, xhr){
                 var msg = jQuery.parseJSON(data);
@@ -159,6 +159,32 @@
                 error(jqXHR, textStatus, errorThrown);
             }
         });
+    }
+
+    // 错误处理
+    function error(jqXHR, textStatus, errorThrown)
+    {
+        var headers = toJson(jqXHR.getAllResponseHeaders());
+
+        if(headers.hasOwnProperty('x-ratelimit-reset')) {
+            var now = parseInt(Date.now()/1000);
+            rate = headers["x-ratelimit-reset"] - now;
+            error_info = "收到验证码约需2分钟, 请勿频繁获取";
+            counter = setInterval(counter_timer, 1000);
+        }else{
+            var msg = jQuery.parseJSON(jqXHR.responseText);
+
+            console.log(msg);
+
+            if(msg.hasOwnProperty('errors')) {
+                $.each(msg.errors, function(key, value) {
+                    $('p[name ="'+key+'"]').html(value);
+                });
+            }else{
+                $("#info").html("无法获取服务");
+            }
+            // reset_form();
+        }
     }
 </script>
 
