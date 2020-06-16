@@ -105,11 +105,11 @@ function timeline($array)
  *
  * @return $array;
  */
-function times($logs_array, $key, $all=2)
+function times($logs_array, $all=2)
 {
     if(count($logs_array)) {
         foreach ($logs_array as $log) {
-            if(Arr::has($log, $key) && Arr::get($log, $key) == '赠送') $all --;
+            if(Arr::has($log, 'do') && Arr::get($log, 'do') == '赠送') $all --;
         }
     }
 

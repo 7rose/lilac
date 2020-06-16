@@ -33,6 +33,11 @@ Route::get('/', function () {
     return redirect('/trailer');
 });
 
+// 默认页
+Route::get('/note', function () {
+    return view('note');
+});
+
 // 展会预告
 Route::get('/trailer', 'ExpoController@trailer');
 
@@ -91,12 +96,14 @@ Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
     // return view('welcome');
-    $a = App\User::find(5);
+    $a = App\Ticket::find(3);
 
     // $b = timeline($a->logs, 'time');
     // print_r($b);
-    $b = $a->tickets->count();
-    echo $b;
+    // $b = $a->tickets->count();
+    $b = times($a->logs);
+    // echo $b;
+    var_dump($b);
 });
 
 Route::get('/in', function () {

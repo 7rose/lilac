@@ -28,9 +28,15 @@
 
     <div class="card-footer">
         <p>
+        @if(times($ticket->logs))
         <a href="#modal_confirm" class="btn btn-secondary btn-block {{ $ticket->used || $ticket->expo->end < \Carbon\Carbon::now()  ? 'disabled' : '' }}">
              赠送给他人
         </a>
+        @else
+        <a href="#modal_confirm" class="btn btn-secondary btn-block disabled">
+            此票已超过最大转让次数
+       </a>
+        @endif
         </p>
 
         <div class="divider"></div>
@@ -78,7 +84,7 @@
             3. 受赠人手机号输入错误的，票可能无法找回。<br>
             4. 本系统不支持付费转让。<br>
             5. 每位客户同一场展会最多拥有2张票, 您可能需要与受赠方确认,否则可能赠送失败。<br>
-            6. 每张票最多可以赠送2次,当前剩余2次!<br>
+            6. 每张票最多可以赠送2次,当前剩余{{ times($ticket->logs) }}次!<br>
             </div>
         </div>
       </div>
@@ -156,36 +162,11 @@
                 window.location.href = "/me";
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                error(jqXHR, textStatus, errorThrown);
+                $('p[name ="mobile"]').html('系统没有响应');
             }
         });
     }
 
-    // 错误处理
-    function error(jqXHR, textStatus, errorThrown)
-    {
-        var headers = toJson(jqXHR.getAllResponseHeaders());
-
-        if(headers.hasOwnProperty('x-ratelimit-reset')) {
-            var now = parseInt(Date.now()/1000);
-            rate = headers["x-ratelimit-reset"] - now;
-            error_info = "收到验证码约需2分钟, 请勿频繁获取";
-            counter = setInterval(counter_timer, 1000);
-        }else{
-            var msg = jQuery.parseJSON(jqXHR.responseText);
-
-            console.log(msg);
-
-            if(msg.hasOwnProperty('errors')) {
-                $.each(msg.errors, function(key, value) {
-                    $('p[name ="'+key+'"]').html(value);
-                });
-            }else{
-                $("#info").html("无法获取服务");
-            }
-            // reset_form();
-        }
-    }
 </script>
 
 @endsection
