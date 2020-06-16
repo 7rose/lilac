@@ -32,25 +32,20 @@
                           已售票: <span class="text-success">{{ $expo->tickets->count() }} / {{ show($expo->info, 'limit', '*') }}</span>
                           </li>
                           <li class="nav-item">
-                          已检票: <span class="text-primary">{{ $expo->tickets->reject(function ($key) { return !$key->used; }) }} </span>
+                          已检票: <span class="text-primary">{{ $expo->tickets->reject(function ($key) { return !$key->used; })->count(); }} </span>
                           </li>
                           <li class="nav-item">
-                          已登记次序: <span class="text-primary">{{ $expo->tickets->reject(function ($key) { return empty($key->sort); }) }} </span>
+                          已登记次序: <span class="text-primary">{{ $expo->tickets->reject(function ($key) { return empty($key->sort); })->count(); }} </span>
                           </li>
                         </ul>
                       </li>
-                    <li class="nav-item">
-                      <span>Components</span>
-                    </li>
-                    <li class="nav-item">
-                      <span>Utilities</span>
-                    </li>
                   </ul>
             </div>
             <div class="panel-footer">
+                <form method="POST" action="/expo/"
               <div class="input-group">
-                <input class="form-input" type="text" name="mix" placeholder="票id,顺序号..">
-                <button class="btn btn-primary input-group-btn">登记</button>
+                <input class="form-input" type="text" name="mix" placeholder="票id,顺序号.." required maxlength="16" minlength="3">
+                <button class="btn btn-primary input-group-btn" type="submit">登记</button>
               </div>
             </div>
           </div>
