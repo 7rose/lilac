@@ -81,12 +81,6 @@ class WechatController extends Controller
     public function init()
     {
         $buttons = [
-
-            [
-                "type" => "scancode_push",
-                "name" => "扫一扫",
-                "key"  => "wechat_menu"
-            ],
             [
                 "name"       => "会展",
                 "sub_button" => [
@@ -101,6 +95,11 @@ class WechatController extends Controller
                         "url"  => "https://wechat.mooibay.com/contact",
                     ],
                 ],
+            ],
+            [
+                "type" => "scancode_push",
+                "name" => "扫一扫",
+                "key"  => "wechat_menu"
             ],
             [
                 "type" => "view",
