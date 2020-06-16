@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Authorize;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SysController extends Controller
 {
@@ -13,6 +15,11 @@ class SysController extends Controller
      */
     public function apps()
     {
+        $au = new Authorize;
+        $user = Auth::user();
+
+        if(!$au->need($user, 'staff')) abort('403');
+
         return view('apps');
     }
 
