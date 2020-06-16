@@ -42,11 +42,12 @@
                   </ul>
             </div>
             <div class="panel-footer">
-                <form method="POST" action="/expo/"
+
               <div class="input-group">
                 <input class="form-input" type="text" name="mix" placeholder="票id,顺序号.." required maxlength="16" minlength="3">
                 <button class="btn btn-primary input-group-btn" type="submit">登记</button>
               </div>
+
             </div>
           </div>
     </div>
