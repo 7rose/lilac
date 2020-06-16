@@ -229,8 +229,4 @@ class ExpoController extends Controller
 
     }
 
-    private function sortOK(){
-
-    }
-
 }
