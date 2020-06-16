@@ -49,8 +49,8 @@
                 @error('mix')
                 <p class="form-input-hint">{{ $message }}</p>
                 @enderror
+                <button class="btn btn-primary input-group-btn" type="submit">登记</button>
                 </div>
-            <button class="btn btn-primary input-group-btn" type="submit">登记</button>
             </form>
             </div>
           </div>
