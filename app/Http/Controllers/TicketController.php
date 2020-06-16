@@ -39,12 +39,11 @@ class TicketController extends Controller
        if($has_tickets->count() >= 2) {
             $conf = [
                 'msg' => '为保证每位贵宾的体验, 每人每场展会限制购票2张',
-                'icon' => 'frown-o',
+                'icon' => 'shopping-bag',
             ];
 
             return view('note', compact('conf'));
        }
-
 
         $info = [
             'body' => show($expo->info, 'title', '').'电子门票',
