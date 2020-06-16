@@ -237,7 +237,7 @@
     function limit()
     {
         var code = $("#code").val();
-        if(code.length > 6) {
+        if(code.length() > 6) {
             var new_code = code.substring(0,5);
             $("#code").val(new_code);
         }
