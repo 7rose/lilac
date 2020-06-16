@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class SysController extends Controller
 {
+
     /**
      * 通知
      *
@@ -37,4 +38,14 @@ class SysController extends Controller
 
         return view('note', compact('conf'));
     }
+
+    /**
+     * 通知
+     *
+     */
+    public function contact()
+    {
+        return view('contact');
+    }
+
 }

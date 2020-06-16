@@ -36,6 +36,7 @@ Route::get('/', function () {
 // 系统
 Route::get('/note', 'SysController@note');
 Route::get('/msg', 'SysController@msg');
+Route::get('/contact', 'SysController@contact');
 
 // 展会预告
 Route::get('/trailer', 'ExpoController@trailer');

@@ -176,7 +176,13 @@ class TicketController extends Controller
         if(!times($ticket->logs)) return json_encode(['errors' =>['mobile' => '此票已超过最大转让次数']]);
         if($ticket->used) return json_encode(['errors' =>['mobile' => '此票已失效']]);
         if($ticket->expo->end < now()) return json_encode(['errors' =>['mobile' => '此票已过期']]);
-        if($target->tickets->count() >= 2) return json_encode(['errors' =>['mobile' => '受赠人已达持票数量限制']]);
+
+        // 每场展会限制2张
+        $target_tickets = Ticket::where('user_id', $target->id)
+        ->where('expo_id', $ticket->expo->id)
+        ->get();
+
+        if($target_tickets->count() >= 2) return json_encode(['errors' =>['mobile' => '受赠人已达持票数量限制']]);
 
 
         $logs = $ticket->logs;
