@@ -123,8 +123,8 @@
                         <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
                         </div>
                         <div class="tile-action">
-                        <a class="btn btn-link" href="/ticket/{{ $t->id }}">
-                            <h5 {{ $t->used ? 'text-gray' : 'text-success' }}><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
+                        <a class="btn btn-link {{ $t->used ? 'text-gray' : 'text-success' }}" href="/ticket/{{ $t->id }}">
+                            <h5 ><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
                         </a>
                         </div>
                     </div>

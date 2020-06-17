@@ -27,8 +27,8 @@
             <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
             <div class="tile-action">
 
-                    <a class="btn btn-link btn-lg ticket-btn" href="/ticket/{{ $t->id }}">
-                        <h5 {{ $t->used ? 'text-gray' : 'text-success' }}><i class="fa fa-qrcode" aria-hidden="true"></i> &nbsp;&nbsp; </h5>
+                    <a class="btn btn-link btn-lg ticket-btn {{ $t->used ? 'text-gray' : 'text-success' }}" href="/ticket/{{ $t->id }}">
+                        <h5 ><i class="fa fa-qrcode" aria-hidden="true"></i> &nbsp;&nbsp; </h5>
                     </a>
                 </div>
             </div>
