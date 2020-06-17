@@ -66,7 +66,7 @@
     {
         var code = $("#code").val();
         if(code.length > 6) {
-            var new_code = code.substring(0,5);
+            var new_code = code.substring(0,6);
             $("#code").val(new_code);
         }
     }
