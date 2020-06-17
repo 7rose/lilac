@@ -107,7 +107,11 @@
                     @foreach ($user->tickets as $t)
                     <div class="tile tile-centered">
                         <div class="tile-content">
-                        <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
+                        <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}
+                            @if($t->used)
+                            <span class="label label-primary">已使用</span>
+                            @endif
+                        </div>
                         <small class="tile-subtitle text-gray">
                             <i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}
                             @if(!empty($t->sorted))
