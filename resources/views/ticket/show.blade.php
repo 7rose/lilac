@@ -17,12 +17,14 @@
       </div>
       <div class="card-header">
       <button onclick="javascript:refresh()" class="btn btn-success float-right {{ $ticket->expo->end < \Carbon\Carbon::now()  ? 'disabled' : '' }}"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-      @if(!empty($ticket->sorted))
-      <p><span class="label label-success"><strong>入场次序: {{ $ticket->sorted }}</strong></span></p>
-      @endif
-        @if($ticket->used)
-        <span class="label label-primary">已检</span>
-        @endif
+        <p>
+            @if(!empty($ticket->sorted))
+            <span class="label label-success"><strong>入场次序: {{ $ticket->sorted }}</strong></span>
+            @endif
+            @if($ticket->used)
+            <span class="label label-primary">已检</span>
+            @endif
+        </p>
       <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}</div>
         <div class="card-subtitle text-gray">No.{{ $ticket->id }} | ¥ {{ show($ticket->expo->info, 'price') }}</div>
       </div>
