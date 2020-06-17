@@ -2,63 +2,27 @@
 
 @section('main')
 <div class="nav-pad"></div>
-<div class="wrap" style="width: 400px;margin: 0 auto;">
-    <div class="timeline">
-    <div class="timeline-item" id="timeline-example-1">
-        <div class="timeline-left icon-lg">
-        <a class="timeline-icon tooltip" data-tooltip="2016年三月" href="#timeline-example-1"></a>
-        </div>
-        <div class="timeline-content">
-        <div class="tile">
-            <div class="tile-content">
-            <p class="tile-subtitle">2016年3月</p>
-            <p class="tile-title">初始提交</p>
-            </div>
-        </div>
-         </div>
-    </div>
-    <div class="timeline-item" id="timeline-example-2">
-        <div class="timeline-left">
-        <a class="timeline-icon icon-lg tooltip" href="#timeline-example-2" data-tooltip="2017年2月">
-            <i class="icon icon-check"></i>
-        </a>
-         </div>
-         <div class="timeline-content">
-        <div class="tile">
-           <div class="tile-content">
-            <p class="tile-subtitle">2017年2月</p>
-            <p class="tile-title">新文件经验</p>
-            <p class="tile-title"><a href="">条形码</a>：表示任务的进度</p>
-            <p class="tile-title"><a href="">步骤</a>：一系列任务步骤的进度指标</p>
-            <p class="tile-title"><a href="">瓷砖</a>：可重复或可嵌入的信息块</p>
-           </div>
-           <div class="tile-action">
-            <button class="btn">视图</button>
-           </div>
-        </div>
-         </div>
-    </div>
-    <div class="timeline-item" id="timeline-example-3">
-        <div class="timeline-left">
-            <a class="timeline-icon icon-lg tooltip" href="#timeline-example-2" data-tooltip="2017年3月">
-            <i class="icon icon-check"></i>
-            </a>
-        </div>
-        <div class="timeline-content">
-             <div class="tile">
-            <div class="tile-content">
-                    <p class="tile-subtitle">2017年3月</p>
-                    <p class="tile-title"><a href="">图标</a>：单元素，响应和纯CSS图标</p>
-                    <p class="tile-title"><a href="">Popovers</a>：小重叠内容容器</p>
-                    <p class="tile-title"><a href="">日历</a>：日期或日期范围选择器和事件显示</p>
-                <p class="tile-title"><a href="">旋转木马</a>：旋转图像的幻灯片</p>
-            </div>
-            <div class="tile-action">
-                <button class="btn">视图</button>
-            </div>
-            </div>
-           </div>
-           </div>
-     </div><br></div>
+<div class="form-group">
+<label class="form-label" for="input-example-1">code</label>
+<input class="form-input" type="number" id="code" placeholder="code" onchange="javascript:cut()">
+<button class="btn btn-primary" onclick="javascript:cut()">okok</button>
+</div>
+
+<script>
+    window.onload = function(){
+        　counter = setInterval(cut, 500);
+    }
+
+     function cut()
+     {
+         console.log("fuck");
+
+         var code = $("#code").val();
+         if(code.length > 6) {
+             var new_code = code.substring(0,5);
+             $("#code").val(new_code);
+         }
+     }
+</script>
 
 @endsection

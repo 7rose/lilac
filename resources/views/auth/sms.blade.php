@@ -58,10 +58,23 @@
   </div>
 
 <script>
+    window.onload = function(){
+        　setInterval(cut, 500);
+    }
+
+    function cut()
+    {
+        var code = $("#code").val();
+        if(code.length > 6) {
+            var new_code = code.substring(0,5);
+            $("#code").val(new_code);
+        }
+    }
 
     var rate, counter, error_info;
 
     var path = window.location.pathname;
+
     // Agree items
     function terms()
     {
@@ -78,6 +91,8 @@
     {
         var code = $("#code").val();
         var mobile = $("#mobile").val();
+
+        cut();
 
         if(!(/^\d{6}$/.test(code))){
             $("#code_info").html("验证码是6位数字");
@@ -232,15 +247,6 @@
                 headers[keyValue[0].trim()] = keyValue[1].trim();
             });
         return headers;
-    }
-
-    function cut()
-    {
-        var code = $("#code").val();
-        if(code.length > 6) {
-            var new_code = code.substring(0,5);
-            $("#code").val(new_code);
-        }
     }
 
 </script>
