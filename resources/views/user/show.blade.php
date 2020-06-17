@@ -124,7 +124,7 @@
                         </div>
                         <div class="tile-action">
                         <a class="btn btn-link" href="/ticket/{{ $t->id }}">
-                            <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
+                            <h5 {{ $t->used ? 'text-gray' : 'text-success' }}><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
                         </a>
                         </div>
                     </div>
