@@ -20,6 +20,9 @@
       @if(!empty($ticket->sorted))
       <p><span class="label label-success"><strong>入场次序: {{ $ticket->sorted }}</strong></span></p>
       @endif
+        @if($ticket->used)
+        <span class="label label-primary">已检</span>
+        @endif
       <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}</div>
         <div class="card-subtitle text-gray">No.{{ $ticket->id }} | ¥ {{ show($ticket->expo->info, 'price') }}</div>
       </div>
