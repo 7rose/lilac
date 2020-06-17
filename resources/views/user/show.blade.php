@@ -111,7 +111,7 @@
 
                         </div>
                         <small class="tile-subtitle text-gray">
-                            <i class="fa fa-mobile" aria-hidden="true"></i> No.{{ $t->id }} | ¥ {{ show($t->expo->info, 'price') }}
+                            No.{{ $t->id }} | ¥ {{ show($t->expo->info, 'price') }}
                             @if(!empty($t->sorted))
                             <span class="label label-success">入场次序: {{ $t->sorted }}</span>
                             @endif
