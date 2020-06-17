@@ -40,13 +40,24 @@
                     @foreach ($user->tickets as $t)
                     <div class="tile tile-centered">
                         <div class="tile-content">
-                        <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
-                        <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
-                        <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} - {{ $t->expo->end }}</small>
+                        <div class="tile-title">{{ show($t->expo->info, 'title') }}
+
+                        </div>
+                        <small class="tile-subtitle text-gray">
+                            <i class="fa fa-mobile" aria-hidden="true"></i> No.{{ $t->id }} | ¥ {{ show($t->expo->info, 'price') }}
+                            @if(!empty($t->sorted))
+                            <span class="label label-success">入场次序: {{ $t->sorted }}</span>
+                            @endif
+
+                            @if($t->used)
+                            <span class="label label-primary">已检</span>
+                            @endif
+                        </small><br>
+                        <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
                         </div>
                         <div class="tile-action">
-                        <a class="btn btn-link" href="/ticket/{{ $t->id }}">
-                            <h5><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
+                        <a class="btn btn-link {{ $t->used ? 'text-gray' : 'text-success' }}" href="/ticket/{{ $t->id }}">
+                            <h5 ><i class="fa fa-qrcode" aria-hidden="true"></i></h5>
                         </a>
                         </div>
                     </div>
