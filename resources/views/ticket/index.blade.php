@@ -12,7 +12,12 @@
             <div class="tile tile-centered">
                 <div class="tile-content">
                     <div class="tile-title">&nbsp;&nbsp; {{ show($t->expo->info, 'title') }}&nbsp;&nbsp; </div>
-                    <small class="tile-subtitle text-gray">&nbsp;&nbsp; No.{{ $t->id }} | ¥ {{ show($t->expo->info, 'price') }}</small><br>
+                    <small class="tile-subtitle text-gray">&nbsp;&nbsp; No.{{ $t->id }} | ¥ {{ show($t->expo->info, 'price') }}
+
+                        @if(!empty($t->sorted))
+                        <strong># {{ $t->sorted }}</strong>
+                        @endif
+                    </small><br>
                     <small class="tile-subtitle">&nbsp;&nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
                 </div>
             <img src="{{ asset('images/line.svg') }}" alt="" class="ticket-line">
