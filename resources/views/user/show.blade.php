@@ -115,6 +115,7 @@
                             @if(!empty($t->sorted))
                             <span class="label label-success">入场次序: {{ $t->sorted }}</span>
                             @endif
+
                             @if($t->used)
                             <span class="label label-primary">已检</span>
                             @endif

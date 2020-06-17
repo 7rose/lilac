@@ -17,6 +17,10 @@
                         @if(!empty($t->sorted))
                         <span class="label label-success"># {{ $t->sorted }}</span>
                         @endif
+
+                        @if($t->used)
+                        <span class="label label-primary">已检</span>
+                        @endif
                     </small><br>
                     <small class="tile-subtitle">&nbsp;&nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
                 </div>
