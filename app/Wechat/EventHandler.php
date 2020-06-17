@@ -153,7 +153,9 @@ class EventHandler implements EventHandlerInterface
             $ticket->logs = $add;
             $ticket->save();
 
-            return "检票成功!";
+            $msg = empty($ticket->sorted) ? '注: 此票没有登记入场次序!' : '入场次序:'.$ticket->sorted;
+
+            return "检票成功!".$msg;
 
         // 临时离场
         }elseif($ticket->used && $ticket->afk) {
