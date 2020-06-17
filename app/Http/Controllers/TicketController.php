@@ -20,7 +20,6 @@ class TicketController extends Controller
     {
         $this->app = app('wechat.official_account');
         $this->payment =  app('wechat.payment');
-
     }
     /**
      * 微信支付购票
@@ -29,49 +28,49 @@ class TicketController extends Controller
      */
     public function order($id)
     {
-       $expo =  Expo::findOrFail($id);
+        $expo =  Expo::findOrFail($id);
 
-       // 每场展会限制2张
-       $has_tickets = Ticket::where('user_id', Auth::id())
-       ->where('expo_id', $id)
-       ->get();
+        // 每场展会限制2张
+        $has_tickets = Ticket::where('user_id', Auth::id())
+            ->where('expo_id', $id)
+            ->get();
 
-       if($has_tickets->count() >= 2) {
+        if ($has_tickets->count() >= 2) {
             $conf = [
                 'msg' => '牧云为保证每位贵宾的体验, 每人每场展会限制购票2张',
                 'icon' => 'shopping-bag',
             ];
 
             return view('note', compact('conf'));
-       }
+        }
 
         $info = [
-            'body' => show($expo->info, 'title', '').'电子门票',
-            'out_trade_no' => Auth::id().'-'.$expo->id.'-'.time(),
-            'total_fee' => show($expo->info, 'price') ? floor(floatval(show($expo->info, 'price'))*100) : 20000, # 分
+            'body' => show($expo->info, 'title', '') . '电子门票',
+            'out_trade_no' => Auth::id() . '-' . $expo->id . '-' . time(),
+            'total_fee' => show($expo->info, 'price') ? floor(floatval(show($expo->info, 'price')) * 100) : 20000, # 分
             // 'spbill_create_ip' => '123.12.12.123', // 可选，如不传该参数，SDK 将会自动获取相应 IP 地址
             // 'notify_url' => 'https://pay.weixin.qq.com/wxpay/pay.action', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
             'trade_type' => 'JSAPI', // 请对应换成你的支付方式对应的值类型
             'openid' =>  show(Auth::user()->ids, 'wechat.id'),
-            ];
+        ];
 
         // Log::info($info);
 
         $order = $this->payment->order->unify($info);
 
-        if(Arr::has($order, 'return_code') && Arr::get($order, 'return_code') == 'SUCCESS' && Arr::has($order, 'result_code') && Arr::get($order, 'result_code') == 'SUCCESS' && Arr::has($order, 'prepay_id')){
+        if (Arr::has($order, 'return_code') && Arr::get($order, 'return_code') == 'SUCCESS' && Arr::has($order, 'result_code') && Arr::get($order, 'result_code') == 'SUCCESS' && Arr::has($order, 'prepay_id')) {
             $prepayId = Arr::get($order, 'prepay_id');
 
             // 写入
             Order::create($info);
-        }else{
+        } else {
             abort('510');
         }
 
         $jssdk = $this->payment->jssdk;
         $json = $jssdk->bridgeConfig($prepayId);
 
-        return view('pay', compact('json','info'));
+        return view('pay', compact('json', 'info'));
     }
 
     /**
@@ -80,7 +79,7 @@ class TicketController extends Controller
      */
     function payCallback()
     {
-        $response = $this->payment->handlePaidNotify(function($message, $fail){
+        $response = $this->payment->handlePaidNotify(function ($message, $fail) {
 
             $order = Order::where('out_trade_no', $message['out_trade_no'])->first();
 
@@ -101,7 +100,7 @@ class TicketController extends Controller
                     $order->paid_at = now(); // 更新支付时间为当前时间
                     $order->status = '支付成功';
 
-                // 用户支付失败
+                    // 用户支付失败
                 } elseif (Arr::get($message, 'result_code') === 'FAIL') {
                     $order->status = '支付失败';
                 }
@@ -128,10 +127,10 @@ class TicketController extends Controller
         $order = Order::where('out_trade_no', $message['out_trade_no'])->firstOrFail();
 
         $new = [
-            'user_id' => $p[0],
-            'expo_id' => $p[1],
+            'user_id'  => $p[0],
+            'expo_id'  => $p[1],
             'order_id' => $order->id,
-            'logs' => [['time' => time(), 'do' => '购票', 'by' => $p[0]]],
+            'logs'     => [['time' => time(), 'do' => '购票', 'by' => $p[0]]],
         ];
 
         Ticket::create($new);
@@ -146,12 +145,11 @@ class TicketController extends Controller
         $this->authorize('viewAll', Ticket::class);
 
         $tickets = Ticket::orderBy('expo_id')
-                    ->orderBy('sorted')
-                    ->orderBy('id')
-                    ->paginate(20);
+            ->orderBy('sorted')
+            ->orderBy('id')
+            ->paginate(20);
 
         return view('ticket.index', compact('tickets'));
-
     }
 
     /**
@@ -166,13 +164,12 @@ class TicketController extends Controller
 
         $url = false;
 
-        if((!$ticket->used || ($ticket->used && $ticket->afk)) && $ticket->expo->end > now()){
-            $qrcode = $this->app->qrcode->temporary('t_'.Auth::id().'_'.$id, 60); # 1分钟
+        if ((!$ticket->used || ($ticket->used && $ticket->afk)) && $ticket->expo->end > now()) {
+            $qrcode = $this->app->qrcode->temporary('t_' . Auth::id() . '_' . $id, 60); # 1分钟
             $url = $qrcode['url'];
         }
 
         return view('ticket.show', compact('ticket', 'url'));
-
     }
 
     /**
@@ -191,30 +188,28 @@ class TicketController extends Controller
         $target = User::where('ids->mobile->number', $mobile)->first();
         $ticket = Ticket::findOrFail($id);
 
-        if(!$target) return json_encode(['errors' =>['mobile' => '用户不存在或者没有关注公众号']]);
-        if(!times($ticket->logs)) return json_encode(['errors' =>['mobile' => '此票已超过最大转让次数']]);
-        if($ticket->used) return json_encode(['errors' =>['mobile' => '此票已失效']]);
-        if($ticket->expo->end < now()) return json_encode(['errors' =>['mobile' => '此票已过期']]);
+        if (!$target) return json_encode(['errors' => ['mobile' => '用户不存在或者没有关注公众号']]);
+        if (!times($ticket->logs)) return json_encode(['errors' => ['mobile' => '此票已超过最大转让次数']]);
+        if ($ticket->used) return json_encode(['errors' => ['mobile' => '此票已失效']]);
+        if ($ticket->expo->end < now()) return json_encode(['errors' => ['mobile' => '此票已过期']]);
 
         // 每场展会限制2张
         $target_tickets = Ticket::where('user_id', $target->id)
-        ->where('expo_id', $ticket->expo->id)
-        ->get();
+            ->where('expo_id', $ticket->expo->id)
+            ->get();
 
-        if($target_tickets->count() >= 2) return json_encode(['errors' =>['mobile' => '受赠人已达持票数量限制']]);
+        if ($target_tickets->count() >= 2) return json_encode(['errors' => ['mobile' => '受赠人已达持票数量限制']]);
 
 
         $logs = $ticket->logs;
-        $logs[] = ['do' => '赠送', 'time' => time(), 'id' => Auth::id(), 'from' => $ticket->user_id,'to' => $target->id];
+        $logs[] = ['do' => '赠送', 'time' => time(), 'id' => Auth::id(), 'from' => $ticket->user_id, 'to' => $target->id];
 
         // 更新票面信息
         $ticket->update([
             'user_id' => $target->id,
-            'logs' => $logs,
+            'logs'    => $logs,
         ]);
 
         return json_encode(['success' => 'ok']);
     }
-
-
 }

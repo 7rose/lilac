@@ -22,7 +22,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        if(Auth::check()) {
+        if (Auth::check()) {
             Auth::user()->update(['ids->wechat' => null]);
             Auth::logout();
 
@@ -36,7 +36,7 @@ class AuthController extends Controller
      */
     public function sms()
     {
-        if(Auth::check()) return redirect('/me');
+        if (Auth::check()) return redirect('/me');
         return view('auth.sms');
     }
 
@@ -55,7 +55,7 @@ class AuthController extends Controller
 
         $rate = 120;
         $code = rand(100000, 999999);
-        $send_array = ['mobile'=>$mobile, 'code'=>$code];
+        $send_array = ['mobile' => $mobile, 'code' => $code];
 
         Redis::setex($mobile, 300, $code);
 
@@ -77,9 +77,9 @@ class AuthController extends Controller
 
         $mobile = $request->mobile;
 
-        if(!Redis::exists($mobile)) return json_encode(['errors' =>['code' => '验证码已过期']]);
+        if (!Redis::exists($mobile)) return json_encode(['errors' => ['code' => '验证码已过期']]);
 
-        if(Redis::get($mobile)!= $request->code) return json_encode(['errors' =>['code' => '验证码错误']]);
+        if (Redis::get($mobile) != $request->code) return json_encode(['errors' => ['code' => '验证码错误']]);
 
         $updates = ['ids->mobile->active' => now()];
 
@@ -87,7 +87,7 @@ class AuthController extends Controller
         $wechat_info = $wechat_user->toArray();
 
 
-        if(Redis::exists($wechat_info['id'])) {
+        if (Redis::exists($wechat_info['id'])) {
             $t = json_decode(Redis::get($wechat_info['id']), true);
 
             $updates = Arr::add($updates, 'conf', $t['conf']);
@@ -101,12 +101,11 @@ class AuthController extends Controller
             $updates,
         );
 
-        if(Redis::exists($mobile)) Redis::del($mobile);
-        if(Redis::exists($wechat_info['id'])) Redis::del($wechat_info['id']);
+        if (Redis::exists($mobile)) Redis::del($mobile);
+        if (Redis::exists($wechat_info['id'])) Redis::del($wechat_info['id']);
 
         Auth::login($user);
 
         return json_encode(['success' => 'ok']);
     }
-
 }
