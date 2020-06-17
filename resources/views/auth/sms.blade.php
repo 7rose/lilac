@@ -92,8 +92,6 @@
         var code = $("#code").val();
         var mobile = $("#mobile").val();
 
-        cut();
-
         if(!(/^\d{6}$/.test(code))){
             $("#code_info").html("验证码是6位数字");
             // $("#code_info").addClass('text-error');
