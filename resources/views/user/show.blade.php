@@ -114,7 +114,7 @@
                             <span class="label label-success"># {{ $t->sorted }}</span>
                             @endif
                         </small><br>
-                        <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} - {{ $t->expo->end }}</small>
+                        <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
                         </div>
                         <div class="tile-action">
                         <a class="btn btn-link" href="/ticket/{{ $t->id }}">
