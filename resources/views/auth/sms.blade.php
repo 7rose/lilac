@@ -59,7 +59,7 @@
 
 <script>
     window.onload = function(){
-        　setInterval(cut, 500);
+        　setInterval(cut, 200);
     }
 
     function cut()
