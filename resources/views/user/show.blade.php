@@ -108,7 +108,12 @@
                     <div class="tile tile-centered">
                         <div class="tile-content">
                         <div class="tile-title">{{ show($t->expo->info, 'title') }}&nbsp;&nbsp; ¥ {{ show($t->expo->info, 'price') }}</div>
-                        <small class="tile-subtitle text-gray"><i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}</small><br>
+                        <small class="tile-subtitle text-gray">
+                            <i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}
+                            @if(!empty($t->sorted))
+                            <span class="label label-success"># {{ $t->sorted }}</span>
+                            @endif
+                        </small><br>
                         <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }} - {{ $t->expo->end }}</small>
                         </div>
                         <div class="tile-action">

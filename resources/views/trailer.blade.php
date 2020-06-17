@@ -8,7 +8,8 @@
         <div class="card">
             <div class="card-image"><img class="img-responsive" src="{{ asset('images/cover.jpg') }}" alt=".."></div>
 
-
+            <div class="card-header">
+            </div>
             <div class="card-footer">
                 <div class="btn-group btn-group-block">
                 <a class="btn btn-primary" href="/pay/1">25日票</a>
