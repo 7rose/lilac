@@ -136,6 +136,7 @@
                     <p class="empty-subtitle">还没有记录</p>
                 </div>
                 @endif
+                <a href="javascript:re()" class="btn btn-primary btn-block">刷新</a>
                 </div>
             </li>
             <li>没有异常的订单</li>
@@ -144,5 +145,11 @@
         </div>
     </div>
 </div>
+<script>
+    function re()
+    {
+        window.location.reload();
+    }
+</script>
 
 @endsection
