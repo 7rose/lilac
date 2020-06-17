@@ -145,7 +145,8 @@ class TicketController extends Controller
     {
         $this->authorize('viewAll', Ticket::class);
 
-        $tickets = Ticket::orderBy('sorted')
+        $tickets = Ticket::orderBy('expo_id')
+                    ->orderBy('sorted')
                     ->orderBy('id')
                     ->paginate(20);
 
