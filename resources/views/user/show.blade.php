@@ -111,7 +111,7 @@
                         <small class="tile-subtitle text-gray">
                             <i class="fa fa-mobile" aria-hidden="true"></i> {{ show($t->user->ids, 'mobile.number') }} / No.{{ $t->id }}
                             @if(!empty($t->sorted))
-                            <span class="label label-success"># {{ $t->sorted }}</span>
+                            <span class="label label-success">入场次序: {{ $t->sorted }}</span>
                             @endif
                         </small><br>
                         <small class="tile-subtitle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
