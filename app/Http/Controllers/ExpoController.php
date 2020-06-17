@@ -183,8 +183,8 @@ class ExpoController extends Controller
             // $ticket->update([
             //     'sort' => intval($add_array[1]),
             // ]);
-            $new_logs[] = ['time' => time(), 'do' => '登记入场次序'.$add_array[1], 'by' => Auth::id()];
             $new_logs = $ticket->logs;
+            $new_logs[] = ['time' => time(), 'do' => '登记入场次序'.$add_array[1], 'by' => Auth::id()];
             $ticket->sorted = intval($add_array[1]);
             $ticket->logs = $new_logs;
             $ticket->save();
