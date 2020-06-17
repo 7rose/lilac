@@ -15,7 +15,7 @@
                     <small class="tile-subtitle text-gray">&nbsp;&nbsp; No.{{ $t->id }} | ¥ {{ show($t->expo->info, 'price') }}
 
                         @if(!empty($t->sorted))
-                        <strong># {{ $t->sorted }}</strong>
+                        <strong class="text-success"># {{ $t->sorted }}</strong>
                         @endif
                     </small><br>
                     <small class="tile-subtitle">&nbsp;&nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ $t->expo->begin }}</small>
