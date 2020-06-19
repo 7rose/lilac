@@ -123,7 +123,8 @@ class ExpoController extends Controller
     {
         $expos = Expo::where('on', true)->get();
 
-        return view('trailer', compact('expos'));
+        // return view('trailer', compact('expos'));
+        return view('trailer');
 
     }
 
