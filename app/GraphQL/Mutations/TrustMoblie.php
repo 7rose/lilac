@@ -21,46 +21,47 @@ class TrustMoblie
      */
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $jv_token = $args['jv_token'];
+        // $jv_token = $args['jv_token'];
 
-        // 极光认证配置
-        $jv_id = config('lilac.jv.id');
-        $jv_secret = config('lilac.jv.secret');
-        $jv_key = config('lilac.jv.key');
-        $jv_url = config('lilac.jv.url');
+        // // 极光认证配置
+        // $jv_id = config('lilac.jv.id');
+        // $jv_secret = config('lilac.jv.secret');
+        // $jv_key = config('lilac.jv.key');
+        // $jv_url = config('lilac.jv.url');
 
-        $response = Http::withBasicAuth($jv_id, $jv_secret)
-        ->withHeaders([
-            'X-Content-Type' => 'application/json',
-        ])
-        ->post($jv_url, [
-            'loginToken' => $jv_token,
-            // 'exID' => str_random(10), # 可选
-        ]);
+        // $response = Http::withBasicAuth($jv_id, $jv_secret)
+        // ->withHeaders([
+        //     'X-Content-Type' => 'application/json',
+        // ])
+        // ->post($jv_url, [
+        //     'loginToken' => $jv_token,
+        //     // 'exID' => str_random(10), # 可选
+        // ]);
 
-        $from_jv = json_decode($response->body(), true);
+        // $from_jv = json_decode($response->body(), true);
 
-        $encrypted = Arr::get($from_jv, 'phone');
-        $result = '';
+        // $encrypted = Arr::get($from_jv, 'phone');
+        // $result = '';
 
-        $key = file_get_contents($jv_key);
+        // $key = file_get_contents($jv_key);
 
-        openssl_private_decrypt(base64_decode($encrypted), $result, openssl_pkey_get_private($key));
+        // openssl_private_decrypt(base64_decode($encrypted), $result, openssl_pkey_get_private($key));
 
 
-        $user = User::where('ids->mobile->number',$result)->first();
+        // $user = User::where('ids->mobile->number',$result)->first();
 
-        if(!$user) {
-            $new = [
-                'ids' => ['mobile' => ['number' => $result, 'active'=>true, 'veryfied_at' => now()]],
-            ];
-            $user = User::create($new);
-        }
+        // if(!$user) {
+        //     $new = [
+        //         'ids' => ['mobile' => ['number' => $result, 'active'=>true, 'veryfied_at' => now()]],
+        //     ];
+        //     $user = User::create($new);
+        // }
 
-        $token =  $user->createToken($result)->plainTextToken;
+        // $token =  $user->createToken($result)->plainTextToken;
 
         return [
-            'token' => $token,
+            'token' => 'ok',
         ];
+
     }
 }
