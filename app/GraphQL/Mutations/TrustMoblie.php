@@ -50,9 +50,8 @@ class TrustMoblie
         openssl_private_decrypt(base64_decode($encrypted), $result, openssl_pkey_get_private($key));
 
         if(!preg_match("/^[1]([3-9])[0-9]{9}$/", $result)) {
-            throw new Error("Cannot represent following value as chinese mobile phone number: " . Utils::printSafeJson($result));
+            throw new Error("获取手机没有成功,可能因为操作超时");
         }
-
 
         $user = User::where('ids->mobile->number',$result)->first();
 
