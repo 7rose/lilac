@@ -13,7 +13,7 @@ class OrgSeeder extends Seeder
     public function run()
     {
         Org::create([
-            'key' => 'sys',
+            'key'  => 'sys',
             'info' => ['name' => 'Lilac'],
             'show' => false,
             'type' => 'org',
@@ -21,54 +21,54 @@ class OrgSeeder extends Seeder
 
             'children' => [
                 [
-                    'key' => 'main',
+                    'key'  => 'main',
                     'info' => ['name' => '牧云', 'full_name' => '上海牧云玩具设计有限公司'],
                     'type' => 'org',
 
                     'children' => [
                         [
-                            'key' => 'staff',
+                            'key'  => 'staff',
                             'info' => ['name' => 'mooibay.com'],
                             'type' => 'sort',
 
                             'children' => [
                                 [
-                                    'key' => 'president',
+                                    'key'  => 'president',
                                     'info' => ['name' => '总经理办公室', 'show' => false],
                                     'type' => 'branch',
                                     'conf' => ['roles_id' => 4],
 
                                     'children' => [
                                         [
-                                            'key' => 'technology',
+                                            'key'  => 'technology',
                                             'info' => ['name' => '技术部'],
                                             'type' => 'branch',
                                             'conf' => ['roles_id' => 7],
                                         ],
 
                                         [
-                                            'key' => 'operation',
+                                            'key'  => 'operation',
                                             'info' => ['name' => '运营部'],
                                             'type' => 'branch',
                                             'conf' => ['roles_id' => 9],
                                         ],
 
                                         [
-                                            'key' => 'market',
+                                            'key'  => 'market',
                                             'info' => ['name' => '市场部'],
                                             'type' => 'branch',
                                             'conf' => ['roles_id' => 16],
                                         ],
 
                                         [
-                                            'key' => 'finance',
+                                            'key'  => 'finance',
                                             'info' => ['name' => '财务部'],
                                             'type' => 'branch',
                                             'conf' => ['roles_id' => 19],
                                         ],
 
                                         [
-                                            'key' => 'product',
+                                            'key'  => 'product',
                                             'info' => ['name' => '产品部'],
                                             'type' => 'branch',
                                             'conf' => ['roles_id' => 22],
@@ -78,7 +78,7 @@ class OrgSeeder extends Seeder
                                 ],
 
                                 [
-                                    'key' => 'board',
+                                    'key'  => 'board',
                                     'info' => ['name' => '董事会'],
                                     'type' => 'branch',
                                     'conf' => ['roles_id' => 25],
@@ -87,19 +87,19 @@ class OrgSeeder extends Seeder
                         ],
 
                         [
-                            'key' => 'supplier',
+                            'key'  => 'supplier',
                             'info' => ['name' => '供应商'],
                             'type' => 'sort',
                         ],
 
                         [
-                            'key' => 'customer',
+                            'key'  => 'customer',
                             'info' => ['name' => '客户'],
                             'type' => 'sort',
                         ],
 
                         [
-                            'key' => 'partner',
+                            'key'  => 'partner',
                             'info' => ['name' => '合作伙伴'],
                             'type' => 'sort',
                         ],

@@ -14,17 +14,17 @@ class RoleSeeder extends Seeder
     {
         // 管理机构
         Role::create([
-            'key' => 'sys',
+            'key'  => 'sys',
             'info' => ['name' => '系统'],
 
             'children' => [
                 [
-                    'key' => 'root',
+                    'key'  => 'root',
                     'info' => ['name' => '管理者'],
 
                     'children' => [
                         [
-                            'key' => 'admin',
+                            'key'  => 'admin',
                             'info' => ['name' => '管理员'],
                         ],
                     ],
@@ -34,17 +34,17 @@ class RoleSeeder extends Seeder
 
         // 总经理办公室
         Role::create([
-            'key' => 'president',
+            'key'  => 'president',
             'info' => ['name' => 'CEO', 'full_name' => '总经理'],
 
             'children' => [
                 [
-                    'key' => 'vice_president',
+                    'key'  => 'vice_president',
                     'info' => ['name' => '副总经理'],
 
                     'children' => [
                         [
-                            'key' => 'assistant',
+                            'key'  => 'assistant',
                             'info' => ['name' => '助理'],
                         ],
                     ],
@@ -54,12 +54,12 @@ class RoleSeeder extends Seeder
 
         // 技术部
         Role::create([
-            'key' => 'cto',
+            'key'  => 'cto',
             'info' => ['name' => 'CTO', 'full_name' => '技术总监'],
 
             'children' => [
                 [
-                    'key' => 'tech_manager',
+                    'key'  => 'tech_manager',
                     'info' => ['name' => '经理'],
                 ],
             ],
@@ -67,39 +67,39 @@ class RoleSeeder extends Seeder
 
         // 运营部
         Role::create([
-            'key' => 'coo',
+            'key'  => 'coo',
             'info' => ['name' => 'COO', 'full_name' => '运营总监'],
 
             'children' => [
                 [
-                    'key' => 'expo_manager',
+                    'key'  => 'expo_manager',
                     'info' => ['name' => '展务经理'],
 
                     'children' => [
                         [
-                            'key' => 'ticket_leader',
+                            'key'  => 'ticket_leader',
                             'info' => ['name' => '票务主管'],
                         ]
                     ],
                 ],
 
                 [
-                    'key' => 'biz_manager',
+                    'key'  => 'biz_manager',
                     'info' => ['name' => '商务经理'],
                 ],
 
                 [
-                    'key' => 'online_manager',
+                    'key'  => 'online_manager',
                     'info' => ['name' => '运营经理'],
                 ],
 
                 [
-                    'key' => 'ad_manager',
+                    'key'  => 'ad_manager',
                     'info' => ['name' => '行政经理'],
                 ],
 
                 [
-                    'key' => 'legal_manager',
+                    'key'  => 'legal_manager',
                     'info' => ['name' => '法务经理'],
                 ],
             ],
@@ -107,17 +107,17 @@ class RoleSeeder extends Seeder
 
         // 市场部
         Role::create([
-            'key' => 'cmo',
+            'key'  => 'cmo',
             'info' => ['name' => 'CMO', 'full_name' => '市场总监'],
 
             'children' => [
                 [
-                    'key' => 'buy_manager',
+                    'key'  => 'buy_manager',
                     'info' => ['name' => '采购经理'],
                 ],
 
                 [
-                    'key' => 'sale_manager',
+                    'key'  => 'sale_manager',
                     'info' => ['name' => '销售经理'],
                 ],
             ],
@@ -125,17 +125,17 @@ class RoleSeeder extends Seeder
 
         // 财务部
         Role::create([
-            'key' => 'cfo',
+            'key'  => 'cfo',
             'info' => ['name' => 'CFO', 'full_name' => '财务总监'],
 
             'children' => [
                 [
-                    'key' => 'finance_manager',
+                    'key'  => 'finance_manager',
                     'info' => ['name' => '财务经理'],
                 ],
 
                 [
-                    'key' => 'audit_manager',
+                    'key'  => 'audit_manager',
                     'info' => ['name' => '审计经理'],
                 ],
             ],
@@ -143,17 +143,17 @@ class RoleSeeder extends Seeder
 
         // 产品部
         Role::create([
-            'key' => 'cpo',
+            'key'  => 'cpo',
             'info' => ['name' => 'CPO', 'full_name' => '产品总监'],
 
             'children' => [
                 [
-                    'key' => 'product_manager',
+                    'key'  => 'product_manager',
                     'info' => ['name' => '财务经理'],
                 ],
 
                 [
-                    'key' => 'quality_manager',
+                    'key'  => 'quality_manager',
                     'info' => ['name' => '质量经理'],
                 ],
             ],
@@ -161,12 +161,12 @@ class RoleSeeder extends Seeder
 
         // 董事会
         Role::create([
-            'key' => 'chairman',
+            'key'  => 'chairman',
             'info' => ['name' => '董事长'],
 
             'children' => [
                 [
-                    'key' => 'director',
+                    'key'  => 'director',
                     'info' => ['name' => '董事'],
                 ],
             ],
