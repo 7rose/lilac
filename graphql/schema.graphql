@@ -15,7 +15,7 @@ extend type Query @guard(with:["sanctum"]) {
 }
 
 type Mutation {
-    # trustMoblie(input: trustMoblieInput! @spread) : TokenPayload!
+    trustMoblie(input: trustMoblieInput! @spread) : TokenPayload!
     sendSmsCode(input: SendSmsCodeInput! @spread) : SendSmsResault!
     getToken(input: GetTokenInput! @spread) : TokenPayload!
     logout: LogoutResault!

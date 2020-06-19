@@ -18,4 +18,18 @@ return [
         'template_code' => env('ALIYUN_SMS_TEMPLATE_CODE', null),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | 配置文件
+    |--------------------------------------------------------------------------
+    | 极光认证
+    |
+    */
+    'jv' => [
+        'id' => env('JV_ID', null),
+        'secret' => env('JV_SECRET', null),
+        'key' => env('PRIVATE_KEY_PATH', null),
+        'url' => env('JV_URL', 'https://api.verification.jpush.cn/v1/web/loginTokenVerify'),
+    ],
+
 ];

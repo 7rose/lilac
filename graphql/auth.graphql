@@ -1,7 +1,6 @@
-# input trustMoblieInput {
-#     device_id: String!
-#     mobile: ChineseMobile!
-# }
+input trustMoblieInput {
+    jv_token: String!
+}
 
 input SendSmsCodeInput {
     device_id: String!
