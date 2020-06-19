@@ -1,4 +1,5 @@
 input trustMoblieInput {
+    device_id: String!
     jv_token: String!
 }
 

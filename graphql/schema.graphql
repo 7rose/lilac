@@ -10,6 +10,7 @@ type Query {
     org(id: ID @eq): Org @find
 }
 
+# 需要认证
 extend type Query @guard(with:["sanctum"]) {
     me: User @auth
 }
@@ -19,6 +20,10 @@ type Mutation {
     sendSmsCode(input: SendSmsCodeInput! @spread) : SendSmsResault!
     getToken(input: GetTokenInput! @spread) : TokenPayload!
     logout: LogoutResault!
+}
+
+extend type Mutation @guard(with:["sanctum"]) {
+    #
 }
 
 #import user.graphql

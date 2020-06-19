@@ -5,7 +5,6 @@ namespace App\GraphQL\Mutations;
 use App\User;
 use EasyWeChat\Kernel\Support\Arr;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -24,7 +23,7 @@ class TrustMoblie
     {
         $jv_token = $args['jv_token'];
 
-        // 极光认证配置信息
+        // 极光认证配置
         $jv_id = config('lilac.jv.id');
         $jv_secret = config('lilac.jv.secret');
         $jv_key = config('lilac.jv.key');
