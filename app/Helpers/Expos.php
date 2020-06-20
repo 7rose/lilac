@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use Carbon\Carbon;
+
 class Expos
 {
     protected $before = 2; # 提前2小时
@@ -30,7 +32,8 @@ class Expos
      */
     public function early($expo)
     {
-        return $expo->begin->subHours($this->before) > now() ? $expo->begin->subHours($this->before)->diffForHumans() : false;
+        $begin = Carbon::parse($expo->begin);
+        return $begin->subHours($this->before) > now() ? $begin->subHours($this->before)->diffForHumans() : false;
     }
 
     /**
@@ -39,6 +42,7 @@ class Expos
      */
     public function late($expo)
     {
-        return $expo->end < now() ? $expo->end->diffForHumans() : false;
+        $end = Carbon::parse($expo->end);
+        return $end < now() ? $end->diffForHumans() : false;
     }
 }
