@@ -190,7 +190,7 @@ class UserController extends Controller
 
         $vcard = '';
 
-        if($user->can('viewAll')) {
+        // if($user->can('viewAll')) {
              if(Auth::user()->id == $user->id || show($user->info, 'public')) {
                 $position = [];
                 $roles_array = $user->conf['roles'];
@@ -213,7 +213,7 @@ class UserController extends Controller
                 REV:'.now().'
                 END:VCARD';
             }
-        }
+        // }
 
 
 
