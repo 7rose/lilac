@@ -21,6 +21,24 @@ class Expos
      */
     public function ready($expo)
     {
-        return $expo->begin->subHours($this->before) <= now() && $expo->end >= now();
+        return !$this->early($expo) && !$this->late($expo);
+    }
+
+    /**
+     * 会展: 早
+     *
+     */
+    public function early($expo)
+    {
+        return $expo->begin->subHours($this->before) > now() ? $expo->begin->subHours($this->before)->diffForHumans() : false;
+    }
+
+    /**
+     * 会展: 迟
+     *
+     */
+    public function late($expo)
+    {
+        return $expo->end < now() ? $expo->end->diffForHumans() : false;
     }
 }

@@ -146,9 +146,10 @@ class EventHandler implements EventHandlerInterface
         // 有权限
         // 新票
         if(!$ticket->used) {
-            // 未到检票时间
+            // 不在检票时间
             $e = new Expos;
-            if(!$e->ready($ticket->expo)) return "可检票时间: ".$ticket->expo->begin->subHours(2)->diffForHumans();
+            if($e->early($ticket->expo)) return $e->early($ticket->expo)."开始检票";
+            if($e->late($ticket->expo)) return $e->late($ticket->expo)."已过可检票时间";
 
             $add = $ticket->logs;
             $add[] = ['time' => time(), 'do' => '检票', 'by' => $operator->id];
