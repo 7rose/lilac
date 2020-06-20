@@ -2,6 +2,7 @@
 
 namespace App\Wechat;
 
+use App\Helpers\Expos;
 use App\Org;
 use App\User;
 use App\Ticket;
@@ -145,7 +146,10 @@ class EventHandler implements EventHandlerInterface
         // 有权限
         // 新票
         if(!$ticket->used) {
-            // Log::info($ticket->logs);
+            // 未到检票时间
+            $e = new Expos;
+            if(!$e->ready($ticket->expo)) return "可检票时间: ".$ticket->expo->begin->subHours(2)->diffForHumans();
+
             $add = $ticket->logs;
             $add[] = ['time' => time(), 'do' => '检票', 'by' => $operator->id];
 
