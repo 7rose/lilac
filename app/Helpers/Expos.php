@@ -32,8 +32,8 @@ class Expos
      */
     public function early($expo)
     {
-        $begin = Carbon::parse($expo->begin);
-        return $begin->subHours($this->before) > now() ? $begin->subHours($this->before)->diffForHumans() : false;
+        $begin = Carbon::parse($expo->begin)->subHours($this->before) ;
+        return $begin > now() ? $begin->diffForHumans() : false;
     }
 
     /**
