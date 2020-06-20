@@ -197,7 +197,7 @@ class UserController extends Controller
 
                 if(is_array($roles_array) && count($roles_array)) {
                     foreach ($roles_array as $role) {
-                        if($role['org']->show) $position[] = utf8_encode($role['role']->info['name']);
+                        if($role['org']->show && isset($role['role']) && !empty($role['role'])) $position[] = utf8_encode($role['role']->info['name']);
                     }
                 }
 
