@@ -1,0 +1,15 @@
+type Discovery {
+    id: ID!
+    title: String!
+    content: String!
+    cover_image: String!
+    eye_images:Json!
+    author:Json!
+    likes:Int!
+    comments:Int!
+    favorites:Int!
+    tags:Json
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
