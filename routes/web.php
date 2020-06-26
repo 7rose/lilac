@@ -93,6 +93,9 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/tickets', 'TicketController@index');
         Route::get('/ticket/{id}', 'TicketController@show');
         Route::post('/ticket/trans/{id}', 'TicketController@trans');
+
+        //发现
+        Route::get('/discoveries','DiscoveryController@index');
     });
 });
 
