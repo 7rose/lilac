@@ -23,7 +23,7 @@ class CreateDiscoveriesTable extends Migration
             $table->bigInteger('likes')->default(0);
             $table->bigInteger('comments')->default(0);
             $table->bigInteger('favorites')->default(0);
-            $table->json('tags');
+            $table->json('tags')->nullable();
             $table->timestamps();
         });
     }
