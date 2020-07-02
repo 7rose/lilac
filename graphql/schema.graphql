@@ -8,6 +8,7 @@ type Query {
     user(id: ID @eq): User @find
     orgs: [Org!]! @all
     org(id: ID @eq): Org @find
+    discoveries: [Discovery!]! @all
 }
 
 # 需要认证
@@ -26,3 +27,4 @@ type Mutation {
 #import org.graphql
 #import role.graphql
 #import auth.graphql
+#import discovery.graphql
