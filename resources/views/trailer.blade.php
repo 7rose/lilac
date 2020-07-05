@@ -10,7 +10,7 @@
             <div class="card-header">
             </div>
             <div class="card-body">
-                <h5> 2020 夏季展</h5>
+                <h5>SSF  2020 夏季展</h5>
 时间：2020.7.25 - 7.26<br>
 地点：上海市静安区万航渡路838号柒彩里5层<br>
 联合主办：First Meet Gallery x Mooi Design<br>
