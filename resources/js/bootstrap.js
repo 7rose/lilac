@@ -12,6 +12,7 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 require('spectre.css-js/dist/spectre');
 require('spectre.css-js/dist/spectre.bundle');
+require('jquery-countdown');
 
 
 /**

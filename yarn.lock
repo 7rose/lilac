@@ -3936,6 +3936,11 @@ jest-worker@^25.4.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jquery-countdown@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jquery-countdown/-/jquery-countdown-2.2.0.tgz#ba78ed5d7cf107b3b1cac9c6ba07997d4aa2dcef"
+  integrity sha1-unjtXXzxB7OxysnGugeZfUqi3O8=
+
 jquery.countdown@^1.2.8:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/jquery.countdown/-/jquery.countdown-1.2.8.tgz#9a224de619ae527aeb4f4eb4a790a93dee0e6276"
