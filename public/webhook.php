@@ -12,7 +12,7 @@ $signature = $arr[1];
 
 $payload_hash = hash_hmac($algo, $payload, $key);
 if($payload_hash == $signature){
-    exec('deploy/git.sh');
+    shell_exec('sh deploy/git.sh');
     // shell_exec('cd '.$path);
     // shell_exec('/usr/bin/git pull');
     // shell_exec('/usr/bin/composer install');
