@@ -20,7 +20,7 @@
                 
                 <i class="fa fa-clock-o" aria-hidden="true"></i> 日期: 2020/7/25 至 7/26<br>
                 <i class="fa fa-map-marker" aria-hidden="true"></i> 地点: 上海市静安区万航渡路838号柒彩里5层<br>
-                <p><small class="text-gray">* 本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩!</small></p>
+                <p><small class="text-success">* 本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩!</small></p>
             </div>
 
     
