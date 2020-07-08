@@ -23,3 +23,10 @@
     padding: 10px;
     color: aquamarine;
 }
+
+.article {
+    /* width: c; */
+    /* height: 100%; */
+    background: url('../images/back.jpg') no-repeat;    
+    background-size: cover;
+}
