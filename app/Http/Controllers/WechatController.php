@@ -87,12 +87,12 @@ class WechatController extends Controller
                     [
                         "type" => "view",
                         "name" => "会展预告",
-                        "url"  => "https://wechat.mooibay.com/trailer",
+                        "url"  => "https://api.mooibay.com/trailer",
                     ],
                     [
                         "type" => "view",
                         "name" => "联系牧云",
-                        "url"  => "https://wechat.mooibay.com/contact",
+                        "url"  => "https://api.mooibay.com/contact",
                     ],
                 ],
             ],
