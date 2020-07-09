@@ -104,7 +104,7 @@ class WechatController extends Controller
             [
                 "type" => "view",
                 "name" => "我",
-                "url"  => "https://wechat.mooibay.com/me",
+                "url"  => "https://api.mooibay.com/me",
             ],
         ];
 
