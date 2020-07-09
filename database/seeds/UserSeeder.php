@@ -56,8 +56,8 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'ids'    => ['mobile' => ['number' => '13093728699', 'active' => true]],
-            'info'   => ['name' => '丁丽丽', 'nick' => 'yama'],
+            'ids'    => ['mobile' => ['number' => '15021170027', 'active' => true]],
+            'info'   => ['name' => '小安', 'nick' => 'Amy'],
             'conf'   => ['roles' => [['org_id' => 6, 'role_id' => null]]],
         ]);
     }
