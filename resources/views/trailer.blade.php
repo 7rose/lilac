@@ -29,10 +29,10 @@
                     <button class="btn btn-block disabled btn-success">抢票通道即将开启, 敬请期待!</button>
                 </div>
             </div>
-
         </div>
 
     </div>
+    <div class="card-image"><img class="img-responsive" src="{{ asset('images/bjbs.svg') }}" alt=".."></div>
         
 </div>
 
