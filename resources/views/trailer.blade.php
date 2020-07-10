@@ -15,26 +15,27 @@
                         <i class="fa fa-map-marker" aria-hidden="true"></i> 地点: 上海市静安区万航渡路838号柒彩里5层</p>
                         本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩!
                 </div>
-                    
-                <div class="card-body">
-                    <small>
-                        “乘风破浪”的娃友们，重拾起自己沉寂已久的玩心，来遇见让你再次心动不已的玩具吧。在SSF面基群内老友，吐露这段时间的心情；结识新友，创造新的美好回忆；还可以亲口把自己的支持告诉你喜欢的设计师，更重要的是，pick自己喜爱的玩具带回家！
-            
-                    First Meet Gallery携手Mooi Design联合主办，用心为你打造这个夏季最in最high最开心的潮流玩具展，一个属于大人的玩具乐园。多元的潮玩IP，多样的个性玩具，丰富的现场互动，等你参加，准备好加入我们了吗?!
-                    
-                    2020年7月25日-7月26日，我们在上海市静安区万航渡路838号柒彩里5层等你来玩~更多精彩内容、一手资讯请关注我们的官方公众账号，敬请期待！<br>
-                    <cite>- 海上牧云</cite>
-                    </small>
-                </div>
+
                 <div class="card-footer">
                     <button class="btn btn-block disabled btn-success">抢票通道即将开启, 敬请期待!</button>
                 </div>
             </div>
         </div>
         <p></p>
-        <div class="card container">
+        <div class="card">
             <div class="card-image"><img class="img-responsive" src="{{ asset('images/find.jpg') }}" alt=".."></div>
+            <div class="card-body">
+                <small>
+                    “乘风破浪”的娃友们，重拾起自己沉寂已久的玩心，来遇见让你再次心动不已的玩具吧。在SSF面基群内老友，吐露这段时间的心情；结识新友，创造新的美好回忆；还可以亲口把自己的支持告诉你喜欢的设计师，更重要的是，pick自己喜爱的玩具带回家！
+        
+                First Meet Gallery携手Mooi Design联合主办，用心为你打造这个夏季最in最high最开心的潮流玩具展，一个属于大人的玩具乐园。多元的潮玩IP，多样的个性玩具，丰富的现场互动，等你参加，准备好加入我们了吗?!
+                
+                2020年7月25日-7月26日，我们在上海市静安区万航渡路838号柒彩里5层等你来玩~更多精彩内容、一手资讯请关注我们的官方公众账号，敬请期待！<br>
+                <cite>- 海上牧云</cite>
+                </small>
+            </div>
         </div>
+        <p></p>
     </div>
     <p></p>
     <p></p>
