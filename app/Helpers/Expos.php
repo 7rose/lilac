@@ -45,4 +45,17 @@ class Expos
         $end = Carbon::parse($expo->end);
         return $end < now() ? $end->diffForHumans() : false;
     }
+
+    /**
+     * 会展: 迟
+     *
+     */
+    public function buy($expo)
+    {
+        $limit = intval(show($expo->info, 'limit'));
+        if($limit < 1) return false;
+
+        $end = Carbon::parse($expo->end);
+        return $end < now() ? $end->diffForHumans() : false;
+    }    
 }

@@ -57,6 +57,7 @@ class ExpoController extends Controller
             'addr' => ['required', 'min:6', 'max:100'],
             'begin' => ['required', 'after:'.today()],
             'end' => ['required', 'after:'.$request->begin],
+            'ready' => ['required', 'after:'.today()],
             'price' => ['required', 'numeric', 'min:0', 'max:1000'],
             'limit' => ['required', 'integer', 'min:100', 'max:100000'],
             'manager' => ['max:110'],
@@ -82,6 +83,7 @@ class ExpoController extends Controller
                 'addr' => $request->addr,
                 'price' => $request->price,
                 'limit' => $request->limit,
+                'ready' => $request->ready,
             ],
             'conf' => [
                 'manager' => $request->manager,

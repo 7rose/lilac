@@ -63,6 +63,18 @@
                         </div>
                     </div>
 
+                    <div class="form-group @error('ready') has-error @enderror">
+                        <div class="col-3 col-sm-12">
+                        <label class="form-label" for="input-example-1">开放购票时间</label>
+                        </div>
+                        <div class="col-9 col-sm-12">
+                        <input class="form-input"type="datetime-local" name="ready" value="{{ old('ready') ? old('ready') : "2020-06-01T12:00" }}" placeholder="开放购票时间" required>
+                        @error('ready')
+                            <p class="form-input-hint">{{ $message }}</p>
+                        @enderror
+                        </div>
+                    </div>
+
                     <div class="form-group @error('price') has-error @enderror">
                         <div class="col-3 col-sm-12">
                         <label class="form-label" for="input-example-1">票价</label>
