@@ -27,7 +27,7 @@
                         <a class="btn btn-big btn-primary"><strong>7/26日</strong><br><small>余票: {{ $e->buy(App\Expo::find(2)) }}</small></a>
                       </div> 
                     @else 
-                    <button class="btn btn-block disabled btn-success">暂时无法购票</button>
+                    <button class="btn btn-block disabled btn-success">即将开放购票，敬请期待！</button>
                     @endif
                     <p></p>
                     <p><small>温馨提示: <br>
