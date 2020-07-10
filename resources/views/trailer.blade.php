@@ -16,12 +16,10 @@
                     <h5>SSF  2020 夏季展</h5>
                     <p><i class="fa fa-clock-o" aria-hidden="true"></i> 日期: 2020/7/25 至 7/26 <br>
                         <i class="fa fa-map-marker" aria-hidden="true"></i> 地点: 上海市静安区万航渡路838号柒彩里5层</p>
-                        本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩!
                 </div>
 
                 <div class="card-footer">
                     @if(Auth::check() && $e->buy(App\Expo::find(1)) && $e->buy(App\Expo::find(2)))
-                    <p></p>
                     <div class="text-center"><h5>统一票价: ¥130</h5></div>
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
@@ -32,7 +30,7 @@
                     <button class="btn btn-block disabled btn-success">抢票通道即将开启, 敬请期待!</button>
                     @endif
                     <p></p>
-                    <p></p>
+                    <p class="text-gray"><small>* 本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩! Now, find your dream!!</small></p>
                 </div>
             </div>
         </div>
