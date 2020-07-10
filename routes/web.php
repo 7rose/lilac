@@ -105,7 +105,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    $t = App\Ticket::find(2);
+    $t = App\Ticket::find(1);
 
     $send_array = [
         'name' => \face($t->user)->name,
@@ -118,7 +118,7 @@ Route::get('/test', function () {
 
     WecahtGetTicket::dispatch($send_array);
 
-    var_dump($send_array);
+    // var_dump($send_array);
 
     // $fuck = "oh";
     // $a = "haha{$fuck}ha";
