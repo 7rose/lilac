@@ -1,10 +1,11 @@
 <?php
 
 use AlibabaCloud\Edas\Edas;
+use App\Jobs\WecahtGetTicket;
 use EasyWeChat\Kernel\Support\Arr;
 use function GuzzleHttp\json_decode;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use function EasyWeChat\Kernel\Support\str_random;
@@ -104,19 +105,39 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    $user = App\User::find(9);
-    // $user = App\User::find(2);
-    // $user = App\User::find(1);
-    // $user = App\User::find(8);
-    Auth::login($user);
+    $t = App\Ticket::find(2);
 
-    $a = new App\Helpers\Expos;
+    $send_array = [
+        'name' => \face($t->user)->name,
+        'ticket_id' => $t->id,
+        'open_id' => show($t->user->ids, 'wechat.id', 'none'),
+        'expo_title' => show($t->expo->info, 'title', 'SSF'),
+        'expo_begin' => $t->expo->begin,
+        'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
+    ];
 
-    $e = App\Expo::find(1);
+    WecahtGetTicket::dispatch($send_array);
 
-    $b = $a->buy($e);
+    var_dump($send_array);
 
-    var_dump($b);
+    // $fuck = "oh";
+    // $a = "haha{$fuck}ha";
+
+
+    // echo $a;
+    // $user = App\User::find(9);
+    // // $user = App\User::find(2);
+    // // $user = App\User::find(1);
+    // // $user = App\User::find(8);
+    // Auth::login($user);
+
+    // $a = new App\Helpers\Expos;
+
+    // $e = App\Expo::find(1);
+
+    // $b = $a->buy($e);
+
+    // var_dump($b);
     // echo show($e->info, 'limit');
     // echo "ohyes";
     // echo str_random(16);

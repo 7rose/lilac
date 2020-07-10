@@ -20,7 +20,7 @@
 
                 <div class="card-footer">
                     @if(Auth::check() && ($e->buy(App\Expo::find(1)) || $e->buy(App\Expo::find(2))))
-                    <div class="text-center"><h5>统一票价: ¥138</h5></div>
+                    <div class="text-center"><h5>统一票价: ¥130</h5></div>
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
                         @if($e->buy(App\Expo::find(1)))

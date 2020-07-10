@@ -9,6 +9,7 @@ use App\Ticket;
 use App\Rules\Mobile;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Jobs\WecahtGetTicket;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,9 @@ class TicketController extends Controller
      */
     public function order($id)
     {
+        // 员工购票测试
+        // $open = 
+        // --end
         $expo =  Expo::findOrFail($id);
 
         // 每场展会限制2张
@@ -133,7 +137,17 @@ class TicketController extends Controller
             'logs'     => [['time' => time(), 'do' => '购票', 'by' => $p[0]]],
         ];
 
-        Ticket::create($new);
+        $t = Ticket::create($new);
+
+        $send_array = [
+            'name' => \face($t->user)->name,
+            'ticket_id' => $t->id,
+            'expo_title' => show($t->expo->info, 'title', 'SSF'),
+            'expo_begin' => $t->expo->begin,
+            'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
+        ];
+
+        WecahtGetTicket::dispatch($send_array);
     }
 
     /**
