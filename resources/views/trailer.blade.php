@@ -20,7 +20,7 @@
 
                 <div class="card-footer">
                     @if(Auth::check() && ($e->buy(App\Expo::find(1)) || $e->buy(App\Expo::find(2))))
-                    <div class="text-center"><h5>统一票价: ¥130</h5></div>
+                    <div class="text-center"><h5>统一票价: ¥138</h5></div>
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
                         @if($e->buy(App\Expo::find(1)))
@@ -81,8 +81,8 @@
     <div class="content">
 
         <p>
-            本次会展的展务工作由 上海牧云玩具设计有限公司(以下称:"牧云") 主办, 并在其官方公众号 "mooi海上牧云"（以下称：“平台”） 提供售票服务；<br>
-            并在展会现场检票。为保护用户权益，购票者（以下称：“用户”）必需阅读并同意协议所有条款后方可继续；若用户对相关条款有异议，需通过 
+            本次会展的展务工作由 上海牧云玩具设计有限公司(以下称:"牧云") 主办, 并在其官方公众号 "mooi海上牧云"（以下称：“平台”） 提供售票服务,
+            并在展会现场提供检票服务。为保护用户权益，购票者（以下称：“用户”）必需阅读并同意协议所有条款后方可继续；若用户对相关条款有异议，需通过 
             july@mooitoys.com 或平台咨询，其他渠道不予认可。
         </p>
         <h5>会展信息</h5>
