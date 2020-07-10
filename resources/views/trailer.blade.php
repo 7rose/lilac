@@ -14,8 +14,8 @@
             <div class="article">
                 <div class="card-header">
                     <h5>SSF  2020 夏季展</h5>
-                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> 日期: 2020/7/25 至 7/26 <br>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> 地点: 上海市静安区万航渡路838号柒彩里5层</p>
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> <strong>日期</strong><br>2020/7/25 至 7/26 <br>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> <strong>地点</strong><br> 上海市静安区万航渡路838号柒彩里5层</p>
                 </div>
 
                 <div class="card-footer">
@@ -33,7 +33,7 @@
                     <p><small>温馨提示: <br>
                         1. 购票和使用必需阅读并同意<a href="#">《购票协议》</a><br>
                         2. 电子票仅限当日使用,无法退换,不要买错哦<br>
-                        3 本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩; 祝您满载而归!</small></p>
+                        3. 本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩; 祝您满载而归!</small></p>
                 </div>
             </div>
         </div>
