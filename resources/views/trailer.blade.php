@@ -33,8 +33,8 @@
                     <p><small>温馨提示: <br>
                         1. 购票和使用必需阅读并同意<a href="#xieyi">《购票协议》</a><br>
                         2. 电子票仅限当日使用,无法退换,不要买错哦<br>
-                        3. 将在<code>2020年7月18日</code> 下午1点在抖音账号“MOOIDESIGN”直播抽取入场顺序号<br>
-                        4. 本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩; 祝您满载而归!</small></p>
+                        3. 本次会展将在<code>2020年7月18日 下午1点</code> 在抖音账号“MOOIDESIGN”直播抽取入场顺序号<br>
+                        4. 本次会展由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩; 祝您满载而归!</small></p>
                 </div>
             </div>
         </div>
