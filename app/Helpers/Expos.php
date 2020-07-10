@@ -70,6 +70,6 @@ class Expos
 
         $rest = $limit - $sold;
 
-        return $rest > 0 ? $rest : 0;
+        return $rest > 0 ? $rest : false;
     }    
 }

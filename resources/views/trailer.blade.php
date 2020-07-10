@@ -19,12 +19,22 @@
                 </div>
 
                 <div class="card-footer">
-                    @if(Auth::check() && $e->buy(App\Expo::find(1)) && $e->buy(App\Expo::find(2)))
+                    @if(Auth::check() && ($e->buy(App\Expo::find(1)) || $e->buy(App\Expo::find(2))))
                     <div class="text-center"><h5>统一票价: ¥130</h5></div>
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
-                        <a href="/pay/1" class="btn btn-big btn-secondary"><strong>7/25日</strong><br><small>余票: {{ $e->buy(App\Expo::find(1)) }}</small></a>
-                        <a href="/pay/2" class="btn btn-big btn-primary"><strong>7/26日</strong><br><small>余票: {{ $e->buy(App\Expo::find(2)) }}</small></a>
+                        @if($e->buy(App\Expo::find(1)))
+                        <a href="/pay/1" class="btn btn-big btn-secondary"><strong>7月25日</strong><br><small>余票: {{ $e->buy(App\Expo::find(1)) }}</small></a>
+                        @else
+                        <button class="btn btn-big btn-secondary disabled"><strong>7月25日</strong><br><small>已售完</small></button> 
+                        @endif
+
+                        @if($e->buy(App\Expo::find(2)))
+                        <a href="/pay/2" class="btn btn-big btn-secondary"><strong>7月26日</strong><br><small>余票: {{ $e->buy(App\Expo::find(2)) }}</small></a>
+                        @else
+                        <button class="btn btn-big btn-secondary disabled"><strong>7月26日</strong><br><small>已售完</small></button> 
+                        @endif
+
                       </div> 
                     @else 
                     <button class="btn btn-block disabled btn-success">即将开放购票，敬请期待！</button>
