@@ -68,6 +68,8 @@ class Expos
         $au = new Authorize;
         if($ready_for_ticket > now() && (!Auth::check() || !$au->need(Auth::user(), 'staff'))) return false;
 
-        return true;
+        $rest = $limit - $sold;
+
+        return $rest > 0 ? $rest : 0;
     }    
 }
