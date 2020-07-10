@@ -1,14 +1,7 @@
 <?php
 
-use AlibabaCloud\Edas\Edas;
-use App\Jobs\WecahtGetTicket;
-use EasyWeChat\Kernel\Support\Arr;
-use function GuzzleHttp\json_decode;
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use function EasyWeChat\Kernel\Support\str_random;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -102,64 +95,19 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
 // ------------ dev -------------
 
-Route::get('/fake', 'WechatController@fake');
+// Route::get('/fake', 'WechatController@fake');
 
-Route::get('/test', function () {
-    $t = App\Ticket::find(1);
-
-    $send_array = [
-        'name' => \face($t->user)->name,
-        'ticket_id' => $t->id,
-        'open_id' => show($t->user->ids, 'wechat.id', 'none'),
-        'expo_title' => show($t->expo->info, 'title', 'SSF'),
-        'expo_begin' => $t->expo->begin,
-        'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
-    ];
-
-    WecahtGetTicket::dispatch($send_array);
-
-    // var_dump($send_array);
-
-    // $fuck = "oh";
-    // $a = "haha{$fuck}ha";
+// Route::get('/test', function () {
 
 
-    // echo $a;
-    // $user = App\User::find(9);
+// });
+
+// Route::get('/in', function () {
+    // // $user = App\User::find(5);
+    // $user = App\User::find(6);
     // // $user = App\User::find(2);
     // // $user = App\User::find(1);
     // // $user = App\User::find(8);
     // Auth::login($user);
-
-    // $a = new App\Helpers\Expos;
-
-    // $e = App\Expo::find(1);
-
-    // $b = $a->buy($e);
-
-    // var_dump($b);
-    // echo show($e->info, 'limit');
-    // echo "ohyes";
-    // echo str_random(16);
-    // $result = '17821621090';
-    // $user = App\User::firstOrCreate([
-    //     'ids->mobile->number' => $result,
-    //     [
-    //         'ids->mobile->active' => true,
-    //         'ids->mobile->veryfied_at' => now(),
-    //     ],
-    // ]);
-
-    // print_r($user->ids);
-
-});
-
-Route::get('/in', function () {
-    // $user = App\User::find(5);
-    $user = App\User::find(6);
-    // $user = App\User::find(2);
-    // $user = App\User::find(1);
-    // $user = App\User::find(8);
-    Auth::login($user);
-    print_r($user->info);
-});
+    // print_r($user->info);
+// });

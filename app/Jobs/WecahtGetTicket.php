@@ -45,7 +45,7 @@ class WecahtGetTicket implements ShouldQueue
             ],
         ];
         
-        Log::info($ready);
+        // Log::info($ready);
         
         $app = app('wechat.official_account');
         $app->template_message->send($ready);
