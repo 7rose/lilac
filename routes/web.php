@@ -104,8 +104,22 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
+    $user = App\User::find(9);
+    // $user = App\User::find(2);
+    // $user = App\User::find(1);
+    // $user = App\User::find(8);
+    Auth::login($user);
+
+    $a = new App\Helpers\Expos;
+
+    $e = App\Expo::find(1);
+
+    $b = $a->buy($e);
+
+    var_dump($b);
+    // echo show($e->info, 'limit');
     // echo "ohyes";
-    echo str_random(16);
+    // echo str_random(16);
     // $result = '17821621090';
     // $user = App\User::firstOrCreate([
     //     'ids->mobile->number' => $result,

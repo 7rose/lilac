@@ -1,3 +1,6 @@
+<?php
+    $e = new App\Helpers\Expos;
+?>
 @extends('nav')
 
 @section('main')
@@ -17,7 +20,11 @@
                 </div>
 
                 <div class="card-footer">
+                    @if(Auth::check() && $e->buy(App\Expo::find(1)) && $e->buy(App\Expo::find(2)))
+                    <button class="btn btn-block btn-success">$130 !</button>
+                    @else 
                     <button class="btn btn-block disabled btn-success">抢票通道即将开启, 敬请期待!</button>
+                    @endif
                     <p></p>
                     <p></p>
                 </div>

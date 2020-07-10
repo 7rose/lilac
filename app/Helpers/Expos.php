@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 use Carbon\Carbon;
+use App\Helpers\Authorize;
+use Illuminate\Support\Facades\Auth;
 
 class Expos
 {
@@ -47,15 +49,25 @@ class Expos
     }
 
     /**
-     * 会展: 迟
+     * 可以买票
      *
      */
     public function buy($expo)
     {
+        // 人数
         $limit = intval(show($expo->info, 'limit'));
-        if($limit < 1) return false;
+        $sold = $expo->tickets->count();
+        if($limit < 1 || $sold >= $limit) return false;
+        // echo $limit;
 
-        $end = Carbon::parse($expo->end);
-        return $end < now() ? $end->diffForHumans() : false;
+        // 时间
+        $ready_for_ticket = Carbon::parse(show($expo->info, 'ready'));
+        if($this->late($expo)) return false;
+
+        // 允许员工购买
+        $au = new Authorize;
+        if($ready_for_ticket > now() && (!Auth::check() || !$au->need(Auth::user(), 'staff'))) return false;
+
+        return true;
     }    
 }
