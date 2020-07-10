@@ -18,6 +18,7 @@
 
                 <div class="card-footer">
                     <button class="btn btn-block disabled btn-success">抢票通道即将开启, 敬请期待!</button>
+                    <p></p>
                 </div>
             </div>
         </div>
