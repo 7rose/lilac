@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Jobs\WecahtGetTicket;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,19 +97,30 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
 // ------------ dev -------------
 
-// Route::get('/fake', 'WechatController@fake');
+Route::get('/fake', 'WechatController@fake');
 
-// Route::get('/test', function () {
+Route::get('/test', function () {
+    $t = App\Ticket::find(1);
 
+    $send_array = [
+        'name' => \face($t->user)->name,
+        'ticket_id' => $t->id,
+        'open_id' => show($t->user->ids, 'wechat.id', 'none'),
+        'expo_title' => show($t->expo->info, 'title', 'SSF'),
+        'expo_begin' => $t->expo->begin,
+        'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
+    ];
 
-// });
+    WecahtGetTicket::dispatch($send_array);
 
-// Route::get('/in', function () {
-    // // $user = App\User::find(5);
-    // $user = App\User::find(6);
-    // // $user = App\User::find(2);
-    // // $user = App\User::find(1);
-    // // $user = App\User::find(8);
-    // Auth::login($user);
-    // print_r($user->info);
-// });
+});
+
+Route::get('/in', function () {
+    // $user = App\User::find(5);
+    $user = App\User::find(6);
+    // $user = App\User::find(2);
+    // $user = App\User::find(1);
+    // $user = App\User::find(8);
+    Auth::login($user);
+    print_r($user->info);
+});
