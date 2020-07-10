@@ -21,7 +21,13 @@
 
                 <div class="card-footer">
                     @if(Auth::check() && $e->buy(App\Expo::find(1)) && $e->buy(App\Expo::find(2)))
-                    <button class="btn btn-block btn-success">$130 !</button>
+                    <p></p>
+                    <div class="text-center"><h5>统一票价: ¥130</h5></div>
+                    <p></p>
+                    <div class="btn-group btn-group-block btn-big">
+                        <button class="btn btn-big btn-secondary"><strong>7/25日</strong><br><small>库存: 800</small></button>
+                        <button class="btn btn-big btn-primary"><strong>7/26日</strong><br><small>库存: 800</small></button>
+                      </div> 
                     @else 
                     <button class="btn btn-block disabled btn-success">抢票通道即将开启, 敬请期待!</button>
                     @endif

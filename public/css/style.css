@@ -30,3 +30,7 @@
     background: url('../images/back.jpg') no-repeat;    
     background-size: cover;
 }
+
+.btn-big {
+    height: 4em;
+}
