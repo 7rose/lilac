@@ -39,13 +39,13 @@ Route::get('/', function () {
 Route::get('/note', 'SysController@note');
 Route::get('/msg', 'SysController@msg');
 Route::get('/contact', 'SysController@contact');
+Route::get('/trailer', 'ExpoController@trailer');
 
 
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     
     // 展会预告
-    Route::get('/trailer', 'ExpoController@trailer');
 
     Route::get('/sms', 'AuthController@sms');
     Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');

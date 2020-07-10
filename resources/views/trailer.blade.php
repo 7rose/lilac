@@ -50,6 +50,15 @@
         </div>
         <p></p>
         <div class="card">
+            <div class="text-success bg-dark text-center">
+                <p></p>
+                距离开展
+                <div id="getting-started"></div>
+                <p></p>
+            </div>
+        </div>
+        <p></p>
+        <div class="card">
             <div class="card-header">
                 <p class="text-center">部分参展品牌<br>
                     <small class="text-gray">排名不分先后, 动态更新, 欢迎随时关注!</small>
