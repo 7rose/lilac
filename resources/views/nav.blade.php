@@ -78,6 +78,7 @@
             &copy; {{ now()->year }}, 上海牧云玩具设计有限公司<br>
                 <a class="text-gray" href="http://beian.miit.gov.cn">沪ICP备20011997号-1</a>
         </small>
+        <p></p>
     </footer>
 
 </body>
