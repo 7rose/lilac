@@ -50,7 +50,12 @@
         </div>
         <p></p>
         <div class="card">
-            <div class="card-image"><img class="img-responsive" src="{{ asset('images/find.jpg') }}" alt=".."></div>
+            <div class="card-header">
+                <p class="text-center">部分参展品牌<br>
+                    <small class="text-gray">排名不分先后, 动态更新, 欢迎随时关注!</small>
+                </p>
+            </div>
+            <div class="card-image"><img class="img-responsive" src="{{ asset('images/wall.jpg') }}" alt=".."></div>
             <div class="card-body">
                 <small>
                     “乘风破浪”的娃友们，重拾起自己沉寂已久的玩心，来遇见让你再次心动不已的玩具吧。在SSF面基群内老友，吐露这段时间的心情；结识新友，创造新的美好回忆；还可以亲口把自己的支持告诉你喜欢的设计师，更重要的是，pick自己喜爱的玩具带回家！
