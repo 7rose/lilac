@@ -30,9 +30,9 @@
                         @endif
 
                         @if($e->buy(App\Expo::find(2)))
-                        <a href="/pay/2" class="btn btn-big btn-secondary"><strong>7月26日</strong><br><small>余票: {{ $e->buy(App\Expo::find(2)) }}</small></a>
+                        <a href="/pay/2" class="btn btn-big btn-primary"><strong>7月26日</strong><br><small>余票: {{ $e->buy(App\Expo::find(2)) }}</small></a>
                         @else
-                        <button class="btn btn-big btn-secondary disabled"><strong>7月26日</strong><br><small>已售完</small></button> 
+                        <button class="btn btn-big btn-primary disabled"><strong>7月26日</strong><br><small>已售完</small></button> 
                         @endif
 
                       </div> 
