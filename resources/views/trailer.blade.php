@@ -14,7 +14,7 @@
             <div class="article">
                 <div class="card-header">
                     <h5>SSF  2020 夏季展</h5>
-                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> <strong>日期</strong><br>2020/7/25 至 7/26 <br>
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> <strong>日期</strong><br>2020年7月25 至 26 日<br>
                         <i class="fa fa-map-marker" aria-hidden="true"></i> <strong>地点</strong><br> 上海市静安区万航渡路838号柒彩里5层</p>
                 </div>
 
