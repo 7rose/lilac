@@ -30,7 +30,10 @@
                     <button class="btn btn-block disabled btn-success">抢票通道即将开启, 敬请期待!</button>
                     @endif
                     <p></p>
-                    <p class="text-gray"><small>* 本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩! Now, find your dream!!</small></p>
+                    <p><small>温馨提示: <br>
+                        1. 购票和使用必需阅读并同意<a href="#">《购票协议》</a><br>
+                        2. 电子票仅限当日使用,无法退换,不要买错哦<br>
+                        3 本次盛会由 First Meet Gallery x Mooi Design 携手打造,为您呈现无限精彩; 祝您满载而归!</small></p>
                 </div>
             </div>
         </div>
