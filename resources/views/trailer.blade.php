@@ -23,8 +23,8 @@
                     <div class="text-center"><h5>统一票价: ¥130</h5></div>
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
-                        <a class="btn btn-big btn-secondary"><strong>7/25日</strong><br><small>余票: {{ $e->buy(App\Expo::find(1)) }}</small></a>
-                        <a class="btn btn-big btn-primary"><strong>7/26日</strong><br><small>余票: {{ $e->buy(App\Expo::find(2)) }}</small></a>
+                        <a href="/pay/1" class="btn btn-big btn-secondary"><strong>7/25日</strong><br><small>余票: {{ $e->buy(App\Expo::find(1)) }}</small></a>
+                        <a href="/pay/2" class="btn btn-big btn-primary"><strong>7/26日</strong><br><small>余票: {{ $e->buy(App\Expo::find(2)) }}</small></a>
                       </div> 
                     @else 
                     <button class="btn btn-block disabled btn-success">即将开放购票，敬请期待！</button>
