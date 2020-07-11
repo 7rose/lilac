@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="card-footer">
-                    @if(Auth::check() && ($e->buy(App\Expo::find(1)) || $e->buy(App\Expo::find(2))))
+                    {{-- @if(Auth::check() && ($e->buy(App\Expo::find(1)) || $e->buy(App\Expo::find(2)))) --}}
                     <div class="text-center"><h5>统一票价: ¥130</h5></div>
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
@@ -49,9 +49,9 @@
                         @endif
 
                       </div> 
-                    @else 
+                    {{-- @else 
                     <button class="btn btn-block disabled btn-success"> 购票将于 7月11日 13:00 ({{ \Carbon\Carbon::parse("2020/7/11 13:00")->diffForHumans() }}) 启动 </button>
-                    @endif
+                    @endif --}}
                     <p></p>
                     <p><small>温馨提示: <br>
                         1. 购票和使用必需阅读并同意<a href="#xieyi">《购票协议》</a><br>
