@@ -37,7 +37,7 @@
 
                       </div> 
                     @else 
-                    <button class="btn btn-block disabled btn-success"> 购票将于 7月11日 13:00 启动, 千万别错过哦!! </button>
+                    <button class="btn btn-block disabled btn-success"> 购票将于 7月11日 13:00 启动!! </button>
                     @endif
                     <p></p>
                     <p><small>温馨提示: <br>
@@ -137,9 +137,9 @@
 </div>
 
 <script type="text/javascript">
-    var t = '2020/07/25 19:00:00';
-    $('#getting-started').countdown(t, function(event) {
-      $(this).html(event.strftime('%w 周 %d 天 %H:%M:%S'));
-    });
-  </script>
+var t = '2020/07/25 19:00:00';
+$('#getting-started').countdown(t, function(event) {
+    $(this).html(event.strftime('%w 周 %d 天 %H:%M:%S'));
+});
+</script>
 @endsection
