@@ -140,6 +140,7 @@ class TicketController extends Controller
         $t = Ticket::create($new);
 
         $send_array = [
+            'open_id' => show($t->user->ids, 'wechat.id'),
             'name' => \face($t->user)->name,
             'ticket_id' => $t->id,
             'expo_title' => show($t->expo->info, 'title', 'SSF'),
