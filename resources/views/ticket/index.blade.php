@@ -12,7 +12,7 @@
             <div class="tile tile-centered">
                 <div class="tile-content">
                     <div class="tile-title">&nbsp;&nbsp; {{ show($t->expo->info, 'title') }}&nbsp;&nbsp; </div>
-                    <small class="tile-subtitle text-gray">&nbsp;&nbsp; No.{{ $t->id }} | ¥ {{ show($t->expo->info, 'price') }}
+                    <small class="tile-subtitle text-gray">&nbsp;&nbsp; ID.{{ $t->id }} | ¥ {{ show($t->expo->info, 'price') }}
 
                         @if(!empty($t->sorted))
                         <span class="label label-success"># {{ $t->sorted }}</span>

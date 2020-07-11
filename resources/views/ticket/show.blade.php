@@ -26,7 +26,7 @@
             @endif
         </p>
       <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}</div>
-        <div class="card-subtitle text-gray">No.{{ $ticket->id }} | ¥ {{ show($ticket->expo->info, 'price') }}</div>
+        <div class="card-subtitle text-gray">ID.{{ $ticket->id }} | ¥ {{ show($ticket->expo->info, 'price') }}</div>
       </div>
       <div class="card-body">
           <span class="text-success"><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{ show($ticket->expo->info, 'addr') }}<br>
