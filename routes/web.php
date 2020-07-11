@@ -101,6 +101,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
+    abort('419');
 
     // $user = App\User::where('ids->mobile->number', '13585856174')->first();
 
@@ -108,8 +109,10 @@ Route::get('/test', function () {
     // // {"roles": [{"org_id": 6, "role_id": null}]}
     // $c = [
     //     'roles' => [
-    //         'org_id' => 6, 
+    //         [
+    //             'org_id' => 6, 
     //         'role_id' => null,
+    //         ],
     //     ],
     // ];
             
