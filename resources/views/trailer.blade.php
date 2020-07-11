@@ -150,7 +150,7 @@
 </div>
 
 <script type="text/javascript">
-var t = '2020/07/25 19:00:00';
+var t = '2020/07/25 9:00:00';
 $('#getting-started').countdown(t, function(event) {
     $(this).html(event.strftime('%w 周 %d 天 %H:%M:%S'));
 });

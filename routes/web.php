@@ -102,8 +102,11 @@ Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
 
-    $a = \Carbon\Carbon::parse("2020/7/11 13:00")->diffForHumans();
-    echo $a;
+    $user = App\User::where('ids->mobile->number', '13672028004')->first();
+
+    print_r($user);
+    // $a = \Carbon\Carbon::parse("2020/7/11 13:00")->diffForHumans();
+    // echo $a;
 
     // return view('welcome');
     // abort('500');
