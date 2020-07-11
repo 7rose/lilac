@@ -37,7 +37,7 @@
 
                       </div> 
                     @else 
-                    <button class="btn btn-block disabled btn-success">即将开放购票，敬请期待！</button>
+                    <button class="btn btn-block disabled btn-success"> 购票将于 7月11日 13:00 启动, 千万别错过哦!! </button>
                     @endif
                     <p></p>
                     <p><small>温馨提示: <br>

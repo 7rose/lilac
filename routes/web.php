@@ -39,14 +39,14 @@ Route::get('/', function () {
 Route::get('/note', 'SysController@note');
 Route::get('/msg', 'SysController@msg');
 Route::get('/contact', 'SysController@contact');
-Route::get('/trailer', 'ExpoController@trailer');
 
 
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     
     // 展会预告
-
+    Route::get('/trailer', 'ExpoController@trailer');
+    
     Route::get('/sms', 'AuthController@sms');
     Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');
     Route::post('/check', 'AuthController@check')->middleware('throttle:5,5');
@@ -101,18 +101,20 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    $t = App\Ticket::find(1);
+    // return view('welcome');
+    // abort('500');
+    // $t = App\Ticket::find(1);
 
-    $send_array = [
-        'name' => \face($t->user)->name,
-        'ticket_id' => $t->id,
-        'open_id' => show($t->user->ids, 'wechat.id', 'none'),
-        'expo_title' => show($t->expo->info, 'title', 'SSF'),
-        'expo_begin' => $t->expo->begin,
-        'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
-    ];
+    // $send_array = [
+    //     'name' => \face($t->user)->name,
+    //     'ticket_id' => $t->id,
+    //     'open_id' => show($t->user->ids, 'wechat.id', 'none'),
+    //     'expo_title' => show($t->expo->info, 'title', 'SSF'),
+    //     'expo_begin' => $t->expo->begin,
+    //     'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
+    // ];
 
-    WecahtGetTicket::dispatch($send_array);
+    // WecahtGetTicket::dispatch($send_array);
 
 });
 
