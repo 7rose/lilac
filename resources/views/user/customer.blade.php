@@ -64,16 +64,23 @@
                     <div class="divider"></div>
                     @endforeach
                 @else
-                <div class="empty">
-                    <div class="empty-icon"><h1><i class="fa fa-spinner" aria-hidden="true"></i></h1></div>
-                    <p class="empty-subtitle">还没有记录</p>
+                <div class="hero text-center">
+                    <div class="hero-body">
+                        <h1><i class="fa fa-calendar-times-o" aria-hidden="true"></i></h1>
+                        <p>尚无购票信息</p>
+                    </div>
                 </div>
                 @endif
                 <a href="javascript:re()" class="btn btn-primary btn-block">刷新</a>
                 </div>
             </li>
             <li>
-                没有异常的订单
+                <div class="hero text-center">
+                    <div class="hero-body">
+                        <h1><i class="fa fa-check-square-o" aria-hidden="true"></i></h1>
+                        <p>没有异常的订单</p>
+                    </div>
+                </div>
             </li>
         </ul>
 
