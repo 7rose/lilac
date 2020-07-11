@@ -101,6 +101,10 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
+
+    $a = \Carbon\Carbon::parse("2020/7/11 13:00")->diffForHumans();
+    echo $a;
+
     // return view('welcome');
     // abort('500');
     // $t = App\Ticket::find(1);
