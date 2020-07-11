@@ -24,13 +24,13 @@
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
                         @if($e->buy(App\Expo::find(1)))
-                        <a href="/pay/1" class="btn btn-big btn-secondary"><strong>7月25日</strong></a>
+                        <a href="/pay/1" class="btn btn-big btn-secondary"><strong>7月25日</strong><br><small>售票中</small></a>
                         @else
                         <button class="btn btn-big btn-secondary disabled"><strong>7月25日</strong><br><small>已售完</small></button> 
                         @endif
 
                         @if($e->buy(App\Expo::find(2)))
-                        <a href="/pay/2" class="btn btn-big btn-primary"><strong>7月26日</strong></a>
+                        <a href="/pay/2" class="btn btn-big btn-primary"><strong>7月26日</strong><br><small>售票中</small></a>
                         @else
                         <button class="btn btn-big btn-primary disabled"><strong>7月26日</strong><br><small>已售完</small></button> 
                         @endif
