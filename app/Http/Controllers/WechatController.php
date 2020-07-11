@@ -86,7 +86,7 @@ class WechatController extends Controller
                 "sub_button" => [
                     [
                         "type" => "view",
-                        "name" => "会展预告",
+                        "name" => "购票",
                         "url"  => "https://api.mooibay.com/trailer",
                     ],
                     [
