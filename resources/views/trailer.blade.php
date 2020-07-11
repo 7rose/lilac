@@ -1,5 +1,6 @@
 <?php
     $e = new App\Helpers\Expos;
+    $au = new App\Helpers\Authorize;
 ?>
 @extends('nav')
 
@@ -24,13 +25,25 @@
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
                         @if($e->buy(App\Expo::find(1)))
-                        <a href="/pay/1" class="btn btn-big btn-secondary"><strong>7月25日</strong><br><small>售票中</small></a>
+                        <a href="/pay/1" class="btn btn-big btn-secondary"><strong>7月25日</strong><br><small>
+                            @if($au->need(Auth::user(), 'staff'))
+                            余票: {{ $e->buy(App\Expo::find(1)) }}
+                            @else 
+                            售票中
+                            @endif
+                        </small></a>
                         @else
                         <button class="btn btn-big btn-secondary disabled"><strong>7月25日</strong><br><small>已售完</small></button> 
                         @endif
 
                         @if($e->buy(App\Expo::find(2)))
-                        <a href="/pay/2" class="btn btn-big btn-primary"><strong>7月26日</strong><br><small>售票中</small></a>
+                        <a href="/pay/2" class="btn btn-big btn-primary"><strong>7月26日</strong><br><small>
+                            @if($au->need(Auth::user(), 'staff'))
+                            余票: {{ $e->buy(App\Expo::find(2)) }}
+                            @else 
+                            售票中
+                            @endif
+                        </small></a>
                         @else
                         <button class="btn btn-big btn-primary disabled"><strong>7月26日</strong><br><small>已售完</small></button> 
                         @endif
