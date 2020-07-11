@@ -37,7 +37,7 @@
 
                       </div> 
                     @else 
-                    <button class="btn btn-block disabled btn-success"> 购票将于 7月11日 13:00 ({{ \Carbon\Carbon::parse("2020/7/11 13:00")->diffForHumans() }}) 启动!! </button>
+                    <button class="btn btn-block disabled btn-success"> 购票将于 7月11日 13:00 ({{ \Carbon\Carbon::parse("2020/7/11 13:00")->diffForHumans() }}) 启动 </button>
                     @endif
                     <p></p>
                     <p><small>温馨提示: <br>
