@@ -86,7 +86,7 @@ class EventHandler implements EventHandlerInterface
                     'image'       => asset('images/mooibay.jpg'),
                     'title'       => "MOOIBAY 欢迎您!",
                     'description' => 'Find Your Dream',
-                    'url'         => 'https://api.mooibay.com',
+                    'url'         => config('app.url'),
                     // ...
                 ]),
             ];
