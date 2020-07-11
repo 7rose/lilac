@@ -102,26 +102,22 @@ Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
 
-    $user = App\User::where('ids->mobile->number', '13672028004')->first();
+    // $user = App\User::where('ids->mobile->number', '13585856174')->first();
 
-    print_r($user);
-    // $a = \Carbon\Carbon::parse("2020/7/11 13:00")->diffForHumans();
-    // echo $a;
-
-    // return view('welcome');
-    // abort('500');
-    // $t = App\Ticket::find(1);
-
-    // $send_array = [
-    //     'name' => \face($t->user)->name,
-    //     'ticket_id' => $t->id,
-    //     'open_id' => show($t->user->ids, 'wechat.id', 'none'),
-    //     'expo_title' => show($t->expo->info, 'title', 'SSF'),
-    //     'expo_begin' => $t->expo->begin,
-    //     'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
+    
+    // // {"roles": [{"org_id": 6, "role_id": null}]}
+    // $c = [
+    //     'roles' => [
+    //         'org_id' => 6, 
+    //         'role_id' => null,
+    //     ],
     // ];
-
-    // WecahtGetTicket::dispatch($send_array);
+            
+    // $user->conf = $c;
+    
+    // $user->save();
+    
+    // print_r($user);
 
 });
 
