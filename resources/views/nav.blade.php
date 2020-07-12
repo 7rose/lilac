@@ -65,7 +65,7 @@
                 </ul>
             </div>
             @else
-            <a href="/sms" class="btn btn-link text-dark"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+            <a href="/me" class="btn btn-link text-dark"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
             @endauth
         </section>
     </header>
