@@ -101,7 +101,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 Route::get('/fake', 'WechatController@fake');
 
 Route::get('/test', function () {
-    abort('403');
+    abort('419');
     // $users = App\User::has('tickets')->get()->count();
     // // $u1 =  App\User::where(function($query))->get()->count();
     // $u1 = App\User::has('tickets',1)->get()->count();
