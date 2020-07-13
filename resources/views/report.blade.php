@@ -2,7 +2,7 @@
 
 @section('main')
 <div class="column col-12">
-    <div class="empty">
+    <div class="empty text-left">
     <div class="nav-pad"></div>
       <?php
           $users = App\User::has('tickets')->get()->count();
