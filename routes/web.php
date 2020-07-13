@@ -53,6 +53,8 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     // auth users
     Route::group(['middleware' => ['mix', 'state']], function () {
+        // 统计
+        Route::get('/report', 'SysController@report');
 
         // 应用中心
         Route::get('/apps', 'SysController@apps');

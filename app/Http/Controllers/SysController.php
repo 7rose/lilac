@@ -55,4 +55,16 @@ class SysController extends Controller
         return view('contact');
     }
 
+    /**
+     * report
+     *
+     */
+    public function report()
+    {
+        $au = new Authorize;
+        if(!Auth::check() || !$au->need(Auth::user(), 'board')) abort('403');
+        return view('report');
+    }
+
+
 }
