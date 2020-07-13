@@ -131,7 +131,7 @@ Route::get('/idkLDOSjMopKymdi', function () {
 
     echo '<br>-----<br>注册用户: '.$u4.', 其中新增 :<br>7/11: '.$u5.'<br>7/12: '.$u6;
 
-    $log = face(Auth::user()->name. ' 正在查看统计数据');
+    $log = face(Auth::user())->name. ' 正在查看统计数据';
     Log::info($log);
 
 });
