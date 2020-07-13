@@ -110,7 +110,7 @@ Route::get('/idkLDOSjMopKymdi', function () {
     $t1 = App\Ticket::whereDate('created_at', '2020-07-11')->get()->count();
     $t2 = App\Ticket::whereDate('created_at', '2020-07-12')->get()->count();
     $t3 = App\Ticket::whereDate('created_at', '2020-07-13')->get()->count();
-    $t4s = App\Ticket::whereDate('created_at', '2020-07-14')->get()->count();
+    $t4 = App\Ticket::whereDate('created_at', '2020-07-14')->get()->count();
     
     // $t3 = App\Ticket::whereDate('created_at', '2020-07-11')->distinct('user_id')->count();
     // $t4 = App\Ticket::whereDate('created_at', '2020-07-12')->distinct('user_id')->count();
