@@ -24,7 +24,7 @@
                     <div class="text-center">
                         <h5>统一票价: ¥130 
                         @if($au->need(Auth::user(), 'board'))
-                         <a href="/reprot" class="text-success"><i class="fa fa-print" aria-hidden="true"></i> </a>
+                         <a href="/report" class="text-success"><i class="fa fa-print" aria-hidden="true"></i> </a>
                         @endif
                         </h5>
                     </h5>
