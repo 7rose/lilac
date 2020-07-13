@@ -125,6 +125,9 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
             $u6 = App\User::whereDate('created_at', '2020-07-12')->get()->count();
         
             echo '<br>-----<br>注册用户: '.$u4.', 其中新增 :<br>7/11: '.$u5.'<br>7/12: '.$u6;
+
+            $log = face(Auth::user()->name. ' 正在查看统计数据');
+            Log::info($log);
         
         });
     });
