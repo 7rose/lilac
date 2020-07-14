@@ -40,12 +40,12 @@ Route::get('/note', 'SysController@note');
 Route::get('/msg', 'SysController@msg');
 Route::get('/contact', 'SysController@contact');
 
+Route::get('/trailer', 'ExpoController@trailer');
 
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     
     // 展会预告
-    Route::get('/trailer', 'ExpoController@trailer');
     
     Route::get('/sms', 'AuthController@sms');
     Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');
@@ -99,7 +99,12 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-    return view('tj');
+    // return view('tj');
+    if(Carbon\Carbon::parse('2020-07-15 13:00:00') < now()) {
+        echo "yes";
+    }else{
+        echo "fuck";
+    }
 
 });
 
