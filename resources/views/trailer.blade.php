@@ -41,7 +41,7 @@
                             @endif
                         </small></a>
                         @else
-                        <button class="btn btn-big btn-secondary disabled"><strong>7月25日</strong><br><small>已售完</small></button> 
+                        <button class="btn btn-big btn-secondary disabled"><strong>7月25日</strong><br><small>已结束</small></button> 
                         @endif
 
                         @if($e->buy(App\Expo::find(2)) && Carbon\Carbon::parse('2020-07-15 24:00:00') > now())
@@ -53,7 +53,7 @@
                             @endif
                         </small></a>
                         @else
-                        <button class="btn btn-big btn-primary disabled"><strong>7月26日</strong><br><small>已售完</small></button> 
+                        <button class="btn btn-big btn-primary disabled"><strong>7月26日</strong><br><small>已结束</small></button> 
                         @endif
 
                       </div> 
