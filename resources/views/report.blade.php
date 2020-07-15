@@ -18,6 +18,7 @@
             $t2 = App\Ticket::whereDate('created_at', '2020-07-12')->get()->count();
             $t3 = App\Ticket::whereDate('created_at', '2020-07-13')->get()->count();
             $t4 = App\Ticket::whereDate('created_at', '2020-07-14')->get()->count();
+            $t5 = App\Ticket::whereDate('created_at', '2020-07-15')->get()->count();
             
             // $t3 = App\Ticket::whereDate('created_at', '2020-07-11')->distinct('user_id')->count();
             // $t4 = App\Ticket::whereDate('created_at', '2020-07-12')->distinct('user_id')->count();
@@ -28,7 +29,7 @@
             echo '购票人数量: '.$users.'<br>购1张的: '.$u1.'<br>购2张的: '.$u2.'<br>购3张的: '.$u3.'<br>购4张的: '.$u4;
             // echo '<br>7/11买票人数: '.$t3. '<br>7/12买票人数:'.$t4;
             echo '<br>-----<br>总销售: '.$t.', 其中 :<br>7/11: '.$t1.'<br>7/12: '.$t2;
-            echo '<br>7/13: '.$t3.'<br>7/14: '.$t4;
+            echo '<br>7/13: '.$t3.'<br>7/14: '.$t4.'<br>7/15: '.$t5;
 
             echo '<br> 7/25票已销售: '. $t5. '<br> 7/26票已销售: '. $t6;
 
