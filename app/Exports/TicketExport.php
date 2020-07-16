@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Ticket;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class TicketExport implements FromCollection, WithHeadings
