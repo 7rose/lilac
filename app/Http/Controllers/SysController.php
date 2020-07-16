@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Authorize;
 use Illuminate\Http\Request;
+use App\Exports\TicketExport;
 use Illuminate\Support\Facades\Auth;
 
 class SysController extends Controller
@@ -64,6 +65,15 @@ class SysController extends Controller
         $au = new Authorize;
         if(!Auth::check() || !$au->need(Auth::user(), 'board')) abort('403');
         return view('report');
+    }
+
+    /**
+     * 下载excel
+     *
+     */
+    public function download() 
+    {
+        return Excel::download(new TicketExport, 'tickets.xlsx');
     }
 
 

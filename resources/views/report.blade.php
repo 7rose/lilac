@@ -4,6 +4,7 @@
 <div class="column col-12">
     <div class="empty text-left">
     <div class="nav-pad"></div>
+      <div class="row"><a href="/download" class="btn btn-success btn-block">下载票号Excel文件</a></div>
       <?php
           $users = App\User::has('tickets')->get()->count();
             // $u1 =  App\User::where(function($query))->get()->count();
