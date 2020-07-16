@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\Authorize;
 use Illuminate\Http\Request;
 use App\Exports\TicketExport;
+use App\Exports\Ticket25Export;
+use App\Exports\Ticket26Export;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -73,10 +75,19 @@ class SysController extends Controller
      * 下载excel
      *
      */
-    public function download() 
+    public function download($key) 
     {
-        Log::alert(face(Auth::user())->name.'下载票号excel');
-        return Excel::download(new TicketExport, 'tickets_25.xlsx');
+        if(intval($key) == 25) {
+            Log::alert(face(Auth::user())->name.'下载25日票号excel');
+            return Excel::download(new Ticket25Export, 'tickets_25.xlsx');
+        }
+        if(intval($key) == 26) {
+            Log::alert(face(Auth::user())->name.'下载26日票号excel');
+            return Excel::download(new Ticket26Export, 'tickets_26.xlsx');
+        }
+
+        abort('403');
+        
     }
 
 

@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     Route::group(['middleware' => ['mix', 'state']], function () {
         // 统计
         Route::get('/report', 'SysController@report');
-        Route::get('/download', 'SysController@download');
+        Route::get('/download/{key}', 'SysController@download');
 
         // 应用中心
         Route::get('/apps', 'SysController@apps');

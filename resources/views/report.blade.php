@@ -4,7 +4,12 @@
 <div class="column col-12">
     <div class="empty text-left">
     <div class="nav-pad"></div>
-      <div class="row"><a href="/download" class="btn btn-success btn-block">下载票号Excel文件</a></div>
+      <div class="row">
+        <div class="btn-group btn-group-block">
+          <a href="/download/25" class="btn btn-secondary-">下载7/25票号</a>
+          <a href="/download/26" class="btn btn-primary">下载7/26票号</a>
+        </div> 
+      </div>
       <p></p>
       <?php
           $users = App\User::has('tickets')->get()->count();
