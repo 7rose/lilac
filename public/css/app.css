@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*! Spectre.css v0.5.8 | MIT License | github.com/picturepan2/spectre */
+/*! Spectre.css v0.5.9 | MIT License | github.com/picturepan2/spectre */
 
 /* Manually forked from Normalize.css */
 
@@ -1768,6 +1768,7 @@ video.video-responsive::before {
   display: none !important;
 }
 
+.cols,
 .columns {
   display: flex;
   flex-wrap: wrap;
@@ -1775,21 +1776,25 @@ video.video-responsive::before {
   margin-right: -0.4rem;
 }
 
+.cols.col-gapless,
 .columns.col-gapless {
   margin-left: 0;
   margin-right: 0;
 }
 
+.cols.col-gapless > .column,
 .columns.col-gapless > .column {
   padding-left: 0;
   padding-right: 0;
 }
 
+.cols.col-oneline,
 .columns.col-oneline {
   flex-wrap: nowrap;
   overflow-x: auto;
 }
 
+[class~=col-],
 .column {
   flex: 1;
   max-width: 100%;
@@ -1797,6 +1802,19 @@ video.video-responsive::before {
   padding-right: 0.4rem;
 }
 
+[class~=col-].col-12,
+[class~=col-].col-11,
+[class~=col-].col-10,
+[class~=col-].col-9,
+[class~=col-].col-8,
+[class~=col-].col-7,
+[class~=col-].col-6,
+[class~=col-].col-5,
+[class~=col-].col-4,
+[class~=col-].col-3,
+[class~=col-].col-2,
+[class~=col-].col-1,
+[class~=col-].col-auto,
 .column.col-12,
 .column.col-11,
 .column.col-10,
@@ -2320,8 +2338,8 @@ video.video-responsive::before {
   text-decoration: none;
 }
 
-.accordion input:checked ~ .accordion-header .icon,
-.accordion[open] .accordion-header .icon {
+.accordion input:checked ~ .accordion-header > .icon:first-child,
+.accordion[open] .accordion-header > .icon:first-child {
   transform: rotate(90deg);
 }
 
@@ -3655,6 +3673,7 @@ a.text-error:visited {
 .loading::after {
   -webkit-animation: loading 500ms infinite linear;
           animation: loading 500ms infinite linear;
+  background: transparent;
   border: 0.1rem solid #f44336;
   border-radius: 50%;
   border-right-color: transparent;
@@ -3665,6 +3684,8 @@ a.text-error:visited {
   left: 50%;
   margin-left: -0.4rem;
   margin-top: -0.4rem;
+  opacity: 1;
+  padding: 0;
   position: absolute;
   top: 50%;
   width: 0.8rem;
@@ -3958,6 +3979,18 @@ a.text-error:visited {
   font-size: 1.2em;
 }
 
+.text-small {
+  font-size: 0.9em;
+}
+
+.text-tiny {
+  font-size: 0.8em;
+}
+
+.text-muted {
+  opacity: 0.8;
+}
+
 .text-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3978,7 +4011,7 @@ a.text-error:visited {
   word-wrap: break-word;
 }
 
-/*! Spectre.css Experimentals v0.5.8 | MIT License | github.com/picturepan2/spectre */
+/*! Spectre.css Experimentals v0.5.9 | MIT License | github.com/picturepan2/spectre */
 
 .form-autocomplete {
   position: relative;
@@ -4459,6 +4492,7 @@ a.text-error:visited {
   color: #fff;
   content: "";
   height: 3px;
+  pointer-events: none;
   position: absolute;
   right: 0.4rem;
   top: 50%;
@@ -5240,7 +5274,7 @@ a.text-error:visited {
   order: 1;
 }
 
-/*! Spectre.css Icons v0.5.8 | MIT License | github.com/picturepan2/spectre */
+/*! Spectre.css Icons v0.5.9 | MIT License | github.com/picturepan2/spectre */
 
 .icon {
   box-sizing: border-box;
