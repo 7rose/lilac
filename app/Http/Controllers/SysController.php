@@ -76,7 +76,7 @@ class SysController extends Controller
     public function download() 
     {
         Log::alert(face(Auth::user())->name.'下载票号excel');
-        return Excel::download(new TicketExport, 'tickets.xlsx');
+        return Excel::download(new TicketExport, 'tickets_25.xlsx');
     }
 
 
