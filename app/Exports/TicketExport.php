@@ -12,6 +12,6 @@ class TicketExport implements FromCollection
     */
     public function collection()
     {
-        return Ticket::select('id', 'created_at')->order_by('id')->get();
+        return Ticket::select('id', 'created_at')->orderBy('id')->get();
     }
 }
