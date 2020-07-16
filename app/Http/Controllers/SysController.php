@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Authorize;
 use Illuminate\Http\Request;
 use App\Exports\TicketExport;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -74,6 +75,7 @@ class SysController extends Controller
      */
     public function download() 
     {
+        Log::alert(face(Auth::user())->name.'下载票号excel');
         return Excel::download(new TicketExport, 'tickets.xlsx');
     }
 
