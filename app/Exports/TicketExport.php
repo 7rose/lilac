@@ -5,12 +5,12 @@ namespace App\Exports;
 use App\Ticket;
 use App\Exports\Ticket25Export;
 use App\Exports\Ticket26Export;
-use Maatwebsite\Excel\Concerns\FromCollection;
+// use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class TicketExport implements FromCollection, FromArray, WithHeadings, WithMultipleSheets
+class TicketExport implements FromArray, WithHeadings, WithMultipleSheets
 {
     /**
     * @return \Illuminate\Support\Collection
