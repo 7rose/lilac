@@ -12,6 +12,6 @@ class Ticket26Export implements FromCollection
     */
     public function collection()
     {
-        return Ticket::select('id', 'created_at')->whereDate('2020-07-26')->orderBy('id')->get();
+        return Ticket::select('id', 'created_at')->where('expo_id', 2)->orderBy('id')->get();
     }
 }
