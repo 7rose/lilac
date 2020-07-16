@@ -32,25 +32,17 @@
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
                         
-                        @if($e->buy(App\Expo::find(1)) && Carbon\Carbon::parse('2020-07-15 13:00:00') > now())
+                        @if(Auth::check() && $e->buy(App\Expo::find(1)) && $au->need(Auth::user(), 'staff'))
                         <a href="/pay/1" class="btn btn-big btn-secondary"><strong>7月25日</strong><br><small>
-                            @if($au->need(Auth::user(), 'staff'))
                             余票: {{ $e->buy(App\Expo::find(1)) }}
-                            @else 
-                            售票中
-                            @endif
                         </small></a>
                         @else
                         <button class="btn btn-big btn-secondary disabled"><strong>7月25日</strong><br><small>已结束</small></button> 
                         @endif
 
-                        @if($e->buy(App\Expo::find(2)) && Carbon\Carbon::parse('2020-07-15 24:00:00') > now())
+                        @if(Auth::check() && $e->buy(App\Expo::find(2)) && $au->need(Auth::user(), 'staff'))
                         <a href="/pay/2" class="btn btn-big btn-primary"><strong>7月26日</strong><br><small>
-                            @if($au->need(Auth::user(), 'staff') )
                             余票: {{ $e->buy(App\Expo::find(2)) }}
-                            @else 
-                            售票中
-                            @endif
                         </small></a>
                         @else
                         <button class="btn btn-big btn-primary disabled"><strong>7月26日</strong><br><small>已结束</small></button> 
