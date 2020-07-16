@@ -6,6 +6,7 @@ use App\Helpers\Authorize;
 use Illuminate\Http\Request;
 use App\Exports\TicketExport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SysController extends Controller
 {
