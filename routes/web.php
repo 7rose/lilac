@@ -112,13 +112,18 @@ Route::get('/test', function () {
 
     // $a = App\User::find(8)->orders;
 
-    $a = App\User::has('tickets',1)->has('orders',1)->get();
-    $b = App\User::has('tickets',2)->has('orders',2)->get();
-    $c = App\User::has('tickets',3)->has('orders',3)->get();
-    $d = App\User::has('tickets',4)->has('orders',4)->get();
+    $a = App\User::has('tickets')->get();
 
 
-    echo $a.'-'.$b.'-'.$c.'-'.$d.'-';
+    // echo $a.'-'.$b.'-'.$c.'-'.$d.'-';
+
+    foreach ($a as $key) {
+        echo $key->id.' 张数: '.$key->tickets->count().'<br>------<br>';
+        $b = $key->orders;
+        foreach ($b as $k) {
+            echo $k->total_fee.'/'.$k->status.'<br>';
+        }
+    }
 
     // $a = App\Ticket::orderBy('order_id')->distinct('order_id')->get();
 
