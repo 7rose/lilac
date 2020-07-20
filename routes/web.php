@@ -118,16 +118,16 @@ Route::get('/check', function () {
     // echo $a.'-'.$b.'-'.$c.'-'.$d.'-';
 
     foreach ($a as $key) {
-        echo $key->id.' 张数: '.$key->tickets->count().'<br>------<br>';
+        echo '用户id: '.$key->id.'; 张数: '.$key->tickets->count().'<br>------<br>';
 
         foreach ($key->tickets as $t) {
-            echo '对应单号: '.$t->order_id.' /时间: '.$t->created_at.'<br>';
+            echo '对应单号: '.$t->order_id.'; 时间: '.$t->created_at.'<br>';
         }
         echo '---------------<br>';
         $b = $key->orders;
 
         foreach ($b as $k) {
-            echo '单号: '.$k->id.' /金额: '.$k->total_fee/100 . '/' . $k->status.' : '. $k->created_at .'<br>';
+            echo '单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
         }
 
         
