@@ -159,13 +159,24 @@ Route::get('/find', function () {
     $arr = [13,51,100];
     $users = App\User::whereIn('id', $arr)->get();
 
-    foreach ($users as $u) {
-        echo '================<br>';
-        echo '用户id'.$u->id.face($u)->name.', 手机号: '.show($u->ids, 'mobile.number').'<br>----------<br>';
-        foreach ($u->tickets as $t) {
-            echo "票id: ". $t->id.', 入场次序: '. $t->sorted.'; 交易识别码: '.$t->order->out_trade_no.'<br>';
+    foreach ($users as $key) {
+        
+        echo '用户id: '.$key->id.'; 张数: '.$key->tickets->count().'<br>------<br>';
+
+        foreach ($key->tickets as $t) {
+            echo $t->id.'; 时间: '.$t->created_at.'<br>';
+        }
+        echo '---------------<br>';
+
+        $b = $key->orders;
+
+        foreach ($b as $k) {
+            echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
         }
 
+        
+
+        echo '=================<br>';
     }
 });
 
