@@ -3,6 +3,7 @@
 use App\Jobs\WecahtGetTicket;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,9 +54,16 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     // auth users
     Route::group(['middleware' => ['mix', 'state']], function () {
+        // ----- OA -----
         // 统计
         Route::get('/report', 'SysController@report');
+        // Excel: 导入
+        Route::get('/import/order', 'SysController@import');
+        Route::post('/import/save_order', 'SysController@saveOrder');
+
+        // Excel: 导出
         Route::get('/download/{key}', 'SysController@download');
+        
 
         // 应用中心
         Route::get('/apps', 'SysController@apps');
@@ -99,28 +107,47 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     });
 });
 
-Route::get('/test', function () {
-    // return view('tj');
-    if(Carbon\Carbon::parse('2020-07-15 13:00:00') < now()) {
-        echo "yes";
-    }else{
-        echo "fuck";
-    }
 
-});
+// Route::get('/test', function () {
+    // return view('import');
+    // phpinfo();
+    // $a = App\Ticket::find(1);
+
+    // var_dump($a);
+
+    // Redis::set('name', 'Taylor');
+
+    // $b = Redis::get('name');
+    // echo $b;
+    // $a = App\User::where('ids->mobile->number', '15221496995')->first();
+
+    // $b = App\Ticket::where('user_id', $a->id)->get();
+    // foreach ($b as $key) {
+    //     echo $key->id.'<br>';
+    // }
+    // var_dump($b);
+    // return view('tj');
+    // if(Carbon\Carbon::parse('2020-07-15 13:00:00') < now()) {
+    //     echo "yes";
+    // }else{
+    //     echo "fuck";
+    // }
+
+// });
+
 
 // ------------ dev -------------
 
-Route::get('/fake', 'WechatController@fake');
+// Route::get('/fake', 'WechatController@fake');
 
 
 
-Route::get('/in', function () {
-    // $user = App\User::find(5);
-    $user = App\User::find(6);
-    // $user = App\User::find(2);
-    // $user = App\User::find(1);
-    // $user = App\User::find(8);
-    Auth::login($user);
-    print_r($user->info);
-});
+// Route::get('/in', function () {
+    // // $user = App\User::find(5);
+    // $user = App\User::find(6);
+    // // $user = App\User::find(2);
+    // // $user = App\User::find(1);
+    // // $user = App\User::find(8);
+    // Auth::login($user);
+    // print_r($user->info);
+// });

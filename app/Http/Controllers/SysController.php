@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Authorize;
-use Illuminate\Http\Request;
 use App\Exports\TicketExport;
 use App\Exports\Ticket25Export;
 use App\Exports\Ticket26Export;
+use App\Imports\TicketOrderImport;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Request;
 
 class SysController extends Controller
 {
@@ -88,6 +89,34 @@ class SysController extends Controller
 
         abort('403');
         
+    }
+
+    /**
+     * 导入excel
+     *
+     */
+    public function import() 
+    {
+        $au = new Authorize;
+        $user = Auth::user();
+
+        if(!$au->fit($user, 'operation', 'coo')) abort('403');
+
+        return view('import');
+    }
+
+    /**
+     * 导入excel: 写入数据库
+     *
+     */
+    public function saveOrder(Request $request)
+    {
+        $au = new Authorize;
+        $user = Auth::user();
+
+        if(!$au->fit($user, 'operation', 'coo')) abort('403');
+
+        Excel::import(new TicketOrderImport, $request->excel);
     }
 
 

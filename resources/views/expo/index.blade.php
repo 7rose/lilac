@@ -4,8 +4,12 @@
 <div class="nav-pad"></div>
 
 <div class="container">
+    <p></p>
     <div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
-    <a href="/expos/create" class="btn btn-secondary btn-block"><i class="fa fa-magic" aria-hidden="true"></i> 发布</a>
+    <div class="btn-group btn-group-block">
+        <a href="/expos/create" class="btn">+ 发布</a>
+        <a href="/import/order" class="btn btn-primary">导入排序</a>
+    </div> 
     <p></p>
     @if (isset($expos) && count($expos))
         @foreach ($expos as $e)
