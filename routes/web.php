@@ -108,7 +108,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 
-Route::get('/test', function () {
+Route::get('/check', function () {
 
     // $a = App\User::find(8)->orders;
 
