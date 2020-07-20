@@ -25,7 +25,7 @@ class TicketOrderImport implements ToCollection
                     $t->sorted = intval($row[1]);
                     $t->logs = $new_logs;
                     $t->save();
-                    // $ok++;
+                    $ok++;
                 }
             }
         }
