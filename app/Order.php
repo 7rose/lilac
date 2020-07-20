@@ -21,5 +21,14 @@ class Order extends Model
     {
         return $this->hasOne('App\Ticket', 'order_id');
     }
+
+    /**
+     * user
+     *
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'openid', 'ids->wechat->id');
+    }
 }
 

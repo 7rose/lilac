@@ -35,6 +35,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * 定义josn列
+     *
+     */
+    protected $casts = [
+        'ids' => 'json',
+        'info' => 'json',
+        'conf' => 'json',
+    ];
+
+    /**
      * Parent
      *
      */
@@ -53,6 +63,15 @@ class User extends Authenticatable
     }
 
     /**
+     * orders
+     *
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Order', 'openid', 'ids->wechat->id');
+    }
+
+    /**
      * Tickets
      *
      */
@@ -61,15 +80,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Ticket', 'user_id');
     }
 
-    /**
-     * 定义josn列
-     *
-     */
-    protected $casts = [
-        'ids' => 'json',
-        'info' => 'json',
-        'conf' => 'json',
-    ];
+
 
     /**
      * Orgs of a user

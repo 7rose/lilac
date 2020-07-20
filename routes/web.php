@@ -110,14 +110,24 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
 Route::get('/test', function () {
 
-    $a = App\Ticket::orderBy('order_id')->distinct('order_id')->get();
+    // $a = App\User::find(8)->orders;
 
-    echo $a->count().'<br>-----<br>';
+    $a = App\User::has('tickets',1)->has('orders',1)->get();
+    $b = App\User::has('tickets',2)->has('orders',2)->get();
+    $c = App\User::has('tickets',3)->has('orders',3)->get();
+    $d = App\User::has('tickets',4)->has('orders',4)->get();
 
-    foreach ($a as $key) {
-        # code...
-        echo '+'.$key->user->id.'-'.$key->order_id.'<br>';
-    }
+
+    echo $a.'-'.$b.'-'.$c.'-'.$d.'-';
+
+    // $a = App\Ticket::orderBy('order_id')->distinct('order_id')->get();
+
+    // echo $a->count().'<br>-----<br>';
+
+    // foreach ($a as $key) {
+    //     # code...
+    //     echo '+'.$key->user->id.'-'.$key->order_id.'<br>';
+    // }
     // echo now();
     // $a = time();
 
