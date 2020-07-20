@@ -99,10 +99,17 @@ class TicketController extends Controller
             if ($message['return_code'] === 'SUCCESS') {
                 // 用户是否支付成功
                 if (Arr::get($message, 'result_code') === 'SUCCESS' && Arr::get($real_resault, 'trade_state') === 'SUCCESS') {
-                    $this->getTicket($message);
 
-                    $order->paid_at = now(); // 更新支付时间为当前时间
-                    $order->status = '支付成功';
+                    $ex = Order::where('out_trade_no', $message['out_trade_no'])->first();
+
+                    // 校验是否已经存在订单
+                    if(!$ex->has('ticket')) {
+                        $this->getTicket($message);
+
+                        $order->paid_at = now(); // 更新支付时间为当前时间
+                        $order->status = '支付成功';
+                    }
+                    
 
                     // 用户支付失败
                 } elseif (Arr::get($message, 'result_code') === 'FAIL') {
@@ -126,6 +133,10 @@ class TicketController extends Controller
      */
     private function getTicket($message)
     {
+        // 检测是否
+        // $ex = Order::where('out_trade_no', $message['out_trade_no'])->first();
+        // if($ex) return;
+
         $p = explode('-', $message['out_trade_no']);
 
         $order = Order::where('out_trade_no', $message['out_trade_no'])->firstOrFail();
