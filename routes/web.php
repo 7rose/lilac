@@ -128,7 +128,7 @@ Route::get('/check', function () {
         $b = $key->orders;
 
         foreach ($b as $k) {
-            echo '交易号: '.$t->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
+            echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
         }
 
         
