@@ -116,7 +116,7 @@ Route::get('/test', function () {
 
     foreach ($a as $key) {
         # code...
-        echo $key->user->id.'-'.$key->order_id.'<br>';
+        echo '+'.$key->user->id.'-'.$key->order_id.'<br>';
     }
     // echo now();
     // $a = time();
