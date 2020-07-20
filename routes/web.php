@@ -124,7 +124,7 @@ Route::get('/test', function () {
         foreach ($b as $k) {
             echo $k->total_fee.'/'.$k->status.'<br>';
         }
-        echo '=================';
+        echo '=================<br>';
     }
 
     // $a = App\Ticket::orderBy('order_id')->distinct('order_id')->get();
