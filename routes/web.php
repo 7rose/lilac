@@ -128,7 +128,11 @@ Route::get('/check', function () {
 
         $b = $key->orders;
 
-        foreach ($b as $k) {
+        $filtered = $b->reject(function ($v) {
+            return empty($v->status);
+        });
+
+        foreach ($filtered as $k) {
             echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
         }
 
@@ -169,6 +173,10 @@ Route::get('/find', function () {
         echo '---------------<br>';
 
         $b = $key->orders;
+
+        // $filtered = $b->reject(function ($v) {
+        //     return empty($v->status);
+        // });
 
         foreach ($b as $k) {
             echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
