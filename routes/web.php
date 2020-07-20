@@ -118,11 +118,12 @@ Route::get('/test', function () {
     // echo $a.'-'.$b.'-'.$c.'-'.$d.'-';
 
     foreach ($a as $key) {
+        echo $key->id.' 张数: '.$key->tickets->count().'<br>------<br>';
+
         foreach ($key->tickets as $t) {
             echo '对应单号: '.$t->order_id.' /时间: '.$t->created_at.'<br>';
         }
-
-        echo $key->id.' 张数: '.$key->tickets->count().'<br>------<br>';
+        echo '---------------<br>';
         $b = $key->orders;
 
         foreach ($b as $k) {
