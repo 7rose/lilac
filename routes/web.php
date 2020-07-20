@@ -159,7 +159,7 @@ Route::get('/find', function () {
     $users = App\User::whereIn('id', $arr)->get();
 
     foreach ($users as $u) {
-        echo face($u)->name.', 手机号: '.show($u->ids->mobile->number).'<br>----------<br>';
+        echo face($u)->name.', 手机号: '.show($u->ids, 'mobile.number').'<br>----------<br>';
         foreach ($u->tickets as $t) {
             echo "票id: ". $t->id.', 入场次序: '. $t->sorted.'; 交易识别码: '.$t->order->out_trade_no.'<br>';
         }
