@@ -120,9 +120,11 @@ Route::get('/test', function () {
     foreach ($a as $key) {
         echo $key->id.' 张数: '.$key->tickets->count().'<br>------<br>';
         $b = $key->orders;
+
         foreach ($b as $k) {
             echo $k->total_fee.'/'.$k->status.'<br>';
         }
+        echo '================='
     }
 
     // $a = App\Ticket::orderBy('order_id')->distinct('order_id')->get();
