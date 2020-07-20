@@ -168,17 +168,17 @@ Route::get('/find', function () {
         echo '用户id: '.$key->id.'; 张数: '.$key->tickets->count().'<br>------<br>';
 
         foreach ($key->tickets as $t) {
-            echo $t->id.'; 时间: '.$t->created_at.'<br>';
+            echo '票id号: '.$t->id.', 入场次序: '.$t->sorted .'; 对应交易号: '.$t->order->out_trade_no.'<br>';
         }
         echo '---------------<br>';
 
         $b = $key->orders;
 
-        // $filtered = $b->reject(function ($v) {
-        //     return empty($v->status);
-        // });
+        $filtered = $b->reject(function ($v) {
+            return empty($v->status);
+        });
 
-        foreach ($b as $k) {
+        foreach ($filtered as $k) {
             echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
         }
 
