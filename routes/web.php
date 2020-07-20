@@ -156,7 +156,7 @@ Route::get('/check', function () {
 
 Route::get('/find', function () {
     $arr = [13,51,100];
-    $a = App\User::whereIn('id', $arr)->get();
+    $users = App\User::whereIn('id', $arr)->get();
 
     foreach ($users as $u) {
         echo face($u)->name.', 手机号: '.show($u->ids->mobile->number).'<br>----------<br>';
