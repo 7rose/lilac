@@ -165,7 +165,7 @@ Route::get('/find', function () {
 
     foreach ($users as $key) {
         
-        echo '用户id: '.$key->id.'; 张数: '.$key->tickets->count().'<br>------<br>';
+        echo '用户id: '.$key->id.', 手机号:'.show($key->ids, 'mobile.number').'; 张数: '.$key->tickets->count().'<br>------<br>';
 
         foreach ($key->tickets as $t) {
             echo '票id号: '.$t->id.', 入场次序: '.$t->sorted .'; 对应交易号: '.$t->order->out_trade_no.'<br>';
