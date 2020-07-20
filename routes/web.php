@@ -160,7 +160,7 @@ Route::get('/check', function () {
 
 
 Route::get('/find', function () {
-    $arr = [13,51,100];
+    $arr = [133,158,159];
     $users = App\User::whereIn('id', $arr)->get();
 
     foreach ($users as $key) {
