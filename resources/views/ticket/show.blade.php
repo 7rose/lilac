@@ -56,7 +56,7 @@
                     <div class="timeline-content">
                       <div class="tile">
                         <div class="tile-content">
-                          <span class="text-gray">{{ \Carbon\Carbon::parse($log['time']) }}</span> &nbsp;&nbsp;
+                          <span class="text-gray">{{ date('Y-m-d H:i:s', $log['time']) }}</span> &nbsp;&nbsp;
                             <i class="fa fa-hand-o-right" aria-hidden="true"></i> {{ $log['do'] }}
 
                         </div>

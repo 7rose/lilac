@@ -108,32 +108,15 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 
-// Route::get('/test', function () {
-    // return view('import');
-    // phpinfo();
-    // $a = App\Ticket::find(1);
+Route::get('/test', function () {
+    // echo now();
+    $a = time();
 
-    // var_dump($a);
+    $b = date('Y-m-d H:i:s', $a);
 
-    // Redis::set('name', 'Taylor');
+    echo $b;
 
-    // $b = Redis::get('name');
-    // echo $b;
-    // $a = App\User::where('ids->mobile->number', '15221496995')->first();
-
-    // $b = App\Ticket::where('user_id', $a->id)->get();
-    // foreach ($b as $key) {
-    //     echo $key->id.'<br>';
-    // }
-    // var_dump($b);
-    // return view('tj');
-    // if(Carbon\Carbon::parse('2020-07-15 13:00:00') < now()) {
-    //     echo "yes";
-    // }else{
-    //     echo "fuck";
-    // }
-
-// });
+});
 
 
 // ------------ dev -------------
