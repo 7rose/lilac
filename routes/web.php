@@ -122,8 +122,13 @@ Route::get('/test', function () {
         $b = $key->orders;
 
         foreach ($b as $k) {
-            echo $k->total_fee.'/'.$k->status.'<br>';
+            echo '订单号: '.$k->id.' /金额: '.$k->total_fee/100 . '/' . $k->status.' : '. $k->created_at .'<br>';
         }
+
+        foreach ($k->tickets as $t) {
+            echo '订单号: '.$t->order.' /时间: '.$t->created_at.'<br>';
+        }
+
         echo '=================<br>';
     }
 
