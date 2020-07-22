@@ -107,86 +107,90 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     });
 });
 
-
-Route::get('/check', function () {
-
-    // $a = App\User::find(8)->orders;
-
-    $a = App\User::has('tickets')->get();
-
-
-    // echo $a.'-'.$b.'-'.$c.'-'.$d.'-';
-
-    foreach ($a as $key) {
-        
-        echo '用户id: '.$key->id.'; 张数: '.$key->tickets->count().'<br>------<br>';
-
-        foreach ($key->tickets as $t) {
-            echo $t->id.'; 时间: '.$t->created_at.'<br>';
-        }
-        echo '---------------<br>';
-
-        $b = $key->orders;
-
-        $filtered = $b->reject(function ($v) {
-            return empty($v->status);
-        });
-
-        foreach ($filtered as $k) {
-            echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
-        }
-
-        
-
-        echo '=================<br>';
-    }
-
-    // $a = App\Ticket::orderBy('order_id')->distinct('order_id')->get();
-
-    // echo $a->count().'<br>-----<br>';
-
-    // foreach ($a as $key) {
-    //     # code...
-    //     echo '+'.$key->user->id.'-'.$key->order_id.'<br>';
-    // }
-    // echo now();
-    // $a = time();
-
-    // $b = date('Y-m-d H:i:s', $a);
-
-    // echo $b;
-
+Route::get('/test', function () {
+    $a = NUll;
+    var_dump(empty($a));
 });
 
+// Route::get('/check', function () {
 
-Route::get('/find', function () {
-    $arr = [11,133,159];
-    $users = App\User::whereIn('id', $arr)->get();
+//     // $a = App\User::find(8)->orders;
 
-    foreach ($users as $key) {
+//     $a = App\User::has('tickets')->get();
+
+
+//     // echo $a.'-'.$b.'-'.$c.'-'.$d.'-';
+
+//     foreach ($a as $key) {
         
-        echo '用户id: '.$key->id.', 手机号:'.show($key->ids, 'mobile.number').'; 张数: '.$key->tickets->count().'<br>------<br>';
+//         echo '用户id: '.$key->id.'; 张数: '.$key->tickets->count().'<br>------<br>';
 
-        foreach ($key->tickets as $t) {
-            echo '票id号: '.$t->id.', 入场次序: '.$t->sorted .'; 对应交易号: '.$t->order->out_trade_no.'<br>';
-        }
-        echo '---------------<br>';
+//         foreach ($key->tickets as $t) {
+//             echo $t->id.'; 时间: '.$t->created_at.'<br>';
+//         }
+//         echo '---------------<br>';
 
-        $b = $key->orders;
+//         $b = $key->orders;
 
-        $filtered = $b->reject(function ($v) {
-            return empty($v->status);
-        });
+//         $filtered = $b->reject(function ($v) {
+//             return empty($v->status);
+//         });
 
-        foreach ($filtered as $k) {
-            echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
-        }
+//         foreach ($filtered as $k) {
+//             echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
+//         }
 
         
 
-        echo '=================<br>';
-    }
-});
+//         echo '=================<br>';
+//     }
+
+//     // $a = App\Ticket::orderBy('order_id')->distinct('order_id')->get();
+
+//     // echo $a->count().'<br>-----<br>';
+
+//     // foreach ($a as $key) {
+//     //     # code...
+//     //     echo '+'.$key->user->id.'-'.$key->order_id.'<br>';
+//     // }
+//     // echo now();
+//     // $a = time();
+
+//     // $b = date('Y-m-d H:i:s', $a);
+
+//     // echo $b;
+
+// });
+
+
+// Route::get('/find', function () {
+//     $arr = [11,133,159];
+//     $users = App\User::whereIn('id', $arr)->get();
+
+//     foreach ($users as $key) {
+        
+//         echo '用户id: '.$key->id.', 手机号:'.show($key->ids, 'mobile.number').'; 张数: '.$key->tickets->count().'<br>------<br>';
+
+//         foreach ($key->tickets as $t) {
+//             echo '票id号: '.$t->id.', 入场次序: '.$t->sorted .'; 对应交易号: '.$t->order->out_trade_no.'<br>';
+//         }
+//         echo '---------------<br>';
+
+//         $b = $key->orders;
+
+//         $filtered = $b->reject(function ($v) {
+//             return empty($v->status);
+//         });
+
+//         foreach ($filtered as $k) {
+//             echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
+//         }
+
+        
+
+//         echo '=================<br>';
+//     }
+// });
 
 
 // ------------ dev -------------

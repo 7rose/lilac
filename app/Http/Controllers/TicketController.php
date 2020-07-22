@@ -48,9 +48,12 @@ class TicketController extends Controller
             return view('note', compact('conf'));
         }
 
+        // 交易号
+        $out_trade_no = Auth::id() . '-' . $expo->id . '-' . time();
+
         $info = [
             'body'         => show($expo->info, 'title', '') . '电子门票',
-            'out_trade_no' => Auth::id() . '-' . $expo->id . '-' . time(),
+            // 'out_trade_no' => $out_trade_no,
             'total_fee'    => show($expo->info, 'price') ? floor(floatval(show($expo->info, 'price')) * 100) : 20000,   // 分
             // 'spbill_create_ip' => '123.12.12.123',                                                                             // 可选，如不传该参数，SDK 将会自动获取相应 IP 地址
             // 'notify_url'       => 'https://pay.weixin.qq.com/wxpay/pay.action',                                                // 支付结果通知网址，如果不设置则会使用配置里的默认地址
@@ -66,7 +69,12 @@ class TicketController extends Controller
             $prepayId = Arr::get($order, 'prepay_id');
 
             // 写入
-            Order::create($info);
+            // Order::create($info);
+            $resault = Order::firstOrCreate(
+                ['out_trade_no' => $out_trade_no],
+                $info,
+            );
+
         } else {
             abort('510');
         }
@@ -87,7 +95,8 @@ class TicketController extends Controller
 
             $order = Order::where('out_trade_no', $message['out_trade_no'])->first();
 
-            if (!$order || $order->paid_at) { // 如果订单不存在 或者 订单已经支付过了
+            // 异常: 1. 定单不存在; 2.已经支付过了; 3.已经生成票了
+            if (!$order || $order->paid_at || $order->has('ticket')) { 
                 return true;
             }
 
@@ -100,16 +109,10 @@ class TicketController extends Controller
                 // 用户是否支付成功
                 if (Arr::get($message, 'result_code') === 'SUCCESS' && Arr::get($real_resault, 'trade_state') === 'SUCCESS') {
 
-                    $ex = Order::where('out_trade_no', $message['out_trade_no'])->first();
+                    $this->getTicket($message);
 
-                    // 校验是否已经存在订单
-                    if(!$ex->has('ticket')) {
-                        $this->getTicket($message);
-
-                        $order->paid_at = now(); // 更新支付时间为当前时间
-                        $order->status = '支付成功';
-                    }
-                    
+                    $order->paid_at = now(); // 更新支付时间为当前时间
+                    $order->status = '支付成功';
 
                     // 用户支付失败
                 } elseif (Arr::get($message, 'result_code') === 'FAIL') {
