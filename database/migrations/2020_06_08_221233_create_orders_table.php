@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('body');
-            $table->string('out_trade_no');
+            $table->string('out_trade_no')->unique();
             $table->integer('total_fee');
             $table->ipAddress('spbill_create_ip')->nullable();
             $table->string('notify_url')->nullable();
