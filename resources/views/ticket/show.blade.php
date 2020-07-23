@@ -25,7 +25,7 @@
             <span class="label label-primary">已检</span>
             @endif
         </p>
-        <p>为了您良好的参展体验，请务必阅读<a href="/expos/notice">《参展规则》！</a></p>
+        <p><a href="/expos/notice">请务必阅读《参展规则》！</a></p>
       <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}</div>
         <div class="card-subtitle text-gray">ID.{{ $ticket->id }} | ¥ {{ show($ticket->expo->info, 'price') }}</div>
       </div>
