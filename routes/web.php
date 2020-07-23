@@ -109,7 +109,8 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-    return view('expo.notice');
+    $a = App\Order::find(17);
+    var_dump(empty($a->ticket));
 });
 
 // Route::get('/check', function () {

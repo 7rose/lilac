@@ -98,7 +98,7 @@ class TicketController extends Controller
             $order = Order::where('out_trade_no', $message['out_trade_no'])->first();
 
             // 异常: 1. 定单不存在; 2.已经支付过了; 3.已经生成票了
-            if (!$order || $order->paid_at || $order->has('ticket')) { 
+            if (!$order || $order->paid_at || !empty($order->ticket)) { 
                 return true;
             }
 
