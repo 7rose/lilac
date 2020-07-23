@@ -2,11 +2,12 @@
 
 namespace App\Wechat;
 
-use App\Helpers\Expos;
 use App\Org;
 use App\User;
 use App\Ticket;
+use App\Helpers\Expos;
 use Illuminate\Support\Str;
+use App\Jobs\WecahtCheckTicket;
 use Illuminate\Support\Facades\Log;
 use EasyWeChat\Kernel\Messages\News;
 use Illuminate\Support\Facades\Redis;
@@ -159,6 +160,19 @@ class EventHandler implements EventHandlerInterface
             $ticket->save();
 
             $msg = empty($ticket->sorted) ? '注: 此票没有登记入场次序!' : '入场次序:'.$ticket->sorted;
+
+            // 发送检票通知
+            $send_array = [
+                'open_id' => show($ticket->user->ids, 'wechat.id'),
+                'name' => \face($ticket->user)->name,
+                'ticket_id' => $ticket->id,
+                'expo_title' => show($ticket->expo->info, 'title', 'SSF'),
+                'time' => now(),
+                // 'expo_begin' => $ticket->expo->begin,
+                // 'expo_addr' => show($ticket->expo->info, 'addr', '上海市静安区'),
+            ];
+    
+            WecahtCheckTicket::dispatch($send_array);
 
             return "检票成功! ".$msg;
 
