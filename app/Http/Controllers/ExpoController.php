@@ -25,6 +25,15 @@ class ExpoController extends Controller
      * 展会
      *
      */
+    public function notice()
+    {
+        return view('expo.notice');
+    }
+
+    /**
+     * 展会
+     *
+     */
     public function show($id)
     {
         $this->authorize('viewAll', Expo::class);

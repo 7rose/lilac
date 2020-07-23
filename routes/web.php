@@ -95,6 +95,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::post('/expo/sort/store/{id}', 'ExpoController@sortStore'); # 登记入场顺序
         Route::get('/expos/create', 'ExpoController@create');
         Route::post('/expos/store', 'ExpoController@store');
+        Route::post('/expos/notice', 'ExpoController@notice');
 
         // 票
         Route::get('/pay/{id}', 'TicketController@order');
@@ -108,8 +109,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
-    $a = NUll;
-    var_dump(empty($a));
+    return view('expo.notice');
 });
 
 // Route::get('/check', function () {
