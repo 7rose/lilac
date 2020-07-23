@@ -41,12 +41,12 @@ Route::get('/note', 'SysController@note');
 Route::get('/msg', 'SysController@msg');
 Route::get('/contact', 'SysController@contact');
 
+Route::get('/trailer', 'ExpoController@trailer');
 
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     
     // 展会预告
-    Route::get('/trailer', 'ExpoController@trailer');
     
     Route::get('/sms', 'AuthController@sms');
     Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');
@@ -199,12 +199,12 @@ Route::get('/test', function () {
 
 
 
-// Route::get('/in', function () {
-    // // $user = App\User::find(5);
-    // $user = App\User::find(6);
-    // // $user = App\User::find(2);
-    // // $user = App\User::find(1);
-    // // $user = App\User::find(8);
-    // Auth::login($user);
-    // print_r($user->info);
-// });
+Route::get('/in', function () {
+    // $user = App\User::find(5);
+    $user = App\User::find(6);
+    // $user = App\User::find(2);
+    // $user = App\User::find(1);
+    // $user = App\User::find(8);
+    Auth::login($user);
+    print_r($user->info);
+});

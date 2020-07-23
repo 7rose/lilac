@@ -8,6 +8,15 @@
 
 <div class="nav-pad"></div>
 <div class="container col-sm-8 col-xs-12 p-centered">
+    @if($au->need(Auth::user(), 'staff'))
+    <div class="column col-9 col-sm-12">
+        <div class="toast">
+          <button class="btn btn-clear float-right"></button>
+          <h6>仅员工可见以供测试</h6>
+          <p><a href="/pay/3" class="btn btn-success">1分钱买测试票</a></p>
+        </div>
+      </div>
+    @endif
     <div class="column col-6 col-xs-12">
         <div class="card ">
             <div class="card-image"><img class="img-responsive" src="{{ asset('images/main.jpg') }}" alt=".."></div>
