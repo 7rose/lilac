@@ -105,7 +105,7 @@
             <label class="form-checkbox text-left">
                 <input id="terms" type="checkbox" checked onchange="javascript:terms()">
                 <i class="form-icon"></i> 我已阅读并清楚其风险</a>
-                <p id="info" name="terms" class="form-input-hint"></p>
+                <p id="info" name="terms" class="form-input-hint text-primary"></p>
             </label>
         </div>
         <a href="javascript:trans()" id="next" class="btn btn-primary btn-block">确定赠送</a>
