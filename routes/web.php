@@ -111,18 +111,31 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
 Route::get('/test', function () {
 
-    $t = App\Ticket::find(888);
+    $ts = App\Ticket::whereNotNull('sorted')->whereIn('expo_id', [1,2])->get();
 
-    $send_array = [
-        'open_id' => show($t->user->ids, 'wechat.id'),
-        'name' => \face($t->user)->name,
-        'sorted' => $t->sorted,
-        // 'expo_title' => show($t->expo->info, 'title', 'SSF'),
-        'expo_begin' => $t->expo->begin,
-        'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
-    ];
+    foreach ($ts as $t) {
+        $send_array = [
+            'open_id' => show($t->user->ids, 'wechat.id'),
+            'name' => \face($t->user)->name,
+            'sorted' => $t->sorted,
+            // 'expo_title' => show($t->expo->info, 'title', 'SSF'),
+            'expo_begin' => $t->expo->begin,
+            'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
+        ];
+    
+        WechatTicketPreregister::dispatch($send_array);
+    }
 
-    WechatTicketPreregister::dispatch($send_array);
+    // $send_array = [
+    //     'open_id' => show($t->user->ids, 'wechat.id'),
+    //     'name' => \face($t->user)->name,
+    //     'sorted' => $t->sorted,
+    //     // 'expo_title' => show($t->expo->info, 'title', 'SSF'),
+    //     'expo_begin' => $t->expo->begin,
+    //     'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
+    // ];
+
+    // WechatTicketPreregister::dispatch($send_array);
 
     // $a = App\Order::find(17);
     // var_dump(empty($a->ticket));
