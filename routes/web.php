@@ -3,6 +3,7 @@
 use App\Jobs\WecahtGetTicket;
 
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\WechatTicketPreregister;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
