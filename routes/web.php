@@ -109,13 +109,27 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 });
 
 Route::get('/test', function () {
+
+    $t = App\Ticket::find(888);
+
+    $send_array = [
+        'open_id' => show($t->user->ids, 'wechat.id'),
+        'name' => \face($t->user)->name,
+        'sorted' => $t->sorted,
+        // 'expo_title' => show($t->expo->info, 'title', 'SSF'),
+        'expo_begin' => $t->expo->begin,
+        'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
+    ];
+
+    WechatTicketPreregister::dispatch($send_array);
+
     // $a = App\Order::find(17);
     // var_dump(empty($a->ticket));
 
     // $a = App\User::where('ids->mobile->number', '18616971891')->first();
-    $b = App\User::where('ids->mobile->number', '18616712758')->first();
+    // $b = App\User::where('ids->mobile->number', '18616712758')->first();
 
-    var_dump($b);
+    // var_dump($b);
 
     // $c = $a->tickets->count();
     // // $d = $b->tickets->count();
