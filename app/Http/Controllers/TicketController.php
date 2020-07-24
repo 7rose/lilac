@@ -219,7 +219,7 @@ class TicketController extends Controller
         $target = User::where('ids->mobile->number', $mobile)->first();
         $ticket = Ticket::findOrFail($id);
 
-        if (!$target) return json_encode(['errors' => ['mobile' => '用户不存在或者没有关注公众号']]);
+        if (!$target) return json_encode(['errors' => ['mobile' => '受让人必须关注公众号且通过手机认证']]);
         if (!times($ticket->logs)) return json_encode(['errors' => ['mobile' => '此票已超过最大转让次数']]);
         if ($ticket->used) return json_encode(['errors' => ['mobile' => '此票已失效']]);
         if ($ticket->expo->end < now()) return json_encode(['errors' => ['mobile' => '此票已过期']]);
