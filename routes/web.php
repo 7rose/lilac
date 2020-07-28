@@ -111,24 +111,24 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
 Route::get('/test', function () {
 
-    $id = 1;
-    $e = App\Expo::find($id);
+    // $id = 1;
+    // $e = App\Expo::find($id);
 
-    $limit = intval(show($e->info,'limit'));
-    $t = $e->tickets;
+    // $limit = intval(show($e->info,'limit'));
+    // $t = $e->tickets;
 
-    $sale = $t->count();
+    // $sale = $t->count();
 
-    $come = $t->reject(function ($key) {
-        return !$key->used;
-    });
+    // $come = $t->reject(function ($key) {
+    //     return !$key->used;
+    // });
 
-    $p1 = round($sale / $limit * 100, 2);
-    $p2 = round($come->count() / $sale * 100, 2);
+    // $p1 = round($sale / $limit * 100, 2);
+    // $p2 = round($come->count() / $sale * 100, 2);
 
-    $text = "售票/容量: {$sale}/{$limit} [{$p1}%]<br> 参展/售票: {$come->count()}/{$sale} [{$p2}%]";
+    // $text = "售票/容量: {$sale}/{$limit} [{$p1}%]<br> 参展/售票: {$come->count()}/{$sale} [{$p2}%]";
 
-    echo $text;
+    // echo $text;
 
     // echo "售票/容量: ". (($sale / $limit) * 100) .'%';
     // echo "参展/售票: ". ($come->count() / $sale) * 100.'%';
@@ -272,11 +272,11 @@ Route::get('/test', function () {
 
 
 Route::get('/in', function () {
-    // $user = App\User::find(5);
-    $user = App\User::find(6);
-    // $user = App\User::find(2);
-    // $user = App\User::find(1);
-    // $user = App\User::find(8);
-    Auth::login($user);
-    print_r($user->info);
+    // // $user = App\User::find(5);
+    // $user = App\User::find(6);
+    // // $user = App\User::find(2);
+    // // $user = App\User::find(1);
+    // // $user = App\User::find(8);
+    // Auth::login($user);
+    // print_r($user->info);
 });
