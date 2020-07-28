@@ -9,7 +9,7 @@
       <div class="panel-subtitle">票价: ¥{{ show($expo->info, 'price', '') }}{!!$expo->on ? ' <span class="text-success">[上线放票中!]</span>' : '' !!}</div>
       @isset($text)
       <p></p>
-      <div class="toast toast-success">{!! $text !!}</div>
+      <div class="toast toast-success text-left">{!! $text !!}</div>
       @endisset
       </div>
       <nav class="panel-nav">
