@@ -7,6 +7,9 @@
       <div class="panel-header text-center">
       <div class="panel-title h5 mt-10">{{ show($expo->info, 'title', '') }}  </div>
       <div class="panel-subtitle">票价: ¥{{ show($expo->info, 'price', '') }}{!!$expo->on ? ' <span class="text-success">[上线放票中!]</span>' : '' !!}</div>
+      @isset($text)
+          <p>{!! $text !!}</p>
+      @endisset
       </div>
       <nav class="panel-nav">
         <ul class="tab tab-block">

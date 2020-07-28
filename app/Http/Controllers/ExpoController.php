@@ -39,7 +39,24 @@ class ExpoController extends Controller
         $this->authorize('viewAll', Expo::class);
 
         $expo = Expo::findOrFail($id);
-        return view('expo.show', compact('expo'));
+
+        $e = App\Expo::find($id);
+
+        $limit = intval(show($e->info,'limit'));
+        $t = $e->tickets;
+    
+        $sale = $t->count();
+    
+        $come = $t->reject(function ($key) {
+            return !$key->used;
+        });
+    
+        $p1 = round($sale / $limit * 100, 2);
+        $p2 = round($come->count() / $sale * 100, 2);
+    
+        $text = "售票/容量: {$sale}/{$limit} [{$p1}%]<br> 参展/售票: {$come->count()}/{$sale} [{$p2}%]";
+
+        return view('expo.show', compact('expo', 'text'));
     }
 
     /**

@@ -111,20 +111,47 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
 Route::get('/test', function () {
 
-    $ts = App\Ticket::whereNotNull('sorted')->whereIn('expo_id', [1,2])->get();
+    $id = 1;
+    $e = App\Expo::find($id);
 
-    foreach ($ts as $t) {
-        $send_array = [
-            'open_id' => show($t->user->ids, 'wechat.id'),
-            'name' => \face($t->user)->name,
-            'sorted' => $t->sorted,
-            // 'expo_title' => show($t->expo->info, 'title', 'SSF'),
-            'expo_begin' => $t->expo->begin,
-            'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
-        ];
+    $limit = intval(show($e->info,'limit'));
+    $t = $e->tickets;
+
+    $sale = $t->count();
+
+    $come = $t->reject(function ($key) {
+        return !$key->used;
+    });
+
+    $p1 = round($sale / $limit * 100, 2);
+    $p2 = round($come->count() / $sale * 100, 2);
+
+    $text = "售票/容量: {$sale}/{$limit} [{$p1}%]<br> 参展/售票: {$come->count()}/{$sale} [{$p2}%]";
+
+    echo $text;
+
+    // echo "售票/容量: ". (($sale / $limit) * 100) .'%';
+    // echo "参展/售票: ". ($come->count() / $sale) * 100.'%';
+
+
+    // $sale = App\Ticket::where('expo_id', $id);
+
+    // 13818778747
+
+    // $ts = App\Ticket::whereNotNull('sorted')->whereIn('expo_id', [1,2])->get();
+
+    // foreach ($ts as $t) {
+    //     $send_array = [
+    //         'open_id' => show($t->user->ids, 'wechat.id'),
+    //         'name' => \face($t->user)->name,
+    //         'sorted' => $t->sorted,
+    //         // 'expo_title' => show($t->expo->info, 'title', 'SSF'),
+    //         'expo_begin' => $t->expo->begin,
+    //         'expo_addr' => show($t->expo->info, 'addr', '上海市静安区'),
+    //     ];
     
-        WechatTicketPreregister::dispatch($send_array);
-    }
+    //     WechatTicketPreregister::dispatch($send_array);
+    // }
 
     // $send_array = [
     //     'open_id' => show($t->user->ids, 'wechat.id'),
