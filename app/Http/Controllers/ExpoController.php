@@ -40,7 +40,7 @@ class ExpoController extends Controller
 
         $expo = Expo::findOrFail($id);
 
-        $e = App\Expo::find($id);
+        $e = Expo::find($id);
 
         $limit = intval(show($e->info,'limit'));
         $t = $e->tickets;
