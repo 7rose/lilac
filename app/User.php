@@ -149,4 +149,22 @@ class User extends Authenticatable
         return $value;
     }
 
+    /**
+     * Tickets
+     *
+     */
+    public function finance_to()
+    {
+        return $this->hasMany('App\Finance', 'to->id');
+    }
+
+    /**
+     * Finances
+     *
+     */
+    public function finance_from()
+    {
+        return $this->hasMany('App\Finance', 'from->id');
+    }
+
 }
