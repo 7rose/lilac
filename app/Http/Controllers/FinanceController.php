@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class FinanceController extends Controller
 {
     /**
+     * 日志
+     * 
+     */
+    public function index()
+    {
+        return redirect('/finance/log');
+    }
+
+    /**
      * 财务登记 
      * 
      */
@@ -192,12 +201,5 @@ class FinanceController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * 日志
-     * 
-     */
-    public function finaces()
-    {
-        return redirect('/finance/log');
-    }
+
 }
