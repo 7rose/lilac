@@ -191,4 +191,13 @@ class FinanceController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * 日志
+     * 
+     */
+    public function finaces()
+    {
+        return redirect('/finance/log');
+    }
 }

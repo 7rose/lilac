@@ -109,6 +109,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/discoveries','DiscoveryController@index');
 
         // 财务
+        Route::get('/finances','FinanceController@index');
         Route::get('/finance/create','FinanceController@create');
         Route::post('/finance/store','FinanceController@store');
         Route::get('/finance/log','FinanceController@log');
