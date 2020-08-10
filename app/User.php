@@ -167,4 +167,23 @@ class User extends Authenticatable
         return $this->hasMany('App\Finance', 'from->id');
     }
 
+    /**
+     * Roles of a user
+     *
+     */
+    public function tasks()
+    {
+        return $this->hasManyJson('App\Task', 'parts[]->id');
+    }
+
+    /**
+     * Finances
+     *
+     */
+    public function tasks_create()
+    {
+        return $this->hasMany('App\Task', 'created_by');
+    }
+
+
 }

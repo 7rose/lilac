@@ -109,7 +109,7 @@ class FinanceController extends Controller
     {
         $records = Finance::orderBy('date', 'desc')
             ->latest()
-            ->paginate(20);
+            ->paginate(30);
 
         return view('finance.log', \compact('records'));
     }

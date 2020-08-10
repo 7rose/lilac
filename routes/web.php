@@ -45,7 +45,7 @@ Route::get('/contact', 'SysController@contact');
 Route::get('/trailer', 'ExpoController@trailer');
 
 // wechat user
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     
     // 展会预告
     
@@ -117,18 +117,37 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::get('/finance/confirmed/{id}','FinanceController@confirmed');
         Route::get('/finance/abandon/{id}','FinanceController@abandon');
 
+        // 事务
+        Route::get('/tasks','TaskController@index');
+        Route::get('/task/show/{id}','TaskController@show');
+        Route::get('/task/create','TaskController@create');
+        Route::post('/task/next','TaskController@next');
+        Route::post('/task/store','TaskController@store');
+        Route::get('/task/confirmed/{id}','TaskController@confirmed');
+        Route::get('/task/abandon/{id}','TaskController@abandon');
+
     });
-});
+// });
 
 Route::get('/test', function () {
     // $a = Auth::user()->finance_to;
-    // $a = App\Finance::find(1);
+    // $a = App\Task::find(1);
     // $a = App\Finance::where('abandon', false)->where('type', 'out')->sum('fee');
 
     // print_r($a);
-    $a = now();
+    // $a = now();
 
-    echo $a->day;
+    // print_r($a->users);
+
+    $a = [['id'=>5, 'task'=>'任务1'], ['id'=>6, 'task'=>"任务2"]];
+    $new = [];
+    foreach ($a as $k) {
+        $user = App\User::find($k['id']);
+        $ks = Arr::add($k, 'name', face($user)->name);
+        $new[] = $ks;
+    }
+
+    print_r($new);
 });
 
 // Route::get('/check', function () {
