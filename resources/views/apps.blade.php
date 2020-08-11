@@ -15,12 +15,7 @@
                 <p>抽奖</p>
                 </a>
             </div>
-            <div class="column col-xs-4 text-center mt-2">
-                <figure class="avatar avatar-lg bg-gray">
-                    <img src="{{ asset('images/order.svg') }}" alt="...">
-                </figure>
-                <p>订单</p>
-            </div>
+
             <div class="column col-xs-4 text-center mt-2">
                 <a href="/tickets" class="text-dark">
                 <figure class="avatar avatar-lg bg-gray">
@@ -92,12 +87,6 @@
                 </figure>
                 <p>系统设置</p>
                 </a>
-            </div>
-            <div class="column col-xs-4 text-center mt-2">
-                <figure class="avatar avatar-lg bg-gray">
-                    <img src="{{ asset('images/service.svg') }}" alt="...">
-                </figure>
-                <p>客服</p>
             </div>
 
 
