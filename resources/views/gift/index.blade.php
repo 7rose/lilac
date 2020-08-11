@@ -1,63 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('../nav')
 
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>MOOI幸运转轮</title>
-<link rel="stylesheet" href="{{ mix('css/app.css') }}">
-<link rel="stylesheet" href="{{ asset('gift/css/index.css') }}">
+@section('main')
+<div class="nav-pad"></div>
+<link rel="stylesheet" type="text/css" href="{{ asset('gift/css/main.css') }}">
 
-</head>
-<body>
-
-<div class="box-lottery">
-	<div class="lottery-wrap" style="transform: rotate(-45deg);">
-		<span class="lottery-span1" data-id="8">
-			<i>MOOI卡<br>10元</i><img src="{{ asset('gift/img/lottery_01.png') }}" alt="MOOI卡10">
-		</span>
-		<span class="lottery-span2" data-id="7">
-			<i>MOOI卡<br>20元</i><img src="{{ asset('gift/img/lottery_02.png') }}" alt="MOOI卡20">
-		</span>
-		<span class="lottery-span3" data-id="6">
-			<i>MOOI卡<br>50元</i><img src="{{ asset('gift/img/lottery_03.png') }}" alt="MOOI卡50">
-		</span>
-		<span class="lottery-span4" data-id="5">
-			<i>MOOI卡<br>100元</i><img src="{{ asset('gift/img/lottery_04.png') }}" alt="MOOI卡100">
-		</span>
-		<span class="lottery-span5" data-id="1">
-			<i>谢谢参与</i><img src="{{ asset('gift/img/lottery_05.png') }}" alt="谢谢参与">
-		</span>
-		<span class="lottery-span6" data-id="4">
-			<i>MOOI卡<br>200元</i><img src="{{ asset('gift/img/lottery_06.png') }}" alt="MOOI卡200">
-		</span>
-		<span class="lottery-span7" data-id="3">
-			<i>MOOI卡<br>500元</i><img src="{{ asset('gift/img/lottery_07.png') }}" alt="MOOI卡500">
-		</span>
-		<span class="lottery-span8" data-id="2">
-			<i>iQOO Pro<br>手机</i><img src="{{ asset('gift/img/lottery_08.png') }}" alt="iQOO Pro">
-		</span>
-	</div>
-	<a class="lottery-btn" href="javascript:void(0);"><i></i>立即抽奖</a>
-</div>
-<div class="text-center">
-<a href="/me" class="btn btn-primary">返回个人中心</a>
-</div>
-
-<script src="{{ asset('gift/js/jquery.min.js') }}"></script>
-<script src="{{ asset('gift/js/lib/anime.min.js') }}"></script>
-<script src="{{ asset('gift/js/app/lottery.js') }}"></script>
-<script>
-	var Lottery = Turntable.create();
-	$('.lottery-btn').on('click', function(){
-		var num = Math.floor(Math.random() * 8);
-		Lottery.start(num, function(index){
-			alert($('span').eq(index).find('i').text());
-			console.log('index', index, 'lottery-span', 'lottery-span'+(index+1));
-		});
-	});
-</script>
-
-</body>
-</html>
+<script type="text/javascript" src="{{ asset('gift/js/main.js') }}"></script>
+<section>
+    <div class="turnplate_box">
+        <canvas id="myCanvas" width="300px" height="300px">抱歉！浏览器不支持。</canvas>
+        <canvas id="myCanvas01" width="200px" height="200px">抱歉！浏览器不支持。</canvas>
+        <canvas id="myCanvas03" width="200px" height="200px">抱歉！浏览器不支持。</canvas>
+        <canvas id="myCanvas02" width="150px" height="150px">抱歉！浏览器不支持。</canvas>
+        <button id="tupBtn" class="turnplatw_btn"></button>
+    </div>
+    <!-- 更改系统默认弹窗 -->
+    <script type="text/javascript">
+    window.alert = function(str)
+    {
+        var shield = document.createElement("DIV");
+        shield.id = "shield";
+        shield.style.position = "absolute";
+        shield.style.left = "50%";
+        shield.style.top = "50%";
+        shield.style.width = "280px";
+        shield.style.height = "150px";
+        shield.style.marginLeft = "-140px";
+        shield.style.marginTop = "-110px";
+        shield.style.zIndex = "25";
+        var alertFram = document.createElement("DIV");
+        alertFram.id="alertFram";
+        alertFram.style.position = "absolute";
+        alertFram.style.width = "280px";
+        alertFram.style.height = "150px";
+        alertFram.style.left = "50%";
+        alertFram.style.top = "50%";
+        alertFram.style.marginLeft = "-140px";
+        alertFram.style.marginTop = "-110px";
+        alertFram.style.textAlign = "center";
+        alertFram.style.lineHeight = "150px";
+        alertFram.style.zIndex = "300";
+        strHtml = "<ul style=\"list-style:none;margin:0px;padding:0px;width:100%\">\n";
+        strHtml += " <li style=\"background:#626262;text-align:left;padding-left:20px;font-size:14px;font-weight:bold;height:25px;line-height:25px;border:1px solid #F9CADE;color:white\">[中奖提醒]</li>\n";
+        strHtml += " <li style=\"background:#787878;text-align:center;font-size:12px;height:95px;line-height:95px;border-left:1px solid #F9CADE;border-right:1px solid #F9CADE;color:#DCC722\">"+str+"</li>\n";
+        strHtml += " <li style=\"background:#626262;text-align:center;font-weight:bold;height:30px;line-height:25px; border:1px solid #F9CADE;\"><input type=\"button\" value=\"确 定\" onclick=\"doOk()\" style=\"width:80px;height:20px;background:#626262;color:white;border:1px solid white;font-size:14px;line-height:20px;outline:none;margin-top: 4px\"/></li>\n";
+        strHtml += "</ul>\n";
+        alertFram.innerHTML = strHtml;
+        document.body.appendChild(alertFram);
+        document.body.appendChild(shield);
+        this.doOk = function(){
+            alertFram.style.display = "none";
+            shield.style.display = "none";
+        }
+        alertFram.focus();
+        document.body.onselectstart = function(){return false;};
+    }
+    </script>
+</section>
+@endsection
