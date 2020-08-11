@@ -45,7 +45,7 @@ Route::get('/contact', 'SysController@contact');
 Route::get('/trailer', 'ExpoController@trailer');
 
 // wechat user
-// Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     
     // 展会预告
     
@@ -129,7 +129,7 @@ Route::get('/trailer', 'ExpoController@trailer');
         Route::get('/task/finish/{id}','TaskController@finish');
 
     });
-// });
+});
 
 Route::get('/test', function () {
     // $a = Auth::user()->finance_to;
