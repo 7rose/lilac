@@ -57,7 +57,7 @@
                       <label class="form-label" for="input-example-1">日期</label>
                       </div>
                       <div class="col-9 col-sm-12">
-                      <input class="form-input"type="datetime-local" name="date" value="{{ old('date') }}" placeholder="日期" required>
+                      <input class="form-input"type="datetime-local" name="date" value="{{ old('date') ? old('date') : "2020-06-01T12:00" }}" placeholder="日期" required>
                       @error('date')
                           <p class="form-input-hint">{{ $message }}</p>
                       @enderror
