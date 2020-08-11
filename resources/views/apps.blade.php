@@ -8,10 +8,12 @@
 
         <div class="columns col-gapless">
             <div class="column col-xs-4 text-center mt-2">
+                <a href="/gift" class="text-dark">
                 <figure class="avatar avatar-lg bg-gray">
                     <img src="{{ asset('images/gift.svg') }}" alt="...">
                 </figure>
                 <p>抽奖</p>
+                </a>
             </div>
             <div class="column col-xs-4 text-center mt-2">
                 <figure class="avatar avatar-lg bg-gray">

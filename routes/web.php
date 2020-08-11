@@ -42,6 +42,9 @@ Route::get('/note', 'SysController@note');
 Route::get('/msg', 'SysController@msg');
 Route::get('/contact', 'SysController@contact');
 
+// 抽奖
+Route::get('/gift', 'GiftController@index');
+
 Route::get('/trailer', 'ExpoController@trailer');
 
 // wechat user
