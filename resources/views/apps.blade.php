@@ -68,10 +68,12 @@
                 </a>
             </div>
             <div class="column col-xs-4 text-center mt-2">
+                <a href="/tasks" class="text-dark">
                 <figure class="avatar avatar-lg bg-gray">
                     <img src="{{ asset('images/task.svg') }}" alt="...">
                 </figure>
-                <p>事务</p>
+                <p>任务</p>
+                </a>
             </div>
             <div class="column col-xs-4 text-center mt-2">
                 <a href="/finances" class="text-dark">

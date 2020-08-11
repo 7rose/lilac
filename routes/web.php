@@ -125,13 +125,17 @@ Route::get('/trailer', 'ExpoController@trailer');
         Route::post('/task/store','TaskController@store');
         Route::get('/task/confirmed/{id}','TaskController@confirmed');
         Route::get('/task/abandon/{id}','TaskController@abandon');
+        Route::post('/task/update','TaskController@update');
+        Route::get('/task/finish/{id}','TaskController@finish');
 
     });
 // });
 
 Route::get('/test', function () {
     // $a = Auth::user()->finance_to;
-    // $a = App\Task::find(1);
+    $a = App\Task::find(1);
+    $b = new App\Helpers\Task;
+    var_dump($b->operate($a));
     // $a = App\Finance::where('abandon', false)->where('type', 'out')->sum('fee');
 
     // print_r($a);
@@ -139,15 +143,28 @@ Route::get('/test', function () {
 
     // print_r($a->users);
 
-    $a = [['id'=>5, 'task'=>'任务1'], ['id'=>6, 'task'=>"任务2"]];
-    $new = [];
-    foreach ($a as $k) {
-        $user = App\User::find($k['id']);
-        $ks = Arr::add($k, 'name', face($user)->name);
-        $new[] = $ks;
-    }
+    // $a = [['id'=>5, 'task'=>'任务1'], ['id'=>6, 'task'=>"任务2"]];
 
-    print_r($new);
+    // function ch($array)
+    // {
+    //     $filtered = Arr::where($array, function ($value, $key) {
+    //         // return is_string($value);
+    //         if($value['id'] == Auth::id()) return $value;
+    //     });
+
+    //     return false;
+    // }
+
+    // var_dump(ch($a));
+    
+    // $new = [];
+    // foreach ($a as $k) {
+    //     $user = App\User::find($k['id']);
+    //     $ks = Arr::add($k, 'name', face($user)->name);
+    //     $new[] = $ks;
+    // }
+
+    // print_r($new);
 });
 
 // Route::get('/check', function () {

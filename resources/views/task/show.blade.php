@@ -1,14 +1,5 @@
 <?php
-    function showName($parts)
-    {
-        $new = [];
-        foreach ($parts as $p) {
-            $user = App\User::find($p['id']);
-            $add = Arr::add($p, 'name', face($user)->name);
-            $new[] = $add;
-        }
-        return $new;
-    }
+    $t = new App\Helpers\Task;
 ?>
 @extends('../nav')
 
@@ -49,7 +40,7 @@
                                 [{{ \Carbon\Carbon::parse($record->date)->diffForHumans() }}]
                             <br>
 
-                            @foreach (showName($record->parts) as $s)
+                            @foreach ($t->showName($record) as $s)
                                 {{ $s['name'] }} : {{ $s['task'] }}<br>
                             @endforeach
                             <div class="divider"></div>
@@ -84,6 +75,32 @@
                 </div>
                 @endisset
                 <p></p>
+                <div class="divider"></div>
+
+                @if ($t->operate($record))
+                <form method="POST" action="/task/update">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $record->id }}">
+                    <div class="form-group @error('title') has-error @enderror">
+                        <div class="col-3 col-sm-12">
+                        <label class="form-label" for="input-example-1">进度标记</label>
+                        </div>
+                        <div class="col-9 col-sm-12">
+                        <input class="form-input" type="text" name="title" maxlength="200" placeholder="说明" value="{{ old('title') }}" required>
+                        @error('title')
+                            <p class="form-input-hint">{{ $message }}</p>
+                        @enderror
+                        </div>
+                    </div>
+                    <p></p>
+                    <button class="btn btn-primary btn-block mt-2" type="submit">进度标记</button>
+                </form>
+                <div class="divider"></div>
+                    <p></p>
+                    <a class="btn btn-success btn-block" href="/task/finish/{{ $record->id }}">我的工作已完成</a>
+                    <p></p>
+                @endif
+
             </div>
         </div>
     </div>
