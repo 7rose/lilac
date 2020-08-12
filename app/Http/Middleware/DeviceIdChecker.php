@@ -24,7 +24,7 @@ class DeviceIdChecker
         if(Arr::has($header, 'device-id')) return $next($request);
 
         $error = [
-            'message' => '406@device-id can not be founded in headers',
+            'message' => '406@headers 缺少必要的 device-id 参数',
         ];
 
         return \json_encode($error);  
