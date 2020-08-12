@@ -1,15 +1,12 @@
 input trustMoblieInput {
-    device_id: String!
     jv_token: String!
 }
 
 input SendSmsCodeInput {
-    device_id: String!
     mobile: ChineseMobile!
 }
 
 input GetTokenInput {
-    device_id: String!
     mobile: ChineseMobile!
     code: SmsCode!
 }

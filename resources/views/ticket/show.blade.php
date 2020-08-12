@@ -25,6 +25,7 @@
             <span class="label label-primary">已检</span>
             @endif
         </p>
+        <p><a href="/expos/notice">请务必阅读《参展规则》！</a></p>
       <div class="card-title h5">{{ show($ticket->expo->info, 'title') }}</div>
         <div class="card-subtitle text-gray">ID.{{ $ticket->id }} | ¥ {{ show($ticket->expo->info, 'price') }}</div>
       </div>
@@ -56,7 +57,7 @@
                     <div class="timeline-content">
                       <div class="tile">
                         <div class="tile-content">
-                          <span class="text-gray">{{ \Carbon\Carbon::parse($log['time']) }}</span> &nbsp;&nbsp;
+                          <span class="text-gray">{{ date('Y-m-d H:i:s', $log['time']) }}</span> &nbsp;&nbsp;
                             <i class="fa fa-hand-o-right" aria-hidden="true"></i> {{ $log['do'] }}
 
                         </div>
@@ -104,7 +105,7 @@
             <label class="form-checkbox text-left">
                 <input id="terms" type="checkbox" checked onchange="javascript:terms()">
                 <i class="form-icon"></i> 我已阅读并清楚其风险</a>
-                <p id="info" name="terms" class="form-input-hint"></p>
+                <p id="info" name="terms" class="form-input-hint text-primary"></p>
             </label>
         </div>
         <a href="javascript:trans()" id="next" class="btn btn-primary btn-block">确定赠送</a>

@@ -1,14 +1,17 @@
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
-scalar Json
+# scalar Upload @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
+scalar Json 
+# scalar Email @scalar(class: "MLL\\GraphQLScalars\\Email")
 scalar ChineseMobile
 scalar SmsCode
 
 type Query {
     users: [User!]! @all
     user(id: ID @eq): User @find
-    orgs: [Org!]! @all
-    org(id: ID @eq): Org @find
-    discoveries: [Discovery!]! @all
+    # sample
+    # orgs: [Org!]! @all
+    # org(id: ID @eq): Org @find
+    # discoveries: [Discovery!]! @all
 }
 
 # 需要认证
@@ -27,4 +30,3 @@ type Mutation {
 #import org.graphql
 #import role.graphql
 #import auth.graphql
-#import discovery.graphql

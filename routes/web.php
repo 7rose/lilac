@@ -3,6 +3,8 @@
 use App\Jobs\WecahtGetTicket;
 
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\WechatTicketPreregister;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,12 +42,15 @@ Route::get('/note', 'SysController@note');
 Route::get('/msg', 'SysController@msg');
 Route::get('/contact', 'SysController@contact');
 
+// 抽奖
+Route::get('/gift', 'GiftController@index');
+
+Route::get('/trailer', 'ExpoController@trailer');
 
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     
     // 展会预告
-    Route::get('/trailer', 'ExpoController@trailer');
     
     Route::get('/sms', 'AuthController@sms');
     Route::post('/code', 'AuthController@code')->middleware('throttle:1,2');
@@ -53,6 +58,17 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
     // auth users
     Route::group(['middleware' => ['mix', 'state']], function () {
+        // ----- OA -----
+        // 统计
+        Route::get('/report', 'SysController@report');
+        // Excel: 导入
+        Route::get('/import/order', 'SysController@import');
+        Route::post('/import/save_order', 'SysController@saveOrder');
+
+        // Excel: 导出
+        Route::get('/download/{key}', 'SysController@download');
+
+        
 
         // 应用中心
         Route::get('/apps', 'SysController@apps');
@@ -84,6 +100,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
         Route::post('/expo/sort/store/{id}', 'ExpoController@sortStore'); # 登记入场顺序
         Route::get('/expos/create', 'ExpoController@create');
         Route::post('/expos/store', 'ExpoController@store');
+        Route::get('/expos/notice', 'ExpoController@notice');
 
         // 票
         Route::get('/pay/{id}', 'TicketController@order');
@@ -93,45 +110,152 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
         //发现
         Route::get('/discoveries','DiscoveryController@index');
+
+        // 财务
+        Route::get('/finances','FinanceController@index');
+        Route::get('/finance/create','FinanceController@create');
+        Route::post('/finance/store','FinanceController@store');
+        Route::get('/finance/log','FinanceController@log');
+        Route::get('/finance/dash','FinanceController@dash');
+        Route::get('/finance/confirmed/{id}','FinanceController@confirmed');
+        Route::get('/finance/abandon/{id}','FinanceController@abandon');
+
+        // 事务
+        Route::get('/tasks','TaskController@index');
+        Route::get('/task/show/{id}','TaskController@show');
+        Route::get('/task/create','TaskController@create');
+        Route::post('/task/next','TaskController@next');
+        Route::post('/task/store','TaskController@store');
+        Route::get('/task/confirmed/{id}','TaskController@confirmed');
+        Route::get('/task/abandon/{id}','TaskController@abandon');
+        Route::post('/task/update','TaskController@update');
+        Route::get('/task/finish/{id}','TaskController@finish');
+
     });
 });
 
+Route::get('/test', function () {
+    // $a = Auth::user()->finance_to;
+    $a = App\Task::find(1);
+    $b = new App\Helpers\Task;
+    var_dump($b->operate($a));
+    // $a = App\Finance::where('abandon', false)->where('type', 'out')->sum('fee');
+
+    // print_r($a);
+    // $a = now();
+
+    // print_r($a->users);
+
+    // $a = [['id'=>5, 'task'=>'任务1'], ['id'=>6, 'task'=>"任务2"]];
+
+    // function ch($array)
+    // {
+    //     $filtered = Arr::where($array, function ($value, $key) {
+    //         // return is_string($value);
+    //         if($value['id'] == Auth::id()) return $value;
+    //     });
+
+    //     return false;
+    // }
+
+    // var_dump(ch($a));
+    
+    // $new = [];
+    // foreach ($a as $k) {
+    //     $user = App\User::find($k['id']);
+    //     $ks = Arr::add($k, 'name', face($user)->name);
+    //     $new[] = $ks;
+    // }
+
+    // print_r($new);
+});
+
+// Route::get('/check', function () {
+
+//     // $a = App\User::find(8)->orders;
+
+//     $a = App\User::has('tickets')->get();
+
+
+//     // echo $a.'-'.$b.'-'.$c.'-'.$d.'-';
+
+//     foreach ($a as $key) {
+        
+//         echo '用户id: '.$key->id.'; 张数: '.$key->tickets->count().'<br>------<br>';
+
+//         foreach ($key->tickets as $t) {
+//             echo $t->id.'; 时间: '.$t->created_at.'<br>';
+//         }
+//         echo '---------------<br>';
+
+//         $b = $key->orders;
+
+//         $filtered = $b->reject(function ($v) {
+//             return empty($v->status);
+//         });
+
+//         foreach ($filtered as $k) {
+//             echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
+//         }
+
+        
+
+//         echo '=================<br>';
+//     }
+
+//     // $a = App\Ticket::orderBy('order_id')->distinct('order_id')->get();
+
+//     // echo $a->count().'<br>-----<br>';
+
+//     // foreach ($a as $key) {
+//     //     # code...
+//     //     echo '+'.$key->user->id.'-'.$key->order_id.'<br>';
+//     // }
+//     // echo now();
+//     // $a = time();
+
+//     // $b = date('Y-m-d H:i:s', $a);
+
+//     // echo $b;
+
+// });
+
+
+// Route::get('/find', function () {
+//     $arr = [11,133,159];
+//     $users = App\User::whereIn('id', $arr)->get();
+
+//     foreach ($users as $key) {
+        
+//         echo '用户id: '.$key->id.', 手机号:'.show($key->ids, 'mobile.number').'; 张数: '.$key->tickets->count().'<br>------<br>';
+
+//         foreach ($key->tickets as $t) {
+//             echo '票id号: '.$t->id.', 入场次序: '.$t->sorted .'; 对应交易号: '.$t->order->out_trade_no.'<br>';
+//         }
+//         echo '---------------<br>';
+
+//         $b = $key->orders;
+
+//         $filtered = $b->reject(function ($v) {
+//             return empty($v->status);
+//         });
+
+//         foreach ($filtered as $k) {
+//             echo '交易号: '.$k->out_trade_no.'单号: '.$k->id.'; 金额: '.$k->total_fee/100 . '; ' . $k->status.' : '. $k->created_at .'<br>';
+//         }
+
+        
+
+//         echo '=================<br>';
+//     }
+// });
+
+
 // ------------ dev -------------
 
-Route::get('/fake', 'WechatController@fake');
+// Route::get('/fake', 'WechatController@fake');
 
-Route::get('/test', function () {
-    abort('403');
-    // $users = App\User::has('tickets')->get()->count();
-    // // $u1 =  App\User::where(function($query))->get()->count();
-    // $u1 = App\User::has('tickets',1)->get()->count();
-    // $u2 = App\User::has('tickets',2)->get()->count();
-    // $u3 = App\User::has('tickets',3)->get()->count();
-    // $u4 = App\User::has('tickets',4)->get()->count();
 
-    
-    // $t = App\Ticket::all()->count();
-    // $t1 = App\Ticket::whereDate('created_at', '2020-07-11')->get()->count();
-    // $t2 = App\Ticket::whereDate('created_at', '2020-07-12')->get()->count();
-    
-    // // $t3 = App\Ticket::whereDate('created_at', '2020-07-11')->distinct('user_id')->count();
-    // // $t4 = App\Ticket::whereDate('created_at', '2020-07-12')->distinct('user_id')->count();
-
-    // $t5 = App\Ticket::where('expo_id',1)->get()->count();
-    // $t6 = App\Ticket::where('expo_id',2)->get()->count();
-    
-    // echo '购票人数量: '.$users.'<br>购1张的: '.$u1.'<br>购2张的: '.$u2.'<br>购3张的: '.$u3.'<br>购4张的: '.$u4;
-    // // echo '<br>7/11买票人数: '.$t3. '<br>7/12买票人数:'.$t4;
-    // echo '<br>-----<br>总销售: '.$t.', 其中 :<br>7/11: '.$t1.'<br>7/12: '.$t2;
-    // echo '<br> 7/25票已销售: '. $t5. '<br> 7/26票已销售: '. $t6;
-
-    // $u4 = App\User::all()->count();
-    // $u5 = App\User::whereDate('created_at', '2020-07-11')->get()->count();
-    // $u6 = App\User::whereDate('created_at', '2020-07-12')->get()->count();
-
-    // echo '<br>-----<br>注册用户: '.$u4.', 其中新增 :<br>7/11: '.$u5.'<br>7/12: '.$u6;
-
-});
 
 Route::get('/in', function () {
     // $user = App\User::find(5);

@@ -24,19 +24,23 @@ class SendSmsCode
     {
         $expire = 300; # 5分钟有效
         $rate = 120; # 2分钟
-        $device_id = $args['device_id'];
+        
+        $device_id = $context->request()->header('device-id');
         $mobile = $args['mobile'];
-
-        if(Redis::exists($device_id) && Redis::ttl($device_id) > ($expire - $rate)) throw new Error("4011@频率限制为2分钟");
+        
+        if(Redis::exists($device_id.'_rate')) throw new Error("429@请于".Redis::ttl($device_id.'_rate')."秒后重试");
 
         $code = rand(100000, 999999);
-        $send = $mobile.'-'. $code;
 
-        Redis::setex($device_id, 300, $send);
+        $send = [
+            'mobile' => $mobile,
+            'code' => $code,
+        ];
 
-        $send_array = ['mobile'=>$mobile, 'code'=>$code];
+        Redis::setex($device_id.'_rate', $rate, $rate);
+        Redis::setex($device_id, $expire, \json_encode($send));
 
-        SendSmsCodeJob::dispatch($send_array);
+        // SendSmsCodeJob::dispatch($send);
 
         $ex = User::where('ids->mobile->number',$mobile)->first();
 

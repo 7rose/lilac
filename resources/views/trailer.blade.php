@@ -8,6 +8,15 @@
 
 <div class="nav-pad"></div>
 <div class="container col-sm-8 col-xs-12 p-centered">
+    @if($au->need(Auth::user(), 'staff'))
+    <div class="column col-9 col-sm-12">
+        <div class="toast">
+          <button class="btn btn-clear float-right"></button>
+          <h6>仅员工可见以供测试</h6>
+          <p><a href="/pay/3" class="btn btn-success">1分钱买测试票</a></p>
+        </div>
+      </div>
+    @endif
     <div class="column col-6 col-xs-12">
         <div class="card ">
             <div class="card-image"><img class="img-responsive" src="{{ asset('images/main.jpg') }}" alt=".."></div>
@@ -21,31 +30,31 @@
 
                 <div class="card-footer">
                     {{-- @if(Auth::check() && ($e->buy(App\Expo::find(1)) || $e->buy(App\Expo::find(2)))) --}}
-                    <div class="text-center"><h5>统一票价: ¥130</h5></div>
+                    <div class="text-center">
+                        <h5>统一票价: ¥130 
+                        @if($au->need(Auth::user(), 'board'))
+                         <a href="/report" class="text-success"><i class="fa fa-print" aria-hidden="true"></i> </a>
+                        @endif
+                        </h5>
+                    </h5>
+                    </div>
                     <p></p>
                     <div class="btn-group btn-group-block btn-big">
-                        @if($e->buy(App\Expo::find(1)))
+                        
+                        @if(Auth::check() && $e->buy(App\Expo::find(1)) && $au->need(Auth::user(), 'staff'))
                         <a href="/pay/1" class="btn btn-big btn-secondary"><strong>7月25日</strong><br><small>
-                            @if($au->need(Auth::user(), 'staff'))
                             余票: {{ $e->buy(App\Expo::find(1)) }}
-                            @else 
-                            售票中
-                            @endif
                         </small></a>
                         @else
-                        <button class="btn btn-big btn-secondary disabled"><strong>7月25日</strong><br><small>已售完</small></button> 
+                        <button class="btn btn-big btn-secondary disabled"><strong>7月25日</strong><br><small>已结束</small></button> 
                         @endif
 
-                        @if($e->buy(App\Expo::find(2)))
+                        @if(Auth::check() && $e->buy(App\Expo::find(2)) && $au->need(Auth::user(), 'staff'))
                         <a href="/pay/2" class="btn btn-big btn-primary"><strong>7月26日</strong><br><small>
-                            @if($au->need(Auth::user(), 'staff'))
                             余票: {{ $e->buy(App\Expo::find(2)) }}
-                            @else 
-                            售票中
-                            @endif
                         </small></a>
                         @else
-                        <button class="btn btn-big btn-primary disabled"><strong>7月26日</strong><br><small>已售完</small></button> 
+                        <button class="btn btn-big btn-primary disabled"><strong>7月26日</strong><br><small>已结束</small></button> 
                         @endif
 
                       </div> 

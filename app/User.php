@@ -35,6 +35,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * 定义josn列
+     *
+     */
+    protected $casts = [
+        'ids' => 'json',
+        'info' => 'json',
+        'conf' => 'json',
+    ];
+
+    /**
      * Parent
      *
      */
@@ -53,6 +63,15 @@ class User extends Authenticatable
     }
 
     /**
+     * orders
+     *
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Order', 'openid', 'ids->wechat->id');
+    }
+
+    /**
      * Tickets
      *
      */
@@ -61,15 +80,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Ticket', 'user_id');
     }
 
-    /**
-     * 定义josn列
-     *
-     */
-    protected $casts = [
-        'ids' => 'json',
-        'info' => 'json',
-        'conf' => 'json',
-    ];
+
 
     /**
      * Orgs of a user
@@ -137,5 +148,42 @@ class User extends Authenticatable
 
         return $value;
     }
+
+    /**
+     * Tickets
+     *
+     */
+    public function finance_to()
+    {
+        return $this->hasMany('App\Finance', 'to->id');
+    }
+
+    /**
+     * Finances
+     *
+     */
+    public function finance_from()
+    {
+        return $this->hasMany('App\Finance', 'from->id');
+    }
+
+    /**
+     * Roles of a user
+     *
+     */
+    public function tasks()
+    {
+        return $this->hasManyJson('App\Task', 'parts[]->id');
+    }
+
+    /**
+     * Finances
+     *
+     */
+    public function tasks_create()
+    {
+        return $this->hasMany('App\Task', 'created_by');
+    }
+
 
 }
