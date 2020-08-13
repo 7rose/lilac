@@ -26,10 +26,6 @@ type Mutation {
     logout: LogoutResault!
 }
 
-extend type Mutation @guard { # 需要身份认证的查询
-    # 
-}
-
 #import user.graphql
 #import org.graphql
 #import role.graphql
