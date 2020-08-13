@@ -1,79 +1,66 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+### Lilac
+#### app graphql部分
+#### 总体约定
+* 后端:
+1. 所有请求的`headers`中包含 `device-id`
+2. 服务器端逻辑错误返回(非字段验证类)格式为 `代码@提示信息`,提示信息为中文,可以直接引用,如: `429@请于118秒后重试`
+3. cors已经配置
+4. 采用laravel scancum认证
+5. 目录: 路由- `/graphql`; 自定义类(涉及检验规则) - `/app/GraphQL/Scalars`; 逻辑处理文件 - `/app/GraphQL/Queries`(查询), `/app/GraphQL/Mutations`(变异)
+##### 身份认证部分(注释请忽略)
+* 
+```
+input trustMoblieInput { # 极光,暂不考虑
+    jv_token: String! 
+}
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+input SendSmsCodeInput {
+    mobile: ChineseMobile! # 手机号,规则可见 /app/GraphQL/Scalars/ChineseMobile.php
+}
 
-## About Laravel
+input GetTokenInput {
+    mobile: ChineseMobile!
+    code: SmsCode! # 验证码
+}
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+type SendSmsResault {
+    registered: Boolean! # 是否为已注册用户
+    success: Boolean! # 是否成功
+}
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+type TokenPayload {
+    token: String! # 令牌,置于http headers中
+}
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+type LogoutResault {
+    success: Boolean! # 退出, 是否成功
+}
 
-## Learning Laravel
+```
+* 方法
+```
+type Query { # 查询
+    users: [User!]! @all # 所有用户
+    user(id: ID @eq): User @find # 按id查询用户 
+    # sample
+    # orgs: [Org!]! @all
+    # org(id: ID @eq): Org @find
+    # discoveries: [Discovery!]! @all
+}
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# 需要认证
+extend type Query @guard { # 需要身份认证的查询
+    me: User @auth
+}
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+type Mutation {
+    trustMoblie(input: trustMoblieInput! @spread) : TokenPayload!
+    sendSmsCode(input: SendSmsCodeInput! @spread) : SendSmsResault!
+    getToken(input: GetTokenInput! @spread) : TokenPayload!
+    logout: LogoutResault!
+}
+extend type Mutation @guard { # 需要身份认证的变异
+    # 如关注
+}
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
