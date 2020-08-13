@@ -32,15 +32,15 @@ class SendSmsCode
 
         $code = rand(100000, 999999);
 
-        $send = [
+        $send_array = [
             'mobile' => $mobile,
             'code' => $code,
         ];
 
         Redis::setex($device_id.'_rate', $rate, $rate);
-        Redis::setex($device_id, $expire, \json_encode($send));
+        Redis::setex($device_id, $expire, \json_encode($send_array));
 
-        SendSmsCodeJob::dispatch($send);
+        SendSmsCodeJob::dispatch($send_array);
 
         $ex = User::where('ids->mobile->number',$mobile)->first();
 
