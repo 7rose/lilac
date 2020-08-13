@@ -21,7 +21,7 @@
         <div class="container col-4 col-md-6 col-sm-10 col-xs-12 p-centered">
             <div class="panel">
                 <div class="panel-header">
-                    <a href="/app" class="text-dark"><i class="fa fa-clock-o" aria-hidden="true"></i>  所有任务</a>
+                    <a href="/apps" class="text-dark"><i class="fa fa-clock-o" aria-hidden="true"></i>  所有任务</a>
                     &nbsp;&nbsp; <a href="/task/create" class="btn btn-success btn-sm">+ 任务发布</a>
                 </div>
             <div class="panel-body">
