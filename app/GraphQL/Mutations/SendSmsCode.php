@@ -40,7 +40,7 @@ class SendSmsCode
         Redis::setex($device_id.'_rate', $rate, $rate);
         Redis::setex($device_id, $expire, \json_encode($send));
 
-        // SendSmsCodeJob::dispatch($send);
+        SendSmsCodeJob::dispatch($send);
 
         $ex = User::where('ids->mobile->number',$mobile)->first();
 
