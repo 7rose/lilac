@@ -8,7 +8,7 @@
 4. 采用laravel scancum认证
 5. 目录: 路由- `/graphql`; 自定义类(涉及检验规则) - `/app/GraphQL/Scalars`; 逻辑处理文件 - `/app/GraphQL/Queries`(查询), `/app/GraphQL/Mutations`(变异)
 ##### 身份认证部分(注释请忽略)
-* 
+* 部分input和type
 ```
 input trustMoblieInput { # 极光,暂不考虑
     jv_token: String! 
