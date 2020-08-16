@@ -13,17 +13,17 @@ class Star
      */
     public function __invoke($_, array $args)
     {
-        $ex = StarModel::where('video_id', $args['video_id'])->where('created_by', Auth::id())->first();
+        $ex = StarModel::where('video_id', $args['video_id'])->where('created_by', Auth::guard('sanctum')->id())->first();
 
         if($ex){
             $ex->delete();
-            return ['status' => 'success', 'do' => 'unstar', 'id' => Auth::id()];
+            return ['status' => 'success', 'do' => 'unstar', 'id' => Auth::guard('sanctum')->id()];
         } else {
             $re = StarModel::create([
                 'video_id' => $args['video_id'],
-                'created_by' => Auth::id(),
+                'created_by' => Auth::guard('sanctum')->id(),
             ]);
-            return ['status' => 'success', 'do' => 'star', 'id' => Auth::id()];
+            return ['status' => 'success', 'do' => 'star', 'id' => Auth::guard('sanctum')->id()];
         }
     }
 }

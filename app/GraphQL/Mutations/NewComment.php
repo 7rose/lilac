@@ -14,7 +14,7 @@ class NewComment
      */
     public function __invoke($_, array $args)
     {
-        $ex = Comment::where('video_id', $args['video_id'])->where('created_by', Auth::id())->first();
+        $ex = Comment::where('video_id', $args['video_id'])->where('created_by', Auth::guard('sanctum')->id())->first();
         if($ex) return $ex;
 
         $content = [
@@ -26,7 +26,7 @@ class NewComment
 
         $new = [
             'content' => $content,
-            'created_by' => Auth::id(),
+            'created_by' => Auth::guard('sanctum')->id(),
             'video_id' => $args['video_id'],
         ];
 
