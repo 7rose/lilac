@@ -12,7 +12,7 @@ type Query {
     # org(id: ID @eq): Org @find
     # discoveries: [Discovery!]! @all
 
-    videos: [Video!]! @paginate # 视频
+    videos(show: Boolean @scope(name: "show")): [Video!]! @paginate # 视频
 }
 
 # 需要认证

@@ -69,7 +69,7 @@ extend type Mutation @guard { # 需要身份认证的变异
 1. 读取[1. 使用分页(格式), 2.赞(star), 3.评论(comments)]
 ```
 {
-  videos(first: 10) {
+  videos(first: 10, show:true) { # show是审核标记,在审核没有移到前端之前,读取应该始终为true
     data {
       id
       content

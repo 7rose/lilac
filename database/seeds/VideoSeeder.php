@@ -18,6 +18,7 @@ class VideoSeeder extends Seeder
                 'sub_title' => '测试副标题和内容1',
                 'url' => config('app.url').'/storage/test.mp4',
             ],
+            'show' => true,
             'created_by' => 1
         ]);
 

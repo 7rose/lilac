@@ -48,4 +48,13 @@ class Video extends Model
     {
         return $this->hasMany('App\Comment', 'video_id');
     }
+
+    /**
+     * 范围
+     *
+     */
+    public function scopeShow($query)
+    {
+        return $query->where('show', true);
+    }
 }
