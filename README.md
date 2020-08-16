@@ -172,4 +172,19 @@ mutation Star($id: Int!, $type: String!) {
   }
 }
 ```
+### 示例
+---------------
+* 读取登录用户的视频关注列表
+```
+{
+  me{
+    id
+    ids
+    favorites_video{
+      id
+      content
+    }
+  }
+}
+```
 
