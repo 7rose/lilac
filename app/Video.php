@@ -53,8 +53,8 @@ class Video extends Model
      * 范围
      *
      */
-    public function scopeShow($query)
+    public function scopeShow($query, $show)
     {
-        return $query->where('show', true);
+        return $query->where('show', $show);
     }
 }
