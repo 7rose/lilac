@@ -16,7 +16,7 @@ class VideoSeeder extends Seeder
             'content' => [
                 'title' => '测试标题1',
                 'sub_title' => '测试副标题和内容1',
-                'url' => config('app.url').'/public/storage/test.mp4',
+                'url' => config('app.url').'/storage/test.mp4',
             ],
             'created_by' => 1
         ]);
@@ -25,7 +25,7 @@ class VideoSeeder extends Seeder
             'content' => [
                 'title' => '测试标题2',
                 'sub_title' => '测试副标题和内容2',
-                'url' => config('app.url').'/public/storage/test.mp4',
+                'url' => config('app.url').'/storage/test.mp4',
             ],
             'created_by' => 2
         ]);
