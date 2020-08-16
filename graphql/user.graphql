@@ -12,4 +12,5 @@ type User {
     roles: [Role!]!
     videos: [Video!]!
     scores: [Score!]!
+    favorites_video: [Video]!
 }

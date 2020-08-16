@@ -203,4 +203,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Score', 'user_id');
     }
 
+    /**
+     * 视频
+     *
+     */
+    public function favorites_video()
+    {
+        return $this->belongsToJson('App\Video', 'info->favorites->video[]->id');
+    }
+
 }

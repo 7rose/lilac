@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
+    use \Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
 
     /**
      * Free to fill
@@ -56,5 +57,14 @@ class Video extends Model
     public function scopeShow($query, $show)
     {
         return $query->where('show', $show);
+    }
+
+    /**
+     * 视频
+     *
+     */
+    public function favorites_user()
+    {
+        return $this->hasManyJson('App\User', 'info->favorites->video[]->id');
     }
 }
