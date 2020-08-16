@@ -31,7 +31,7 @@ class Favor
         $re = ['success' => true, 'do' => 'remove', 'message' => '已从关注列表中移除'];
 
         if(count($old) == count($new)) {
-            $new[] = ['id' => $args['id'], 'time' => time()];
+            $new[] = ['id' => $this->id, 'time' => time()];
             $re = ['success' => true, 'do' => 'add', 'message' => '已添加至关注列表'];
         }
 
