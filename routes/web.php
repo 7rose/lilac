@@ -1,7 +1,8 @@
 <?php
 
-use App\Jobs\WecahtGetTicket;
+use Illuminate\Http\Request;
 
+use App\Jobs\WecahtGetTicket;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\WechatTicketPreregister;
 use Illuminate\Support\Facades\Redis;
@@ -257,11 +258,15 @@ Route::get('/test', function () {
 
 // Route::get('/fake', 'WechatController@fake');
 
+Route::get('/token/{id}', 'TestController@token');
 
+Route::get('/in/{id}', function () {
 
-Route::get('/in', function () {
+    $r = new Request;
+    $id = $r->id;
+    
     // $user = App\User::find(5);
-    $user = App\User::find(6);
+    $user = App\User::find($id);
     // $user = App\User::find(2);
     // $user = App\User::find(1);
     // $user = App\User::find(8);
