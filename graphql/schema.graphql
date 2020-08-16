@@ -27,6 +27,7 @@ type Mutation {
     logout: LogoutResault!
 }
 
+# 需要认证
 extend type Mutation @guard {
     star(input: StarInput! @spread) : OperationPayload! # 赞和取消赞
     newComment(input: CommentInput! @spread) : Comment! # 评价
@@ -34,6 +35,7 @@ extend type Mutation @guard {
     favor(input: FavorInput! @spread) : OperationPayload! # 关注(收藏)
 }
 
+# 一般性操作返回
 type OperationPayload {
     success: Boolean!
     do: String!

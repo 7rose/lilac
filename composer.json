@@ -22,6 +22,7 @@
         "mll-lab/laravel-graphql-playground": "^2.1",
         "nuwave/lighthouse": "^4.13",
         "overtrue/laravel-wechat": "^5.0",
+        "php-ffmpeg/php-ffmpeg": "^0.16.0",
         "rap2hpoutre/laravel-log-viewer": "^1.6",
         "simplesoftwareio/simple-qrcode": "^2.0",
         "staudenmeir/eloquent-json-relations": "^1.4"
