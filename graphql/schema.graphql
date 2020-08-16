@@ -11,7 +11,6 @@ type Query {
     # orgs: [Org!]! @all
     # org(id: ID @eq): Org @find
     # discoveries: [Discovery!]! @all
-
     videos(show: Boolean @scope(name: "show")): [Video!]! @paginate # 视频
     video(id: ID @eq, show: Boolean @scope(name: "show")): Video @find
 }
