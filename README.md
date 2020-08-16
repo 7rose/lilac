@@ -162,3 +162,14 @@ mutation DeleteComment {
   }
 }
 ```
+4. 关注/收藏 (第一次关注,再点取消)
+```
+mutation Star($id: Int!, $type: String!) {
+  favor(input: {id: $id, type: $type}) {
+    success
+    do
+    message
+  }
+}
+```
+

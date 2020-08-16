@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Favor
 {
+    private $id;
+
     /**
      * @param  null  $_
      * @param  array<string, mixed>  $args
@@ -16,16 +18,25 @@ class Favor
 
         $old = show($user->info, 'favorites.'.$args['type'], []);
 
-        if(in_array($args['id'], $old)) {
-            unset($old[array_search($args['id'], $old)]);
-            $re = ['success' => true, 'do' => 'remove', 'message' => '已从关注列表中移除'];
-        } else{
-            array_push($old, $args['id']);
+        $this->id = $args['id'];
+
+        $collection = collect($old);
+
+        $filtered = $collection->reject(function ($value, $key) {
+            return $value['id'] == $this->id;
+        });
+
+        $new = $filtered->all();
+
+        $re = ['success' => true, 'do' => 'remove', 'message' => '已从关注列表中移除'];
+
+        if(count($old) == count($new)) {
+            $new[] = ['id' => $args['id'], 'time' => time()];
             $re = ['success' => true, 'do' => 'add', 'message' => '已添加至关注列表'];
         }
 
         $old_info = $user->info;
-        $old_info['favorites'][$args['type']] = $old;
+        $old_info['favorites'][$args['type']] = $new;
 
         $user->update(['info' => $old_info]);
 
