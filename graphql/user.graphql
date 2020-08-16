@@ -8,9 +8,9 @@ type User {
     created_by: Int
     created_at: DateTime!
     updated_at: DateTime!
-    orgs: [Org!]!
-    roles: [Role!]!
+    # orgs: [Org!]!
+    # roles: [Role!]!
     videos: [Video!]!
-    scores: [Score!]!
     favorites_video: [Video]!
+    scores: [Score!]!
 }
