@@ -28,9 +28,16 @@ type Mutation {
 }
 
 extend type Mutation @guard {
-    star(input: StarInput! @spread) : StarPayload! # 赞和取消赞
+    star(input: StarInput! @spread) : OperationPayload! # 赞和取消赞
     newComment(input: CommentInput! @spread) : Comment! # 评价
     deleteComment(id: ID!): Comment @delete
+    favor(input: FavorInput! @spread) : OperationPayload! # 关注(收藏)
+}
+
+type OperationPayload {
+    success: Boolean!
+    do: String!
+    message: String!
 }
 
 #import user.graphql
@@ -42,3 +49,4 @@ extend type Mutation @guard {
 #import star.graphql
 #import comment.graphql
 #import score.graphql
+#import favor.graphql

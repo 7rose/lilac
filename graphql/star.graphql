@@ -13,6 +13,7 @@ input StarInput {
 }
 
 type StarPayload {
-    status: Boolean!
+    success: Boolean!
     do: String!
+    message: String!
 }

@@ -17,13 +17,13 @@ class Star
 
         if($ex){
             $ex->delete();
-            return ['status' => 'success', 'do' => 'unstar', 'id' => Auth::guard('sanctum')->id()];
+            return ['success' => true, 'do' => 'unstar', 'message' => '已收回赞'];
         } else {
             $re = StarModel::create([
                 'video_id' => $args['video_id'],
                 'created_by' => Auth::guard('sanctum')->id(),
             ]);
-            return ['status' => 'success', 'do' => 'star', 'id' => Auth::guard('sanctum')->id()];
+            return ['success' => true, 'do' => 'star', 'message' => '已赞'];
         }
     }
 }

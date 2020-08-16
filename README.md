@@ -115,8 +115,9 @@ extend type Mutation @guard { # 需要身份认证的变异
 ```
 mutation Star($video_id: Int!) {
   star(input: {video_id: $video_id}) {
-    status
+    success
     do
+    message
   }
 }
 ```

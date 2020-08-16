@@ -1,0 +1,4 @@
+input FavorInput {
+    id: Int!
+    type: String! 
+}
