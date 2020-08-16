@@ -64,3 +64,82 @@ extend type Mutation @guard { # 需要身份认证的变异
 }
 
 ```
+
+#### 视频资讯
+1. 读取[1. 使用分页(格式), 2.赞(star), 3.评论(comments)]
+```
+{
+  videos(first: 10) {
+    data {
+      id
+      content
+
+      stars{
+        id
+        created_at
+      }
+
+      comments{
+        id
+        content
+        created_at
+      }
+    }
+    paginatorInfo {
+      currentPage
+      lastPage
+    }
+  }
+}
+```
+2. 点赞/取消点赞
+变异mutation
+```
+mutation Star($video_id: Int!) {
+  star(input: {video_id: $video_id}) {
+    status
+    do
+  }
+}
+```
+headers,以下均相同,均略
+```
+{
+  "device-id" : "mydevice",
+  "Authorization": "Bearer 1|UKPF8b6Uzcfnrt7ejaWDPRats5CK9z9cnyrs9JL90Y7NIqMx9KGCgWiivh0yMlmnCXsHhHhKreWvly3N"
+}
+```
+
+变量
+```
+{
+  "video_id": "1"
+}
+```
+
+3. 评论和评论删除 (每个视频每人只允许评论一次,评论不能修改只能删除,删除后可以重新评论)
+```
+mutation NewComment($video_id: Int!, $title: String, $sub_title: String!) {
+  newComment(input: {video_id: $video_id,title: $title,sub_title: $sub_title}) {
+    id
+    content
+  }
+}
+```
+变量
+```
+{
+  "video_id": "1",
+  "title": "good", # 可选项
+  "sub_title": "yes,good!"
+}
+```
+* 删除
+```
+mutation DeleteComment {
+  deleteComment(id: 5) {
+    id
+    content
+  }
+}
+```

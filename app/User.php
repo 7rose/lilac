@@ -185,5 +185,22 @@ class User extends Authenticatable
         return $this->hasMany('App\Task', 'created_by');
     }
 
+    /**
+     * 视频
+     *
+     */
+    public function videos()
+    {
+        return $this->hasMany('App\Video', 'created_by');
+    }
+
+    /**
+     * 积分
+     *
+     */
+    public function scores()
+    {
+        return $this->hasMany('App\Score', 'user_id');
+    }
 
 }

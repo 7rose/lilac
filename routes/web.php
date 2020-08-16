@@ -47,6 +47,10 @@ Route::get('/gift', 'GiftController@index');
 
 Route::get('/trailer', 'ExpoController@trailer');
 
+Route::group(['middleware' => ['mix', 'state']], function () {
+    Route::get('/video/create', 'VideoController@create');
+});
+
 // wechat user
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     
@@ -67,8 +71,6 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
 
         // Excel: 导出
         Route::get('/download/{key}', 'SysController@download');
-
-        
 
         // 应用中心
         Route::get('/apps', 'SysController@apps');
@@ -265,4 +267,9 @@ Route::get('/in', function () {
     // $user = App\User::find(8);
     Auth::login($user);
     print_r($user->info);
+
+    $t = $user->createToken('goodluck')->plainTextToken;
+
+    // Auth::guard('sanctum')->user()
+    echo '<br>'.$t;
 });

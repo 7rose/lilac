@@ -1,0 +1,15 @@
+type Comment {
+    id: ID!
+    content: Json!
+    video_id: Int!
+    created_by: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+    video: [Video!]!
+}
+
+input CommentInput {
+    video_id: Int!
+    title: String @rules(apply: ["string", "max:32"])
+    sub_title: String! @rules(apply: ["string", "max:200", "min:8"])
+}

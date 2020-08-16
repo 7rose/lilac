@@ -5,9 +5,11 @@ type User {
     conf: Json
     locked: Boolean!
     show: Boolean!
-    created_by: ID
+    created_by: Int
     created_at: DateTime!
     updated_at: DateTime!
     orgs: [Org!]!
     roles: [Role!]!
+    videos: [Video!]!
+    scores: [Score!]!
 }

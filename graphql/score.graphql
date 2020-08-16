@@ -1,0 +1,9 @@
+type Score {
+    id: ID!
+    user_id: Int!
+    num: Int!
+    content: Json!
+    in: Boolean!
+    abandon: Boolean!
+    user: [User!]!
+}

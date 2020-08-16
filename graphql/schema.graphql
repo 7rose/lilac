@@ -6,17 +6,18 @@ scalar ChineseMobile
 scalar SmsCode
 
 type Query {
-    users: [User!]! @all
+    # users: [User!]! @paginate
     user(id: ID @eq): User @find
-    # sample
     # orgs: [Org!]! @all
     # org(id: ID @eq): Org @find
     # discoveries: [Discovery!]! @all
+
+    videos: [Video!]! @paginate # 视频
 }
 
 # 需要认证
 extend type Query @guard {
-    me: User @auth
+    me: User @auth # 个人信息
 }
 
 type Mutation {
@@ -26,7 +27,18 @@ type Mutation {
     logout: LogoutResault!
 }
 
+extend type Mutation @guard {
+    star(input: StarInput! @spread) : StarPayload! # 赞和取消赞
+    newComment(input: CommentInput! @spread) : Comment! # 评价
+    deleteComment(id: ID!): Comment @delete
+}
+
 #import user.graphql
 #import org.graphql
 #import role.graphql
 #import auth.graphql
+
+#import video.graphql
+#import star.graphql
+#import comment.graphql
+#import score.graphql

@@ -1,0 +1,18 @@
+type Star {
+    id: ID!
+    content: Json
+    video_id: Int!
+    created_by: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+    video: [Video!]!
+}
+
+input StarInput {
+    video_id: Int!
+}
+
+type StarPayload {
+    status: Boolean!
+    do: String!
+}
