@@ -92,6 +92,25 @@ extend type Mutation @guard { # 需要身份认证的变异
   }
 }
 ```
+读取单个视频
+```
+{
+  video(id: 1, show:true) {
+    
+      id
+      content
+      stars{
+        id
+        created_at
+      }
+      comments{
+        id
+        content
+        created_at
+      }
+  	}
+  }
+```
 2. 点赞/取消点赞
 变异mutation
 ```

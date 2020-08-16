@@ -13,7 +13,7 @@ type Query {
     # discoveries: [Discovery!]! @all
 
     videos(show: Boolean @scope(name: "show")): [Video!]! @paginate # 视频
-    video(id: ID @eq): Video @find
+    video(id: ID @eq, show: Boolean @scope(name: "show")): Video @find
 }
 
 # 需要认证
