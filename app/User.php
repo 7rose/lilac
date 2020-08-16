@@ -211,5 +211,5 @@ class User extends Authenticatable
     {
         return $this->belongsToJson('App\Video', 'info->favorites->video[]->id');
     }
-
+    
 }
