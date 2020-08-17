@@ -278,3 +278,7 @@ Route::get('/in/{id}', function () {
     // Auth::guard('sanctum')->user()
     echo '<br>'.$t;
 });
+
+Route::get('/phpinfo', function () {
+    phpinfo();
+});
