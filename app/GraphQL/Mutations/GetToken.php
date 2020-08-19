@@ -28,11 +28,11 @@ class GetToken
         if(!$auth_info || $args['mobile'] != json_decode($auth_info, true)['mobile']) throw new Error("400@无效或者过期信息");
         if(!$auth_info || $args['code'] != json_decode($auth_info, true)['code']) throw new Error("400@验证码错误");
 
-        $user = User::where('ids->mobile->number',$mobile)->first();
+        $user = User::where('ids->mobile->number',$args['mobile'])->first();
 
         if(!$user) {
             $new = [
-                'ids' => ['mobile' => ['number' => $mobile, 'active'=>true, 'veryfied_at' => now()]],
+                'ids' => ['mobile' => ['number' => $args['mobile'], 'active'=>true, 'veryfied_at' => now()]],
             ];
             $user = User::create($new);
         }
